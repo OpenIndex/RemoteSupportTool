@@ -90,8 +90,8 @@ class AboutDialog(Tkinter.Toplevel):
         icon = open_photoimage(resource_path('resources', 'icon.png'))
         self.tk.call('wm', 'iconphoto', self._w, icon)
 
-        self.photo = open_photoimage(resource_path('resources', 'sidebar_about.png'), self.winfo_rgb(COLOR_BG))
-        Tkinter.Label(self, image=self.photo, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
+        self.sidebar = open_photoimage(resource_path('resources', 'sidebar_about.png'), self.winfo_rgb(COLOR_BG))
+        Tkinter.Label(self, image=self.sidebar, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
             .grid(row=0, column=0, sticky='nw')
 
         vnc_linux = _('{0} for {1}').format('x11vnc %s (GPLv2)' % VERSION_X11VNC, 'Linux')
@@ -231,49 +231,57 @@ class AppFrame(Tkinter.Frame):
 
     def initialize(self):
         self.config(background=COLOR_BG)
+        row = 0
 
         # title image
-        self.logo = open_photoimage(resource_path('resources', 'sidebar.png'), self.winfo_rgb(COLOR_BG))
-        Tkinter.Label(self, image=self.logo, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
-            .grid(row=0, column=0, rowspan=4, sticky='nw')
+        self.sidebar = open_photoimage(resource_path('resources', 'sidebar.png'), self.winfo_rgb(COLOR_BG))
+        Tkinter.Label(self, image=self.sidebar, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
+            .grid(row=row, column=0, rowspan=4, sticky='nw')
 
         # title text
         Tkinter.Label(self, text='%s v%s' % (TITLE, VERSION), background=COLOR_BG, font=FONT_TITLE, anchor='w', padx=5)\
-            .grid(row=0, column=1, pady=(3,0), sticky='nwe')
+            .grid(row=row, column=1, pady=(3,0), sticky='nwe')
 
         # description
-        description = _('Use this application in order to allow access on your desktop to our support team.')
+        row += 1
+        description = _('Use this application in order to allow access on your desktop.')
         self.description = Tkinter.Label(self, text=description, background=COLOR_BG, font=FONT_SMALL, anchor='w', padx=5, justify=Tkinter.LEFT)
-        self.description.grid(row=1, column=1, sticky='nwe')
+        self.description.grid(row=row, column=1, sticky='nwe')
         self.description.bind('<Configure>', self.on_resize_description)
 
         # form fields
+        row += 1
         self.connection = AppFrameForm(self)
         self.connection.address.bind('<Return>', self.on_key_enter)
         self.connection.port.bind('<Return>', self.on_key_enter)
-        self.connection.grid(row=2, column=1, sticky='we', pady=10, padx=5)
+        self.connection.grid(row=row, column=1, sticky='we', pady=10, padx=5)
 
-        # some space for separation with dynamic height
-        Tkinter.Label(self, background=COLOR_BG).grid(row=3, column=1)
+        # logo image
+        row += 1
+        logo = resource_path('resources', 'logo.png')
+        if os.path.isfile(logo):
+            self.logo = open_photoimage(logo, self.winfo_rgb(COLOR_BG))
+            Tkinter.Label(self, image=self.logo, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
+                .grid(row=row, column=1, sticky='nw')
+
+        # some space for separation with dynamic height, if no logo is present
+        else:
+            Tkinter.Label(self, background=COLOR_BG).grid(row=row, column=1)
 
         # form buttons
+        row += 1
         self.buttons = AppFrameButtons(self)
-        self.buttons.grid(row=4, column=0, columnspan=2, sticky='we')
+        self.buttons.grid(row=row, column=0, columnspan=2, sticky='we')
 
         # status bar
+        row += 1
         self.status = AppFrameStatus(self)
-        self.status.grid(row=5, column=0, columnspan=2, sticky='we')
+        self.status.grid(row=row, column=0, columnspan=2, sticky='we')
         self.status.set_message(_('Welcome to remote maintenance.'))
 
         # layout grid
-        self.grid_columnconfigure(index=0, weight=0)
         self.grid_columnconfigure(index=1, weight=1)
-        self.grid_rowconfigure(index=0, weight=0)
-        self.grid_rowconfigure(index=1, weight=0)
-        self.grid_rowconfigure(index=2, weight=0)
         self.grid_rowconfigure(index=3, weight=1)
-        self.grid_rowconfigure(index=4, weight=0)
-        self.grid_rowconfigure(index=5, weight=0)
 
     def on_click_about(self):
         self.parent.show_about_dialog()
@@ -496,8 +504,8 @@ class SettingsDialog(Tkinter.Toplevel):
         self.title(_('Extended Settings'))
         self.config(background=COLOR_BG, padx=0, pady=0)
 
-        self.photo = open_photoimage(resource_path('resources', 'sidebar_settings.png'), self.winfo_rgb(COLOR_BG))
-        Tkinter.Label(self, image=self.photo, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
+        self.sidebar = open_photoimage(resource_path('resources', 'sidebar_settings.png'), self.winfo_rgb(COLOR_BG))
+        Tkinter.Label(self, image=self.sidebar, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
             .grid(row=0, column=0, rowspan=11, sticky='nw')
 
         # settings form

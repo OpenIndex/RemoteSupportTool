@@ -86,6 +86,12 @@ if os.path.isfile(ssh_key) and os.path.getsize(ssh_key) > 0:
     print "APPEND CUSTOM SSH KEY: %s" % ssh_key
     a.datas += [('resources/ssh.key', ssh_key, 'DATA')]
 
+# append logo file
+logo = os.path.join(MISC_DIR, 'logo.png')
+if os.path.isfile(logo) and os.path.getsize(logo) > 0:
+    print "APPEND CUSTOM LOGO: %s" % logo
+    a.datas += [('resources/logo.png', logo, 'DATA')]
+
 #
 # Build PYZ archive with required modules.
 #
