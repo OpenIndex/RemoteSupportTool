@@ -31,6 +31,7 @@ import os
 import platform
 import subprocess
 import sys
+import traceback
 
 from ConfigParser import ConfigParser
 from Crypto import __version__ as _pycrypto_version
@@ -124,9 +125,7 @@ def get_default_ssh_keyfile():
     if not f or not os.path.isfile(f):
         f = os.path.join(app_path(), 'ssh.key')
         if not f or not os.path.isfile(f):
-            f = resource_path('ssh.key')
-            if not f or not os.path.isfile(f):
-                f = None
+            return None
     return f
 
 
@@ -208,6 +207,39 @@ def read_configuration():
         config.read(configs)
 
     return config
+
+
+def read_provided_ssh_key():
+    from src.SSH import read_private_key_from_file
+    #print 'Look for preconfigured SSH key.'
+
+    f = resource_path('resources', 'ssh.key')
+    #print '> at %s' % f
+    if not f or not os.path.isfile(f):
+        #print '> not found'
+        return None
+    if os.path.getsize(f) < 1:
+        #print '> empty'
+        return None
+
+    # Read preconfigured SSH key.
+    try:
+        #print '> read key'
+        pwd = get_configuration('settings', 'ssh-provided-key-password', '')
+        key = read_private_key_from_file(f, pwd)
+    except:
+        print 'Preconfigured SSH key is not readable!'
+        print traceback.format_exc()
+        key = None
+
+    # If the program was started from a binary executable,
+    # the SSH key is removed from the temporary application folder after it was read.
+    # Hopefully this makes it a bit more difficult to extract the SSH key from an application binary.
+    if is_executed_from_binary():
+        #print '> remove key file from local disk'
+        os.remove(f)
+
+    return key
 
 
 def resource_path(*paths):
@@ -311,3 +343,4 @@ VNC_LAUNCHER = 'tvnserver.exe' if OS_WINDOWS else 'OSXvnc-server' if OS_DARWIN e
 
 DEFAULT_VNC_APPLICATION = get_default_vnc_application()
 DEFAULT_SSH_KEYFILE = get_default_ssh_keyfile()
+PROVIDED_SSH_KEY = read_provided_ssh_key()

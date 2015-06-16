@@ -31,6 +31,7 @@ from src import get_configuration_boolean
 from src import get_configuration_int
 from src import DEFAULT_SSH_KEYFILE
 from src import DEFAULT_VNC_APPLICATION
+from src import PROVIDED_SSH_KEY
 
 
 class Settings:
@@ -47,6 +48,7 @@ class Settings:
         self.host = Tkinter.StringVar(value=get_configuration('settings', 'host', default=''))
         self.port = Tkinter.IntVar(value=get_configuration_int('settings', 'port', default=5500))
         self.ssh_enabled = Tkinter.BooleanVar(value=get_configuration_boolean('settings', 'ssh-enabled', default=False))
+        self.ssh_use_provided_key = Tkinter.BooleanVar(value=not PROVIDED_SSH_KEY is None)
         self.ssh_user = Tkinter.StringVar(value=get_configuration('settings', 'ssh-user', default=''))
         self.ssh_password = Tkinter.StringVar(value=get_configuration('settings', 'ssh-password', default=''))
         self.ssh_keyfile = Tkinter.StringVar(value=DEFAULT_SSH_KEYFILE if has_configured_ssh_keyfile else '')
@@ -58,6 +60,7 @@ class Settings:
         self.host.set(settings.host.get())
         self.port.set(settings.port.get())
         self.ssh_enabled.set(settings.ssh_enabled.get())
+        self.ssh_use_provided_key.set(settings.ssh_use_provided_key.get())
         self.ssh_user.set(settings.ssh_user.get())
         self.ssh_password.set(settings.ssh_password.get())
         self.ssh_keyfile.set(settings.ssh_keyfile.get())
@@ -126,3 +129,6 @@ class Settings:
 
     def is_ssh_enabled(self):
         return self.ssh_enabled.get()
+
+    def is_ssh_use_provided_key(self):
+        return not PROVIDED_SSH_KEY is None and self.ssh_use_provided_key.get()

@@ -66,7 +66,6 @@ class Tunnel:
     def connect(self):
         print 'Open SSH connection...'
         host = self.settings.get_host()
-        port = self.settings.get_port()
         ssh_port = self.settings.get_ssh_port()
         ssh_user = self.settings.get_ssh_user()
         ssh_keyfile = self.settings.get_ssh_keyfile()
@@ -75,28 +74,33 @@ class Tunnel:
         if not self.client is None:
             self.disconnect()
 
-        try:
-            # create ssh private key
-            if ssh_keyfile:
-                #pkey = paramiko.RSAKey.from_private_key_file(ssh_keyfile, password='')
-                pkey = read_private_key_from_file(ssh_keyfile, password=ssh_password)
-            else:
-                pkey = None
+        # use provided SSH private key
+        if self.settings.is_ssh_use_provided_key():
+            from src import PROVIDED_SSH_KEY
+            pkey = PROVIDED_SSH_KEY
 
-        except:
-            print 'Can\'t read private SSH key!'
-            print traceback.format_exc()
-            return False
+        # read SSH private key from configured file
+        else:
+            try:
+                if ssh_keyfile:
+                    pkey = read_private_key_from_file(ssh_keyfile, password=ssh_password)
+                else:
+                    pkey = None
+
+            except:
+                print 'Can\'t read private SSH key!'
+                print traceback.format_exc()
+                return False
 
         try:
-            # create ssh client
+            # create SSH client
             self.client = paramiko.SSHClient()
             #self.client.load_system_host_keys()
             self.client.set_missing_host_key_policy(paramiko.WarningPolicy())
             #self.client.set_missing_host_key_policy(paramiko.RejectPolicy())
             #self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-            # open ssh connection
+            # open SSH connection
             self.client.connect(host, port=ssh_port, username=ssh_user, password=ssh_password if pkey is None else '',
                                 pkey=pkey, timeout=TIMEOUT, banner_timeout=TIMEOUT,
                                 look_for_keys=False, compress=True, allow_agent=False)
@@ -161,7 +165,7 @@ class TunnelForwarderThread(threading.Thread):
             self.kill()
 
         try:
-            # open ssh tunnel
+            # open SSH tunnel
             print 'Open SSH port forwarding...'
             transport = self.client.get_transport()
             #transport.window_size = 2147483647

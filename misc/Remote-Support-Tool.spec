@@ -71,15 +71,20 @@ a.datas += Tree(ARCH_DIR, prefix=os.path.join('arch', ARCH))
 for f in glob.glob(os.path.join(I18N_DIR, '*', 'LC_MESSAGES', '*.mo')):
     lang = os.path.basename(os.path.dirname(os.path.dirname(f)))
     name = os.path.basename(f)
-    #print 'FOUND LOCALE FOR %s: %s' % (lang, f)
+    print 'APPEND LOCALE %s: %s' % (lang, f)
     a.datas += [('locales/%s/LC_MESSAGES/%s' % (lang,name), f, 'DATA')]
 
 # append custom default configuration
 config = os.path.join(MISC_DIR, 'config.ini')
-if os.path.isfile(config):
-    #print "APPEND CUSTOM CONFIG: %s" % config
+if os.path.isfile(config) and os.path.getsize(config) > 0:
+    print "APPEND CUSTOM CONFIGURATION: %s" % config
     a.datas += [('resources/config.ini', config , 'DATA')]
 
+# append custom SSH key
+ssh_key = os.path.join(MISC_DIR, 'ssh.key')
+if os.path.isfile(ssh_key) and os.path.getsize(ssh_key) > 0:
+    print "APPEND CUSTOM SSH KEY: %s" % ssh_key
+    a.datas += [('resources/ssh.key', ssh_key, 'DATA')]
 
 #
 # Build PYZ archive with required modules.

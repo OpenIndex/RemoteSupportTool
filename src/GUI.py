@@ -42,6 +42,7 @@ from src import FONT_BASE
 from src import FONT_BUTTON
 from src import OS_DARWIN
 from src import OS_WINDOWS
+from src import PROVIDED_SSH_KEY
 from src import TITLE
 from src import VERSION
 from src import VNC_LAUNCHER
@@ -566,7 +567,7 @@ class SettingsDialogForm(Tkinter.Frame):
         self.vnc_button = Tkinter.Button(self, text=_('Select'), command=self.on_click_vnc_select, background=COLOR_BG, font=FONT_BUTTON, pady=0)
         self.vnc_button.grid(row=row, column=2, sticky='nwes')
         row += 1
-        Tkinter.Checkbutton(self, text=_('Use internal program.'), borderwidth=0, highlightthickness=0, relief=Tkinter.FLAT, font=FONT_SMALL, background=COLOR_BG, variable=self.custom_vnc_app, offvalue=False, onvalue=True, command=self.update_form)\
+        Tkinter.Checkbutton(self, text=_('Use provided program.'), borderwidth=0, highlightthickness=0, relief=Tkinter.FLAT, font=FONT_SMALL, background=COLOR_BG, variable=self.custom_vnc_app, offvalue=False, onvalue=True, command=self.update_form)\
             .grid(row=row, column=1, columnspan=2, sticky='w')
 
         # VNC options (x11vnc only)
@@ -607,10 +608,16 @@ class SettingsDialogForm(Tkinter.Frame):
         row += 1
         Tkinter.Label(self, text=_('Private Key'), font=FONT_SMALL, background=COLOR_BG)\
             .grid(row=row, column=0, padx=5, pady=1, sticky='e')
-        Tkinter.Entry(self, width=10, textvariable=self.settings.ssh_keyfile, font=FONT_BASE, background=COLOR_BG)\
-            .grid(row=row, column=1, pady=1, sticky='we')
-        Tkinter.Button(self, text=_('Select'), command=self.on_click_ssh_keyfile_select, background=COLOR_BG, font=FONT_BUTTON, pady=0)\
-            .grid(row=row, pady=1, column=2, sticky='e')
+        self.ssh_key = Tkinter.Entry(self, width=10, textvariable=self.settings.ssh_keyfile, font=FONT_BASE, background=COLOR_BG)
+        self.ssh_key.grid(row=row, column=1, pady=1, sticky='we')
+        self.ssh_key_button = Tkinter.Button(self, text=_('Select'), command=self.on_click_ssh_keyfile_select, background=COLOR_BG, font=FONT_BUTTON, pady=0)
+        self.ssh_key_button.grid(row=row, pady=1, column=2, sticky='e')
+
+        # SSH preconfigured key
+        if not PROVIDED_SSH_KEY is None:
+            row += 1
+            Tkinter.Checkbutton(self, text=_('Use provided private key.'), borderwidth=0, highlightthickness=0, relief=Tkinter.FLAT, font=FONT_SMALL, background=COLOR_BG, variable=self.settings.ssh_use_provided_key, offvalue=False, onvalue=True, command=self.update_form)\
+                .grid(row=row, column=1, columnspan=2, sticky='w')
 
         # layout grid
         self.grid_columnconfigure(index=0, weight=0)
@@ -680,6 +687,13 @@ class SettingsDialogForm(Tkinter.Frame):
             self.vnc_app.config(state=Tkinter.NORMAL)
             self.vnc_button.config(state=Tkinter.NORMAL)
 
+        if self.settings.is_ssh_use_provided_key():
+            self.ssh_key.config(state=Tkinter.DISABLED)
+            self.ssh_key_button.config(state=Tkinter.DISABLED)
+        else:
+            self.ssh_key.config(state=Tkinter.NORMAL)
+            self.ssh_key_button.config(state=Tkinter.NORMAL)
+
     def validate(self, messages):
         count = len(messages)
 
@@ -697,17 +711,18 @@ class SettingsDialogForm(Tkinter.Frame):
             messages.append(_('No SSH user name was specified.'))
 
         # validate SSH keyfile
-        password = self.settings.get_ssh_password()
-        keyfile = self.settings.get_ssh_keyfile(default=None)
-        if not keyfile is None:
-            if not os.path.isfile(keyfile):
-                messages.append(_('The private key file is invalid.'))
-            else:
-                try:
-                    read_private_key_from_file(keyfile, password=password)
-                except:
-                    print(traceback.format_exc())
-                    messages.append(_('Can\'t open private key with the provided password.'))
+        if not self.settings.is_ssh_use_provided_key():
+            password = self.settings.get_ssh_password()
+            keyfile = self.settings.get_ssh_keyfile(default=None)
+            if not keyfile is None:
+                if not os.path.isfile(keyfile):
+                    messages.append(_('The private key file is invalid.'))
+                else:
+                    try:
+                        read_private_key_from_file(keyfile, password=password)
+                    except:
+                        print traceback.format_exc()
+                        messages.append(_('Can\'t open private key with the provided password.'))
 
         # validate SSH port
         port = self.settings.get_ssh_port(default=None)
