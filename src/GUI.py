@@ -41,12 +41,14 @@ from src import FONT_SMALL
 from src import FONT_BASE
 from src import FONT_BUTTON
 from src import OS_DARWIN
+from src import OS_NAME
 from src import OS_WINDOWS
 from src import PROVIDED_SSH_KEY
 from src import TITLE
 from src import VERSION
 from src import VNC_LAUNCHER
 from src import VNC_NAME
+from src import get_configuration
 from src import resource_path
 from src.Imaging import open_photoimage
 from src.Settings import Settings
@@ -61,6 +63,8 @@ class AboutDialog(Tkinter.Toplevel):
         self.initialize()
 
     def initialize(self):
+        from src import DEFAULT_VNC_APPLICATION
+        from src import DEFAULT_VNC_APPLICATION_LICENSE
         from src import VERSION_GETTEXT_WINDOWS
         from src import VERSION_NUMPY
         from src import VERSION_PARAMIKO
@@ -72,6 +76,11 @@ class AboutDialog(Tkinter.Toplevel):
         from src import VERSION_TIGHTVNC
         from src import VERSION_VINESERVER
         from src import VERSION_X11VNC
+
+        authors = get_configuration('about', 'authors', None)
+        company_name = get_configuration('about', 'company-name', None)
+        company_website = get_configuration('about', 'company-website', None)
+        is_forked = True if company_name else False
 
         self.title(_('About this program'))
         self.config(background=COLOR_BG)
@@ -102,14 +111,21 @@ class AboutDialog(Tkinter.Toplevel):
 
         text.insert(Tkinter.END, '%s v%s' % (TITLE, VERSION), 'title')
         text.insert(Tkinter.END, '\n\n', 'tiny')
-        text.insert(Tkinter.END, _('This application allows our support staff to access your current desktop.'), 'default')
+        text.insert(Tkinter.END, _('This application provides access to your desktop for our support staff.'), 'default')
         text.insert(Tkinter.END, ' ', 'default')
-        text.insert(Tkinter.END, _('We will tell you the correct settings in order to build up a connection.'), 'default')
+        text.insert(Tkinter.END, _('We will tell you the required settings in order to build up a connection for remote maintenance.'), 'default')
+        if is_forked:
+            text.insert(Tkinter.END, '\n\n', 'tiny')
+            text.insert(Tkinter.END, _('This software is based on the free and open Remote Support Tool and was modified for {0}.').format(company_name), 'default')
+            text.insert(Tkinter.END, ' ', 'default')
+            text.insert(Tkinter.END, _('Please contact {0} for any questions or problems.').format(company_name), 'default')
         text.insert(Tkinter.END, '\n\n\n', 'tiny')
 
         text.insert(Tkinter.END,_('Authors'), 'subtitle')
         text.insert(Tkinter.END, '\n\n', 'tiny')
-        text.insert(Tkinter.END, 'Andreas Rudolph & Walter Wagner (OpenIndex.de)', 'default')
+        text.insert(Tkinter.END, '• Andreas Rudolph & Walter Wagner (OpenIndex.de)', 'default')
+        if authors:
+            text.insert(Tkinter.END, '\n• %s' % authors, 'default')
         text.insert(Tkinter.END, '\n\n\n', 'tiny')
 
         text.insert(Tkinter.END, _('Translators'), 'subtitle')
@@ -133,14 +149,12 @@ class AboutDialog(Tkinter.Toplevel):
         text.insert(Tkinter.END, '• Crystal Clear Icons (LGPL)\n', 'default')
         text.insert(Tkinter.END, '\n\n', 'tiny')
 
-        text.insert(Tkinter.END, _('Integrated VNC applications'), 'subtitle')
-        text.insert(Tkinter.END, '\n\n', 'tiny')
-        text.insert(Tkinter.END, _('The following third party applications were integrated for VNC connections:'), 'default')
-        text.insert(Tkinter.END, '\n\n', 'tiny')
-        text.insert(Tkinter.END, u'• %s\n' % vnc_linux, 'default')
-        text.insert(Tkinter.END, u'• %s\n' % vnc_darwin, 'default')
-        text.insert(Tkinter.END, u'• %s\n' % vnc_windows, 'default')
-        text.insert(Tkinter.END, '\n\n', 'tiny')
+        if DEFAULT_VNC_APPLICATION:
+            vnc_app = '%s (%s)' % (VNC_NAME, DEFAULT_VNC_APPLICATION_LICENSE)
+            text.insert(Tkinter.END, _('Embedded VNC application'), 'subtitle')
+            text.insert(Tkinter.END, '\n\n', 'tiny')
+            text.insert(Tkinter.END, _('The software {0} was embedded into this application in order to access your {1} system via VNC.').format(vnc_app, OS_NAME), 'default')
+            text.insert(Tkinter.END, '\n\n', 'tiny')
 
         text.insert(Tkinter.END, _('Created with'), 'subtitle')
         text.insert(Tkinter.END, '\n\n', 'tiny')
@@ -167,14 +181,20 @@ class AboutDialog(Tkinter.Toplevel):
         text.config(state=Tkinter.DISABLED)
         scroll.grid(row=0, column=2, rowspan=4, sticky='nes')
 
+        button_row = 0
+
+        if company_name and company_website:
+            button_row += 1
+            Tkinter.Button(self, text=company_name, command=self.on_click_company, background=COLOR_BG, font=FONT_BUTTON)\
+                .grid(row=button_row, column=0, padx=6, pady=3, sticky='ews')
+
+        button_row += 1
         Tkinter.Button(self, text=_('Project at GitHub'), command=self.on_click_github, background=COLOR_BG, font=FONT_BUTTON)\
-            .grid(row=1, column=0, padx=6, pady=3, sticky='ews')
+            .grid(row=button_row, column=0, padx=6, pady=3, sticky='ews')
 
-        Tkinter.Button(self, text='OpenIndex.de', command=self.on_click_openindex, background=COLOR_BG, font=FONT_BUTTON)\
-            .grid(row=2, column=0, padx=6, pady=3, sticky='ews')
-
+        button_row += 1
         Tkinter.Button(self, text=_('Close'), command=self.on_click_close, background=COLOR_BG, font=FONT_BUTTON)\
-            .grid(row=3, column=0, padx=6, pady=3, sticky='ews')
+            .grid(row=button_row, column=0, padx=6, pady=3, sticky='ews')
 
         self.grid_columnconfigure(index=0, weight=0)
         self.grid_columnconfigure(index=1, weight=1)
@@ -193,11 +213,13 @@ class AboutDialog(Tkinter.Toplevel):
     def on_click_close(self):
         self.destroy()
 
-    def on_click_github(self):
-        webbrowser.open_new_tab('https://github.com/OpenIndex')
+    def on_click_company(self):
+        company_website = get_configuration('about', 'company-website', None)
+        if company_website:
+            webbrowser.open_new_tab(company_website)
 
-    def on_click_openindex(self):
-        webbrowser.open_new_tab('http://www.openindex.de/')
+    def on_click_github(self):
+        webbrowser.open_new_tab('https://github.com/OpenIndex/RemoteSupportTool')
 
 
 class AppFrame(Tkinter.Frame):

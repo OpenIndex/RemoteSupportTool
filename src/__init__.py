@@ -43,6 +43,7 @@ from Tkinter import TclVersion as _tcl_version
 OS_DARWIN = sys.platform == 'darwin'
 OS_LINUX = sys.platform.find('linux') != -1
 OS_WINDOWS = sys.platform == 'win32'
+OS_NAME = 'Mac OS X' if OS_DARWIN else 'Windows' if OS_WINDOWS else 'Linux' if OS_LINUX else '???'
 
 if OS_DARWIN:
     from numpy.version import version as _numpy_version
@@ -141,6 +142,19 @@ def get_default_vnc_application():
 
     elif OS_WINDOWS:
         return resource_path('arch', 'windows', 'tightvnc', 'tvnserver.exe')
+
+    return None
+
+
+def get_default_vnc_application_license():
+    if OS_DARWIN:
+        return 'GPLv2'
+
+    elif OS_LINUX:
+        return 'GPLv2'
+
+    elif OS_WINDOWS:
+        return 'GPLv2'
 
     return None
 
@@ -342,5 +356,6 @@ VNC_NAME = 'TightVNC' if OS_WINDOWS else 'OSXvnc' if OS_DARWIN else 'x11vnc'
 VNC_LAUNCHER = 'tvnserver.exe' if OS_WINDOWS else 'OSXvnc-server' if OS_DARWIN else 'x11vnc'
 
 DEFAULT_VNC_APPLICATION = get_default_vnc_application()
+DEFAULT_VNC_APPLICATION_LICENSE = get_default_vnc_application_license()
 DEFAULT_SSH_KEYFILE = get_default_ssh_keyfile()
 PROVIDED_SSH_KEY = read_provided_ssh_key()
