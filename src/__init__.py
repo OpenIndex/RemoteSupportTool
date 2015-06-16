@@ -182,16 +182,30 @@ def is_x86_64():
 def read_configuration():
     config = ConfigParser()
 
-    default_config = resource_path('resources', 'config.ini')
-    if os.path.isfile(default_config):
-        #print 'load default configuration: %s' % default_config
-        with open(default_config, 'r') as f:
+    # load global configuration file
+    global_config = resource_path('resources', 'config.global.ini')
+    if os.path.isfile(global_config):
+        #print 'load global configuration: %s' % global_config
+        with open(global_config, 'r') as f:
             config.readfp(f)
 
+    # load further configuration files
+    configs = []
+
+    # The application may provide its own default configuration.
+    provided_config = resource_path('resources', 'config.ini')
+    if os.path.isfile(provided_config):
+        #print 'load provided configuration: %s' % custom_config
+        configs.append(provided_config)
+
+    # There may also be a configuration file next to the application binary.
     custom_config = app_path('config.ini')
     if os.path.isfile(custom_config):
         #print 'load custom configuration: %s' % custom_config
-        config.read([custom_config])
+        configs.append(custom_config)
+
+    if len(configs) > 0:
+        config.read(configs)
 
     return config
 

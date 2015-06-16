@@ -13,10 +13,11 @@ BASE_DIR = os.getcwd()
 SRC_DIR = os.path.join(BASE_DIR, 'src')
 RES_DIR = os.path.join(SRC_DIR, 'resources')
 I18N_DIR = os.path.join(SRC_DIR, 'locales')
+MISC_DIR = os.path.join(BASE_DIR, 'misc')
 
 if sys.platform == 'darwin':
     ARCH = 'darwin'
-    ARCH_ICON = os.path.join(BASE_DIR, 'misc', 'darwin', 'Remote-Support-Tool.icns')
+    ARCH_ICON = os.path.join(MISC_DIR, 'darwin', 'Remote-Support-Tool.icns')
     ARCH_VERSION = None
 
 elif sys.platform.find('linux') != -1:
@@ -32,8 +33,8 @@ elif sys.platform.find('linux') != -1:
 
 elif sys.platform == 'win32':
     ARCH = 'windows'
-    ARCH_ICON = os.path.join(BASE_DIR, 'misc', 'windows', 'Remote-Support-Tool.ico')
-    ARCH_VERSION = os.path.join(BASE_DIR, 'misc', 'windows', 'Version.txt')
+    ARCH_ICON = os.path.join(MISC_DIR, 'windows', 'Remote-Support-Tool.ico')
+    ARCH_VERSION = os.path.join(MISC_DIR, 'windows', 'Version.txt')
     EXCLUCES.append('numpy')
     NAME += '.exe'
 
@@ -67,14 +68,17 @@ a.datas += Tree(RES_DIR, prefix='resources')
 a.datas += Tree(ARCH_DIR, prefix=os.path.join('arch', ARCH))
 
 # append locales
-#locales = []
 for f in glob.glob(os.path.join(I18N_DIR, '*', 'LC_MESSAGES', '*.mo')):
     lang = os.path.basename(os.path.dirname(os.path.dirname(f)))
     name = os.path.basename(f)
     #print 'FOUND LOCALE FOR %s: %s' % (lang, f)
-    #locales.append(('locales/%s/LC_MESSAGES/%s' % (lang,name), f, 'DATA'))
     a.datas += [('locales/%s/LC_MESSAGES/%s' % (lang,name), f, 'DATA')]
-#a.datas += locales
+
+# append custom default configuration
+config = os.path.join(MISC_DIR, 'config.ini')
+if os.path.isfile(config):
+    #print "APPEND CUSTOM CONFIG: %s" % config
+    a.datas += [('resources/config.ini', config , 'DATA')]
 
 
 #
