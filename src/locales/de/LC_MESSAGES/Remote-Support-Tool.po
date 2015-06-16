@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Remote Support Tool 0.4\n"
 "Report-Msgid-Bugs-To: info@openindex.de\n"
 "POT-Creation-Date: 2015-06-16 16:44+0200\n"
-"PO-Revision-Date: 2015-06-16 16:44+0100\n"
+"PO-Revision-Date: 2015-06-16 17:00+0100\n"
 "Last-Translator: Andreas Rudolph <andy@openindex.de>\n"
 "Language-Team: OpenIndex <info@openindex.de>\n"
 "Language: de\n"
@@ -141,7 +141,7 @@ msgstr "Schließen"
 #: GUI.py:247
 msgid "Use this application in order to allow access on your desktop."
 msgstr ""
-"Verwenden Sie dieses Programm um den Zugriff auf Ihren Rechner genehmigen."
+"Verwenden Sie dieses Programm um den Zugriff auf Ihren Rechner zu genehmigen."
 
 #: GUI.py:280
 msgid "Welcome to remote maintenance."
