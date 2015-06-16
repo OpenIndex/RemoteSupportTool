@@ -283,7 +283,7 @@ if OS_WINDOWS:
     # Therefore the user preferred languages is determined via Windows API.
     from src.thirdparty import gettext_windows
     lang = gettext_windows.get_language()
-    t = gettext.translation('Support', resource_path('locales'), fallback=True, languages=lang)
+    t = gettext.translation('Remote-Support-Tool', resource_path('locales'), fallback=True, languages=lang)
     _ = t.ugettext
 
 else:
