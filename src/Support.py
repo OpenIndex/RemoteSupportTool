@@ -91,7 +91,6 @@ class Application(Tkinter.Tk):
 
         # HACK: set application icon
         # see http://stackoverflow.com/a/11180300
-        #icon = PhotoImage(file=resource_path('resources', 'icon.png'))
         icon = open_photoimage(resource_path('resources', 'icon.png'))
         self.tk.call('wm', 'iconphoto', self._w, icon)
 

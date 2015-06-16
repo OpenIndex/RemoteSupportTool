@@ -78,12 +78,10 @@ class AboutDialog(Tkinter.Toplevel):
 
         # HACK: Programm-Icon setzen
         # siehe http://stackoverflow.com/a/11180300
-        #icon = PhotoImage(file=resource_path('resources', 'icon.png'))
         icon = open_photoimage(resource_path('resources', 'icon.png'))
         self.tk.call('wm', 'iconphoto', self._w, icon)
 
-        #self.photo = PhotoImage(file=resource_path('resources', 'about.png'))
-        self.photo = open_photoimage(resource_path('resources', 'about.png'), self.winfo_rgb(COLOR_BG))
+        self.photo = open_photoimage(resource_path('resources', 'sidebar_about.png'), self.winfo_rgb(COLOR_BG))
         Tkinter.Label(self, image=self.photo, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
             .grid(row=0, column=0, sticky='nw')
 
@@ -154,7 +152,7 @@ class AboutDialog(Tkinter.Toplevel):
 
         text.insert(Tkinter.END, _('License'), 'subtitle')
         text.insert(Tkinter.END, '\n\n', 'tiny')
-        with open (resource_path('resources', 'license.txt'), 'r') as myfile:
+        with open(resource_path('resources', 'LICENSE.txt'), 'r') as myfile:
             txt = myfile.read()\
                 .replace('\n\n', '$$')\
                 .replace('\n', '')\
@@ -213,8 +211,7 @@ class AppFrame(Tkinter.Frame):
         self.config(background=COLOR_BG)
 
         # title image
-        #self.logo = PhotoImage(file=resource_path('resources', 'logo.png'))
-        self.logo = open_photoimage(resource_path('resources', 'logo.png'), self.winfo_rgb(COLOR_BG))
+        self.logo = open_photoimage(resource_path('resources', 'sidebar.png'), self.winfo_rgb(COLOR_BG))
         Tkinter.Label(self, image=self.logo, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
             .grid(row=0, column=0, rowspan=4, sticky='nw')
 
@@ -224,8 +221,7 @@ class AppFrame(Tkinter.Frame):
 
         # description
         description = _('Use this application in order to allow access on your desktop to our support team.')
-        self.description = Tkinter.Label(self, text=description, background=COLOR_BG, font=FONT_SMALL, anchor='w',
-                                         padx=5, justify=Tkinter.LEFT)
+        self.description = Tkinter.Label(self, text=description, background=COLOR_BG, font=FONT_SMALL, anchor='w', padx=5, justify=Tkinter.LEFT)
         self.description.grid(row=1, column=1, sticky='nwe')
         self.description.bind('<Configure>', self.on_resize_description)
 
@@ -429,16 +425,10 @@ class AppFrameStatus(Tkinter.Frame):
         Tkinter.Frame.__init__(self, parent)
         self.parent = parent
         self.icon = None
-        self.icon_connected = open_photoimage(resource_path('resources', 'connect_established.png'), self.winfo_rgb(COLOR_STATUS))
-        self.icon_connecting = open_photoimage(resource_path('resources', 'connect_creating.png'), self.winfo_rgb(COLOR_STATUS))
-        self.icon_disconnected = open_photoimage(resource_path('resources', 'connect_no.png'), self.winfo_rgb(COLOR_STATUS))
-        self.icon_error = open_photoimage(resource_path('resources', 'warning.png'), self.winfo_rgb(COLOR_STATUS))
-
-        #self.icon_connected = PhotoImage(file=resource_path('resources', 'connect_established.png'))
-        #self.icon_connecting = PhotoImage(file=resource_path('resources', 'connect_creating.png'))
-        #self.icon_disconnected = PhotoImage(file=resource_path('resources', 'connect_no.png'))
-        #self.icon_error = PhotoImage(file=resource_path('resources', 'warning.png'))
-
+        self.icon_connected = open_photoimage(resource_path('resources', 'icon_connect_established.png'), self.winfo_rgb(COLOR_STATUS))
+        self.icon_connecting = open_photoimage(resource_path('resources', 'icon_connect_creating.png'), self.winfo_rgb(COLOR_STATUS))
+        self.icon_disconnected = open_photoimage(resource_path('resources', 'icon_connect_no.png'), self.winfo_rgb(COLOR_STATUS))
+        self.icon_error = open_photoimage(resource_path('resources', 'icon_warning.png'), self.winfo_rgb(COLOR_STATUS))
         self.message = Tkinter.StringVar(value='')
         self.initialize()
         self.set_disconnected()
@@ -447,10 +437,10 @@ class AppFrameStatus(Tkinter.Frame):
         self.config(background=COLOR_STATUS)
 
         Tkinter.Label(self, textvariable=self.message, background=COLOR_STATUS, font=FONT_SMALL, anchor='w', padx=5)\
-            .grid(row=0, column=0, sticky='we')
+            .grid(row=0, column=0, sticky='we', pady=(3, 0))
 
         self.icon = Tkinter.Label(self, background=COLOR_STATUS)
-        self.icon.grid(row=0, column=1, sticky='e', padx=5)
+        self.icon.grid(row=0, column=1, sticky='e', padx=5, pady=(3, 0))
 
         self.grid_columnconfigure(index=0, weight=1)
         self.grid_columnconfigure(index=1, weight=0)
@@ -484,8 +474,7 @@ class SettingsDialog(Tkinter.Toplevel):
         self.title(_('Extended Settings'))
         self.config(background=COLOR_BG, padx=0, pady=0)
 
-        #self.photo = PhotoImage(file=resource_path('resources', 'settings.png'))
-        self.photo = open_photoimage(resource_path('resources', 'settings.png'), self.winfo_rgb(COLOR_BG))
+        self.photo = open_photoimage(resource_path('resources', 'sidebar_settings.png'), self.winfo_rgb(COLOR_BG))
         Tkinter.Label(self, image=self.photo, background=COLOR_BG, padx=0, pady=0, borderwidth=0)\
             .grid(row=0, column=0, rowspan=11, sticky='nw')
 

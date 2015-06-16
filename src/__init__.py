@@ -182,7 +182,7 @@ def read_configuration():
     config = ConfigParser()
 
     # load global configuration file
-    global_config = resource_path('resources', 'config.global.ini')
+    global_config = resource_path('resources', 'config_global.ini')
     if os.path.isfile(global_config):
         #print 'load global configuration: %s' % global_config
         with open(global_config, 'r') as f:
