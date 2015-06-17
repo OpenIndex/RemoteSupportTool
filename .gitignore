@@ -1,0 +1,5 @@
+*.pyc
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+src/locales/**/*.po~
