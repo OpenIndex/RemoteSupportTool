@@ -1,5 +1,5 @@
-Remote Support Tool
-===================
+Remote Support Tool 0.4
+=======================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance via 
 [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing) inspired by 
@@ -137,4 +137,4 @@ Further informations
 
 -   [*Remote Support Tool* at GitHub](https://github.com/OpenIndex/RemoteSupportTool)
 -   [Releases of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/releases)
--   [Changelog of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/blob/develop/CHANGELOG.md)
+-   [Changelog of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/blob/master/CHANGELOG.md)
