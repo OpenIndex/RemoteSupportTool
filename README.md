@@ -11,7 +11,7 @@ About this program
 
 [Remote administration](https://en.wikipedia.org/wiki/Remote_administration) is common practice in software support for 
 end users. There are a lot of different solutions on the market, that can solve this task. But most of them are lacking 
-at laest in one of the requirements:
+at least in one of these requirements:
 
 -   The end user should be able to start the remote administration session with as less clicks as possible.
 
@@ -33,17 +33,17 @@ at laest in one of the requirements:
 
 -   Support for different languages - because not all end users speak English.
 
-Because we did not a find a solution that fits all of these requirements, we've decided to build our own little 
+Because we did not find a solution that fits all of these requirements, we've decided to build our own little 
 application based on [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing). In general this application behaves 
-similar to the [Single Click](http://www.uvnc.com/products/uvnc-sc.html) solution by [UltraVNC](http://www.uvnc.com/) 
-but also provides encryption and supports Linux and Mac OS X.
+similar to the [UltraVNC Single Click](http://www.uvnc.com/products/uvnc-sc.html) solution - but it also provides 
+encryption and supports Linux and Mac OS X.
 
 In addition we wanted to make this program customizable for other companies. 
 
--   The company may provide custom configuration files together with the binary.
+-   A company may provide custom configuration files together with the executable binary.
 
--   The company may compile its configurations directly into the application. This makes it possible to provide a single 
-    executable file for the end users, that contains all required configurations by default. 
+-   A company may compile its configurations directly into the executable binary. This makes it possible to provide a 
+    single executable file for the end users, that contains all required configurations by default. 
     
 In both cases the end user just has to click the *Connect* button and does not have to change any settings.
 
@@ -104,11 +104,17 @@ Created with
 ------------
 
 -   This repository can be opened directly as a project into 
-    [PyCharm Community Edition](https://www.jetbrains.com/pycharm/). But you can 
-    use any other Python IDE of course.
-    
--   [PyInstaller](http://www.pyinstaller.org/) is used to create executable 
-    binaries for Windows, Mac OS X and Linux.
+    [PyCharm Community Edition](https://www.jetbrains.com/pycharm/). But you can use any other Python IDE of course.
+
+-   [PyInstaller](http://www.pyinstaller.org/) is used to create executable binaries for Windows, Mac OS X and Linux.
+
+
+Supported operating systems
+---------------------------
+
+-   Windows (XP or newer)
+-   Mac OS X (10.7 or newer)
+-   Linux
 
 
 Translations
