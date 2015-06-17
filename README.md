@@ -1,4 +1,4 @@
-Remote Support Tool 0.4
+Remote Support Tool 0.5
 =======================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance via 
