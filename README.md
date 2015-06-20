@@ -43,7 +43,7 @@ In addition we wanted to make this program customizable for other companies.
 -   A company may provide custom configuration files together with the executable binary.
 
 -   A company may compile its configurations directly into the executable binary. This makes it possible to provide a 
-    single executable file for the end users, that contains all required configurations by default. 
+    single executable file for the end users, that contains all required configurations by default.
     
 In both cases the end user just has to click the *Connect* button and does not have to change any settings.
 
@@ -54,7 +54,7 @@ In both cases the end user just has to click the *Connect* button and does not h
 
 In the best case the end user will just have to click the *Connect* button. But maybe the support staff will have to 
 tell his IP address to the end user. Therefore the user will find the most basic settings directly in the application 
-window. 
+window.
 
 
 ### Extended settings dialog
@@ -62,7 +62,14 @@ window.
 ![extended settings dialog](misc/screenshots/settings-dialog.png)
 
 All relevant settings for a VNC reverse connection (tunneled through SSH) can be modified in the extended settings 
-dialog if necessary.  
+dialog if necessary.
+
+
+Documentation
+-------------
+
+You can find documentations about *Remote Support Tool* in the 
+[project wiki](https://github.com/OpenIndex/RemoteSupportTool/wiki).
 
 
 Bundled VNC servers
@@ -120,9 +127,9 @@ Supported operating systems
 Translations
 ------------
 
-*Remote Support Tool* was developed in **English** and is already translated into **German**. Other translations can be 
-created with [Poedit](http://poedit.net/). The translation catalog can be found at `misc/Remote-Support-Tool.pot`. Feel 
-free to send us your translations.
+*Remote Support Tool* is developed in **English** and is already translated into **German**. The 
+[translation documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Translation) contains informations 
+about how to translate the application for yourself.
 
 
 License
@@ -138,3 +145,4 @@ Further informations
 -   [*Remote Support Tool* at GitHub](https://github.com/OpenIndex/RemoteSupportTool)
 -   [Releases of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/releases)
 -   [Changelog of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/blob/master/CHANGELOG.md)
+-   [Documentation of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/wiki)
