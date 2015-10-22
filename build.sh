@@ -7,7 +7,7 @@
 # See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
 #
 
-BUILD="pyi-build"
+BUILD="pyinstaller"
 
 #export LANG=en
 set -e

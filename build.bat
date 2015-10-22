@@ -8,7 +8,7 @@
 @echo off
 
 :: path to pyinstaller script
-set BUILD=C:\Python27\Scripts\pyi-build.exe
+set BUILD=C:\Python27\Scripts\pyinstaller.exe
 
 :: get current directory
 set BASE_DIR=%~dp0
