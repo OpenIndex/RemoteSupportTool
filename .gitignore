@@ -3,3 +3,4 @@
 .idea/tasks.xml
 .idea/dictionaries
 src/locales/**/*.po~
+target/
