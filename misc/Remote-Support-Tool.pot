@@ -1,14 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR OpenIndex
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Copyright (C) 2015 OpenIndex
+# This file is distributed under the same license as the Remote Support Tool package.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Remote Support Tool 0.4\n"
+"Project-Id-Version: Remote Support Tool 0.5\n"
 "Report-Msgid-Bugs-To: info@openindex.de\n"
-"POT-Creation-Date: 2015-06-16 16:44+0200\n"
+"POT-Creation-Date: 2015-11-08 18:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,204 +82,210 @@ msgid "Translators"
 msgstr ""
 
 #: GUI.py:133
-msgid ""
-"There are currently no translations available besides the default languages "
-"(English and German)."
+msgid "English"
 msgstr ""
 
-#: GUI.py:136
-msgid "Internal components"
+#: GUI.py:134
+msgid "German"
+msgstr ""
+
+#: GUI.py:135
+msgid "Italian"
 msgstr ""
 
 #: GUI.py:138
+msgid "Internal components"
+msgstr ""
+
+#: GUI.py:140
 msgid "The following third party components were integrated:"
 msgstr ""
 
-#: GUI.py:154
+#: GUI.py:156
 msgid "Embedded VNC application"
 msgstr ""
 
-#: GUI.py:156
+#: GUI.py:158
 #, python-brace-format
 msgid ""
 "The software {0} was embedded into this application in order to access your "
 "{1} system via VNC."
 msgstr ""
 
-#: GUI.py:159
+#: GUI.py:161
 msgid "Created with"
 msgstr ""
 
-#: GUI.py:161
+#: GUI.py:163
 msgid "The application was created with:"
 msgstr ""
 
-#: GUI.py:167
+#: GUI.py:169
 msgid "License"
 msgstr ""
 
-#: GUI.py:192
+#: GUI.py:194
 msgid "Project at GitHub"
 msgstr ""
 
-#: GUI.py:196
+#: GUI.py:198
 msgid "Close"
 msgstr ""
 
-#: GUI.py:247
+#: GUI.py:249
 msgid "Use this application in order to allow access on your desktop."
 msgstr ""
 
-#: GUI.py:280
+#: GUI.py:282
 msgid "Welcome to remote maintenance."
 msgstr ""
 
-#: GUI.py:315
+#: GUI.py:317
 msgid "Connection is established."
 msgstr ""
 
-#: GUI.py:321
+#: GUI.py:323
 msgid "Establishing a connection..."
 msgstr ""
 
-#: GUI.py:327
+#: GUI.py:329
 msgid "The connection was closed."
 msgstr ""
 
-#: GUI.py:350
+#: GUI.py:352
 msgid "Quit"
 msgstr ""
 
-#: GUI.py:353
+#: GUI.py:355
 msgid "About"
 msgstr ""
 
-#: GUI.py:359
+#: GUI.py:361
 msgid "Connect"
 msgstr ""
 
-#: GUI.py:362
+#: GUI.py:364
 msgid "Disconnect"
 msgstr ""
 
-#: GUI.py:398
+#: GUI.py:400
 msgid "Address"
 msgstr ""
 
-#: GUI.py:406
+#: GUI.py:408
 msgid "Port-Nr"
 msgstr ""
 
-#: GUI.py:412
+#: GUI.py:414
 msgid "Enable SSH encryption."
 msgstr ""
 
-#: GUI.py:416
+#: GUI.py:418
 msgid "Extended..."
 msgstr ""
 
-#: GUI.py:504
+#: GUI.py:506
 msgid "Extended Settings"
 msgstr ""
 
-#: GUI.py:521
+#: GUI.py:523
 msgid "Submit"
 msgstr ""
 
-#: GUI.py:523
+#: GUI.py:525
 msgid "Cancel"
 msgstr ""
 
-#: GUI.py:546 GUI.py:549
+#: GUI.py:548 GUI.py:551
 msgid "Incorrect settings!"
 msgstr ""
 
-#: GUI.py:577
+#: GUI.py:579
 msgid "Settings for VNC"
 msgstr ""
 
-#: GUI.py:582
+#: GUI.py:584
 msgid "Application file"
 msgstr ""
 
-#: GUI.py:586 GUI.py:632
+#: GUI.py:588 GUI.py:634
 msgid "Select"
 msgstr ""
 
-#: GUI.py:589
+#: GUI.py:591
 msgid "Use provided program."
 msgstr ""
 
-#: GUI.py:595
+#: GUI.py:597
 msgid "Parameters"
 msgstr ""
 
-#: GUI.py:602
+#: GUI.py:604
 msgid "Settings for SSH"
 msgstr ""
 
-#: GUI.py:607
+#: GUI.py:609
 msgid "SSH Port-Nr"
 msgstr ""
 
-#: GUI.py:614
+#: GUI.py:616
 msgid "User"
 msgstr ""
 
-#: GUI.py:621
+#: GUI.py:623
 msgid "Password"
 msgstr ""
 
-#: GUI.py:628
+#: GUI.py:630
 msgid "Private Key"
 msgstr ""
 
-#: GUI.py:638
+#: GUI.py:640
 msgid "Use provided private key."
 msgstr ""
 
-#: GUI.py:651
+#: GUI.py:653
 #, python-brace-format
 msgid "Select VNC application '{0}'."
 msgstr ""
 
-#: GUI.py:658
+#: GUI.py:660
 msgid "executable files"
 msgstr ""
 
-#: GUI.py:659 GUI.py:684
+#: GUI.py:661 GUI.py:686
 msgid "all files"
 msgstr ""
 
-#: GUI.py:677
+#: GUI.py:679
 msgid "Select SSH private key file."
 msgstr ""
 
-#: GUI.py:723
+#: GUI.py:725
 msgid "No VNC application was specified."
 msgstr ""
 
-#: GUI.py:725
+#: GUI.py:727
 msgid "The VNC application does not point to a file."
 msgstr ""
 
-#: GUI.py:730
+#: GUI.py:732
 msgid "No SSH user name was specified."
 msgstr ""
 
-#: GUI.py:738
+#: GUI.py:740
 msgid "The private key file is invalid."
 msgstr ""
 
-#: GUI.py:744
+#: GUI.py:746
 msgid "Can't open private key with the provided password."
 msgstr ""
 
-#: GUI.py:749
+#: GUI.py:751
 msgid "The SSH port number is invalid."
 msgstr ""
 
-#: GUI.py:751
+#: GUI.py:753
 #, python-brace-format
 msgid "The SSH port number is not in the interval from {0} to {1}."
 msgstr ""
