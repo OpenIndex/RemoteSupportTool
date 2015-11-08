@@ -130,8 +130,10 @@ class AboutDialog(Tkinter.Toplevel):
 
         text.insert(Tkinter.END, _('Translators'), 'subtitle')
         text.insert(Tkinter.END, '\n\n', 'tiny')
-        text.insert(Tkinter.END, _('There are currently no translations available besides the default languages (English and German).'), 'default')
-        text.insert(Tkinter.END, '\n\n\n', 'tiny')
+        text.insert(Tkinter.END, u'• %s: Andreas Rudolph & Walter Wagner\n' % _('English'), 'default')
+        text.insert(Tkinter.END, u'• %s: Andreas Rudolph & Walter Wagner\n' % _('German'), 'default')
+        text.insert(Tkinter.END, u'• %s: Sjd-Risca @ GitHub\n' % _('Italian'), 'default')
+        text.insert(Tkinter.END, '\n\n', 'tiny')
 
         text.insert(Tkinter.END, _('Internal components'), 'subtitle')
         text.insert(Tkinter.END, '\n\n', 'tiny')
