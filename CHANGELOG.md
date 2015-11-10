@@ -1,6 +1,8 @@
 Changelog for Remote Support Tool
 =================================
 
+0.5 (not released yet)
+----------------------
 
 0.4.1 (10 Nov 2015)
 -------------------
