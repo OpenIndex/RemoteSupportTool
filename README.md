@@ -1,5 +1,5 @@
-Remote Support Tool 0.5
-=======================
+Remote Support Tool 0.4.1
+=========================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance via 
 [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing) inspired by 
