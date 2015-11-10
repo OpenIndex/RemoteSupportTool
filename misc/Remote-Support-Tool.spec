@@ -54,7 +54,7 @@ ARCH_DIR = os.path.join(SRC_DIR, 'arch', ARCH)
 # Start Analysis to find the files the program needs.
 #
 
-a = Analysis([os.path.join('../src', 'Support.py')],
+a = Analysis([os.path.join(SRC_DIR, 'Support.py')],
              pathex=[BASE_DIR,],
              hiddenimports=[],
              excludes=EXCLUCES,

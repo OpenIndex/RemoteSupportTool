@@ -23,7 +23,7 @@
 #
 
 __author__ = 'Andreas Rudolph'
-__version__ = '0.4'
+__version__ = '0.4.1'
 version_info = tuple([int(num) for num in __version__.split('.')])
 
 import gettext
