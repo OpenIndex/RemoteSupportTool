@@ -2,7 +2,7 @@
 #
 # Build application binary on Linux and Mac OS X.
 #
-# Copyright 2015 OpenIndex.de.
+# Copyright 2015-2016 OpenIndex.de.
 # Distributed under the MIT License.
 # See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
 #

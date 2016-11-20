@@ -1,7 +1,7 @@
 @REM ----------------------------------------------------------------------------
 @REM  Start application directly from source code.
 @REM
-@REM  Copyright (C) 2015 OpenIndex.de
+@REM  Copyright (C) 2015-2016 OpenIndex.de
 @REM  Distributed under the MIT License.
 @REM  See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
 @REM ----------------------------------------------------------------------------
