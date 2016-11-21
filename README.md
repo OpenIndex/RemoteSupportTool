@@ -79,10 +79,8 @@ The following VNC servers are bundled into the application (depending on the ope
 
 -   for Linux: [x11vnc](http://www.karlrunge.com/x11vnc/) (GPLv2)
     -   using binaries from [sourceforge.net](http://sourceforge.net/projects/x11vnc/)
-    
--   for Mac OS X 10.7+: [Vine server / OSXvnc](http://sourceforge.net/projects/osxvnc/) (GPLv2) 
-    -   using binaries from [testplant.com](http://www.testplant.com/dlds/vine/)
-
+-   for Mac OS X 10.7+: [Vine server / OSXvnc](https://github.com/stweil/OSXvnc) (GPLv2) 
+    -   using binaries from [github.com](https://github.com/stweil/OSXvnc/releases)
 -   for Windows: [TightVNC server](http://www.tightvnc.com/) (GPLv2)
     -   using binaries from [tightvnc.com](http://www.tightvnc.com/download.php)
 
@@ -112,7 +110,6 @@ Created with
 
 -   This repository can be opened directly as a project into 
     [PyCharm Community Edition](https://www.jetbrains.com/pycharm/). But you can use any other Python IDE of course.
-
 -   [PyInstaller](http://www.pyinstaller.org/) is used to create executable binaries for Windows, Mac OS X and Linux.
 
 

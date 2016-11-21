@@ -349,7 +349,7 @@ VERSION_PYCRYPTO = _pycrypto_version
 VERSION_PYTHON = sys.version.split()[0]
 VERSION_TCL = _tcl_version
 VERSION_TIGHTVNC = '2.7.10'
-VERSION_VINESERVER = '4.01'
+VERSION_VINESERVER = '5.0.1'
 VERSION_X11VNC = '0.9.13'
 
 VNC_NAME = 'TightVNC' if OS_WINDOWS else 'OSXvnc' if OS_DARWIN else 'x11vnc'
