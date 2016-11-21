@@ -6,6 +6,7 @@ import platform
 import sys
 
 DEBUG = False
+CONSOLE = False
 NAME = 'Remote-Support-Tool'
 EXCLUCES = []
 
@@ -114,7 +115,7 @@ exe = EXE(pyz,
           version=ARCH_VERSION,
           strip=None,
           upx=True,
-          console=False )
+          console=CONSOLE )
 
 #
 # Create an application bundle for OS X.
