@@ -348,7 +348,7 @@ VERSION_PSUTIL = _psutil_version
 VERSION_PYCRYPTO = _pycrypto_version
 VERSION_PYTHON = sys.version.split()[0]
 VERSION_TCL = _tcl_version
-VERSION_TIGHTVNC = '2.7.10'
+VERSION_TIGHTVNC = '2.8.5'
 VERSION_VINESERVER = '5.0.1'
 VERSION_X11VNC = '0.9.13'
 
