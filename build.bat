@@ -16,11 +16,13 @@ set BASE_DIR=%~dp0
 
 set SPEC=%BASE_DIR%\misc\Remote-Support-Tool.spec
 set TARGET=%BASE_DIR%\target
+set LOG_LEVEL=INFO
+:: set LOG_LEVEL=DEBUG
 
 echo building application package
 echo specified by %SPEC%
 rmdir "%TARGET%" /s /q
 mkdir "%TARGET%"
 cd "%BASE_DIR%"
-"%BUILD%" --distpath="%TARGET%" --workpath="target\build" "%SPEC%"
+"%BUILD%" --log-level "%LOG_LEVEL%" --distpath "%TARGET%" --workpath "target\build" "%SPEC%"
 echo .... done.

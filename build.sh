@@ -15,13 +15,15 @@ set -e
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SPEC="$BASE_DIR"/misc/Remote-Support-Tool.spec
 TARGET="$BASE_DIR"/target
+LOG_LEVEL="INFO"
+#LOG_LEVEL="DEBUG"
 
 echo "building application package"
 echo "specified by $SPEC"
 rm -Rf "$TARGET"
 mkdir -p "$TARGET"
 cd "$BASE_DIR"
-"$BUILD" --distpath="$TARGET" --workpath="target/build" "$SPEC"
+"$BUILD" --log-level "$LOG_LEVEL" --distpath "$TARGET" --workpath "target/build" "$SPEC"
 
 set +e
 

@@ -10,6 +10,11 @@ CONSOLE = False
 NAME = 'Remote-Support-Tool'
 EXCLUCES = []
 
+# runtime python options
+# see https://pythonhosted.org/PyInstaller/spec-files.html#giving-run-time-python-options
+OPTIONS = []
+#OPTIONS = [('v', None, 'OPTION'),]
+
 BASE_DIR = os.getcwd()
 SRC_DIR = os.path.join(BASE_DIR, 'src')
 RES_DIR = os.path.join(SRC_DIR, 'resources')
@@ -106,6 +111,7 @@ pyz = PYZ(a.pure)
 
 exe = EXE(pyz,
           a.scripts,
+          OPTIONS,
           a.binaries,
           a.zipfiles,
           a.datas,
