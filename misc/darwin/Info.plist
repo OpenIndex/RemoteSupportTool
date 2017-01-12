@@ -2,28 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
+        <key>LSEnvironment</key>
+        <dict>
+            <key>MAC_APPLICATION_BUNDLE</key>
+            <string>1</string>
+        </dict>
+
         <key>CFBundleShortVersionString</key>
         <string>0.5.0</string>
 
         <key>CFBundleExecutable</key>
-        <string>MacOS/Remote-Support-Tool</string>
+        <string>MacOS/application</string>
 
         <key>CFBundleName</key>
         <string>Remote-Support-Tool</string>
-
-        <key>CFBundleInfoDictionaryVersion</key>
-        <string>6.0</string>
 
         <key>CFBundleDisplayName</key>
         <string>Remote-Support-Tool</string>
 
         <key>CFBundleIconFile</key>
-        <string>Remote-Support-Tool.icns</string>
+        <string>application.icns</string>
 
         <key>CFBundlePackageType</key>
         <string>APPL</string>
 
-        <key>LSBackgroundOnly</key>
-        <string>1</string>
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>6.0</string>
+
+        <key>NSHighResolutionCapable</key>
+        <true/>
+
+        <key>LSApplicationCategoryType</key>
+        <string>public.app-category.utilities</string>
+
+        <key>LSMultipleInstancesProhibited</key>
+        <true/>
+
+        <key>LSGetAppDiedEvents</key>
+        <true/>
+
+        <key>LSMinimumSystemVersion</key>
+        <string>10.5.0</string>
     </dict>
 </plist>
