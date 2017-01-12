@@ -1,14 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR OpenIndex
-# This file is distributed under the same license as the RemoteSupportTool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright 2015-2017 OpenIndex.de.
+# Distributed under the MIT License.
+# See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: RemoteSupportTool 0.5\n"
 "Report-Msgid-Bugs-To: info@openindex.de\n"
-"POT-Creation-Date: 2017-01-12 12:55+0100\n"
+"POT-Creation-Date: 2017-01-12 19:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

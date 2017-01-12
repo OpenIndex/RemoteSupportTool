@@ -1,7 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR OpenIndex
-# This file is distributed under the same license as the RemoteSupportTool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright 2015-2017 OpenIndex.de.
+# Distributed under the MIT License.
+# See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
 #
 msgid ""
 msgstr ""
@@ -297,41 +296,3 @@ msgstr "Einstellungen können nicht übernommen werden!"
 #: support.tcl:83
 msgid "Remote Support Tool"
 msgstr "Fernwartungs-Tool"
-
-#~ msgid "SSH Password"
-#~ msgstr "SSH-Passwort"
-
-#~ msgid "SSH Hosts"
-#~ msgstr "SSH-Hosts"
-
-#~ msgid "Authenticate with SSH key."
-#~ msgstr "Authentifizierung mit SSH-Schlüssel."
-
-#~ msgid "Use provided SSH hosts."
-#~ msgstr "Interne SSH-Hostdatei verwenden."
-
-#~ msgid "Select your SSH hosts."
-#~ msgstr "Wählen Sie Ihre SSH-Hosts aus."
-
-#~ msgid "Can't select SSH hosts!"
-#~ msgstr "SSH-Hosts können nicht übernommen werden!"
-
-#~ msgid "An invalid SSH password was specified."
-#~ msgstr "Ein ungültiges SSH-Passwort wurde angegeben."
-
-#~ msgid "Use this application in order to allow access on your desktop."
-#~ msgstr ""
-#~ "Verwenden Sie dieses Programm um den Zugriff auf Ihren Rechner zu "
-#~ "genehmigen."
-
-#~ msgid "Use provided program."
-#~ msgstr "Internes Programm verwenden."
-
-#~ msgid "Project at GitHub"
-#~ msgstr "Projekt bei GitHub"
-
-#~ msgid "Private Key"
-#~ msgstr "Privater Schlüssel"
-
-#~ msgid "English"
-#~ msgstr "Englisch"
