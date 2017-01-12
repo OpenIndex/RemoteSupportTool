@@ -143,6 +143,10 @@ Created with
 -   The Tclkit for Windows was created with KitCreator's
     [Interactive Build System](http://kitcreator.rkeene.org/kitcreator).
 
+-   Windows binaries are post processed with
+    [Resource Hacker](http://www.angusj.com/resourcehacker/) in order to modify
+    resources (icon & version information).
+
 
 Supported operating systems
 ---------------------------
