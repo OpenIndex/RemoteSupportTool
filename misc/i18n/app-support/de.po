@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RemoteSupportTool 0.5\n"
 "Report-Msgid-Bugs-To: info@openindex.de\n"
-"POT-Creation-Date: 2017-01-12 12:51+0100\n"
-"PO-Revision-Date: 2017-01-12 12:51+0100\n"
+"POT-Creation-Date: 2017-01-13 11:40+0100\n"
+"PO-Revision-Date: 2017-01-13 11:42+0100\n"
 "Last-Translator: Andreas Rudolph <andy@openindex.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Diese Anwendungen stellt den Support-Mitarbeitern von %s einen Zugriff auf "
 "Ihren Rechner bereit."
 
-#: gui.tcl:98 gui.tcl:380
+#: gui.tcl:98 gui.tcl:375
 msgid "This application provides access to your desktop for our support staff."
 msgstr ""
 "Diese Anwendungen stellt unseren Support-Mitarbeitern einen Zugriff auf "
@@ -71,47 +71,43 @@ msgstr "Verbinden"
 msgid "Disconnect"
 msgstr "Trennen"
 
-#: gui.tcl:197
-msgid "An invalid address was specified."
-msgstr "Eine ungültige Adresse wurde angegeben."
-
-#: gui.tcl:200 gui.tcl:793
-msgid "An invalid port number was specified."
-msgstr "Eine ungültige Port-Nr wurde angegeben."
-
-#: gui.tcl:203 gui.tcl:719 gui.tcl:740 gui.tcl:761 gui.tcl:802
+#: gui.tcl:202 gui.tcl:714 gui.tcl:735 gui.tcl:756
 msgid "Error"
 msgstr "Fehler"
 
-#: gui.tcl:203
+#: gui.tcl:202
 msgid "Can't open connection!"
 msgstr "Verbindung kann nicht hergestellt werden!"
 
-#: gui.tcl:250
+#: gui.tcl:244
 msgid "Connection is established."
 msgstr "Die Verbindung wurde hergestellt."
 
-#: gui.tcl:263
+#: gui.tcl:257
 msgid "Establishing a connection…"
 msgstr "Eine Verbindung wird hergestellt…"
 
-#: gui.tcl:276
+#: gui.tcl:270
 msgid "The connection was closed."
 msgstr "Die Verbindung wurde getrennt."
 
-#: gui.tcl:289
+#: gui.tcl:283
 msgid "An error occured."
 msgstr "Ein Fehler ist aufgetreten."
 
-#: gui.tcl:302
+#: gui.tcl:296
 msgid "Welcome to remote maintenance."
 msgstr "Willkommen zur Fernwartung."
 
-#: gui.tcl:346
+#: gui.tcl:334
+msgid "Company"
+msgstr "Firma"
+
+#: gui.tcl:341
 msgid "About this program"
 msgstr "Über dieses Programm"
 
-#: gui.tcl:382
+#: gui.tcl:377
 msgid ""
 "Our support staff will tell you the required settings in order to build up a "
 "connection for remote maintenance."
@@ -119,7 +115,7 @@ msgstr ""
 "Unsere Support-Mitarbeiter werden Ihnen die nötigen Einstellungen mitteilen "
 "um eine Verbindung zur Fernwartung herstellen zu können."
 
-#: gui.tcl:387
+#: gui.tcl:382
 #, tcl-format
 msgid ""
 "This software is based on the free and open Remote Support Tool and was "
@@ -128,171 +124,187 @@ msgstr ""
 "Diese Software basiert auf dem freien und offenen Remote Support Tool und "
 "wurde für %s modifiziert."
 
-#: gui.tcl:389
+#: gui.tcl:384
 #, tcl-format
 msgid ""
 "Please contact %s for any questions or problems according to this software."
 msgstr "Bitte wenden Sie sich an %s bei Fragen oder Problemen."
 
-#: gui.tcl:393
+#: gui.tcl:388
 msgid "Authors"
 msgstr "Autoren"
 
-#: gui.tcl:405
+#: gui.tcl:400
 msgid "Translators"
 msgstr "Übersetzer"
 
-#: gui.tcl:407
+#: gui.tcl:402
 msgid "German"
 msgstr "Deutsch"
 
-#: gui.tcl:410
+#: gui.tcl:405
 msgid "Internal components"
 msgstr "Interne Komponenten"
 
-#: gui.tcl:412
+#: gui.tcl:407
 msgid "The following third party components were integrated:"
 msgstr "Die folgenden Komponenten von Drittanbietern wurden integriert:"
 
-#: gui.tcl:422
+#: gui.tcl:417
 msgid "Created with"
 msgstr "Erstellt mit"
 
-#: gui.tcl:424
+#: gui.tcl:419
 msgid "The application was created with:"
 msgstr "Das Programm wurde erstellt mit:"
 
-#: gui.tcl:432
+#: gui.tcl:427
 msgid "License"
 msgstr "Lizenz"
 
 #: gui.tcl:470
-msgid "Company"
-msgstr "Firma"
-
-#: gui.tcl:475
 msgid "Source code"
 msgstr "Quelltext"
 
-#: gui.tcl:479
+#: gui.tcl:474
 msgid "Close"
 msgstr "Schließen"
 
-#: gui.tcl:570
+#: gui.tcl:565
 msgid "Extended Settings"
 msgstr "Erweiterte Einstellungen"
 
 #. Create VNC title.
-#: gui.tcl:607
+#: gui.tcl:602
 msgid "Settings for VNC"
 msgstr "Einstellungen für VNC"
 
 #. Create VNC application field.
 #. Create SSH application field.
-#: gui.tcl:611 gui.tcl:635
+#: gui.tcl:606 gui.tcl:630
 msgid "Application"
 msgstr "Programm"
 
-#: gui.tcl:613 gui.tcl:637 gui.tcl:645
+#: gui.tcl:608 gui.tcl:632 gui.tcl:640
 msgid "Select"
 msgstr "Auswahl"
 
-#: gui.tcl:620
+#: gui.tcl:615
 msgid "Parameters"
 msgstr "Parameter"
 
 #. Create internal VNC application field.
-#: gui.tcl:627
+#: gui.tcl:622
 msgid "Use provided VNC application."
 msgstr "Internes VNC-Programm verwenden."
 
 #. Create SSH title.
-#: gui.tcl:631
+#: gui.tcl:626
 msgid "Settings for SSH"
 msgstr "Einstellungen für SSH"
 
 #. Create SSH key field.
-#: gui.tcl:643
+#: gui.tcl:638
 msgid "Key"
 msgstr "Schlüssel"
 
 #. Create SSH user field.
-#: gui.tcl:651
+#: gui.tcl:646
 msgid "User"
 msgstr "Benutzer"
 
 #. Create SSH port field.
-#: gui.tcl:657
+#: gui.tcl:652
 msgid "SSH Port"
 msgstr "SSH-Port"
 
-#: gui.tcl:664
+#: gui.tcl:659
 msgid "Use provided SSH application."
 msgstr "Internes SSH-Programm verwenden."
 
-#: gui.tcl:670
+#: gui.tcl:665
 msgid "Use provided key."
 msgstr "Interne Schlüsseldatei verwenden."
 
 #. Create submit button.
-#: gui.tcl:680
+#: gui.tcl:675
 msgid "Submit"
 msgstr "Übernehmen"
 
 #. Create cancel button.
-#: gui.tcl:684
+#: gui.tcl:679
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: gui.tcl:716
+#: gui.tcl:711
 msgid "Select your SSH key."
 msgstr "Wählen Sie Ihren SSH-Schlüssel aus."
 
-#: gui.tcl:719
+#: gui.tcl:714
 msgid "Can't select SSH key!"
 msgstr "SSH-Schlüssel kann nicht übernommen werden!"
 
-#: gui.tcl:719
+#: gui.tcl:714
 msgid "The selected file is invalid."
 msgstr "Die gewählte Datei ist ungültig."
 
-#: gui.tcl:737
+#: gui.tcl:732
 msgid "Select your SSH application."
 msgstr "Wählen Sie Ihr SSH-Programm aus."
 
-#: gui.tcl:740
+#: gui.tcl:735
 msgid "Can't select SSH application!"
 msgstr "SSH-Programm kann nicht übernommen werden!"
 
-#: gui.tcl:740 gui.tcl:761
+#: gui.tcl:735 gui.tcl:756
 msgid "The selected file is not an executable program."
 msgstr "Die gewählte Datei ist kein ausführbares Programm."
 
-#: gui.tcl:758
+#: gui.tcl:753
 msgid "Select your VNC application."
 msgstr "Wählen Sie Ihr VNC-Programm aus."
 
-#: gui.tcl:761
+#: gui.tcl:756
 msgid "Can't select VNC application!"
 msgstr "VNC-Programm kann nicht übernommen werden!"
-
-#: gui.tcl:784
-msgid "An invalid VNC application was specified."
-msgstr "Ein ungültiges VNC-Programm wurde angegeben."
-
-#: gui.tcl:789
-msgid "An invalid SSH application was specified."
-msgstr "Ein ungültiges SSH-Programm wurde angegeben."
-
-#: gui.tcl:797
-msgid "An invalid SSH keyfile was specified."
-msgstr "Eine ungültige SSH-Schlüsseldatei wurde angegeben."
-
-#: gui.tcl:802
-msgid "Can't submit settings!"
-msgstr "Einstellungen können nicht übernommen werden!"
 
 #. Set application settings.
 #: support.tcl:83
 msgid "Remote Support Tool"
 msgstr "Fernwartungs-Tool"
+
+#: session.tcl:809
+msgid "An invalid address was specified."
+msgstr "Eine ungültige Adresse wurde angegeben."
+
+#: session.tcl:815
+msgid "An invalid port number was specified."
+msgstr "Eine ungültige Port-Nr wurde angegeben."
+
+#: session.tcl:823
+msgid "An invalid VNC application was specified."
+msgstr "Ein ungültiges VNC-Programm wurde angegeben."
+
+#: session.tcl:838
+msgid "There is no provided SSH application available."
+msgstr "Es steht kein internes SSH-Programm zur Verfügung."
+
+#: session.tcl:846
+msgid "An invalid SSH application was specified."
+msgstr "Ein ungültiges SSH-Programm wurde angegeben."
+
+#: session.tcl:854
+msgid "An invalid SSH user was specified."
+msgstr "Ein ungültiger SSH-Benutzer wurde angegeben."
+
+#: session.tcl:860
+msgid "An invalid SSH port number was specified."
+msgstr "Eine ungültige SSH Port-Nr wurde angegeben."
+
+#: session.tcl:870
+msgid "There is no provided SSH key available."
+msgstr "Es steht kein interner SSH-Schlüssel zur Verfügung."
+
+#: session.tcl:878
+msgid "An invalid SSH key was specified."
+msgstr "Ein ungültiger SSH-Schlüssel wurde angegeben."

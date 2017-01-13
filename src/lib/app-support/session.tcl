@@ -798,4 +798,90 @@ namespace eval ::support::session {
 
     return 0
   }
+
+  # Validate session settings.
+  proc validate {} {
+    set errors {}
+
+    # VNC host address needs to be available.
+    variable VNC_HOST
+    if {$VNC_HOST == ""} {
+      lappend errors [_ "An invalid address was specified."]
+    }
+
+    # VNC port number needs to be available.
+    variable VNC_PORT
+    if {![string is integer -strict $VNC_PORT] || $VNC_PORT < 1 || $VNC_PORT > 65535} {
+      lappend errors [_ "An invalid port number was specified."]
+    }
+
+    # Custom VNC application needs to be available.
+    variable USE_PROVIDED_VNC_APP
+    if {$USE_PROVIDED_VNC_APP != 1} {
+      variable VNC_EXE
+      if {$VNC_EXE == "" || ![file isfile $VNC_EXE] || ![file executable $VNC_EXE]} {
+        lappend errors [_ "An invalid VNC application was specified."]
+      }
+    }
+
+    # Validate SSH settings, if SSH is enabled.
+    variable SSH_ENABLED
+    if {$SSH_ENABLED == 1} {
+
+      # SSH application needs to be available.
+      variable USE_PROVIDED_SSH_APP
+      if {$USE_PROVIDED_SSH_APP == 1} {
+
+        # Provided SSH application needs to be available.
+        variable SSH_APP_PROVIDED
+        if {$SSH_APP_PROVIDED != 1} {
+          lappend errors [_ "There is no provided SSH application available."]
+        }
+
+      } else {
+
+        # Custom SSH application needs to be available.
+        variable SSH_EXE
+        if {$SSH_EXE == "" || ![file isfile $SSH_EXE] || ![file executable $SSH_EXE]} {
+          lappend errors [_ "An invalid SSH application was specified."]
+        }
+
+      }
+
+      # SSH user needs to be available.
+      variable SSH_USER
+      if {$SSH_USER == ""} {
+        lappend errors [_ "An invalid SSH user was specified."]
+      }
+
+      # SSH port number needs to be available.
+      variable SSH_PORT
+      if {![string is integer -strict $SSH_PORT] || $SSH_PORT < 1 || $SSH_PORT > 65535} {
+        lappend errors [_ "An invalid SSH port number was specified."]
+      }
+
+      # SSH key needs to be available.
+      variable USE_PROVIDED_SSH_KEY
+      if {$USE_PROVIDED_SSH_KEY == 1} {
+
+        # Provided SSH key needs to be available.
+        variable SSH_KEY_PROVIDED
+        if {$SSH_KEY_PROVIDED != 1} {
+          lappend errors [_ "There is no provided SSH key available."]
+        }
+
+      } else {
+
+        # Custom SSH key needs to be available.
+        variable SSH_KEY
+        if {$SSH_KEY == "" || ![file isfile $SSH_KEY]} {
+          lappend errors [_ "An invalid SSH key was specified."]
+        }
+
+      }
+
+    }
+
+    return $errors
+  }
 }

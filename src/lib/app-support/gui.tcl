@@ -191,23 +191,17 @@ namespace eval ::support::ApplicationWindow {
     variable PORT
     variable SSH
 
-    # Validate settings.
-    set errors {}
-    if {$ADDRESS == ""} {
-      lappend errors [_ "An invalid address was specified."]
-    }
-    if {![string is integer -strict $PORT] || $PORT < 1 || $PORT > 65535} {
-      lappend errors [_ "An invalid port number was specified."]
-    }
+    # Put settings into the session.
+    set ::support::session::VNC_HOST [string trim $ADDRESS]
+    set ::support::session::VNC_PORT [string trim $PORT]
+    set ::support::session::SSH_ENABLED $SSH
+
+    # Validate settings before starting a VNC connection.
+    set errors [::support::session::validate]
     if {[llength $errors] > 0} {
       tk_messageBox -parent $ID -type ok -icon error -title [_ "Error"] -message [_ "Can't open connection!"] -detail [join $errors "\n"]
       return
     }
-
-    # Put settings into the session.
-    set ::support::session::VNC_HOST $ADDRESS
-    set ::support::session::VNC_PORT $PORT
-    set ::support::session::SSH_ENABLED $SSH
 
     # Start VNC session.
     ::support::connect
@@ -778,38 +772,12 @@ namespace eval ::support::SettingsWindow {
     variable USE_PROVIDED_SSH_KEY
     variable USE_PROVIDED_VNC_APP
 
-    # Validate settings.
-    set errors {}
-    if {$USE_PROVIDED_VNC_APP != 1} {
-      if {$VNC_EXE == "" || ![file executable $VNC_EXE]} {
-        lappend errors [_ "An invalid VNC application was specified."]
-      }
-    }
-    if {$USE_PROVIDED_SSH_APP != 1} {
-      if {$SSH_EXE == "" || ![file executable $SSH_EXE]} {
-        lappend errors [_ "An invalid SSH application was specified."]
-      }
-    }
-    if {![string is integer -strict $SSH_PORT] || $SSH_PORT < 1 || $SSH_PORT > 65535} {
-      lappend errors [_ "An invalid port number was specified."]
-    }
-    if {$USE_PROVIDED_SSH_KEY != 1} {
-      if {$SSH_KEY == "" || ![file isfile $SSH_KEY]} {
-        lappend errors [_ "An invalid SSH keyfile was specified."]
-      }
-    }
-
-    if {[llength $errors] > 0} {
-      tk_messageBox -parent $ID -type ok -icon error -title [_ "Error"] -message [_ "Can't submit settings!"] -detail [join $errors "\n"]
-      return
-    }
-
     # Put settings into the session.
     set ::support::session::VNC_EXE $VNC_EXE
-    set ::support::session::VNC_PARAMETERS $VNC_PARAMETERS
+    set ::support::session::VNC_PARAMETERS [string trim $VNC_PARAMETERS]
     set ::support::session::SSH_EXE $SSH_EXE
-    set ::support::session::SSH_PORT $SSH_PORT
-    set ::support::session::SSH_USER $SSH_USER
+    set ::support::session::SSH_PORT [string trim $SSH_PORT]
+    set ::support::session::SSH_USER [string trim $SSH_USER]
     set ::support::session::SSH_KEY $SSH_KEY
     set ::support::session::USE_PROVIDED_SSH_APP $USE_PROVIDED_SSH_APP
     set ::support::session::USE_PROVIDED_SSH_KEY $USE_PROVIDED_SSH_KEY
