@@ -532,7 +532,7 @@ namespace eval ::support::session {
       while {1 < 2} {
         puts "Waiting for SSH tunnel to become available."
         after 1000
-        if {[tunnel_is_loaded]} {
+        if {[tunnel_is_loaded_windows]} {
           puts "SSH tunnel is established."
           break
         }
@@ -752,7 +752,7 @@ namespace eval ::support::session {
   }
 
   # Test for Windows systems, if a SSH tunnel is available.
-  proc tunnel_is_loaded {} {
+  proc tunnel_is_loaded_windows {} {
     variable VNC_PORT
 
     set expectedLocalAddress "127.0.0.1:$VNC_PORT"
