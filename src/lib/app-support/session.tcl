@@ -23,7 +23,7 @@
 
 namespace eval ::support::session {
   variable PIDS {}
-  #variable LOG_FILE
+  variable LOG_FILE
 
   variable WORK_DIR
   variable WORK_OSXVNC_EXE
@@ -68,8 +68,8 @@ namespace eval ::support::session {
     }
 
     # Get path of the session log file.
-    #variable LOG_FILE [file join $::support::APP_DIR [format "%s-session.log" $::support::LOG_NAME]]
-    #file delete -force $LOG_FILE
+    variable LOG_FILE [file join $::support::APP_DIR [format "%s-session.log" $::support::LOG_NAME]]
+    file delete -force $LOG_FILE
 
     # Init default vnc settings.
     variable VNC_HOST [::support::Config::getSessionValue "host" ""]
@@ -334,7 +334,7 @@ namespace eval ::support::session {
   # Start VNC session for Mac OS X.
   proc start_darwin {} {
     variable PIDS
-    #variable LOG_FILE
+    variable LOG_FILE
     variable VNC_EXE
     variable VNC_HOST
     variable VNC_PORT
@@ -379,8 +379,8 @@ namespace eval ::support::session {
     puts $command
 
     # Execute VNC command.
-    #set PIDS [exec bash << $command >>& $LOG_FILE &]
-    set PIDS [exec bash << $command >@ stdout &]
+    set PIDS [exec bash << $command >>& $LOG_FILE &]
+    #set PIDS [exec bash << $command >@ stdout &]
 
     puts "Established VNC connection with process id: $PIDS"
     puts [string repeat "-" 50]
@@ -390,7 +390,7 @@ namespace eval ::support::session {
   # Start VNC session for Linux.
   proc start_linux {} {
     variable PIDS
-    #variable LOG_FILE
+    variable LOG_FILE
     variable VNC_EXE
     variable VNC_HOST
     variable VNC_PORT
@@ -435,7 +435,8 @@ namespace eval ::support::session {
     puts $command
 
     # Execute VNC command.
-    set PIDS [exec bash << $command >@ stdout &]
+    set PIDS [exec bash << $command >>& $LOG_FILE &]
+    #set PIDS [exec bash << $command >@ stdout &]
 
     puts "Established VNC connection with process id: $PIDS"
     puts [string repeat "-" 50]
