@@ -159,7 +159,7 @@ Supported operating systems
 Translations
 ------------
 
-*Remote Support Tool* is developed in **English** and is already into
+*Remote Support Tool* is developed in **English** and is translated into
 **German** language. The
 [translation documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Translation)
 contains informations about how to translate the application for yourself. Feel
