@@ -16,6 +16,11 @@ puts " $PROJECT $VERSION: compile translations"
 puts "========================================================================="
 puts ""
 
+if {$MSGFMT == "" || ![file isfile $MSGFMT] || ![file executable $MSGFMT]} {
+  puts "ERROR: Can't find the msgfmt application!"
+  exit 1
+}
+
 # Remove old translation files.
 foreach msg [glob -nocomplain -directory $SRC_MSGS_DIR -type f  "*.msg"] {
   puts "remove $msg"

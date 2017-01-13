@@ -16,6 +16,11 @@ puts " $PROJECT $VERSION: merge translations"
 puts "========================================================================="
 puts ""
 
+if {$MSGMERGE == "" || ![file isfile $MSGMERGE] || ![file executable $MSGMERGE]} {
+  puts "ERROR: Can't find the msgmerge application!"
+  exit 1
+}
+
 foreach po [glob -nocomplain -directory $I18N_PO_DIR -type f  "*.po"] {
   puts "merge $po"
   if { [catch {exec $MSGMERGE -q -U $po $I18N_POT} result] } {

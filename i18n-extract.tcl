@@ -16,6 +16,11 @@ puts " $PROJECT $VERSION: extract translations"
 puts "========================================================================="
 puts ""
 
+if {$XGETTEXT == "" || ![file isfile $XGETTEXT] || ![file executable $XGETTEXT]} {
+  puts "ERROR: Can't find the xgettext application!"
+  exit 1
+}
+
 puts "recreate $I18N_POT"
 if {[file exists $I18N_POT]} {
   file delete $I18N_POT
