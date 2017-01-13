@@ -248,6 +248,7 @@ namespace eval ::support::utils {
   proc modal_release {id} {
     grab release $id
     wm withdraw $id
+    update
     destroy $id
   }
 
