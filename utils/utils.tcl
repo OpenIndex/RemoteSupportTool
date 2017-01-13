@@ -36,7 +36,6 @@ proc get_tclkit {} {
     if {$machine == "i386"} {
       return $TCLKIT_LINUX_I386
     }
-    error "There is no tclkit available for your Linux machine!"
   }
   if {[is_windows]} {
     return $TCLKIT_WINDOWS
@@ -64,7 +63,6 @@ proc is_windows {} {
 }
 
 proc targz {dir archive} {
-  global TAR
   cd [file dirname $dir]
   set name [file tail $dir]
 
@@ -76,6 +74,7 @@ proc targz {dir archive} {
   #close $chan
 
   if {[is_darwin] || [is_linux]} {
+    global TAR
     if {[catch {exec $TAR cfz $archive $name} result]} {
       puts "ERROR: Can't create TAR.GZ archive!"
       if {$result != ""} { puts $result }
@@ -84,7 +83,31 @@ proc targz {dir archive} {
     return
   }
   if {[is_windows]} {
-    error "The targz method is not implemented for Windows yet"
+    global SEVENZIP
+
+    #Archive test1.txt and test2.txt into test.tar
+    #  7z a -ttar test.tar test1.txt test2.txt
+    #Compress test.tar to test.tgz
+    #  7z a -tgzip test.tgz test.tar
+
+    set temp "$name.tar"
+    if {[catch {exec $SEVENZIP a -ttar $temp $name} result]} {
+      puts "ERROR: Can't create TAR archive!"
+      if {$result != ""} { puts $result }
+      puts $::errorInfo
+    }
+    if {[catch {exec $SEVENZIP a -tgzip $archive $temp} result]} {
+      puts "ERROR: Can't create TAR.GZ archive!"
+      if {$result != ""} { puts $result }
+      puts $::errorInfo
+    }
+
+    #if {[catch {exec $SEVENZIP a -ttar -so temp.tar $name | $SEVENZIP a -si $name} result]} {
+    #  puts "ERROR: Can't create TAR.GZ archive!"
+    #  if {$result != ""} { puts $result }
+    #  puts $::errorInfo
+    #}
+    return
   }
   error "The targz method is not implemented for your operating system!"
 }
@@ -112,18 +135,18 @@ proc touch {path} {
 proc which {command} {
   if {[is_darwin] || [is_linux]} {
     if {[catch {exec which $command} result]} {
-      puts "ERROR: Can't execute which!"
-      if {$result != ""} { puts $result }
-      puts $::errorInfo
+      puts "WARNING: Can't find the \"$command\" application!"
+      #if {$result != ""} { puts $result }
+      #puts $::errorInfo
       return
     }
     return $result
   }
   if {[is_windows]} {
     if {[catch {exec where $command} result]} {
-      puts "ERROR: Can't execute which!"
-      if {$result != ""} { puts $result }
-      puts $::errorInfo
+      puts "WARNING: Can't find the \"$command\" application!"
+      #if {$result != ""} { puts $result }
+      #puts $::errorInfo
       return
     }
     return $result

@@ -21,6 +21,7 @@ puts ""
 proc create_package {output tclkit arch {archTarget ""}} {
   global BUILD_DIR
   global BUILD_SRC_DIR
+  global BUILD_TCLKIT
   global SRC_DIR
   global TCLKIT
   global SDX
@@ -33,7 +34,7 @@ proc create_package {output tclkit arch {archTarget ""}} {
   file copy -force $tclkit $tclkit_temp
   file copy -force [file join $SRC_DIR "data" $arch] [file join $BUILD_SRC_DIR "data" $archTarget]
 
-  if { [catch {exec $TCLKIT $SDX wrap $output -vfs $BUILD_SRC_DIR -runtime $tclkit_temp} result] } {
+  if { [catch {exec $BUILD_TCLKIT $SDX wrap $output -vfs $BUILD_SRC_DIR -runtime $tclkit_temp} result] } {
     puts "ERROR: Can't create binary package!"
     puts $::errorInfo
   }
@@ -104,6 +105,14 @@ proc postprocess_exe {dir} {
 
 set BUILD_SRC_DIR [file join $BUILD_DIR "$PROJECT.vfs"]
 
+if {[is_windows]} {
+  # Use tclkitsh binary on windows system for packaging.
+  set BUILD_TCLKIT $TCLKITSH_WINDOWS
+} else {
+  # Use tclkit binary on other systems for packaging.
+  set BUILD_TCLKIT $TCLKIT
+}
+
 puts "cleanup"
 if {[file exists $BUILD_DIR]} {
   file delete -force $BUILD_DIR
@@ -121,7 +130,7 @@ foreach log [glob -nocomplain -directory $BUILD_SRC_DIR -type f  "*.log"] {
 }
 
 puts "create $PROJECT-$VERSION.kit"
-if { [catch {exec $TCLKIT $SDX wrap [file join $TARGET_DIR "$PROJECT-$VERSION.kit"] -vfs $BUILD_SRC_DIR} result] } {
+if { [catch {exec $BUILD_TCLKIT $SDX wrap [file join $TARGET_DIR "$PROJECT-$VERSION.kit"] -vfs $BUILD_SRC_DIR} result] } {
   puts "ERROR: Can't starkit bundle!"
   puts $::errorInfo
 }
