@@ -91,7 +91,7 @@ Bundled applications
 The following applications are bundled into *Remote Support Tool* (depending on
 the operating system):
 
--   for Linux
+-   for Linux (i386 / amd64)
 
     -   [x11vnc 0.9.13](http://www.karlrunge.com/x11vnc/) (GPLv2) created with
         the [`build-x11vnc.tcl`](utils/build-x11vnc.tcl) script
