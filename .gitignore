@@ -1,6 +1,8 @@
-*.pyc
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/dictionaries
-src/locales/**/*.po~
-target/
+/*.log
+/build
+/misc/i18n/**/*.po~
+/src/*.log
+/target
+/utils/ResourceHacker.ini
+/utils/build
+/utils/target

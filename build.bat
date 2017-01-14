@@ -1,28 +1,38 @@
-@REM ----------------------------------------------------------------------------
-@REM  Build application binary on Windows.
-@REM
-@REM  Copyright (C) 2015-2016 OpenIndex.de
-@REM  Distributed under the MIT License.
-@REM  See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
-@REM ----------------------------------------------------------------------------
 @echo off
+goto :TopOfCode
 
-:: path to pyinstaller script
-set BUILD=C:\Python27\Scripts\pyinstaller.exe
+================================================================================
 
-:: get current directory
+Build application bundles.
+
+Copyright (c) 2015-2017 OpenIndex.de
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+================================================================================
+
+:TopOfCode
+
 set BASE_DIR=%~dp0
-:: echo %BASE_DIR%
+set BASE_DIR=%BASE_DIR:~0,-1%
+set TCLKITSH=%BASE_DIR%\utils\tclkitsh-win32.upx.exe
+%TCLKITSH% %BASE_DIR%\build.tcl
 
-set SPEC=%BASE_DIR%\misc\Remote-Support-Tool.spec
-set TARGET=%BASE_DIR%\target
-set LOG_LEVEL=INFO
-:: set LOG_LEVEL=DEBUG
-
-echo building application package
-echo specified by %SPEC%
-rmdir "%TARGET%" /s /q
-mkdir "%TARGET%"
-cd "%BASE_DIR%"
-"%BUILD%" --log-level "%LOG_LEVEL%" --distpath "%TARGET%" --workpath "target\build" "%SPEC%"
-echo .... done.
+echo.
+pause
