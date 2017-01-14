@@ -192,3 +192,9 @@ if {$modifiedExe != "" && [file isfile $modifiedExe]} {
 } else {
   file copy [file join $BUILD_WINDOWS_DIR "application.exe"] [file join $TARGET_DIR "$PROJECT-$VERSION-xp.exe"]
 }
+
+# On Windows systems there is an unusable bat file written into the target folder.
+# To avoid any confusions we're deleting this file.
+foreach f [glob -nocomplain -directory $TARGET_DIR -type f  "*.bat"] {
+  file delete $f
+}
