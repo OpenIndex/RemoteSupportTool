@@ -1,0 +1,301 @@
+# Copyright 2015-2017 OpenIndex.de.
+# Distributed under the MIT License.
+# See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: RemoteSupportTool 0.5\n"
+"Report-Msgid-Bugs-To: info@openindex.de\n"
+"POT-Creation-Date: 2017-01-16 13:57+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gui.tcl:96
+#, tcl-format
+msgid ""
+"This application provides access to your desktop for the support staff of %s."
+msgstr ""
+
+#: gui.tcl:98 gui.tcl:375
+msgid "This application provides access to your desktop for our support staff."
+msgstr ""
+
+#. Create address field.
+#: gui.tcl:110
+msgid "Address"
+msgstr ""
+
+#. Create port field.
+#: gui.tcl:117
+msgid "Port"
+msgstr ""
+
+#. Create ssh checkbox.
+#: gui.tcl:123
+msgid "Enable SSH encryption."
+msgstr ""
+
+#. Create options button.
+#: gui.tcl:127
+msgid "Extended…"
+msgstr ""
+
+#. Create quit button.
+#: gui.tcl:136
+msgid "Quit"
+msgstr ""
+
+#. Create about button.
+#: gui.tcl:140
+msgid "About"
+msgstr ""
+
+#. Create connect button.
+#: gui.tcl:144
+msgid "Connect"
+msgstr ""
+
+#. Create disconnect button.
+#: gui.tcl:148
+msgid "Disconnect"
+msgstr ""
+
+#: gui.tcl:202 gui.tcl:714 gui.tcl:735 gui.tcl:756
+msgid "Error"
+msgstr ""
+
+#: gui.tcl:202
+msgid "Can't open connection!"
+msgstr ""
+
+#: gui.tcl:244
+msgid "Connection is established."
+msgstr ""
+
+#: gui.tcl:257
+msgid "Establishing a connection…"
+msgstr ""
+
+#: gui.tcl:270
+msgid "The connection was closed."
+msgstr ""
+
+#: gui.tcl:283
+msgid "An error occured."
+msgstr ""
+
+#: gui.tcl:296
+msgid "Welcome to remote maintenance."
+msgstr ""
+
+#: gui.tcl:334
+msgid "Company"
+msgstr ""
+
+#: gui.tcl:341
+msgid "About this program"
+msgstr ""
+
+#: gui.tcl:377
+msgid ""
+"Our support staff will tell you the required settings in order to build up a "
+"connection for remote maintenance."
+msgstr ""
+
+#: gui.tcl:382
+#, tcl-format
+msgid ""
+"This software is based on the free and open Remote Support Tool and was "
+"modified for %s."
+msgstr ""
+
+#: gui.tcl:384
+#, tcl-format
+msgid ""
+"Please contact %s for any questions or problems according to this software."
+msgstr ""
+
+#: gui.tcl:388
+msgid "Authors"
+msgstr ""
+
+#: gui.tcl:400
+msgid "Translators"
+msgstr ""
+
+#: gui.tcl:402
+msgid "German"
+msgstr ""
+
+#: gui.tcl:405
+msgid "Internal components"
+msgstr ""
+
+#: gui.tcl:407
+msgid "The following third party components were integrated:"
+msgstr ""
+
+#: gui.tcl:417
+msgid "Created with"
+msgstr ""
+
+#: gui.tcl:419
+msgid "The application was created with:"
+msgstr ""
+
+#: gui.tcl:427
+msgid "License"
+msgstr ""
+
+#: gui.tcl:470
+msgid "Source code"
+msgstr ""
+
+#: gui.tcl:474
+msgid "Close"
+msgstr ""
+
+#: gui.tcl:565
+msgid "Extended Settings"
+msgstr ""
+
+#. Create VNC title.
+#: gui.tcl:602
+msgid "Settings for VNC"
+msgstr ""
+
+#. Create VNC application field.
+#. Create SSH application field.
+#: gui.tcl:606 gui.tcl:630
+msgid "Application"
+msgstr ""
+
+#: gui.tcl:608 gui.tcl:632 gui.tcl:640
+msgid "Select"
+msgstr ""
+
+#: gui.tcl:615
+msgid "Parameters"
+msgstr ""
+
+#. Create internal VNC application field.
+#: gui.tcl:622
+msgid "Use provided VNC application."
+msgstr ""
+
+#. Create SSH title.
+#: gui.tcl:626
+msgid "Settings for SSH"
+msgstr ""
+
+#. Create SSH key field.
+#: gui.tcl:638
+msgid "Key"
+msgstr ""
+
+#. Create SSH user field.
+#: gui.tcl:646
+msgid "User"
+msgstr ""
+
+#. Create SSH port field.
+#: gui.tcl:652
+msgid "SSH Port"
+msgstr ""
+
+#: gui.tcl:659
+msgid "Use provided SSH application."
+msgstr ""
+
+#: gui.tcl:665
+msgid "Use provided key."
+msgstr ""
+
+#. Create submit button.
+#: gui.tcl:675
+msgid "Submit"
+msgstr ""
+
+#. Create cancel button.
+#: gui.tcl:679
+msgid "Cancel"
+msgstr ""
+
+#: gui.tcl:711
+msgid "Select your SSH key."
+msgstr ""
+
+#: gui.tcl:714
+msgid "Can't select SSH key!"
+msgstr ""
+
+#: gui.tcl:714
+msgid "The selected file is invalid."
+msgstr ""
+
+#: gui.tcl:732
+msgid "Select your SSH application."
+msgstr ""
+
+#: gui.tcl:735
+msgid "Can't select SSH application!"
+msgstr ""
+
+#: gui.tcl:735 gui.tcl:756
+msgid "The selected file is not an executable program."
+msgstr ""
+
+#: gui.tcl:753
+msgid "Select your VNC application."
+msgstr ""
+
+#: gui.tcl:756
+msgid "Can't select VNC application!"
+msgstr ""
+
+#. Set application settings.
+#: support.tcl:83
+msgid "Remote Support Tool"
+msgstr ""
+
+#: session.tcl:810
+msgid "An invalid address was specified."
+msgstr ""
+
+#: session.tcl:816
+msgid "An invalid port number was specified."
+msgstr ""
+
+#: session.tcl:824
+msgid "An invalid VNC application was specified."
+msgstr ""
+
+#: session.tcl:839
+msgid "There is no provided SSH application available."
+msgstr ""
+
+#: session.tcl:847
+msgid "An invalid SSH application was specified."
+msgstr ""
+
+#: session.tcl:855
+msgid "An invalid SSH user was specified."
+msgstr ""
+
+#: session.tcl:861
+msgid "An invalid SSH port number was specified."
+msgstr ""
+
+#: session.tcl:871
+msgid "There is no provided SSH key available."
+msgstr ""
+
+#: session.tcl:879
+msgid "An invalid SSH key was specified."
+msgstr ""

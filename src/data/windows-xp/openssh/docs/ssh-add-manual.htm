@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+<TITLE>Manual Pages: ssh-add</TITLE>
+<link rev="made" href="mailto:wosch@FreeBSD.ORG">
+<META name="robots" content="nofollow">
+</HEAD> 
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<h2><font color=#e00000>Manual Pages</font><hr></h2> 
+
+<PRE>
+SSH-ADD(1)                 OpenBSD Reference Manual                 SSH-ADD(1)
+
+<a name="NAME" href="#end"><B>NAME</B></a>
+     <B>ssh-add</B> - adds RSA or DSA identities to the authentication agent
+
+<a name="SYNOPSIS" href="#end"><B>SYNOPSIS</B></a>
+     <B>ssh-add</B> [<B>-lLdDxX</B>] [<B>-t</B> <I>life</I>] [<I>file</I> <I>...</I>]
+     <B>ssh-add -s</B> <I>reader</I>
+     <B>ssh-add -e</B> <I>reader</I>
+
+<a name="DESCRIPTION" href="#end"><B>DESCRIPTION</B></a>
+     <B>ssh-add</B> adds RSA or DSA identities to the authentication agent, ssh-
+     <A HREF="/cgi-bin/man.cgi?query=agent&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">agent(1)</A>. When run without arguments, it adds the files
+     <I>$HOME/.ssh/id_rsa</I>, <I>$HOME/.ssh/id_dsa</I> and <I>$HOME/.ssh/identity</I>. Alternative
+     file names can be given on the command line.  If any file requires a
+     passphrase, <B>ssh-add</B> asks for the passphrase from the user.  The
+     passphrase is read from the user's tty.  <B>ssh-add</B> retries the last
+     passphrase if multiple identity files are given.
+
+     The authentication agent must be running and must be an ancestor of the
+     current process for <B>ssh-add</B> to work.
+
+     The options are as follows:
+
+     <B>-l</B>      Lists fingerprints of all identities currently represented by the
+             agent.
+
+     <B>-L</B>      Lists public key parameters of all identities currently repre-
+             sented by the agent.
+
+     <B>-d</B>      Instead of adding the identity, removes the identity from the
+             agent.
+
+     <B>-D</B>      Deletes all identities from the agent.
+
+     <B>-x</B>      Lock the agent with a password.
+
+     <B>-X</B>      Unlock the agent.
+
+     <B>-t</B> <I>life</I>
+             Set a maximum lifetime when adding identities to an agent.  The
+             lifetime may be specified in seconds or in a time format speci-
+             fied in <A HREF="/cgi-bin/man.cgi?query=sshd&sektion=8&arch=&apropos=0&manpath=OpenBSD+Current">sshd(8)</A>.
+
+     <B>-s</B> <I>reader</I>
+             Add key in smartcard <I>reader</I>.
+
+     <B>-e</B> <I>reader</I>
+             Remove key in smartcard <I>reader</I>.
+
+<a name="FILES" href="#end"><B>FILES</B></a>
+     $HOME/.ssh/identity
+             Contains the protocol version 1 RSA authentication identity of
+             the user.
+
+     $HOME/.ssh/id_dsa
+             Contains the protocol version 2 DSA authentication identity of
+             the user.
+
+     $HOME/.ssh/id_rsa
+             Contains the protocol version 2 RSA authentication identity of
+             the user.
+
+     Identity files should not be readable by anyone but the user.  Note that
+     <B>ssh-add</B> ignores identity files if they are accessible by others.
+
+<a name="ENVIRONMENT" href="#end"><B>ENVIRONMENT</B></a>
+     DISPLAY and SSH_ASKPASS
+             If <B>ssh-add</B> needs a passphrase, it will read the passphrase from
+             the current terminal if it was run from a terminal.  If <B>ssh-add</B>
+             does not have a terminal associated with it but DISPLAY and
+             SSH_ASKPASS are set, it will execute the program specified by
+             SSH_ASKPASS and open an X11 window to read the passphrase.  This
+             is particularly useful when calling <B>ssh-add</B> from a <I>.Xsession</I> or
+             related script.  (Note that on some machines it may be necessary
+             to redirect the input from <I>/dev/null</I> to make this work.)
+
+     SSH_AUTH_SOCK
+             Identifies the path of a unix-domain socket used to communicate
+             with the agent.
+
+<a name="DIAGNOSTICS" href="#end"><B>DIAGNOSTICS</B></a>
+     Exit status is 0 on success, 1 if the specified command fails, and 2 if
+     <B>ssh-add</B> is unable to contact the authentication agent.
+
+<a name="AUTHORS" href="#end"><B>AUTHORS</B></a>
+     OpenSSH is a derivative of the original and free ssh 1.2.12 release by
+     Tatu Ylonen.  Aaron Campbell, Bob Beck, Markus Friedl, Niels Provos, Theo
+     de Raadt and Dug Song removed many bugs, re-added newer features and cre-
+     ated OpenSSH.  Markus Friedl contributed the support for SSH protocol
+     versions 1.5 and 2.0.
+
+<a name="SEE+ALSO" href="#end"><B>SEE ALSO</B></a>
+     <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A>, <A HREF="/cgi-bin/man.cgi?query=ssh-agent&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh-agent(1)</A>, <A HREF="/cgi-bin/man.cgi?query=ssh-keygen&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh-keygen(1)</A>, <A HREF="/cgi-bin/man.cgi?query=sshd&sektion=8&arch=&apropos=0&manpath=OpenBSD+Current">sshd(8)</A>
+
+OpenBSD 3.1                   September 25, 1999                             2
+</PRE>
+<a name="end">
+<hr noshade>
+<a href="#NAME">NAME</a> |
+<a href="#SYNOPSIS">SYNOPSIS</a> |
+<a href="#DESCRIPTION">DESCRIPTION</a> |
+<a href="#FILES">FILES</a> |
+<a href="#ENVIRONMENT">ENVIRONMENT</a> |
+<a href="#DIAGNOSTICS">DIAGNOSTICS</a> |
+<a href="#AUTHORS">AUTHORS</a> |
+<a href="#SEE+ALSO">SEE ALSO</a>
+</BODY>
+</HTML>

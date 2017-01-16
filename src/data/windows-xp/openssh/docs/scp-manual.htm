@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<TITLE>Manual Pages: scp</TITLE>
+<link rev="made" href="mailto:wosch@FreeBSD.ORG">
+<META name="robots" content="nofollow">
+</HEAD> 
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<h2><font color=#e00000>Manual Pages</font><hr></h2> 
+
+<PRE>
+SCP(1)                     OpenBSD Reference Manual                     SCP(1)
+
+<a name="NAME" href="#end"><B>NAME</B></a>
+     <B>scp</B> - secure copy (remote file copy program)
+
+<a name="SYNOPSIS" href="#end"><B>SYNOPSIS</B></a>
+     <B>scp</B> [<B>-pqrvBC46</B>] [<B>-F</B> <I>ssh_config</I>] [<B>-S</B> <I>program</I>] [<B>-P</B> <I>port</I>] [<B>-c</B> <I>cipher</I>] [<B>-i</B>
+         <I>identity_file</I>] [<B>-o</B> <I>ssh_option</I>] [[<I>user@</I>]<I>host1</I>:]<I>file1</I> [<I>...</I>]
+         [[<I>user@</I>]<I>host2</I>:]<I>file2</I>
+
+<a name="DESCRIPTION" href="#end"><B>DESCRIPTION</B></a>
+     <B>scp</B> copies files between hosts on a network.  It uses <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A> for data
+     transfer, and uses the same authentication and provides the same security
+     as <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A>. Unlike <A HREF="/cgi-bin/man.cgi?query=rcp&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">rcp(1)</A>, <B>scp</B> will ask for passwords or passphrases if
+     they are needed for authentication.
+
+     Any file name may contain a host and user specification to indicate that
+     the file is to be copied to/from that host.  Copies between two remote
+     hosts are permitted.
+
+     The options are as follows:
+
+     <B>-c</B> <I>cipher</I>
+             Selects the cipher to use for encrypting the data transfer.  This
+             option is directly passed to <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A>.
+
+     <B>-i</B> <I>identity_file</I>
+             Selects the file from which the identity (private key) for RSA
+             authentication is read.  This option is directly passed to
+             <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A>.
+
+     <B>-p</B>      Preserves modification times, access times, and modes from the
+             original file.
+
+     <B>-r</B>      Recursively copy entire directories.
+
+     <B>-v</B>      Verbose mode.  Causes <B>scp</B> and <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A> to print debugging messages
+             about their progress.  This is helpful in debugging connection,
+             authentication, and configuration problems.
+
+     <B>-B</B>      Selects batch mode (prevents asking for passwords or passphras-
+             es).
+
+     <B>-q</B>      Disables the progress meter.
+
+     <B>-C</B>      Compression enable.  Passes the <B>-C</B> flag to <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A> to enable com-
+             pression.
+
+     <B>-F</B> <I>ssh_config</I>
+             Specifies an alternative per-user configuration file for <B>ssh</B>.
+             This option is directly passed to <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A>.
+
+     <B>-P</B> <I>port</I>
+             Specifies the port to connect to on the remote host.  Note that
+             this option is written with a capital `P', because <B>-p</B> is already
+             reserved for preserving the times and modes of the file in
+             <A HREF="/cgi-bin/man.cgi?query=rcp&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">rcp(1)</A>.
+
+     <B>-S</B> <I>program</I>
+             Name of <I>program</I> to use for the encrypted connection.  The program
+             must understand <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A> options.
+
+     <B>-o</B> <I>ssh_option</I>
+             Can be used to pass options to <B>ssh</B> in the format used in
+             <A HREF="/cgi-bin/man.cgi?query=ssh_config&sektion=5&arch=&apropos=0&manpath=OpenBSD+Current">ssh_config(5)</A>. This is useful for specifying options for which
+             there is no separate <B>scp</B> command-line flag.  For example, forcing
+             the use of protocol version 1 is specified using <B>scp</B>
+             <B>-oProtocol=1</B>.
+
+     <B>-4</B>      Forces <B>scp</B> to use IPv4 addresses only.
+
+     <B>-6</B>      Forces <B>scp</B> to use IPv6 addresses only.
+
+<a name="DIAGNOSTICS" href="#end"><B>DIAGNOSTICS</B></a>
+     <B>scp</B> exits with 0 on success or &gt;0 if an error occurred.
+
+<a name="AUTHORS" href="#end"><B>AUTHORS</B></a>
+     Timo Rinne &lt;<A HREF="mailto:tri@iki.fi">tri@iki.fi</A>&gt; and Tatu Ylonen &lt;<A HREF="mailto:ylo@cs.hut.fi">ylo@cs.hut.fi</A>&gt;
+
+<a name="HISTORY" href="#end"><B>HISTORY</B></a>
+     <B>scp</B> is based on the <A HREF="/cgi-bin/man.cgi?query=rcp&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">rcp(1)</A> program in BSD source code from the Regents of
+     the University of California.
+
+<a name="SEE+ALSO" href="#end"><B>SEE ALSO</B></a>
+     <A HREF="/cgi-bin/man.cgi?query=rcp&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">rcp(1)</A>, <A HREF="/cgi-bin/man.cgi?query=sftp&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">sftp(1)</A>, <A HREF="/cgi-bin/man.cgi?query=ssh&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh(1)</A>, <A HREF="/cgi-bin/man.cgi?query=ssh-add&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh-add(1)</A>, <A HREF="/cgi-bin/man.cgi?query=ssh-agent&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh-agent(1)</A>, <A HREF="/cgi-bin/man.cgi?query=ssh-keygen&sektion=1&arch=&apropos=0&manpath=OpenBSD+Current">ssh-keygen(1)</A>,
+     <A HREF="/cgi-bin/man.cgi?query=ssh_config&sektion=5&arch=&apropos=0&manpath=OpenBSD+Current">ssh_config(5)</A>, <A HREF="/cgi-bin/man.cgi?query=sshd&sektion=8&arch=&apropos=0&manpath=OpenBSD+Current">sshd(8)</A>
+
+OpenBSD 3.1                   September 25, 1999                             2
+</PRE>
+<a name="end">
+<hr noshade>
+<a href="#NAME">NAME</a> |
+<a href="#SYNOPSIS">SYNOPSIS</a> |
+<a href="#DESCRIPTION">DESCRIPTION</a> |
+<a href="#DIAGNOSTICS">DIAGNOSTICS</a> |
+<a href="#AUTHORS">AUTHORS</a> |
+<a href="#HISTORY">HISTORY</a> |
+<a href="#SEE+ALSO">SEE ALSO</a>
+</BODY>
+</HTML>
