@@ -285,4 +285,17 @@ namespace eval ::support::utils {
     }
     error "Can't get application path for this operating system!"
   }
+
+  # Get a recursive list of files in a directory.
+  proc get_files {{dir .}} {
+    set res {}
+    foreach i [lsort [glob -nocomplain -dir $dir *]] {
+      if {[file type $i] eq {directory}} {
+        eval lappend res [get_files $i]
+      } else {
+        lappend res $i
+      }
+    }
+    set res
+  }
 }

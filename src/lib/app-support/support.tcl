@@ -88,13 +88,11 @@ namespace eval ::support {
     # Detect temporary directory.
     variable TEMP_DIR [file join [::support::utils::get_temp_dir] "temp-support-[pid]"]
     if {![file exists $TEMP_DIR]} {
-      if [catch {file mkdir $TEMP_DIR}] {
-        puts "ERROR: Didn't find temporary directory"
-        puts "ERROR: Couldn't make temporary directory \"$TEMP_DIR\""
+      if {[catch {file mkdir $TEMP_DIR}]} {
+        puts "ERROR: The temporary directory \"$TEMP_DIR\" was not created!"
       }
     } elseif {![file isdirectory $TEMP_DIR]} {
-      puts "ERROR: Didn't find temporary directory"
-      puts "ERROR: Temporary directory \"$TEMP_DIR\" exists, and is not a directory"
+      puts "ERROR: The temporary directory \"$TEMP_DIR\" is not a directory!"
     }
 
     # Print some informations.
@@ -310,6 +308,19 @@ proc exit {} {
   if {$::support::CONNECTED == 1} {
     ::support::disconnect 1
   }
-  file delete -force $::support::TEMP_DIR
+
+  # Remove temporary files explicitly.
+  foreach f [::support::utils::get_files $::support::TEMP_DIR] {
+    if {[file isfile $f] && [catch {file delete -force $f}]} {
+      puts "WARNING: Can't remove temporary file \"$f\"!"
+      puts $::errorInfo
+    }
+  }
+
+  # Remove temporary folder recursively.
+  if {[catch {file delete -force $::support::TEMP_DIR}]} {
+    puts "WARNING: Can't cleanup temporary directory \"$::support::TEMP_DIR\"!"
+    puts $::errorInfo
+  }
   __exit
 }
