@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RemoteSupportTool 0.5\n"
 "Report-Msgid-Bugs-To: info@openindex.de\n"
-"POT-Creation-Date: 2017-01-13 11:40+0100\n"
+"POT-Creation-Date: 2017-01-16 13:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,38 +264,38 @@ msgstr ""
 msgid "Remote Support Tool"
 msgstr ""
 
-#: session.tcl:809
+#: session.tcl:810
 msgid "An invalid address was specified."
 msgstr ""
 
-#: session.tcl:815
+#: session.tcl:816
 msgid "An invalid port number was specified."
 msgstr ""
 
-#: session.tcl:823
+#: session.tcl:824
 msgid "An invalid VNC application was specified."
 msgstr ""
 
-#: session.tcl:838
+#: session.tcl:839
 msgid "There is no provided SSH application available."
 msgstr ""
 
-#: session.tcl:846
+#: session.tcl:847
 msgid "An invalid SSH application was specified."
 msgstr ""
 
-#: session.tcl:854
+#: session.tcl:855
 msgid "An invalid SSH user was specified."
 msgstr ""
 
-#: session.tcl:860
+#: session.tcl:861
 msgid "An invalid SSH port number was specified."
 msgstr ""
 
-#: session.tcl:870
+#: session.tcl:871
 msgid "There is no provided SSH key available."
 msgstr ""
 
-#: session.tcl:878
+#: session.tcl:879
 msgid "An invalid SSH key was specified."
 msgstr ""
