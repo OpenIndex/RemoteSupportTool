@@ -23,7 +23,7 @@ if {$MSGMERGE == "" || ![file isfile $MSGMERGE] || ![file executable $MSGMERGE]}
 
 foreach po [glob -nocomplain -directory $I18N_PO_DIR -type f  "*.po"] {
   puts "merge $po"
-  if { [catch {exec $MSGMERGE -q -U $po $I18N_POT} result] } {
+  if { [catch {exec $MSGMERGE -q -U [file nativename $po] [file nativename $I18N_POT]} result] } {
     puts "ERROR: Can't merge translation!"
     puts "at: $po"
     puts $::errorInfo

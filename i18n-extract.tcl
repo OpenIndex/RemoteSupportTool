@@ -31,11 +31,9 @@ cd $SRC_APP_DIR
 foreach tcl [glob -nocomplain -directory $SRC_APP_DIR -type f  "*.tcl"] {
   puts "process $tcl"
   set f [file tail $tcl]
-  if { [catch {exec $XGETTEXT -j -c -o $I18N_POT -L Tcl -k_ --copyright-holder=$AUTHOR_NAME --msgid-bugs-address=$AUTHOR_EMAIL --package-name=$PROJECT --package-version=$VERSION $f} result] } {
+  if { [catch {exec $XGETTEXT -j -c -o [file nativename $I18N_POT] -L Tcl -k_ --copyright-holder=$AUTHOR_NAME --msgid-bugs-address=$AUTHOR_EMAIL $f} result] } {
     puts "ERROR: Can't extract translation!"
     puts "from: $tcl"
     puts $::errorInfo
   }
 }
-
-

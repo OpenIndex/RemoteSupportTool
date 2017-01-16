@@ -122,7 +122,8 @@ proc touch {path} {
     return
   }
   if {[is_windows]} {
-    if {[catch {exec copy "/b" "$path" "+,,"} result]} {
+    global UTILS_DIR
+    if {[catch {exec [file nativename [file join $UTILS_DIR touch.bat]] [file nativename $path]} result]} {
       puts "ERROR: Can't execute touch!"
       if {$result != ""} { puts $result }
       puts $::errorInfo

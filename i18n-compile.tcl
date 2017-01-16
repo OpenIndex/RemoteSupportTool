@@ -39,7 +39,7 @@ foreach po [glob -nocomplain -directory $I18N_PO_DIR -type f  "*.po"] {
   set lang [string range $name 0 [expr {$pos - 1}]]
   set msg [file join $SRC_MSGS_DIR [concat $name ".msg"]]
 
-  if { [catch {exec $MSGFMT --tcl $po -l $lang -d $SRC_MSGS_DIR} result] } {
+  if { [catch {exec $MSGFMT --tcl [file nativename $po] -l $lang -d [file nativename $SRC_MSGS_DIR]} result] } {
     puts "ERROR: Can't compile translation!"
     puts "at: $po"
     puts $::errorInfo
