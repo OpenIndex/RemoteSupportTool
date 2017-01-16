@@ -101,12 +101,6 @@ proc targz {dir archive} {
       if {$result != ""} { puts $result }
       puts $::errorInfo
     }
-
-    #if {[catch {exec $SEVENZIP a -ttar -so temp.tar $name | $SEVENZIP a -si $name} result]} {
-    #  puts "ERROR: Can't create TAR.GZ archive!"
-    #  if {$result != ""} { puts $result }
-    #  puts $::errorInfo
-    #}
     return
   }
   error "The targz method is not implemented for your operating system!"
