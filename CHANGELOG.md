@@ -1,8 +1,14 @@
 Changelog for Remote Support Tool
 =================================
 
-0.5 (16 Jan 2017)
+0.6 (not released yet)
 ----------------------
+
+...
+
+
+0.5 (16 Jan 2017)
+-----------------
 
 -   migrated from Python to Tcl/Tk
 -   replaced Paramiko with OpenSSH
