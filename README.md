@@ -106,7 +106,7 @@ the operating system):
     -   [TightVNC 2.8.5](http://www.tightvnc.com/) (GPLv2) using binaries from
         [tightvnc.com](http://www.tightvnc.com/download.php)
 
-    -   [OpenSSH 7.4p1-1](https://www.openssh.com/) (BSD) using binaries from
+    -   [OpenSSH 7.6p1-1](https://www.openssh.com/) (BSD) using binaries from
         [mls-software.com](https://www.mls-software.com/opensshd.html)
 
 -   for Windows (XP / 2003)
