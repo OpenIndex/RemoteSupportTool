@@ -176,7 +176,7 @@ namespace eval ::support::session {
   # Initialize VNC environment for Windows.
   proc init_windows {} {
     variable VNC_APP_NAME "TightVNC"
-    variable VNC_APP_VERSION "2.8.5"
+    variable VNC_APP_VERSION "2.8.8"
     variable VNC_APP_LICENSE "GPLv2"
 
     variable SSH_APP_NAME "OpenSSH"
