@@ -1,6 +1,6 @@
 #!/usr/bin/env tclsh
 #
-# Copyright (c) 2015-2017 OpenIndex.de
+# Copyright (c) 2015-2018 OpenIndex.de
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,10 +21,10 @@
 # THE SOFTWARE.
 #
 
-package ifneeded app-support 0.5 "\
+package ifneeded app-support 0.5.1 "\
   source -encoding utf-8 \[file join [list $dir] support.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] config.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] gui.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] session.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] utils.tcl\] ; \
-  package provide app-support 0.5"
+  package provide app-support 0.5.1"

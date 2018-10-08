@@ -2,7 +2,7 @@
 #
 # Configurations for the build environment.
 #
-# Copyright 2015-2017 OpenIndex.de.
+# Copyright (c) 2015-2018 OpenIndex.de
 # Distributed under the MIT License.
 # See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
 #
@@ -13,8 +13,8 @@
 
 # project settings
 set PROJECT "RemoteSupportTool"
-set VERSION "0.5"
-set AUTHOR_NAME "OpenIndex"
+set VERSION "0.5.1"
+set AUTHOR_NAME "OpenIndex.de"
 set AUTHOR_EMAIL "info@openindex.de"
 
 # preferred applications

@@ -1,5 +1,5 @@
-Remote Support Tool 0.5
-=======================
+Remote Support Tool 0.5.1
+=========================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance
 via [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing) inspired by
@@ -96,22 +96,22 @@ the operating system):
     -   [x11vnc 0.9.13](http://www.karlrunge.com/x11vnc/) (GPLv2) created with
         the [`build-x11vnc.tcl`](utils/build-x11vnc.tcl) script
 
--   for Mac OS X (10.7+)
+-   for Mac OS X (10.11+)
 
-    -   [OSXvnc 5.0.1](https://github.com/stweil/OSXvnc) (GPLv2) using binaries
+    -   [OSXvnc 5.2.1](https://github.com/stweil/OSXvnc) (GPLv3) using binaries
         from [github.com](https://github.com/stweil/OSXvnc/releases)
 
 -   for Windows (Vista and newer)
 
-    -   [TightVNC 2.8.5](http://www.tightvnc.com/) (GPLv2) using binaries from
+    -   [TightVNC 2.8.11](http://www.tightvnc.com/) (GPLv2) using binaries from
         [tightvnc.com](http://www.tightvnc.com/download.php)
 
-    -   [OpenSSH 7.4p1-1](https://www.openssh.com/) (BSD) using binaries from
+    -   [OpenSSH 7.8p1-1](https://www.openssh.com/) (BSD) using binaries from
         [mls-software.com](https://www.mls-software.com/opensshd.html)
 
 -   for Windows (XP / 2003)
 
-    -   [TightVNC 2.8.5](http://www.tightvnc.com/) (GPLv2) using binaries from
+    -   [TightVNC 2.8.11](http://www.tightvnc.com/) (GPLv2) using binaries from
         [tightvnc.com](http://www.tightvnc.com/download.php)
 
     -   [OpenSSH 7.3p1-2](https://www.openssh.com/) (BSD) using binaries from

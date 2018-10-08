@@ -2,7 +2,7 @@
 #
 # Start application from source code.
 #
-# Copyright 2015-2017 OpenIndex.de.
+# Copyright 2015-2018 OpenIndex.de.
 # Distributed under the MIT License.
 # See accompanying LICENSE.txt file or at http://opensource.org/licenses/MIT
 #

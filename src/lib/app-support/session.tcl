@@ -1,6 +1,6 @@
 #!/usr/bin/env tclsh
 #
-# Copyright (c) 2015-2017 OpenIndex.de
+# Copyright (c) 2015-2018 OpenIndex.de
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -176,7 +176,7 @@ namespace eval ::support::session {
   # Initialize VNC environment for Windows.
   proc init_windows {} {
     variable VNC_APP_NAME "TightVNC"
-    variable VNC_APP_VERSION "2.8.5"
+    variable VNC_APP_VERSION "2.8.8"
     variable VNC_APP_LICENSE "GPLv2"
 
     variable SSH_APP_NAME "OpenSSH"
