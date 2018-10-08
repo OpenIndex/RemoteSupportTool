@@ -4,7 +4,7 @@ Changelog for Remote Support Tool
 0.6 (not released yet)
 ----------------------
 
-...
+-   update to OpenSSH 7.8p1-1 for Windows Vista and newer
 
 
 0.5 (16 Jan 2017)
