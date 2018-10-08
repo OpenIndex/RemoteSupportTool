@@ -9,10 +9,13 @@
         </dict>
 
         <key>CFBundleShortVersionString</key>
-        <string>0.6.0</string>
+        <string>0.5.1</string>
 
         <key>CFBundleExecutable</key>
         <string>MacOS/application</string>
+
+        <key>CFBundleIdentifier</key>
+        <string>de.openindex.support.tool</string>
 
         <key>CFBundleName</key>
         <string>Remote-Support-Tool</string>
@@ -42,6 +45,6 @@
         <true/>
 
         <key>LSMinimumSystemVersion</key>
-        <string>10.5.0</string>
+        <string>10.11.0</string>
     </dict>
 </plist>

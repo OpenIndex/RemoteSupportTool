@@ -1,13 +1,12 @@
 Changelog for Remote Support Tool
 =================================
 
-0.6 (not released yet)
-----------------------
+0.5.1 (08 Oct 2018)
+-------------------
 
 -   update to OpenSSH 7.8p1-1 for Windows Vista and newer
 -   update to TightVNC 2.8.11
 -   update to OSXvnc 5.2.1
--   provide a signed application bundle for macOS
 
 
 0.5 (16 Jan 2017)

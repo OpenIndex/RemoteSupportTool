@@ -13,8 +13,8 @@
 
 # project settings
 set PROJECT "RemoteSupportTool"
-set VERSION "0.6"
-set AUTHOR_NAME "OpenIndex"
+set VERSION "0.5.1"
+set AUTHOR_NAME "OpenIndex.de"
 set AUTHOR_EMAIL "info@openindex.de"
 
 # preferred applications
