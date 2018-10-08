@@ -103,7 +103,7 @@ the operating system):
 
 -   for Windows (Vista and newer)
 
-    -   [TightVNC 2.8.8](http://www.tightvnc.com/) (GPLv2) using binaries from
+    -   [TightVNC 2.8.11](http://www.tightvnc.com/) (GPLv2) using binaries from
         [tightvnc.com](http://www.tightvnc.com/download.php)
 
     -   [OpenSSH 7.8p1-1](https://www.openssh.com/) (BSD) using binaries from
@@ -111,7 +111,7 @@ the operating system):
 
 -   for Windows (XP / 2003)
 
-    -   [TightVNC 2.8.8](http://www.tightvnc.com/) (GPLv2) using binaries from
+    -   [TightVNC 2.8.11](http://www.tightvnc.com/) (GPLv2) using binaries from
         [tightvnc.com](http://www.tightvnc.com/download.php)
 
     -   [OpenSSH 7.3p1-2](https://www.openssh.com/) (BSD) using binaries from
