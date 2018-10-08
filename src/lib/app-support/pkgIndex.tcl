@@ -21,10 +21,10 @@
 # THE SOFTWARE.
 #
 
-package ifneeded app-support 0.5.1 "\
+package ifneeded app-support 0.6 "\
   source -encoding utf-8 \[file join [list $dir] support.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] config.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] gui.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] session.tcl\] ; \
   source -encoding utf-8 \[file join [list $dir] utils.tcl\] ; \
-  package provide app-support 0.5.1"
+  package provide app-support 0.6"

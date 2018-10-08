@@ -1,7 +1,7 @@
 
 1 VERSIONINFO
-FILEVERSION 0,5,1,0
-PRODUCTVERSION 0,5,1,0
+FILEVERSION 0,6,0,0
+PRODUCTVERSION 0,6,0,0
 FILEOS 0x4
 FILETYPE 0x1
 {
@@ -10,12 +10,12 @@ BLOCK "StringFileInfo"
 	BLOCK "040904b0"
 	{
 		VALUE "FileDescription", "Remote Support Tool"
-		VALUE "OriginalFilename", "RemoteSupportTool-0.5.1.exe"
+		VALUE "OriginalFilename", "RemoteSupportTool-0.6.exe"
 		VALUE "CompanyName", "OpenIndex.de"
-		VALUE "FileVersion", "0.5.1"
-		VALUE "LegalCopyright", "Copyright © 2015-2018 OpenIndex"
+		VALUE "FileVersion", "0.6.0"
+		VALUE "LegalCopyright", "Copyright © 2015-2017 OpenIndex"
 		VALUE "ProductName", "Remote Support Tool"
-		VALUE "ProductVersion", "0.5.1"
+		VALUE "ProductVersion", "0.6.0"
 	}
 }
 

@@ -23,7 +23,7 @@
 
 # Set application version.
 # Make sure to update lib/app-support/pkgIndex.tcl, if the version is changed.
-set _APP_VERSION "0.5.1"
+set _APP_VERSION "0.6"
 
 # Set type of application.
 # If the starkit namespace is available, we're assuming the application was
