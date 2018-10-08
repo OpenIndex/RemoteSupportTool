@@ -96,9 +96,9 @@ the operating system):
     -   [x11vnc 0.9.13](http://www.karlrunge.com/x11vnc/) (GPLv2) created with
         the [`build-x11vnc.tcl`](utils/build-x11vnc.tcl) script
 
--   for Mac OS X (10.7+)
+-   for Mac OS X (10.11+)
 
-    -   [OSXvnc 5.0.1](https://github.com/stweil/OSXvnc) (GPLv2) using binaries
+    -   [OSXvnc 5.2.1](https://github.com/stweil/OSXvnc) (GPLv3) using binaries
         from [github.com](https://github.com/stweil/OSXvnc/releases)
 
 -   for Windows (Vista and newer)
