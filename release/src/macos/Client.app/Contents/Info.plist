@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>de.openindex.support.client</string>
+
+    <key>CFBundleName</key>
+    <string>Support-Client</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>RemoteSupportTool-Client</string>
+
+    <key>CFBundleVersion</key>
+    <string>{VERSION}</string>
+
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+
+    <key>CFBundleExecutable</key>
+    <string>Client.sh</string>
+
+    <key>CFBundleIconFile</key>
+    <string>Client.icns</string>
+
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en-US</string>
+
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.utilities</string>
+
+    <key>LSMinimumSystemVersion</key>
+    <string>10.7.3</string>
+
+    <key>NSHumanReadableCopyright</key>
+    <string>©2015-2018 OpenIndex.de</string>
+
+    <key>NSHighResolutionCapable</key>
+    <true/>
+  </dict>
+</plist>

@@ -1,9 +1,0 @@
-[FILENAMES]
-Exe=    application.exe
-SaveAs= application-modified.exe
-Log=    CONSOLE
-
-[COMMANDS]
--delete ICONGROUP,TK,1033
--addoverwrite application.ico, ICONGROUP,MAINICON,0
--addoverwrite application.res, VERSIONINFO,,1033

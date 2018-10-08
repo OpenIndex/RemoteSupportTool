@@ -1,0 +1,4 @@
+;!@Install@!UTF-8!
+Title="RemoteSupportTool-Client"
+RunProgram="bin\Start.exe"
+;!@InstallEnd@!
