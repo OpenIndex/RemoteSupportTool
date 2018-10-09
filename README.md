@@ -27,6 +27,9 @@ The application is currently **not compatible with other VNC based software**.
 About this program
 ------------------
 
+
+### Motivation
+
 [Remote administration](https://en.wikipedia.org/wiki/Remote_administration) is
 common practice in software support for end users. There are a lot of different
 solutions on the market, that can solve this task. But most of them are lacking
@@ -61,7 +64,7 @@ Because we did not find a solution that fits all of these requirements, we've
 decided to build our own solution to fit this gap. From a customer perspective 
 this application behaves similar to the
 [UltraVNC Single Click](http://www.uvnc.com/products/uvnc-sc.html) solution -
-but it also provides encryption and supports Linux and Mac OS X.
+but it also provides encryption and supports Linux and macOS.
 
 In addition we wanted to make this program customizable for other companies. A 
 company may compile a custom configuration into the application. This makes it 
@@ -71,19 +74,59 @@ all required configurations by default.
 
 ### Remote Support Server (for the customer)
 
-*A screenshot will be added soon.*
+![dialog for customers](share/screenshots/server-window.png)
 
-In the best case the customer will just have to click the *Connect* button. But
-maybe the support staff will have to tell his IP address to the end user.
-Therefore the user may change the required settings directly in the application
-main window.
+From the customer perspective the software is as simple as possible. Only a
+hostname / IP address and port number has to be provided in order to share the
+screen with the support staff. If the customer uses multiple monitors, he also
+might select which screen he likes to share.
+
+A company, that offers remote support, can create its custom preconfigured build 
+of this software, that provides all necessary settings by default. In this case 
+the customer will just have to click the *Connect* button after starting the 
+application. According to our goal this is the **easiest solution possible** 
+from the customer perspective.
 
 
 ### Remote Support Client (for the support staff)
 
-*A screenshot will be added soon.*
+![dialog for support staff](share/screenshots/client-window.png)
 
-...
+At minimum the support staff only has to provide a port number, on which the 
+customer will connect. If the customer is connecting through the internet, SSL
+encryption is recommended. In order to avoid problems with port forwarding in the
+local router, the support staff might also enable SSH tunneling (SSH remote port 
+forwarding).
+
+
+### Features
+
+-   support staff can remotely access the customers screen
+    -   send keyboard and mouse inputs to the customer for remote control
+    -   screen is transferred with JPG compression
+    -   only changed regions of the screen are transferred
+-   private and secure
+    -   integrated SSL encryption
+    -   integrated SSH tunneling (remote port forwarding) in order to avoid any 
+        changes to the router settings
+-   simple to use
+    -   no external dependencies required
+    -   integrated OpenJDK runtime environment 
+    -   single file launchers; just download and start the application
+    -   signed application bundle for macOS
+-   cross platform 
+    -   support for Windows (32-bit / 64-bit)
+    -   support for macOS
+    -   support for Linux (i686 / x86_64)
+-   multilingual
+    -   available in English & German
+    -   translatable in other languages if necessary
+-   customizable
+    -   provide the necessary default settings to make the application as easy
+        as possible to use for the customer
+    -   add your company logo as a branding
+-   business friendly Open Source license 
+    ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html))
 
 
 Documentation
