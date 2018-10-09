@@ -1,4 +1,4 @@
-share/openjdk/downloads/
-share/openjdk/jmods/
-share/openjdk/runtime/
+share/openjdk/*
+!share/openjdk/*.sh
+!share/openjdk/*.md
 target/
