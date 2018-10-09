@@ -236,6 +236,11 @@ public class ServerApplication {
         return ServerApplication.class.getResource("resources/" + file);
     }
 
+    @SuppressWarnings("WeakerAccess")
+    public static URL resourceBranding() {
+        return resource("branding.png");
+    }
+
     public static String setting(String key) {
         return setting(key, StringUtils.EMPTY);
     }
@@ -317,7 +322,7 @@ public class ServerApplication {
 
     private static class AboutDialog extends AbstractAboutDialog {
         private AboutDialog() {
-            super(frame, SETTINGS);
+            super(frame, SETTINGS, resourceBranding());
         }
 
         @Override

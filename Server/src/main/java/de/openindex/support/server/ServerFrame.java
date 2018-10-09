@@ -16,6 +16,7 @@
 package de.openindex.support.server;
 
 import de.openindex.support.core.ImageUtils;
+import de.openindex.support.core.SidebarPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -79,6 +80,8 @@ public abstract class ServerFrame extends JFrame {
                 doQuit();
             }
         });
+        getRootPane().setBackground(Color.WHITE);
+        getRootPane().setOpaque(true);
 
         // title
         JLabel titleLabel = new JLabel();
@@ -97,8 +100,10 @@ public abstract class ServerFrame extends JFrame {
         statusLabel.setVisible(false);
 
         // sidebar
-        JLabel sidebarLabel = new JLabel();
-        sidebarLabel.setIcon(ImageUtils.loadIcon(ServerApplication.resource("sidebar_server.png")));
+        SidebarPanel sidebarPanel = new SidebarPanel(
+                ImageUtils.loadImage(ServerApplication.resource("sidebar_server.png")),
+                ImageUtils.loadImage(ServerApplication.resourceBranding())
+        );
 
         // hostname field
         hostLabel = new JLabel();
@@ -169,13 +174,11 @@ public abstract class ServerFrame extends JFrame {
 
         // build form
         JPanel formPanel = new JPanel(new MigLayout(
-                "insets 0 0 15 15",
-                "[][][grow][][]",
+                "insets 10 10 10 10",
+                "[][grow][][]",
                 ""
         ));
-        formPanel.setOpaque(true);
-        formPanel.setBackground(Color.WHITE);
-        formPanel.add(sidebarLabel, "span 1 7, gapright 5, wrap");
+        formPanel.setOpaque(false);
         formPanel.add(titleLabel, "span 4, width 100::, grow, wrap");
         formPanel.add(infoLabel, "span 4, width 100::, grow, wrap");
         formPanel.add(hostLabel, "align right");
@@ -185,7 +188,6 @@ public abstract class ServerFrame extends JFrame {
         formPanel.add(screenLabel, "align right");
         formPanel.add(screenField, "span 3, width 100::, grow, wrap");
         formPanel.add(new JLabel(), "align right");
-        formPanel.add(sslField, "span 3, wrap");
 
         // start button
         startButton = new JButton();
@@ -220,14 +222,14 @@ public abstract class ServerFrame extends JFrame {
         buttonBarLeft.add(stopButton);
 
         JPanel bottomBar = new JPanel(new BorderLayout(0, 0));
-        bottomBar.setOpaque(true);
-        bottomBar.setBackground(Color.WHITE);
+        bottomBar.setOpaque(false);
         bottomBar.add(buttonBarLeft, BorderLayout.WEST);
         bottomBar.add(buttonBar, BorderLayout.EAST);
         bottomBar.add(statusLabel, BorderLayout.SOUTH);
 
         // add components to the frame
         getRootPane().setLayout(new BorderLayout(0, 0));
+        getRootPane().add(sidebarPanel, BorderLayout.WEST);
         getRootPane().add(formPanel, BorderLayout.CENTER);
         getRootPane().add(bottomBar, BorderLayout.SOUTH);
 

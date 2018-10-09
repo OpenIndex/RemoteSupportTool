@@ -22,13 +22,13 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.HyperlinkEvent;
@@ -42,10 +42,12 @@ public abstract class AbstractAboutDialog extends JDialog {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(AbstractAboutDialog.class);
     private final ResourceBundle settings;
+    private final URL brandingImageUrl;
 
-    protected AbstractAboutDialog(Frame owner, ResourceBundle settings) {
+    protected AbstractAboutDialog(Frame owner, ResourceBundle settings, URL brandingImageUrl) {
         super(owner, true);
         this.settings = settings;
+        this.brandingImageUrl = brandingImageUrl;
     }
 
     public void createAndShow() {
@@ -63,9 +65,10 @@ public abstract class AbstractAboutDialog extends JDialog {
         });
 
         // sidebar
-        JLabel sidebarLabel = new JLabel();
-        sidebarLabel.setVerticalAlignment(JLabel.TOP);
-        sidebarLabel.setIcon(ImageUtils.loadIcon(AppUtils.resource("sidebar_about.png")));
+        SidebarPanel sidebarPanel = new SidebarPanel(
+                ImageUtils.loadImage(AppUtils.resource("sidebar_about.png")),
+                ImageUtils.loadImage(brandingImageUrl)
+        );
 
         // about section
         JEditorPane aboutPane = new JEditorPane();
@@ -125,7 +128,7 @@ public abstract class AbstractAboutDialog extends JDialog {
         getRootPane().setOpaque(true);
         getRootPane().setBackground(Color.WHITE);
         getRootPane().setLayout(new BorderLayout());
-        getRootPane().add(sidebarLabel, BorderLayout.WEST);
+        getRootPane().add(sidebarPanel, BorderLayout.WEST);
         getRootPane().add(aboutScrollPane, BorderLayout.CENTER);
         getRootPane().add(bottomBar, BorderLayout.SOUTH);
 
