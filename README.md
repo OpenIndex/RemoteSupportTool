@@ -127,6 +127,30 @@ forwarding).
     -   add your company logo as a branding
 -   business friendly Open Source license 
     ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html))
+    
+    
+### Planned features
+
+-   file transfers
+-   shared clipboard
+
+
+Supported operating systems
+---------------------------
+
+-   Windows (7 or newer, 32bit & 64bit)
+-   Mac OS X (10.7.3 or newer)
+-   Linux (i686 / amd64)
+
+
+Translations
+------------
+
+*Remote Support Tool* is developed in **English** and is translated into
+**German** language. The
+[translation documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Translation)
+contains information about how to translate the application for yourself. Feel
+free to send your translation files to us.
 
 
 Documentation
@@ -134,6 +158,14 @@ Documentation
 
 You can find documentations about *Remote Support Tool* in the
 [project wiki](https://github.com/OpenIndex/RemoteSupportTool/wiki).
+
+
+License
+-------
+
+This application is licensed under the terms of the
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). Take a look at
+[`LICENSE.txt`](LICENSE.txt) for the license text.
 
 
 Third party components
@@ -168,32 +200,6 @@ The following third party components are bundled into the application
 We especially like to thank the [AdoptOpenJDK project](https://adoptopenjdk.net/) 
 and [Azul Systems](https://www.azul.com/) for providing the high quality OpenJDK 
 builds, that are bundled with this application.
-
-
-Supported operating systems
----------------------------
-
--   Windows (7 or newer, 32bit & 64bit)
--   Mac OS X (10.7.3 or newer)
--   Linux (i686 / amd64)
-
-
-Translations
-------------
-
-*Remote Support Tool* is developed in **English** and is translated into
-**German** language. The
-[translation documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Translation)
-contains information about how to translate the application for yourself. Feel
-free to send your translation files to us.
-
-
-License
--------
-
-This application is licensed under the terms of the
-[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). Take a look at
-[`LICENSE.txt`](LICENSE.txt) for the license text.
 
 
 Further information
