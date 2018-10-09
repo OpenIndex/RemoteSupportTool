@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.gui;
 
+import de.openindex.support.core.AppUtils;
+import de.openindex.support.core.ImageUtils;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -38,13 +40,13 @@ import org.apache.commons.text.StringSubstitutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractAboutDialog extends JDialog {
+public abstract class AboutDialog extends JDialog {
     @SuppressWarnings("unused")
-    private final static Logger LOGGER = LoggerFactory.getLogger(AbstractAboutDialog.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(AboutDialog.class);
     private final ResourceBundle settings;
     private final URL brandingImageUrl;
 
-    protected AbstractAboutDialog(Frame owner, ResourceBundle settings, URL brandingImageUrl) {
+    protected AboutDialog(Frame owner, ResourceBundle settings, URL brandingImageUrl) {
         super(owner, true);
         this.settings = settings;
         this.brandingImageUrl = brandingImageUrl;
@@ -84,9 +86,6 @@ public abstract class AbstractAboutDialog extends JDialog {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType()))
                 AppUtils.browse(e.getURL());
         });
-        //HTMLDocument doc = (HTMLDocument) aboutPane.getDocument();
-        //doc.getStyleSheet().addRule("body {font-family:sans-serif;}");
-
         JScrollPane aboutScrollPane = new JScrollPane(aboutPane);
         aboutScrollPane.setOpaque(false);
         aboutScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 8, 0, 0));

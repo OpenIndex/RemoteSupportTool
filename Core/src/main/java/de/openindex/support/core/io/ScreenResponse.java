@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.io;
 
 import java.io.Serializable;
 

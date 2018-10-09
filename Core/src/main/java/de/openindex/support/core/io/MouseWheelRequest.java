@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.io;
 
 import java.io.Serializable;
 
-public class Tile implements Serializable {
+public class MouseWheelRequest implements Serializable {
     private static final long serialVersionUID = 1;
-    public final byte[] data;
+    public final int wheelAmt;
 
-    public Tile() {
-        this(null);
+    public MouseWheelRequest() {
+        this(0);
     }
 
-    public Tile(byte[] data) {
+    public MouseWheelRequest(int wheelAmt) {
         super();
-        this.data = data;
+        this.wheelAmt = wheelAmt;
     }
 }

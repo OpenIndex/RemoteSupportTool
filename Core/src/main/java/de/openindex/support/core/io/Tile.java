@@ -13,21 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.io;
 
-import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
-public class MousePressRequest implements Serializable {
+public class Tile implements Serializable {
     private static final long serialVersionUID = 1;
-    public final int buttons;
+    public final byte[] data;
 
-    public MousePressRequest() {
-        this(MouseEvent.NOBUTTON);
+    public Tile() {
+        this(null);
     }
 
-    public MousePressRequest(int buttons) {
+    public Tile(byte[] data) {
         super();
-        this.buttons = buttons;
+        this.data = data;
     }
 }

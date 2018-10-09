@@ -13,10 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.io;
 
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
-public interface ResponseFactory {
-    Serializable create();
+public class KeyReleaseRequest implements Serializable {
+    private static final long serialVersionUID = 1;
+    public final int keyCode;
+    public final char keyChar;
+
+    public KeyReleaseRequest() {
+        this(KeyEvent.VK_UNDEFINED);
+    }
+
+    public KeyReleaseRequest(int keyCode) {
+        super();
+        this.keyCode = keyCode;
+        this.keyChar = KeyEvent.CHAR_UNDEFINED;
+    }
+
+    public KeyReleaseRequest(char keyChar) {
+        super();
+        this.keyChar = keyChar;
+        this.keyCode = KeyEvent.VK_UNDEFINED;
+    }
 }

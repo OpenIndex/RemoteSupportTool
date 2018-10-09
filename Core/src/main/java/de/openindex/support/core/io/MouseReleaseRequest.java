@@ -13,29 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.io;
 
-import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
-public class KeyPressRequest implements Serializable {
+public class MouseReleaseRequest implements Serializable {
     private static final long serialVersionUID = 1;
-    public final int keyCode;
-    public final char keyChar;
+    public final int buttons;
 
-    public KeyPressRequest() {
-        this(KeyEvent.VK_UNDEFINED);
+    public MouseReleaseRequest() {
+        this(MouseEvent.NOBUTTON);
     }
 
-    public KeyPressRequest(int keyCode) {
+    public MouseReleaseRequest(int buttons) {
         super();
-        this.keyCode = keyCode;
-        this.keyChar = KeyEvent.VK_UNDEFINED;
-    }
-
-    public KeyPressRequest(char keyChar) {
-        super();
-        this.keyChar = keyChar;
-        this.keyCode = KeyEvent.VK_UNDEFINED;
+        this.buttons = buttons;
     }
 }

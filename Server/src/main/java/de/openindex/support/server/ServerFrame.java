@@ -16,7 +16,7 @@
 package de.openindex.support.server;
 
 import de.openindex.support.core.ImageUtils;
-import de.openindex.support.core.SidebarPanel;
+import de.openindex.support.core.gui.SidebarPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;

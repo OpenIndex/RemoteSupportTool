@@ -13,22 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.io;
 
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
-public class ScreenRequest implements Serializable {
+public class KeyPressRequest implements Serializable {
     private static final long serialVersionUID = 1;
-    public final int maxWidth;
-    public final int maxHeight;
+    public final int keyCode;
+    public final char keyChar;
 
-    public ScreenRequest() {
-        this(0, 0);
+    public KeyPressRequest() {
+        this(KeyEvent.VK_UNDEFINED);
     }
 
-    public ScreenRequest(int maxWidth, int maxHeight) {
+    public KeyPressRequest(int keyCode) {
         super();
-        this.maxWidth = maxWidth;
-        this.maxHeight = maxHeight;
+        this.keyCode = keyCode;
+        this.keyChar = KeyEvent.VK_UNDEFINED;
+    }
+
+    public KeyPressRequest(char keyChar) {
+        super();
+        this.keyChar = keyChar;
+        this.keyCode = KeyEvent.VK_UNDEFINED;
     }
 }

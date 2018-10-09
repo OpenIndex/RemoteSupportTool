@@ -172,5 +172,4 @@ public class ImageUtils {
         jpgWriter.dispose();
         output.flush();
     }
-
 }

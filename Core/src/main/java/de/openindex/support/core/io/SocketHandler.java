@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core;
+package de.openindex.support.core.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -91,8 +91,6 @@ public abstract class SocketHandler {
                     } catch (ClassNotFoundException ex) {
                         LOGGER.error("Received an unsupported object!", ex);
                     }
-
-                    //Thread.sleep(300);
                 }
                 //LOGGER.debug("finished inbox thread");
             } catch (Exception ex) {
@@ -136,9 +134,6 @@ public abstract class SocketHandler {
                         output.flush();
                         output.reset();
                     }
-
-                    //if (outbox.isEmpty())
-                    //    Thread.sleep(500);
                 }
                 //LOGGER.debug("finished outbox thread");
             } catch (Exception ex) {

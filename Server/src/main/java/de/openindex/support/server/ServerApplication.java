@@ -16,20 +16,19 @@
 package de.openindex.support.server;
 
 import ch.qos.logback.classic.LoggerContext;
-import de.openindex.support.core.AbstractAboutDialog;
 import de.openindex.support.core.AppUtils;
 import de.openindex.support.core.ImageUtils;
-import de.openindex.support.core.KeyPressRequest;
-import de.openindex.support.core.KeyReleaseRequest;
-import de.openindex.support.core.MouseMoveRequest;
-import de.openindex.support.core.MousePressRequest;
-import de.openindex.support.core.MouseReleaseRequest;
-import de.openindex.support.core.MouseWheelRequest;
-import de.openindex.support.core.ResponseFactory;
-import de.openindex.support.core.ScreenRequest;
-import de.openindex.support.core.ScreenResponse;
-import de.openindex.support.core.SocketHandler;
-import de.openindex.support.core.Tile;
+import de.openindex.support.core.io.KeyPressRequest;
+import de.openindex.support.core.io.KeyReleaseRequest;
+import de.openindex.support.core.io.MouseMoveRequest;
+import de.openindex.support.core.io.MousePressRequest;
+import de.openindex.support.core.io.MouseReleaseRequest;
+import de.openindex.support.core.io.MouseWheelRequest;
+import de.openindex.support.core.io.ResponseFactory;
+import de.openindex.support.core.io.ScreenRequest;
+import de.openindex.support.core.io.ScreenResponse;
+import de.openindex.support.core.io.SocketHandler;
+import de.openindex.support.core.io.Tile;
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.GraphicsConfiguration;
@@ -320,7 +319,7 @@ public class ServerApplication {
         frame.setStatusDisconnected();
     }
 
-    private static class AboutDialog extends AbstractAboutDialog {
+    private static class AboutDialog extends de.openindex.support.core.gui.AboutDialog {
         private AboutDialog() {
             super(frame, SETTINGS, resourceBranding());
         }
@@ -350,7 +349,7 @@ public class ServerApplication {
 
         @Override
         protected void doAbout() {
-            new AboutDialog().createAndShow();
+            new ServerApplication.AboutDialog().createAndShow();
         }
 
         @Override

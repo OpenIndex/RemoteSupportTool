@@ -1,5 +1,7 @@
 module de.openindex.support.core {
     exports de.openindex.support.core;
+    exports de.openindex.support.core.gui;
+    exports de.openindex.support.core.io;
     exports de.openindex.support.core.monitor;
     exports org.imgscalr;
 
