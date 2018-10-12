@@ -188,6 +188,7 @@ public abstract class ServerFrame extends JFrame {
         formPanel.add(screenLabel, "align right");
         formPanel.add(screenField, "span 3, width 100::, grow, wrap");
         formPanel.add(new JLabel(), "align right");
+        formPanel.add(sslField, "span 3");
 
         // start button
         startButton = new JButton();
