@@ -142,7 +142,7 @@ public class ClientApplication {
             // copy internal keystore into the work directory
             // in order to make it usable with system properties
             try (InputStream input = resource("keystore.jks").openStream()) {
-                FileUtils.copyInputStreamToFile(input, keystoreFile);
+                FileUtils.copyToFile(input, keystoreFile);
             } catch (IOException ex) {
                 LOGGER.warn("Can't copy internal keystore to work directory!", ex);
             }
@@ -160,7 +160,7 @@ public class ClientApplication {
             // if it is not available yet
             if (!keystoreFile.isFile()) {
                 try (InputStream input = resource("keystore.jks").openStream()) {
-                    FileUtils.copyInputStreamToFile(input, keystoreFile);
+                    FileUtils.copyToFile(input, keystoreFile);
                 } catch (IOException ex) {
                     LOGGER.warn("Can't copy internal keystore to work directory!", ex);
                 }
@@ -170,7 +170,7 @@ public class ClientApplication {
             // if it is not available yet
             if (!keystorePassFile.isFile()) {
                 try (InputStream input = resource("keystore.jks.txt").openStream()) {
-                    FileUtils.copyInputStreamToFile(input, keystorePassFile);
+                    FileUtils.copyToFile(input, keystorePassFile);
                 } catch (IOException ex) {
                     LOGGER.warn("Can't copy internal keystore password to work directory!", ex);
                 }

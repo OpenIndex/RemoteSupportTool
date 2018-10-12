@@ -137,7 +137,7 @@ public class ServerApplication {
             // copy internal truststore into the work directory
             // in order to make it usable with system properties
             try (InputStream input = resource("truststore.jks").openStream()) {
-                FileUtils.copyInputStreamToFile(input, truststoreFile);
+                FileUtils.copyToFile(input, truststoreFile);
             } catch (IOException ex) {
                 LOGGER.warn("Can't copy internal truststore to work directory!", ex);
             }
@@ -155,7 +155,7 @@ public class ServerApplication {
             // if it is not available yet
             if (!truststoreFile.isFile()) {
                 try (InputStream input = resource("truststore.jks").openStream()) {
-                    FileUtils.copyInputStreamToFile(input, truststoreFile);
+                    FileUtils.copyToFile(input, truststoreFile);
                 } catch (IOException ex) {
                     LOGGER.warn("Can't copy internal truststore to work directory!", ex);
                 }
@@ -165,7 +165,7 @@ public class ServerApplication {
             // if it is not available yet
             if (!truststorePassFile.isFile()) {
                 try (InputStream input = resource("truststore.jks.txt").openStream()) {
-                    FileUtils.copyInputStreamToFile(input, truststorePassFile);
+                    FileUtils.copyToFile(input, truststorePassFile);
                 } catch (IOException ex) {
                     LOGGER.warn("Can't copy internal truststore password to work directory!", ex);
                 }
