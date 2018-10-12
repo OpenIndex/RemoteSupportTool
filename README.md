@@ -131,14 +131,17 @@ forwarding).
     
 ### Planned features
 
--   file transfers
--   shared clipboard
+-   file transfers 
+    (see [issue #12](https://github.com/OpenIndex/RemoteSupportTool/issues/12))
+-   shared clipboard 
+    (see [issue #13](https://github.com/OpenIndex/RemoteSupportTool/issues/13))
 
 
 Supported operating systems
 ---------------------------
 
--   Windows (7 or newer, 32bit & 64bit)
+-   Windows (7 or newer, 32bit & 64bit) 
+    *(Vista was not tested yet but may also work)*
 -   Mac OS X (10.7.3 or newer)
 -   Linux (i686 / amd64)
 
