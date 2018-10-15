@@ -94,7 +94,7 @@ public class CustomerApplication {
     private static Timer screenshotTimer = null;
 
     static {
-        SETTINGS = ResourceBundle.getBundle("/de/openindex/support/server/resources/application");
+        SETTINGS = ResourceBundle.getBundle("/de/openindex/support/customer/resources/application");
         NAME = SETTINGS.getString("name");
         TITLE = SETTINGS.getString("title");
         VERSION = SETTINGS.getString("version");

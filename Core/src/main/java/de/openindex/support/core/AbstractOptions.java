@@ -53,7 +53,7 @@ public abstract class AbstractOptions extends Properties {
                     Integer.valueOf(value) :
                     defaultValue;
         } catch (NumberFormatException ex) {
-            LOGGER.warn("Can't read client option '" + key + "'!", ex);
+            LOGGER.warn("Can't read option '" + key + "'!", ex);
             return defaultValue;
         }
     }

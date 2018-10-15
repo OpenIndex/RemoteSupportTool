@@ -96,7 +96,7 @@ public class StaffApplication {
     private static Handler handler = null;
 
     static {
-        SETTINGS = ResourceBundle.getBundle("/de/openindex/support/client/resources/application");
+        SETTINGS = ResourceBundle.getBundle("/de/openindex/support/staff/resources/application");
         NAME = setting("name");
         TITLE = setting("title");
         VERSION = setting("version");
