@@ -42,8 +42,8 @@
     <properties>
         <launch4j.client.module>de.openindex.support.client</launch4j.client.module>
         <launch4j.client.class>de.openindex.support.client.ClientApplication</launch4j.client.class>
-        <launch4j.server.module>de.openindex.support.server</launch4j.server.module>
-        <launch4j.server.class>de.openindex.support.server.ServerApplication</launch4j.server.class>
+        <launch4j.server.module>de.openindex.support.customer</launch4j.server.module>
+        <launch4j.server.class>de.openindex.support.customer.CustomerApplication</launch4j.server.class>
     </properties>
 
     <dependencies>

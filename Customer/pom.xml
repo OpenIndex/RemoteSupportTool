@@ -75,7 +75,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>de.openindex.support.server.ServerApplication</mainClass>
+                            <mainClass>de.openindex.support.customer.CustomerApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

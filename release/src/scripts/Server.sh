@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ----------------------------------------------------------------------------
-# RemoteSupportServer
+# RemoteSupportTool for customers
 # Copyright (C) 2015-2018 OpenIndex.de
 # ----------------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ JAVA_HEAP_MAXIMUM="512m"
 JAVA_OPTS="-Dfile.encoding=UTF-8"
 
 # Set application to start.
-APP="de.openindex.support.server/de.openindex.support.server.ServerApplication"
+APP="de.openindex.support.customer/de.openindex.support.customer.CustomerApplication"
 
 # Detect directories.
 SCRIPT_DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
@@ -28,7 +28,7 @@ case "$SYSTEM" in
   Darwin)
     echo "Initializing macOS environment..."
     JAVA_OPTS="$JAVA_OPTS -Dapple.laf.useScreenMenuBar=true"
-    JAVA_OPTS="$JAVA_OPTS -Xdock:name=RemoteSupportTool-Server"
+    JAVA_OPTS="$JAVA_OPTS -Xdock:name=CustomerSupportTool"
     JAVA_OPTS="$JAVA_OPTS -Xdock:icon=./share/icon.icns"
     ;;
 

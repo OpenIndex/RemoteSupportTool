@@ -1,4 +1,4 @@
-module de.openindex.support.server {
+module de.openindex.support.customer {
     requires de.openindex.support.core;
     requires logback.classic;
     requires miglayout.swing;

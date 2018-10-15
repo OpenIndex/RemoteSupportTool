@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.server;
+package de.openindex.support.customer;
 
 import de.openindex.support.core.AbstractOptions;
 import java.io.File;
@@ -22,12 +22,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("WeakerAccess")
-public class ServerOptions extends AbstractOptions {
+public class CustomerOptions extends AbstractOptions {
     @SuppressWarnings("unused")
-    private final static Logger LOGGER = LoggerFactory.getLogger(ServerOptions.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(CustomerOptions.class);
 
-    public ServerOptions(File location) {
-        super(location, ServerApplication.SETTINGS);
+    public CustomerOptions(File location) {
+        super(location, CustomerApplication.SETTINGS);
     }
 
     public String getHost() {

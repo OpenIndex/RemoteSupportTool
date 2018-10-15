@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.server;
+package de.openindex.support.customer;
 
 import de.openindex.support.core.ImageUtils;
 import de.openindex.support.core.gui.SidebarPanel;
@@ -47,10 +47,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("WeakerAccess")
-public abstract class ServerFrame extends JFrame {
+public abstract class CustomerFrame extends JFrame {
     @SuppressWarnings("unused")
-    private final static Logger LOGGER = LoggerFactory.getLogger(ServerFrame.class);
-    private final ServerOptions options;
+    private final static Logger LOGGER = LoggerFactory.getLogger(CustomerFrame.class);
+    private final CustomerOptions options;
     private JLabel hostLabel = null;
     private JTextField hostField = null;
     private JLabel portLabel = null;
@@ -62,15 +62,15 @@ public abstract class ServerFrame extends JFrame {
     private JButton startButton = null;
     private JButton stopButton = null;
 
-    public ServerFrame(ServerOptions options) {
+    public CustomerFrame(CustomerOptions options) {
         super();
         this.options = options;
     }
 
     public void createAndShow() {
         // init frame
-        setTitle(ServerApplication.setting("i18n.appTitle"));
-        setIconImage(ImageUtils.loadImage(ServerApplication.resource("application.png")));
+        setTitle(CustomerApplication.setting("i18n.appTitle"));
+        setIconImage(ImageUtils.loadImage(CustomerApplication.resource("application.png")));
         setPreferredSize(new Dimension(600, 350));
         setMinimumSize(new Dimension(500, 300));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -85,13 +85,13 @@ public abstract class ServerFrame extends JFrame {
 
         // title
         JLabel titleLabel = new JLabel();
-        titleLabel.setText(ServerApplication.setting("i18n.title"));
+        titleLabel.setText(CustomerApplication.setting("i18n.title"));
         titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD, titleLabel.getFont().getSize2D() + 5));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
 
         // info
         JLabel infoLabel = new JLabel();
-        infoLabel.setText("<html>" + StringEscapeUtils.escapeXml11(ServerApplication.setting("i18n.info")) + "</html>");
+        infoLabel.setText("<html>" + StringEscapeUtils.escapeXml11(CustomerApplication.setting("i18n.info")) + "</html>");
         infoLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
         // status
@@ -101,13 +101,13 @@ public abstract class ServerFrame extends JFrame {
 
         // sidebar
         SidebarPanel sidebarPanel = new SidebarPanel(
-                ImageUtils.loadImage(ServerApplication.resource("sidebar_server.png")),
-                ImageUtils.loadImage(ServerApplication.resourceBranding())
+                ImageUtils.loadImage(CustomerApplication.resource("sidebar_server.png")),
+                ImageUtils.loadImage(CustomerApplication.resourceBranding())
         );
 
         // hostname field
         hostLabel = new JLabel();
-        hostLabel.setText(ServerApplication.setting("i18n.host") + ":");
+        hostLabel.setText(CustomerApplication.setting("i18n.host") + ":");
         hostField = new JTextField();
         hostField.setText(options.getHost());
         hostField.setBackground(Color.WHITE);
@@ -128,7 +128,7 @@ public abstract class ServerFrame extends JFrame {
 
         // port number field
         portLabel = new JLabel();
-        portLabel.setText(ServerApplication.setting("i18n.port") + ":");
+        portLabel.setText(CustomerApplication.setting("i18n.port") + ":");
         portField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getPort(), 1, 65535, 1));
         portField.setBackground(Color.WHITE);
@@ -136,7 +136,7 @@ public abstract class ServerFrame extends JFrame {
 
         // screen selection field
         screenLabel = new JLabel();
-        screenLabel.setText(ServerApplication.setting("i18n.screen") + ":");
+        screenLabel.setText(CustomerApplication.setting("i18n.screen") + ":");
         screenField = new JComboBox<>();
         //screenField.setOpaque(true);
         screenField.setBackground(Color.WHITE);
@@ -166,7 +166,7 @@ public abstract class ServerFrame extends JFrame {
 
         // ssl encryption field
         sslField = new JCheckBox();
-        sslField.setText(ServerApplication.setting("i18n.ssl"));
+        sslField.setText(CustomerApplication.setting("i18n.ssl"));
         sslField.setSelected(options.isSsl());
         sslField.setOpaque(true);
         sslField.setBackground(Color.WHITE);
@@ -192,23 +192,23 @@ public abstract class ServerFrame extends JFrame {
 
         // start button
         startButton = new JButton();
-        startButton.setText(ServerApplication.setting("i18n.connect"));
+        startButton.setText(CustomerApplication.setting("i18n.connect"));
         startButton.addActionListener(e -> doStart());
 
         // stop button
         stopButton = new JButton();
-        stopButton.setText(ServerApplication.setting("i18n.disconnect"));
+        stopButton.setText(CustomerApplication.setting("i18n.disconnect"));
         stopButton.setEnabled(false);
         stopButton.addActionListener(e -> doStop());
 
         // about button
         JButton aboutButton = new JButton();
-        aboutButton.setText(ServerApplication.setting("i18n.about"));
+        aboutButton.setText(CustomerApplication.setting("i18n.about"));
         aboutButton.addActionListener(e -> doAbout());
 
         // quit button
         JButton quitButton = new JButton();
-        quitButton.setText(ServerApplication.setting("i18n.quit"));
+        quitButton.setText(CustomerApplication.setting("i18n.quit"));
         quitButton.addActionListener(e -> doQuit());
 
         // build bottom bar
@@ -286,23 +286,23 @@ public abstract class ServerFrame extends JFrame {
     }
 
     public void setStatusConnected() {
-        statusLabel.setText(ServerApplication.setting("i18n.status.connected"));
+        statusLabel.setText(CustomerApplication.setting("i18n.status.connected"));
         statusLabel.setIcon(ImageUtils.loadIcon(
-                ServerApplication.resource("icon_connected.png")));
+                CustomerApplication.resource("icon_connected.png")));
         statusLabel.setVisible(true);
     }
 
     public void setStatusConnecting() {
-        statusLabel.setText(ServerApplication.setting("i18n.status.connecting"));
+        statusLabel.setText(CustomerApplication.setting("i18n.status.connecting"));
         statusLabel.setIcon(ImageUtils.loadIcon(
-                ServerApplication.resource("icon_connecting.png")));
+                CustomerApplication.resource("icon_connecting.png")));
         statusLabel.setVisible(true);
     }
 
     public void setStatusDisconnected() {
-        statusLabel.setText(ServerApplication.setting("i18n.status.disconnected"));
+        statusLabel.setText(CustomerApplication.setting("i18n.status.disconnected"));
         statusLabel.setIcon(ImageUtils.loadIcon(
-                ServerApplication.resource("icon_disconnected.png")));
+                CustomerApplication.resource("icon_disconnected.png")));
         statusLabel.setVisible(true);
     }
 }

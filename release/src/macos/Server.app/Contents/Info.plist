@@ -6,13 +6,13 @@
     <string>6.0</string>
 
     <key>CFBundleIdentifier</key>
-    <string>de.openindex.support.server</string>
+    <string>de.openindex.support.customer</string>
 
     <key>CFBundleName</key>
-    <string>Support-Server</string>
+    <string>CustomerSupport</string>
 
     <key>CFBundleDisplayName</key>
-    <string>RemoteSupportTool-Server</string>
+    <string>CustomerSupportTool</string>
 
     <key>CFBundleVersion</key>
     <string>{VERSION}</string>

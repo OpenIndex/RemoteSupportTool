@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.server;
+package de.openindex.support.customer;
 
 import ch.qos.logback.classic.LoggerContext;
 import de.openindex.support.core.AppUtils;
@@ -69,7 +69,7 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ServerApplication {
+public class CustomerApplication {
     @SuppressWarnings("unused")
     private static Logger LOGGER;
     @SuppressWarnings("WeakerAccess")
@@ -86,8 +86,8 @@ public class ServerApplication {
     private final static int SLICE_WIDTH = 100;
     private final static int SLICE_HEIGHT = 100;
     private final static int SCREENSHOT_DELAY = 250;
-    private static ServerOptions options = null;
-    private static ServerFrame frame = null;
+    private static CustomerOptions options = null;
+    private static CustomerFrame frame = null;
     private static Handler handler = null;
     private static Robot robot = null;
     private static GraphicsDevice screen = null;
@@ -114,7 +114,7 @@ public class ServerApplication {
         System.setProperty("app.dir", WORK_DIR.getAbsolutePath());
 
         // init logging
-        LOGGER = LoggerFactory.getLogger(ServerApplication.class);
+        LOGGER = LoggerFactory.getLogger(CustomerApplication.class);
 
         // enable debugging for SSL connections
         //System.setProperty("javax.net.debug", "ssl");
@@ -186,11 +186,11 @@ public class ServerApplication {
         AppUtils.initTruststore(truststoreFile, StringUtils.trimToEmpty(truststorePassword));
 
         // load options
-        options = new ServerOptions(new File(WORK_DIR, "server.properties"));
+        options = new CustomerOptions(new File(WORK_DIR, "customer.properties"));
         try {
             options.read();
         } catch (IOException ex) {
-            LOGGER.warn("Can't read server options!", ex);
+            LOGGER.warn("Can't read customer options!", ex);
         }
 
         // setup look and feel
@@ -223,7 +223,7 @@ public class ServerApplication {
             try {
                 options.write();
             } catch (IOException ex) {
-                LOGGER.warn("Can't write server options!", ex);
+                LOGGER.warn("Can't write customer options!", ex);
             }
 
             // shutdown logger
@@ -237,7 +237,7 @@ public class ServerApplication {
 
     @SuppressWarnings("WeakerAccess")
     public static URL resource(String file) {
-        return ServerApplication.class.getResource("resources/" + file);
+        return CustomerApplication.class.getResource("resources/" + file);
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -347,14 +347,14 @@ public class ServerApplication {
         }
     }
 
-    private static class Frame extends ServerFrame {
-        private Frame(ServerOptions options) {
+    private static class Frame extends CustomerFrame {
+        private Frame(CustomerOptions options) {
             super(options);
         }
 
         @Override
         protected void doAbout() {
-            new ServerApplication.AboutDialog().createAndShow();
+            new CustomerApplication.AboutDialog().createAndShow();
         }
 
         @Override
@@ -505,7 +505,7 @@ public class ServerApplication {
         @Override
         public void stop() {
             super.stop();
-            ServerApplication.stop(false);
+            CustomerApplication.stop(false);
         }
     }
 
