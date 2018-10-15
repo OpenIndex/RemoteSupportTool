@@ -53,6 +53,7 @@ public class AppUtils {
     private final static String KEYSTORE_PASSWORD = "javax.net.ssl.keyStorePassword";
     private final static String TRUSTSTORE = "javax.net.ssl.trustStore";
     private final static String TRUSTSTORE_PASSWORD = "javax.net.ssl.trustStorePassword";
+    private static char[] lastPassword = null;
 
     private AppUtils() {
         super();
@@ -65,10 +66,14 @@ public class AppUtils {
         field.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER)
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    lastPassword = field.getPassword();
                     dialog.setVisible(false);
+                }
             }
         });
+        if (lastPassword != null)
+            field.setText(StringUtils.trimToEmpty(String.valueOf(lastPassword)));
 
         final JPanel panel = new JPanel(new BorderLayout(5, 5));
         panel.setOpaque(false);
@@ -82,7 +87,10 @@ public class AppUtils {
 
         final JButton submitButton = new JButton();
         submitButton.setText(StringUtils.defaultIfBlank(submitText, "Submit"));
-        submitButton.addActionListener(e -> dialog.setVisible(false));
+        submitButton.addActionListener(e -> {
+            lastPassword = field.getPassword();
+            dialog.setVisible(false);
+        });
 
         final JButton cancelButton = new JButton();
         cancelButton.setText(StringUtils.defaultIfBlank(cancelText, "Cancel"));
@@ -115,6 +123,7 @@ public class AppUtils {
         dialog.pack();
         dialog.setLocationRelativeTo(parent);
         field.requestFocus();
+        field.selectAll();
         dialog.setVisible(true);
 
         dialog.dispose();
