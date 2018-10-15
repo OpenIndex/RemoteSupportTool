@@ -28,6 +28,7 @@ import de.openindex.support.core.io.MouseMoveRequest;
 import de.openindex.support.core.io.MousePressRequest;
 import de.openindex.support.core.io.MouseReleaseRequest;
 import de.openindex.support.core.io.MouseWheelRequest;
+import de.openindex.support.core.io.PasteTextRequest;
 import de.openindex.support.core.io.ScreenRequest;
 import de.openindex.support.core.io.ScreenResponse;
 import de.openindex.support.core.io.SocketHandler;
@@ -67,6 +68,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.text.StringEscapeUtils;
@@ -419,6 +421,7 @@ public class ClientApplication {
                 }
                 handler = new Handler(serverSocket.accept());
                 handler.start();
+                frame.setConnected(true);
             } catch (IOException ex) {
                 LOGGER.error("Can't initiate communication!", ex);
                 stop(true);
@@ -497,21 +500,36 @@ public class ClientApplication {
         protected void doHandleKeyPress(KeyEvent e) {
             if (handler == null) return;
             //LOGGER.debug("key pressed: " + e.paramString());
-            //LOGGER.debug(e.getExtendedKeyCode());
-            if (e.getKeyCode() == 0)
-                handler.sendKeyPress(e.getKeyChar());
-            else
+
+            if (e.getKeyChar() == KeyEvent.CHAR_UNDEFINED)
                 handler.sendKeyPress(e.getKeyCode());
+            else if (e.getKeyCode() != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(e.getKeyChar()))
+                handler.sendKeyPress(e.getKeyCode());
+            else
+                handler.sendKeyPress(e.getKeyChar());
+
+            //if (e.getKeyCode() == KeyEvent.VK_UNDEFINED)
+            //    handler.sendKeyPress(e.getKeyChar());
+            //else
+            //    handler.sendKeyPress(e.getKeyCode());
         }
 
         @Override
         protected void doHandleKeyRelease(KeyEvent e) {
             if (handler == null) return;
             //LOGGER.debug("key released: " + e.paramString());
-            if (e.getKeyCode() == 0)
-                handler.sendKeyRelease(e.getKeyChar());
-            else
+
+            if (e.getKeyChar() == KeyEvent.CHAR_UNDEFINED)
                 handler.sendKeyRelease(e.getKeyCode());
+            else if (e.getKeyCode() != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(e.getKeyChar()))
+                handler.sendKeyRelease(e.getKeyCode());
+            else
+                handler.sendKeyRelease(e.getKeyChar());
+
+            //if (e.getKeyCode() == KeyEvent.VK_UNDEFINED)
+            //    handler.sendKeyRelease(e.getKeyChar());
+            //else
+            //    handler.sendKeyRelease(e.getKeyCode());
         }
 
         @Override
@@ -555,6 +573,11 @@ public class ClientApplication {
             //LOGGER.debug("mouse wheel moved: " + e.paramString());
             handler.sendMouseWheel(
                     e.getScrollAmount() * e.getWheelRotation());
+        }
+
+        @Override
+        protected void doPasteText(String text) {
+            handler.sendPasteText(text);
         }
 
         @Override
@@ -667,18 +690,22 @@ public class ClientApplication {
         }
 
         private void sendKeyPress(int keyCode) {
+            //LOGGER.debug("sendKeyPress | code: " + keyCode);
             send(new KeyPressRequest(keyCode));
         }
 
         private void sendKeyPress(char keyChar) {
+            //LOGGER.debug("sendKeyPress | char: " + keyChar);
             send(new KeyPressRequest(keyChar));
         }
 
         private void sendKeyRelease(int keyCode) {
+            //LOGGER.debug("sendKeyRelease | code: " + keyCode);
             send(new KeyReleaseRequest(keyCode));
         }
 
         private void sendKeyRelease(char keyChar) {
+            //LOGGER.debug("sendKeyRelease | char: " + keyChar);
             send(new KeyReleaseRequest(keyChar));
         }
 
@@ -727,6 +754,10 @@ public class ClientApplication {
 
         private void sendMouseWheel(int wheelAmt) {
             send(new MouseWheelRequest(wheelAmt));
+        }
+
+        private void sendPasteText(String text) {
+            send(new PasteTextRequest(text));
         }
 
         private void sendScreenRequest() {

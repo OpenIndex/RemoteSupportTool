@@ -24,6 +24,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
@@ -37,12 +38,15 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -66,13 +70,13 @@ public abstract class ClientFrame extends JFrame {
     private ScreenPanel screenView = null;
     private JButton startButton = null;
     private JButton stopButton = null;
+    private JButton actionsButton = null;
+    private JPopupMenu actionsMenu = null;
     private JToggleButton optionsButton = null;
     private JPanel optionsPanel = null;
     private JLabel infoLabel = null;
     private JLabel downloadLabel = null;
     private JLabel uploadLabel = null;
-    @SuppressWarnings("FieldCanBeLocal")
-    private JLabel localPortLabel = null;
     private JSpinner localPortField = null;
     private JCheckBox sslField = null;
     private JCheckBox sshField = null;
@@ -179,7 +183,7 @@ public abstract class ClientFrame extends JFrame {
         downloadLabel.setIcon(ImageUtils.loadIcon(ClientApplication.resource("icon_download.png")));
 
         // port number field
-        localPortLabel = new JLabel();
+        JLabel localPortLabel = new JLabel();
         localPortLabel.setText(ClientApplication.setting("i18n.port") + ":");
         localPortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getLocalPort(), 1, 65535, 1));
@@ -354,6 +358,23 @@ public abstract class ClientFrame extends JFrame {
         optionsButton.setText(ClientApplication.setting("i18n.options"));
         optionsButton.addActionListener(e -> optionsPanel.setVisible(optionsButton.isSelected()));
 
+        // actions button
+        actionsButton = new JButton();
+        actionsButton.setText(ClientApplication.setting("i18n.actions"));
+        actionsButton.addActionListener(e -> actionsMenu.show(actionsButton, 0, actionsButton.getHeight()));
+        actionsMenu = new JPopupMenu();
+        actionsMenu.add(new AbstractAction(ClientApplication.setting("i18n.pasteText")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String text = JOptionPane.showInputDialog(
+                        ClientFrame.this,
+                        "Enter the text to send.");
+
+                if (StringUtils.isNotBlank(text))
+                    doPasteText(text);
+            }
+        });
+
         // about button
         JButton aboutButton = new JButton();
         aboutButton.setText(ClientApplication.setting("i18n.about"));
@@ -370,6 +391,7 @@ public abstract class ClientFrame extends JFrame {
         buttonBar.add(startButton);
         buttonBar.add(stopButton);
         buttonBar.add(optionsButton);
+        buttonBar.add(actionsButton);
         buttonBar.add(aboutButton);
         buttonBar.add(quitButton);
 
@@ -415,6 +437,8 @@ public abstract class ClientFrame extends JFrame {
     protected abstract void doHandleMouseRelease(MouseEvent e);
 
     protected abstract void doHandleMouseWheel(MouseWheelEvent e);
+
+    protected abstract void doPasteText(String text);
 
     protected abstract void doQuit();
 
@@ -479,6 +503,18 @@ public abstract class ClientFrame extends JFrame {
         return sslField.isSelected();
     }
 
+    public void setConnected(boolean connected) {
+        actionsButton.setEnabled(connected);
+        actionsButton.setVisible(connected);
+    }
+
+    public void setInfo(String txt) {
+        infoLabel.setText(txt);
+        uploadLabel.setVisible(false);
+        downloadLabel.setVisible(false);
+        infoLabel.setVisible(true);
+    }
+
     public void setRates(float download, float upload) {
         long downloadRate = (long) download;
         long uploadRate = (long) upload;
@@ -489,13 +525,6 @@ public abstract class ClientFrame extends JFrame {
         infoLabel.setVisible(false);
         downloadLabel.setVisible(true);
         uploadLabel.setVisible(true);
-    }
-
-    public void setInfo(String txt) {
-        infoLabel.setText(txt);
-        uploadLabel.setVisible(false);
-        downloadLabel.setVisible(false);
-        infoLabel.setVisible(true);
     }
 
     public void setScreenDisabled() {
@@ -524,6 +553,8 @@ public abstract class ClientFrame extends JFrame {
         startButton.setVisible(!started);
         stopButton.setEnabled(started);
         stopButton.setVisible(started);
+        actionsButton.setEnabled(false);
+        actionsButton.setVisible(false);
         optionsButton.setEnabled(!started);
         optionsButton.setSelected(false);
         optionsButton.setVisible(!started);
