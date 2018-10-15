@@ -6,13 +6,13 @@
     <string>6.0</string>
 
     <key>CFBundleIdentifier</key>
-    <string>de.openindex.support.customer</string>
+    <string>de.openindex.support.staff</string>
 
     <key>CFBundleName</key>
-    <string>CustomerSupport</string>
+    <string>StaffSupport</string>
 
     <key>CFBundleDisplayName</key>
-    <string>CustomerSupportTool</string>
+    <string>StaffSupportTool</string>
 
     <key>CFBundleVersion</key>
     <string>{VERSION}</string>
@@ -21,10 +21,10 @@
     <string>APPL</string>
 
     <key>CFBundleExecutable</key>
-    <string>Server.sh</string>
+    <string>StaffSupportTool.sh</string>
 
     <key>CFBundleIconFile</key>
-    <string>Server.icns</string>
+    <string>StaffSupportTool.icns</string>
 
     <key>CFBundleDevelopmentRegion</key>
     <string>en-US</string>

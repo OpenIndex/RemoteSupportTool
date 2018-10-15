@@ -3,8 +3,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
 
-    <id>Client-windows32</id>
-    <baseDirectory>windows32</baseDirectory>
+    <id>Server-windows64</id>
+    <baseDirectory>windows64</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <formats>
@@ -14,14 +14,14 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/windows32</directory>
+            <directory>share/openjdk/runtime/windows64</directory>
             <fileMode>0644</fileMode>
         </fileSet>
     </fileSets>
 
     <files>
         <file>
-            <source>src/scripts/Client.bat</source>
+            <source>src/scripts/Customer.bat</source>
             <destName>Start.bat</destName>
             <outputDirectory>bin</outputDirectory>
             <lineEnding>windows</lineEnding>
@@ -34,7 +34,7 @@
             <fileMode>0644</fileMode>
         </file>
         <file>
-            <source>target/launch4j/Client32.exe</source>
+            <source>target/launch4j/Customer64.exe</source>
             <destName>Start.exe</destName>
             <outputDirectory>bin</outputDirectory>
             <fileMode>0644</fileMode>
@@ -44,9 +44,11 @@
     <dependencySets>
         <dependencySet>
             <outputDirectory>modules</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
             <!--<useTransitiveFiltering>true</useTransitiveFiltering>-->
             <excludes>
-                <exclude>${project.groupId}:RemoteSupportTool-Server:*:*</exclude>
+                <exclude>${project.groupId}:RemoteSupportTool-Staff:*:*</exclude>
+                <exclude>com.jcraft:*:*:*</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>

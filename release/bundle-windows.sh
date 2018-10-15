@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-CLIENT="RemoteSupportClient"
-SERVER="RemoteSupportServer"
+STAFF_TOOL="StaffSupportTool"
+CUSTOMER_TOOL="CustomerSupportTool"
 VERSION="1.0-SNAPSHOT"
 
 SEVENZIP="7z"
@@ -26,75 +26,72 @@ TARGET_DIR="$DIR/target"
 FOUND="0"
 set -e
 
-if [ -d "$TARGET_DIR/Client/windows32" ]; then
+if [ -d "$TARGET_DIR/Staff/windows32" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $CLIENT-$VERSION-win32.exe..."
+    echo "Creating $STAFF_TOOL-$VERSION-win32.exe..."
     echo "----------------------------------------------------------------"
     echo ""
-    rm -f "$TARGET_DIR/$CLIENT-$VERSION-win32.exe"
-    cd "$TARGET_DIR/Client/windows32"
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION-win32.exe"
+    cd "$TARGET_DIR/Staff/windows32"
     "$SEVENZIP" a "$SEVENZIP_OPTIONS" \
-        "$TARGET_DIR/$CLIENT-$VERSION-win32.7z" .
-    cat "$DIR/src/windows/Client.sfx" > "$TARGET_DIR/$CLIENT-$VERSION-win32.exe"
-    cat "$DIR/src/windows/Client.txt" >> "$TARGET_DIR/$CLIENT-$VERSION-win32.exe"
-    cat "$TARGET_DIR/$CLIENT-$VERSION-win32.7z" >> "$TARGET_DIR/$CLIENT-$VERSION-win32.exe"
-    rm "$TARGET_DIR/$CLIENT-$VERSION-win32.7z"
+        "$TARGET_DIR/$STAFF_TOOL-$VERSION-win32.7z" .
+    cat "$DIR/src/windows/Staff.sfx" > "$TARGET_DIR/$STAFF_TOOL-$VERSION-win32.exe"
+    cat "$DIR/src/windows/Staff.txt" >> "$TARGET_DIR/$STAFF_TOOL-$VERSION-win32.exe"
+    cat "$TARGET_DIR/$STAFF_TOOL-$VERSION-win32.7z" >> "$TARGET_DIR/$STAFF_TOOL-$VERSION-win32.exe"
+    rm "$TARGET_DIR/$STAFF_TOOL-$VERSION-win32.7z"
 fi
 
-if [ -d "$TARGET_DIR/Client/windows64" ]; then
+if [ -d "$TARGET_DIR/Staff/windows64" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $CLIENT-$VERSION-win64.exe..."
+    echo "Creating $STAFF_TOOL-$VERSION-win64.exe..."
     echo "----------------------------------------------------------------"
     echo ""
-    rm -f "$TARGET_DIR/$CLIENT-$VERSION-win64.exe"
-    cd "$TARGET_DIR/Client/windows64"
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION-win64.exe"
+    cd "$TARGET_DIR/Staff/windows64"
     "$SEVENZIP" a "$SEVENZIP_OPTIONS" \
-        "$TARGET_DIR/$CLIENT-$VERSION-win64.7z" \
-        .
-    cat "$DIR/src/windows/Client.sfx" > "$TARGET_DIR/$CLIENT-$VERSION-win64.exe"
-    cat "$DIR/src/windows/Client.txt" >> "$TARGET_DIR/$CLIENT-$VERSION-win64.exe"
-    cat "$TARGET_DIR/$CLIENT-$VERSION-win64.7z" >> "$TARGET_DIR/$CLIENT-$VERSION-win64.exe"
-    rm "$TARGET_DIR/$CLIENT-$VERSION-win64.7z"
+        "$TARGET_DIR/$STAFF_TOOL-$VERSION-win64.7z" .
+    cat "$DIR/src/windows/Staff.sfx" > "$TARGET_DIR/$STAFF_TOOL-$VERSION-win64.exe"
+    cat "$DIR/src/windows/Staff.txt" >> "$TARGET_DIR/$STAFF_TOOL-$VERSION-win64.exe"
+    cat "$TARGET_DIR/$STAFF_TOOL-$VERSION-win64.7z" >> "$TARGET_DIR/$STAFF_TOOL-$VERSION-win64.exe"
+    rm "$TARGET_DIR/$STAFF_TOOL-$VERSION-win64.7z"
 fi
 
-if [ -d "$TARGET_DIR/Server/windows32" ]; then
+if [ -d "$TARGET_DIR/Customer/windows32" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $SERVER-$VERSION-win32.exe..."
+    echo "Creating $CUSTOMER_TOOL-$VERSION-win32.exe..."
     echo "----------------------------------------------------------------"
     echo ""
-    rm -f "$TARGET_DIR/$SERVER-$VERSION-win32.exe"
-    cd "$TARGET_DIR/Server/windows32"
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win32.exe"
+    cd "$TARGET_DIR/Customer/windows32"
     "$SEVENZIP" a "$SEVENZIP_OPTIONS" \
-        "$TARGET_DIR/$SERVER-$VERSION-win32.7z" \
-        .
-    cat "$DIR/src/windows/Server.sfx" > "$TARGET_DIR/$SERVER-$VERSION-win32.exe"
-    cat "$DIR/src/windows/Server.txt" >> "$TARGET_DIR/$SERVER-$VERSION-win32.exe"
-    cat "$TARGET_DIR/$SERVER-$VERSION-win32.7z" >> "$TARGET_DIR/$SERVER-$VERSION-win32.exe"
-    rm "$TARGET_DIR/$SERVER-$VERSION-win32.7z"
+        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win32.7z" .
+    cat "$DIR/src/windows/Customer.sfx" > "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win32.exe"
+    cat "$DIR/src/windows/Customer.txt" >> "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win32.exe"
+    cat "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win32.7z" >> "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win32.exe"
+    rm "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win32.7z"
 fi
 
-if [ -d "$TARGET_DIR/Server/windows64" ]; then
+if [ -d "$TARGET_DIR/Customer/windows64" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $SERVER-$VERSION-win64.exe..."
+    echo "Creating $CUSTOMER_TOOL-$VERSION-win64.exe..."
     echo "----------------------------------------------------------------"
     echo ""
-    rm -f "$TARGET_DIR/$SERVER-$VERSION-win64.exe"
-    cd "$TARGET_DIR/Server/windows64"
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win64.exe"
+    cd "$TARGET_DIR/Customer/windows64"
     "$SEVENZIP" a "$SEVENZIP_OPTIONS" \
-        "$TARGET_DIR/$SERVER-$VERSION-win64.7z" \
-        .
-    cat "$DIR/src/windows/Server.sfx" > "$TARGET_DIR/$SERVER-$VERSION-win64.exe"
-    cat "$DIR/src/windows/Server.txt" >> "$TARGET_DIR/$SERVER-$VERSION-win64.exe"
-    cat "$TARGET_DIR/$SERVER-$VERSION-win64.7z" >> "$TARGET_DIR/$SERVER-$VERSION-win64.exe"
-    rm "$TARGET_DIR/$SERVER-$VERSION-win64.7z"
+        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win64.7z" .
+    cat "$DIR/src/windows/Customer.sfx" > "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win64.exe"
+    cat "$DIR/src/windows/Customer.txt" >> "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win64.exe"
+    cat "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win64.7z" >> "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win64.exe"
+    rm "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-win64.7z"
 fi
 
 if [ "$FOUND" == "0" ]; then

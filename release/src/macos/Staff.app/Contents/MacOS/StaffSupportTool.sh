@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ----------------------------------------------------------------------------
-# RemoteSupportClient
+# RemoteSupportTool for staff members
 # Copyright (C) 2015-2018 OpenIndex.de
 # ----------------------------------------------------------------------------
 

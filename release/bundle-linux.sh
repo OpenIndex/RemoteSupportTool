@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-CLIENT="RemoteSupportClient"
-SERVER="RemoteSupportServer"
+STAFF_TOOL="StaffSupportTool"
+CUSTOMER_TOOL="CustomerSupportTool"
 VERSION="1.0-SNAPSHOT"
 
 MAKESELF="makeself"
@@ -25,80 +25,68 @@ TARGET_DIR="$DIR/target"
 FOUND="0"
 set -e
 
-if [ -d "$TARGET_DIR/Client/linux32" ]; then
+if [ -d "$TARGET_DIR/Staff/linux32" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $CLIENT-$VERSION-linux32.sh..."
+    echo "Creating $STAFF_TOOL-$VERSION-linux32.sh..."
     echo "----------------------------------------------------------------"
     echo ""
-    #rm -f "$TARGET_DIR/$CLIENT-$VERSION-linux32.tar.gz"
-    rm -f "$TARGET_DIR/$CLIENT-$VERSION-linux32.sh"
-    cd "$TARGET_DIR/Client/linux32"
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux32.sh"
+    cd "$TARGET_DIR/Staff/linux32"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$CLIENT-$VERSION-linux32.sh" \
-        "$CLIENT $VERSION" \
+        "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux32.sh" \
+        "$STAFF_TOOL $VERSION" \
         bin/Start.sh
-    #cd "$TARGET_DIR"
-    #tar cfz "$CLIENT-$VERSION-linux32.tar.gz" "$CLIENT-$VERSION-linux32.sh"
 fi
 
-if [ -d "$TARGET_DIR/Client/linux64" ]; then
+if [ -d "$TARGET_DIR/Staff/linux64" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $CLIENT-$VERSION-linux64.sh..."
+    echo "Creating $STAFF_TOOL-$VERSION-linux64.sh..."
     echo "----------------------------------------------------------------"
     echo ""
-    #rm -f "$TARGET_DIR/$CLIENT-$VERSION-linux64.tar.gz"
-    rm -f "$TARGET_DIR/$CLIENT-$VERSION-linux64.sh"
-    cd "$TARGET_DIR/Client/linux64"
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux64.sh"
+    cd "$TARGET_DIR/Staff/linux64"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$CLIENT-$VERSION-linux64.sh" \
-        "$CLIENT $VERSION" \
+        "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux64.sh" \
+        "$STAFF_TOOL $VERSION" \
         bin/Start.sh
-    #cd "$TARGET_DIR"
-    #tar cfz "$CLIENT-$VERSION-linux64.tar.gz" "$CLIENT-$VERSION-linux64.sh"
 fi
 
-if [ -d "$TARGET_DIR/Server/linux32" ]; then
+if [ -d "$TARGET_DIR/Customer/linux32" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $SERVER-$VERSION-linux32.sh..."
+    echo "Creating $CUSTOMER_TOOL-$VERSION-linux32.sh..."
     echo "----------------------------------------------------------------"
     echo ""
-    #rm -f "$TARGET_DIR/$SERVER-$VERSION-linux32.tar.gz"
-    rm -f "$TARGET_DIR/$SERVER-$VERSION-linux32.sh"
-    cd "$TARGET_DIR/Server/linux32"
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux32.sh"
+    cd "$TARGET_DIR/Customer/linux32"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$SERVER-$VERSION-linux32.sh" \
-        "$SERVER $VERSION" \
+        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux32.sh" \
+        "$CUSTOMER_TOOL $VERSION" \
         bin/Start.sh
-    #cd "$TARGET_DIR"
-    #tar cfz "$SERVER-$VERSION-linux32.tar.gz" "$SERVER-$VERSION-linux32.sh"
 fi
 
-if [ -d "$TARGET_DIR/Server/linux64" ]; then
+if [ -d "$TARGET_DIR/Customer/linux64" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $SERVER-$VERSION-linux64.sh..."
+    echo "Creating $CUSTOMER_TOOL-$VERSION-linux64.sh..."
     echo "----------------------------------------------------------------"
     echo ""
-    #rm -f "$TARGET_DIR/$SERVER-$VERSION-linux64.tar.gz"
-    rm -f "$TARGET_DIR/$SERVER-$VERSION-linux64.sh"
-    cd "$TARGET_DIR/Server/linux64"
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux64.sh"
+    cd "$TARGET_DIR/Customer/linux64"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$SERVER-$VERSION-linux64.sh" \
-        "$SERVER $VERSION" \
+        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux64.sh" \
+        "$CUSTOMER_TOOL $VERSION" \
         bin/Start.sh
-    #cd "$TARGET_DIR"
-    #tar cfz "$SERVER-$VERSION-linux64.tar.gz" "$SERVER-$VERSION-linux64.sh"
 fi
 
 if [ "$FOUND" == "0" ]; then

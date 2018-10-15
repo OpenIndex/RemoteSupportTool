@@ -40,10 +40,10 @@
     </developers>
 
     <properties>
-        <launch4j.client.module>de.openindex.support.staff</launch4j.client.module>
-        <launch4j.client.class>de.openindex.support.staff.StaffApplication</launch4j.client.class>
-        <launch4j.server.module>de.openindex.support.customer</launch4j.server.module>
-        <launch4j.server.class>de.openindex.support.customer.CustomerApplication</launch4j.server.class>
+        <launch4j.staff.module>de.openindex.support.staff</launch4j.staff.module>
+        <launch4j.staff.class>de.openindex.support.staff.StaffApplication</launch4j.staff.class>
+        <launch4j.customer.module>de.openindex.support.customer</launch4j.customer.module>
+        <launch4j.customer.class>de.openindex.support.customer.CustomerApplication</launch4j.customer.class>
     </properties>
 
     <dependencies>
@@ -128,7 +128,7 @@
                         <artifactId>launch4j-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>launch4j-Client32</id>
+                                <id>launch4j-Staff32</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -136,8 +136,8 @@
                                 <configuration>
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
-                                    <jar>../modules/RemoteSupportTool-Client-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Client32.exe</outfile>
+                                    <jar>../modules/RemoteSupportTool-Staff-${project.version}.jar</jar>
+                                    <outfile>${project.basedir}/target/launch4j/Staff32.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -149,8 +149,8 @@
                                     <manifest></manifest>
                                     <icon>${project.parent.basedir}/share/icons/desktopshare.ico</icon>
                                     <singleInstance>
-                                        <mutexName>RemoteSupportClient</mutexName>
-                                        <windowTitle>RemoteSupportClient</windowTitle>
+                                        <mutexName>StaffRemoteSupport</mutexName>
+                                        <windowTitle>StaffRemoteSupport</windowTitle>
                                     </singleInstance>
                                     <jre>
                                         <path>..</path>
@@ -165,15 +165,15 @@
                                         <opts>
                                             <opt>-Dfile.encoding=UTF-8</opt>
                                             <opt>-p modules</opt>
-                                            <opt>-m ${launch4j.client.module}/${launch4j.client.class}</opt>
+                                            <opt>-m ${launch4j.staff.module}/${launch4j.staff.class}</opt>
                                         </opts>
                                     </jre>
                                     <versionInfo>
                                         <copyright>OpenIndex.de</copyright>
-                                        <productName>RemoteSupportClient</productName>
-                                        <internalName>RemoteSupportClient</internalName>
-                                        <originalFilename>RemoteSupportClient.exe</originalFilename>
-                                        <fileDescription>RemoteSupportClient</fileDescription>
+                                        <productName>StaffRemoteSupport</productName>
+                                        <internalName>StaffRemoteSupport</internalName>
+                                        <originalFilename>StaffRemoteSupport.exe</originalFilename>
+                                        <fileDescription>StaffRemoteSupport</fileDescription>
                                         <fileVersion>${launch4j.buildVersion}</fileVersion>
                                         <txtFileVersion>${project.version}</txtFileVersion>
                                         <productVersion>${launch4j.buildVersion}</productVersion>
@@ -182,7 +182,7 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>launch4j-Client64</id>
+                                <id>launch4j-Staff64</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -190,8 +190,8 @@
                                 <configuration>
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
-                                    <jar>../modules/RemoteSupportTool-Client-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Client64.exe</outfile>
+                                    <jar>../modules/RemoteSupportTool-Staff-${project.version}.jar</jar>
+                                    <outfile>${project.basedir}/target/launch4j/Staff64.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -203,8 +203,8 @@
                                     <manifest></manifest>
                                     <icon>${project.parent.basedir}/share/icons/desktopshare.ico</icon>
                                     <singleInstance>
-                                        <mutexName>RemoteSupportClient</mutexName>
-                                        <windowTitle>RemoteSupportClient</windowTitle>
+                                        <mutexName>StaffRemoteSupport</mutexName>
+                                        <windowTitle>StaffRemoteSupport</windowTitle>
                                     </singleInstance>
                                     <jre>
                                         <path>..</path>
@@ -219,15 +219,15 @@
                                         <opts>
                                             <opt>-Dfile.encoding=UTF-8</opt>
                                             <opt>-p modules</opt>
-                                            <opt>-m ${launch4j.client.module}/${launch4j.client.class}</opt>
+                                            <opt>-m ${launch4j.staff.module}/${launch4j.staff.class}</opt>
                                         </opts>
                                     </jre>
                                     <versionInfo>
                                         <copyright>OpenIndex.de</copyright>
-                                        <productName>RemoteSupportClient</productName>
-                                        <internalName>RemoteSupportClient</internalName>
-                                        <originalFilename>RemoteSupportClient.exe</originalFilename>
-                                        <fileDescription>RemoteSupportClient</fileDescription>
+                                        <productName>StaffRemoteSupport</productName>
+                                        <internalName>StaffRemoteSupport</internalName>
+                                        <originalFilename>StaffRemoteSupport.exe</originalFilename>
+                                        <fileDescription>StaffRemoteSupport</fileDescription>
                                         <fileVersion>${launch4j.buildVersion}</fileVersion>
                                         <txtFileVersion>${project.version}</txtFileVersion>
                                         <productVersion>${launch4j.buildVersion}</productVersion>
@@ -236,7 +236,7 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>launch4j-Server32</id>
+                                <id>launch4j-Customer32</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -244,8 +244,8 @@
                                 <configuration>
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
-                                    <jar>../modules/RemoteSupportTool-Server-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Server32.exe</outfile>
+                                    <jar>../modules/RemoteSupportTool-Customer-${project.version}.jar</jar>
+                                    <outfile>${project.basedir}/target/launch4j/Customer32.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -257,8 +257,8 @@
                                     <manifest></manifest>
                                     <icon>${project.parent.basedir}/share/icons/help.ico</icon>
                                     <singleInstance>
-                                        <mutexName>RemoteSupportServer</mutexName>
-                                        <windowTitle>RemoteSupportServer</windowTitle>
+                                        <mutexName>CustomerRemoteSupport</mutexName>
+                                        <windowTitle>CustomerRemoteSupport</windowTitle>
                                     </singleInstance>
                                     <jre>
                                         <path>..</path>
@@ -273,15 +273,15 @@
                                         <opts>
                                             <opt>-Dfile.encoding=UTF-8</opt>
                                             <opt>-p modules</opt>
-                                            <opt>-m ${launch4j.server.module}/${launch4j.server.class}</opt>
+                                            <opt>-m ${launch4j.customer.module}/${launch4j.customer.class}</opt>
                                         </opts>
                                     </jre>
                                     <versionInfo>
                                         <copyright>OpenIndex.de</copyright>
-                                        <productName>RemoteSupportServer</productName>
-                                        <internalName>RemoteSupportServer</internalName>
-                                        <originalFilename>RemoteSupportServer.exe</originalFilename>
-                                        <fileDescription>RemoteSupportServer</fileDescription>
+                                        <productName>CustomerRemoteSupport</productName>
+                                        <internalName>CustomerRemoteSupport</internalName>
+                                        <originalFilename>CustomerRemoteSupport.exe</originalFilename>
+                                        <fileDescription>CustomerRemoteSupport</fileDescription>
                                         <fileVersion>${launch4j.buildVersion}</fileVersion>
                                         <txtFileVersion>${project.version}</txtFileVersion>
                                         <productVersion>${launch4j.buildVersion}</productVersion>
@@ -290,7 +290,7 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>launch4j-Server64</id>
+                                <id>launch4j-Customer64</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -298,8 +298,8 @@
                                 <configuration>
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
-                                    <jar>../modules/RemoteSupportTool-Server-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Server64.exe</outfile>
+                                    <jar>../modules/RemoteSupportTool-Customer-${project.version}.jar</jar>
+                                    <outfile>${project.basedir}/target/launch4j/Customer64.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -311,8 +311,8 @@
                                     <manifest></manifest>
                                     <icon>${project.parent.basedir}/share/icons/help.ico</icon>
                                     <singleInstance>
-                                        <mutexName>RemoteSupportServer</mutexName>
-                                        <windowTitle>RemoteSupportServer</windowTitle>
+                                        <mutexName>CustomerRemoteSupport</mutexName>
+                                        <windowTitle>CustomerRemoteSupport</windowTitle>
                                     </singleInstance>
                                     <jre>
                                         <path>..</path>
@@ -327,15 +327,15 @@
                                         <opts>
                                             <opt>-Dfile.encoding=UTF-8</opt>
                                             <opt>-p modules</opt>
-                                            <opt>-m ${launch4j.server.module}/${launch4j.server.class}</opt>
+                                            <opt>-m ${launch4j.customer.module}/${launch4j.customer.class}</opt>
                                         </opts>
                                     </jre>
                                     <versionInfo>
                                         <copyright>OpenIndex.de</copyright>
-                                        <productName>RemoteSupportServer</productName>
-                                        <internalName>RemoteSupportServer</internalName>
-                                        <originalFilename>RemoteSupportServer.exe</originalFilename>
-                                        <fileDescription>RemoteSupportServer</fileDescription>
+                                        <productName>CustomerRemoteSupport</productName>
+                                        <internalName>CustomerRemoteSupport</internalName>
+                                        <originalFilename>CustomerRemoteSupport.exe</originalFilename>
+                                        <fileDescription>CustomerRemoteSupport</fileDescription>
                                         <fileVersion>${launch4j.buildVersion}</fileVersion>
                                         <txtFileVersion>${project.version}</txtFileVersion>
                                         <productVersion>${launch4j.buildVersion}</productVersion>
@@ -350,38 +350,38 @@
                         <artifactId>maven-assembly-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>assemble-client</id>
+                                <id>assemble-staff</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>single</goal>
                                 </goals>
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
-                                    <finalName>Client</finalName>
+                                    <finalName>Staff</finalName>
                                     <descriptors>
-                                        <descriptor>src/assembly/client-linux32.xml</descriptor>
-                                        <descriptor>src/assembly/client-linux64.xml</descriptor>
-                                        <descriptor>src/assembly/client-mac64.xml</descriptor>
-                                        <descriptor>src/assembly/client-windows32.xml</descriptor>
-                                        <descriptor>src/assembly/client-windows64.xml</descriptor>
+                                        <descriptor>src/assembly/staff-linux32.xml</descriptor>
+                                        <descriptor>src/assembly/staff-linux64.xml</descriptor>
+                                        <descriptor>src/assembly/staff-mac64.xml</descriptor>
+                                        <descriptor>src/assembly/staff-windows32.xml</descriptor>
+                                        <descriptor>src/assembly/staff-windows64.xml</descriptor>
                                     </descriptors>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>assemble-server</id>
+                                <id>assemble-customer</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>single</goal>
                                 </goals>
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
-                                    <finalName>Server</finalName>
+                                    <finalName>Customer</finalName>
                                     <descriptors>
-                                        <descriptor>src/assembly/server-linux32.xml</descriptor>
-                                        <descriptor>src/assembly/server-linux64.xml</descriptor>
-                                        <descriptor>src/assembly/server-mac64.xml</descriptor>
-                                        <descriptor>src/assembly/server-windows32.xml</descriptor>
-                                        <descriptor>src/assembly/server-windows64.xml</descriptor>
+                                        <descriptor>src/assembly/customer-linux32.xml</descriptor>
+                                        <descriptor>src/assembly/customer-linux64.xml</descriptor>
+                                        <descriptor>src/assembly/customer-mac64.xml</descriptor>
+                                        <descriptor>src/assembly/customer-windows32.xml</descriptor>
+                                        <descriptor>src/assembly/customer-windows64.xml</descriptor>
                                     </descriptors>
                                 </configuration>
                             </execution>

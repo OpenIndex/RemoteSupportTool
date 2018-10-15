@@ -1,5 +1,5 @@
 @REM ----------------------------------------------------------------------------
-@REM RemoteSupportClient
+@REM RemoteSupportTool for staff members
 @REM Copyright (C) 2015-2018 OpenIndex.de
 @REM ----------------------------------------------------------------------------
 @echo off
@@ -14,7 +14,7 @@ set "JAVA_HEAP_MAXIMUM=512m"
 :: Additional options for the Java Runtime Environment
 set "JAVA_OPTS=-Dfile.encoding=UTF-8"
 
-set "APP=de.openindex.support.client/de.openindex.support.client.ClientApplication"
+set "APP=de.openindex.support.staff/de.openindex.support.staff.StaffApplication"
 
 ::
 :: Start execution...
@@ -34,5 +34,5 @@ set "BASE_DIR=%CD%"
 :: echo SCRIPT_DIR: %SCRIPT_DIR%
 :: echo BASE_DIR: %BASE_DIR%
 
-%JAVACMD% -Xms%JAVA_HEAP_MINIMUM% -Xmx%JAVA_HEAP_MAXIMUM% %JAVA_OPTS% -p "modules" -m %APP% %*
+"%JAVACMD%" -Xms%JAVA_HEAP_MINIMUM% -Xmx%JAVA_HEAP_MAXIMUM% %JAVA_OPTS% -p "modules" -m %APP% %*
 popd

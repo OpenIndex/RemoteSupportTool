@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-CLIENT="RemoteSupportClient"
-SERVER="RemoteSupportServer"
+STAFF_TOOL="StaffSupportTool"
+CUSTOMER_TOOL="CustomerSupportTool"
 VERSION="1.0-SNAPSHOT"
 
 DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
@@ -24,44 +24,44 @@ TARGET_DIR="$DIR/target"
 FOUND="0"
 set -e
 
-if [ -d "$TARGET_DIR/Client/mac64" ]; then
+if [ -d "$TARGET_DIR/Staff/mac64" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $CLIENT-$VERSION.app..."
+    echo "Creating $STAFF_TOOL-$VERSION.app..."
     echo "----------------------------------------------------------------"
     echo ""
-    rm -Rf "$TARGET_DIR/$CLIENT-$VERSION.app"
-    rm -f "$TARGET_DIR/$CLIENT-$VERSION.app.tar.gz"
-    cp -R "$DIR/src/macos/Client.app" "$TARGET_DIR/$CLIENT-$VERSION.app"
-    mkdir -p "$TARGET_DIR/$CLIENT-$VERSION.app/Contents/PlugIns"
-    cp -R "$TARGET_DIR/Client/mac64" "$TARGET_DIR/$CLIENT-$VERSION.app/Contents/PlugIns/runtime"
-    mv "$TARGET_DIR/$CLIENT-$VERSION.app/Contents/PlugIns/runtime/legal" "$TARGET_DIR/$CLIENT-$VERSION.app/Contents/Resources"
-    mv "$TARGET_DIR/$CLIENT-$VERSION.app/Contents/PlugIns/runtime/LICENSE.txt" "$TARGET_DIR/$CLIENT-$VERSION.app/Contents/Resources"
-    sed -i -e "s/{VERSION}/$VERSION/g" "$TARGET_DIR/$CLIENT-$VERSION.app/Contents/Info.plist"
+    rm -Rf "$TARGET_DIR/$STAFF_TOOL-$VERSION.app"
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION.app.tar.gz"
+    cp -R "$DIR/src/macos/Staff.app" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app"
+    mkdir -p "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns"
+    cp -R "$TARGET_DIR/Staff/mac64" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns/runtime"
+    mv "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns/runtime/legal" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/Resources"
+    mv "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns/runtime/LICENSE.txt" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/Resources"
+    sed -i -e "s/{VERSION}/$VERSION/g" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/Info.plist"
     cd "$TARGET_DIR"
-    tar cfz "$CLIENT-$VERSION.app.tar.gz" "$CLIENT-$VERSION.app"
-    rm -Rf "$TARGET_DIR/$CLIENT-$VERSION.app"
+    tar cfz "$STAFF_TOOL-$VERSION.app.tar.gz" "$STAFF_TOOL-$VERSION.app"
+    rm -Rf "$TARGET_DIR/$STAFF_TOOL-$VERSION.app"
 fi
 
-if [ -d "$TARGET_DIR/Server/mac64" ]; then
+if [ -d "$TARGET_DIR/Customer/mac64" ]; then
     FOUND="1"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Creating $SERVER-$VERSION.app..."
+    echo "Creating $CUSTOMER_TOOL-$VERSION.app..."
     echo "----------------------------------------------------------------"
     echo ""
-    rm -Rf "$TARGET_DIR/$SERVER-$VERSION.app"
-    rm -f "$TARGET_DIR/$SERVER-$VERSION.app.tar.gz"
-    cp -R "$DIR/src/macos/Server.app" "$TARGET_DIR/$SERVER-$VERSION.app"
-    mkdir -p "$TARGET_DIR/$SERVER-$VERSION.app/Contents/PlugIns"
-    cp -R "$TARGET_DIR/Server/mac64" "$TARGET_DIR/$SERVER-$VERSION.app/Contents/PlugIns/runtime"
-    mv "$TARGET_DIR/$SERVER-$VERSION.app/Contents/PlugIns/runtime/legal" "$TARGET_DIR/$SERVER-$VERSION.app/Contents/Resources"
-    mv "$TARGET_DIR/$SERVER-$VERSION.app/Contents/PlugIns/runtime/LICENSE.txt" "$TARGET_DIR/$SERVER-$VERSION.app/Contents/Resources"
-    sed -i -e "s/{VERSION}/$VERSION/g" "$TARGET_DIR/$SERVER-$VERSION.app/Contents/Info.plist"
+    rm -Rf "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app"
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app.tar.gz"
+    cp -R "$DIR/src/macos/Customer.app" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app"
+    mkdir -p "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns"
+    cp -R "$TARGET_DIR/Customer/mac64" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns/runtime"
+    mv "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns/runtime/legal" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/Resources"
+    mv "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns/runtime/LICENSE.txt" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/Resources"
+    sed -i -e "s/{VERSION}/$VERSION/g" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/Info.plist"
     cd "$TARGET_DIR"
-    tar cfz "$SERVER-$VERSION.app.tar.gz" "$SERVER-$VERSION.app"
-    rm -Rf "$TARGET_DIR/$SERVER-$VERSION.app"
+    tar cfz "$CUSTOMER_TOOL-$VERSION.app.tar.gz" "$CUSTOMER_TOOL-$VERSION.app"
+    rm -Rf "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app"
 fi
 
 if [ "$FOUND" == "0" ]; then
