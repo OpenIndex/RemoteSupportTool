@@ -44,7 +44,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
@@ -92,6 +91,7 @@ public abstract class ClientFrame extends JFrame {
     private JTextField sshKeyField = null;
     private JButton sshKeyButton = null;
     private JCheckBox sshKeyAuthField = null;
+    private PasteTextDialog pasteTextDialog = null;
 
     public ClientFrame(ClientOptions options) {
         super();
@@ -366,12 +366,16 @@ public abstract class ClientFrame extends JFrame {
         actionsMenu.add(new AbstractAction(ClientApplication.setting("i18n.pasteText")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String text = JOptionPane.showInputDialog(
-                        ClientFrame.this,
-                        "Enter the text to send.");
-
-                if (StringUtils.isNotBlank(text))
-                    doPasteText(text);
+                if (pasteTextDialog == null) {
+                    pasteTextDialog = new PasteTextDialog();
+                    pasteTextDialog.createAndShow();
+                } else {
+                    if (!pasteTextDialog.isVisible()) {
+                        pasteTextDialog.setLocationRelativeTo(ClientFrame.this);
+                        pasteTextDialog.setVisible(true);
+                    }
+                    pasteTextDialog.toFront();
+                }
             }
         });
 
@@ -565,6 +569,10 @@ public abstract class ClientFrame extends JFrame {
         downloadLabel.setVisible(false);
         uploadLabel.setText(StringUtils.EMPTY);
         uploadLabel.setVisible(false);
+
+        if (pasteTextDialog != null) {
+            pasteTextDialog.setVisible(false);
+        }
     }
 
     public void updateScreen(List<BufferedImage> slices, int imageWidth, int imageHeight, int sliceWidth, int sliceHeight) {
@@ -653,6 +661,17 @@ public abstract class ClientFrame extends JFrame {
             } finally {
                 g2d.dispose();
             }
+        }
+    }
+
+    private class PasteTextDialog extends de.openindex.support.client.utils.PasteTextDialog {
+        private PasteTextDialog() {
+            super(ClientFrame.this);
+        }
+
+        @Override
+        protected void doSubmit(String text) {
+            doPasteText(text);
         }
     }
 }

@@ -577,6 +577,7 @@ public class ClientApplication {
 
         @Override
         protected void doPasteText(String text) {
+            if (handler == null) return;
             handler.sendPasteText(text);
         }
 
