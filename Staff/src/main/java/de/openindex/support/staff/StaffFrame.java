@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.client;
+package de.openindex.support.staff;
 
 import de.openindex.support.core.AppUtils;
 import de.openindex.support.core.ImageUtils;
@@ -61,10 +61,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("WeakerAccess")
-public abstract class ClientFrame extends JFrame {
+public abstract class StaffFrame extends JFrame {
     @SuppressWarnings("unused")
-    private final static Logger LOGGER = LoggerFactory.getLogger(ClientFrame.class);
-    private final ClientOptions options;
+    private final static Logger LOGGER = LoggerFactory.getLogger(StaffFrame.class);
+    private final StaffOptions options;
     private boolean started = false;
     private ScreenPanel screenView = null;
     private JButton startButton = null;
@@ -93,17 +93,17 @@ public abstract class ClientFrame extends JFrame {
     private JCheckBox sshKeyAuthField = null;
     private PasteTextDialog pasteTextDialog = null;
 
-    public ClientFrame(ClientOptions options) {
+    public StaffFrame(StaffOptions options) {
         super();
         this.options = options;
     }
 
     public void createAndShow() {
         final BufferedImage applicationImage = ImageUtils.loadImage(
-                ClientApplication.resource("application.png"));
+                StaffApplication.resource("application.png"));
 
         // init frame
-        setTitle(ClientApplication.setting("i18n.appTitle"));
+        setTitle(StaffApplication.setting("i18n.appTitle"));
         setIconImage(applicationImage);
         setPreferredSize(new Dimension(600, 400));
         setMinimumSize(new Dimension(500, 300));
@@ -117,7 +117,7 @@ public abstract class ClientFrame extends JFrame {
 
         // screen view
         screenView = new ScreenPanel(ObjectUtils.defaultIfNull(
-                ImageUtils.loadImage(ClientApplication.resource("startup.png")),
+                ImageUtils.loadImage(StaffApplication.resource("startup.png")),
                 applicationImage));
         screenView.addKeyListener(new KeyAdapter() {
             @Override
@@ -170,21 +170,21 @@ public abstract class ClientFrame extends JFrame {
         // info label
         infoLabel = new JLabel();
         infoLabel.setVisible(false);
-        infoLabel.setIcon(ImageUtils.loadIcon(ClientApplication.resource("icon_info.png")));
+        infoLabel.setIcon(ImageUtils.loadIcon(StaffApplication.resource("icon_info.png")));
 
         // upload label
         uploadLabel = new JLabel();
         uploadLabel.setVisible(false);
-        uploadLabel.setIcon(ImageUtils.loadIcon(ClientApplication.resource("icon_upload.png")));
+        uploadLabel.setIcon(ImageUtils.loadIcon(StaffApplication.resource("icon_upload.png")));
 
         // download label
         downloadLabel = new JLabel();
         downloadLabel.setVisible(false);
-        downloadLabel.setIcon(ImageUtils.loadIcon(ClientApplication.resource("icon_download.png")));
+        downloadLabel.setIcon(ImageUtils.loadIcon(StaffApplication.resource("icon_download.png")));
 
         // port number field
         JLabel localPortLabel = new JLabel();
-        localPortLabel.setText(ClientApplication.setting("i18n.port") + ":");
+        localPortLabel.setText(StaffApplication.setting("i18n.port") + ":");
         localPortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getLocalPort(), 1, 65535, 1));
         localPortField.setBackground(Color.WHITE);
@@ -192,7 +192,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssl encryption field
         sslField = new JCheckBox();
-        sslField.setText(ClientApplication.setting("i18n.sslEncryption"));
+        sslField.setText(StaffApplication.setting("i18n.sslEncryption"));
         sslField.setSelected(options.isSsl());
         sslField.setOpaque(true);
         sslField.setBackground(Color.WHITE);
@@ -200,7 +200,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssh tunnel field
         sshField = new JCheckBox();
-        sshField.setText(ClientApplication.setting("i18n.sshTunneling"));
+        sshField.setText(StaffApplication.setting("i18n.sshTunneling"));
         sshField.setSelected(options.isSsh());
         sshField.setOpaque(true);
         sshField.setBackground(Color.WHITE);
@@ -211,7 +211,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssh host
         sshHostLabel = new JLabel();
-        sshHostLabel.setText(ClientApplication.setting("i18n.sshHost") + ":");
+        sshHostLabel.setText(StaffApplication.setting("i18n.sshHost") + ":");
         sshHostField = new JTextField();
         sshHostField.setText(options.getSshHost());
         sshHostField.setBackground(Color.WHITE);
@@ -232,7 +232,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssh port
         sshPortLabel = new JLabel();
-        sshPortLabel.setText(ClientApplication.setting("i18n.sshPort") + ":");
+        sshPortLabel.setText(StaffApplication.setting("i18n.sshPort") + ":");
         sshPortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getSshPort(), 1, 65535, 1));
         sshPortField.setBackground(Color.WHITE);
@@ -240,7 +240,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssh remote port
         sshRemotePortLabel = new JLabel();
-        sshRemotePortLabel.setText(ClientApplication.setting("i18n.sshRemotePort") + ":");
+        sshRemotePortLabel.setText(StaffApplication.setting("i18n.sshRemotePort") + ":");
         sshRemotePortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getSshRemotePort(), 1, 65535, 1));
         sshRemotePortField.setBackground(Color.WHITE);
@@ -248,7 +248,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssh user
         sshUserLabel = new JLabel();
-        sshUserLabel.setText(ClientApplication.setting("i18n.sshUser") + ":");
+        sshUserLabel.setText(StaffApplication.setting("i18n.sshUser") + ":");
         sshUserField = new JTextField();
         sshUserField.setText(options.getSshUser());
         sshUserField.setBackground(Color.WHITE);
@@ -269,7 +269,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssh key
         sshKeyLabel = new JLabel();
-        sshKeyLabel.setText(ClientApplication.setting("i18n.sshKey") + ":");
+        sshKeyLabel.setText(StaffApplication.setting("i18n.sshKey") + ":");
         sshKeyField = new JTextField();
         sshKeyField.setText(options.getSshKey());
         sshKeyField.setBackground(Color.WHITE);
@@ -278,7 +278,7 @@ public abstract class ClientFrame extends JFrame {
         sshKeyButton.setText("Select");
         sshKeyButton.addActionListener(e -> {
             JFileChooser ch = new JFileChooser();
-            ch.setDialogTitle(ClientApplication.setting("i18n.sshKeySelect"));
+            ch.setDialogTitle(StaffApplication.setting("i18n.sshKeySelect"));
 
             File f = null;
             if (StringUtils.isNotBlank(sshKeyField.getText())) {
@@ -292,7 +292,7 @@ public abstract class ClientFrame extends JFrame {
                 ch.setCurrentDirectory((f.isFile()) ? f : SystemUtils.getUserHome());
             }
 
-            if (ch.showOpenDialog(ClientFrame.this) != JFileChooser.APPROVE_OPTION) return;
+            if (ch.showOpenDialog(StaffFrame.this) != JFileChooser.APPROVE_OPTION) return;
             sshKeyField.setText(ch.getSelectedFile().getAbsolutePath());
             options.setSshKey(sshKeyField.getText());
         });
@@ -303,7 +303,7 @@ public abstract class ClientFrame extends JFrame {
 
         // ssh public key authentication
         sshKeyAuthField = new JCheckBox();
-        sshKeyAuthField.setText(ClientApplication.setting("i18n.sshKeyAuth"));
+        sshKeyAuthField.setText(StaffApplication.setting("i18n.sshKeyAuth"));
         sshKeyAuthField.setSelected(options.isSshKeyAuth());
         sshKeyAuthField.setOpaque(true);
         sshKeyAuthField.setBackground(Color.WHITE);
@@ -344,26 +344,26 @@ public abstract class ClientFrame extends JFrame {
 
         // start button
         startButton = new JButton();
-        startButton.setText(ClientApplication.setting("i18n.start"));
+        startButton.setText(StaffApplication.setting("i18n.start"));
         startButton.addActionListener(e -> doStart());
 
         // stop button
         stopButton = new JButton();
-        stopButton.setText(ClientApplication.setting("i18n.stop"));
+        stopButton.setText(StaffApplication.setting("i18n.stop"));
         stopButton.setEnabled(false);
         stopButton.addActionListener(e -> doStop());
 
         // options button
         optionsButton = new JToggleButton();
-        optionsButton.setText(ClientApplication.setting("i18n.options"));
+        optionsButton.setText(StaffApplication.setting("i18n.options"));
         optionsButton.addActionListener(e -> optionsPanel.setVisible(optionsButton.isSelected()));
 
         // actions button
         actionsButton = new JButton();
-        actionsButton.setText(ClientApplication.setting("i18n.actions"));
+        actionsButton.setText(StaffApplication.setting("i18n.actions"));
         actionsButton.addActionListener(e -> actionsMenu.show(actionsButton, 0, actionsButton.getHeight()));
         actionsMenu = new JPopupMenu();
-        actionsMenu.add(new AbstractAction(ClientApplication.setting("i18n.pasteText")) {
+        actionsMenu.add(new AbstractAction(StaffApplication.setting("i18n.pasteText")) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pasteTextDialog == null) {
@@ -371,7 +371,7 @@ public abstract class ClientFrame extends JFrame {
                     pasteTextDialog.createAndShow();
                 } else {
                     if (!pasteTextDialog.isVisible()) {
-                        pasteTextDialog.setLocationRelativeTo(ClientFrame.this);
+                        pasteTextDialog.setLocationRelativeTo(StaffFrame.this);
                         pasteTextDialog.setVisible(true);
                     }
                     pasteTextDialog.toFront();
@@ -381,12 +381,12 @@ public abstract class ClientFrame extends JFrame {
 
         // about button
         JButton aboutButton = new JButton();
-        aboutButton.setText(ClientApplication.setting("i18n.about"));
+        aboutButton.setText(StaffApplication.setting("i18n.about"));
         aboutButton.addActionListener(e -> doAbout());
 
         // quit button
         JButton quitButton = new JButton();
-        quitButton.setText(ClientApplication.setting("i18n.quit"));
+        quitButton.setText(StaffApplication.setting("i18n.quit"));
         quitButton.addActionListener(e -> doQuit());
 
         // build bottom bar
@@ -664,9 +664,9 @@ public abstract class ClientFrame extends JFrame {
         }
     }
 
-    private class PasteTextDialog extends de.openindex.support.client.utils.PasteTextDialog {
+    private class PasteTextDialog extends de.openindex.support.staff.utils.PasteTextDialog {
         private PasteTextDialog() {
-            super(ClientFrame.this);
+            super(StaffFrame.this);
         }
 
         @Override

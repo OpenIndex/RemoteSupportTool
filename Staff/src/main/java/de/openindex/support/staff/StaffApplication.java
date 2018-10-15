@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.client;
+package de.openindex.support.staff;
 
 import ch.qos.logback.classic.LoggerContext;
 import com.jcraft.jsch.JSch;
@@ -76,7 +76,7 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClientApplication {
+public class StaffApplication {
     @SuppressWarnings("unused")
     private static Logger LOGGER;
     @SuppressWarnings("WeakerAccess")
@@ -89,8 +89,8 @@ public class ClientApplication {
     public final static String VERSION;
     @SuppressWarnings("WeakerAccess")
     public final static File WORK_DIR;
-    private static ClientOptions options = null;
-    private static ClientFrame frame = null;
+    private static StaffOptions options = null;
+    private static StaffFrame frame = null;
     private static Session tunnel = null;
     private static ServerSocket serverSocket = null;
     private static Handler handler = null;
@@ -116,7 +116,7 @@ public class ClientApplication {
         System.setProperty("app.dir", WORK_DIR.getAbsolutePath());
 
         // init logging
-        LOGGER = LoggerFactory.getLogger(ClientApplication.class);
+        LOGGER = LoggerFactory.getLogger(StaffApplication.class);
 
         // enable debugging for SSL connections
         //System.setProperty("javax.net.debug", "ssl");
@@ -188,11 +188,11 @@ public class ClientApplication {
         AppUtils.initKeystore(keystoreFile, StringUtils.trimToEmpty(keystorePassword));
 
         // load options
-        options = new ClientOptions(new File(WORK_DIR, "client.properties"));
+        options = new StaffOptions(new File(WORK_DIR, "staff.properties"));
         try {
             options.read();
         } catch (IOException ex) {
-            LOGGER.warn("Can't read client options!", ex);
+            LOGGER.warn("Can't read staff options!", ex);
         }
 
         // setup look and feel
@@ -225,7 +225,7 @@ public class ClientApplication {
             try {
                 options.write();
             } catch (IOException ex) {
-                LOGGER.warn("Can't write client options!", ex);
+                LOGGER.warn("Can't write staff options!", ex);
             }
 
             // shutdown logger
@@ -239,7 +239,7 @@ public class ClientApplication {
 
     @SuppressWarnings("WeakerAccess")
     public static URL resource(String file) {
-        return ClientApplication.class.getResource("resources/" + file);
+        return StaffApplication.class.getResource("resources/" + file);
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -482,18 +482,18 @@ public class ClientApplication {
         }
     }
 
-    private static class Frame extends ClientFrame {
+    private static class Frame extends StaffFrame {
         private Timer mouseMotionTimer = null;
         private MouseEvent mouseMotionEvent = null;
         private Timer resizeTimer = null;
 
-        private Frame(ClientOptions options) {
+        private Frame(StaffOptions options) {
             super(options);
         }
 
         @Override
         protected void doAbout() {
-            new ClientApplication.AboutDialog().createAndShow();
+            new StaffApplication.AboutDialog().createAndShow();
         }
 
         @Override
@@ -799,7 +799,7 @@ public class ClientApplication {
                 monitoringTimer = null;
             }
 
-            ClientApplication.stop(false);
+            StaffApplication.stop(false);
         }
     }
 }

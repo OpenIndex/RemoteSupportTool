@@ -1,4 +1,4 @@
-module de.openindex.support.client {
+module de.openindex.support.staff {
     requires de.openindex.support.core;
     requires jsch;
     requires logback.classic;

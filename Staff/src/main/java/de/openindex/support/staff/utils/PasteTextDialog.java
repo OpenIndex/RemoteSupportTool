@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.client.utils;
+package de.openindex.support.staff.utils;
 
-import de.openindex.support.client.ClientApplication;
-import de.openindex.support.client.ClientFrame;
+import de.openindex.support.staff.StaffApplication;
+import de.openindex.support.staff.StaffFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -42,14 +42,14 @@ public abstract class PasteTextDialog extends JDialog {
     private final static Logger LOGGER = LoggerFactory.getLogger(PasteTextDialog.class);
     private JTextArea textField;
 
-    public PasteTextDialog(ClientFrame frame) {
+    public PasteTextDialog(StaffFrame frame) {
         super(frame);
         setModal(false);
         //setAlwaysOnTop(false);
     }
 
     public void createAndShow() {
-        setTitle(ClientApplication.setting("i18n.pasteTextTitle"));
+        setTitle(StaffApplication.setting("i18n.pasteTextTitle"));
         setPreferredSize(new Dimension(350, 200));
         setMinimumSize(new Dimension(300, 150));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -79,7 +79,7 @@ public abstract class PasteTextDialog extends JDialog {
 
         // submit button
         JButton submitButton = new JButton();
-        submitButton.setText(ClientApplication.setting("i18n.pasteText"));
+        submitButton.setText(StaffApplication.setting("i18n.pasteText"));
         submitButton.addActionListener(e -> {
             String text = StringUtils.trimToNull(textField.getText());
             if (text != null) doSubmit(text);
@@ -87,7 +87,7 @@ public abstract class PasteTextDialog extends JDialog {
 
         // close button
         JButton closeButton = new JButton();
-        closeButton.setText(ClientApplication.setting("i18n.close"));
+        closeButton.setText(StaffApplication.setting("i18n.close"));
         closeButton.addActionListener(e -> setVisible(false));
 
         // build button bar
@@ -113,7 +113,7 @@ public abstract class PasteTextDialog extends JDialog {
         setVisible(true);
 
         // update form
-        textField.setText(ClientApplication.setting("i18n.pasteTextDefault"));
+        textField.setText(StaffApplication.setting("i18n.pasteTextDefault"));
         textField.requestFocus();
         textField.selectAll();
     }

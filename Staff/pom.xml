@@ -83,7 +83,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>de.openindex.support.client.ClientApplication</mainClass>
+                            <mainClass>de.openindex.support.staff.StaffApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
