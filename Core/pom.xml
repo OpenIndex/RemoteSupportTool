@@ -13,7 +13,7 @@
     <artifactId>RemoteSupportTool-Core</artifactId>
 
     <name>RemoteSupportTool-Core</name>
-    <description>RemoteSupportTool is a remote maintenance software entirely written in Java.</description>
+    <description>RemoteSupportTool is a cross platform solution for remote support.</description>
     <url>https://openindex.de</url>
     <organization>
         <name>OpenIndex.de</name>

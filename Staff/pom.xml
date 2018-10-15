@@ -10,10 +10,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>RemoteSupportTool-Client</artifactId>
+    <artifactId>RemoteSupportTool-Staff</artifactId>
 
-    <name>RemoteSupportTool-Client</name>
-    <description>RemoteSupportTool is a remote maintenance software entirely written in Java.</description>
+    <name>RemoteSupportTool-Staff</name>
+    <description>RemoteSupportTool is a cross platform solution for remote support.</description>
     <url>https://openindex.de</url>
     <organization>
         <name>OpenIndex.de</name>

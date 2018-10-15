@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <name>release</name>
-    <description>RemoteSupportTool is a remote maintenance software entirely written in Java.</description>
+    <description>RemoteSupportTool is a cross platform solution for remote support.</description>
     <url>https://openindex.de</url>
     <organization>
         <name>OpenIndex.de</name>
@@ -49,15 +49,15 @@
     <dependencies>
         <dependency>
             <groupId>de.openindex.support</groupId>
-            <artifactId>RemoteSupportTool-Client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.openindex.support</groupId>
             <artifactId>RemoteSupportTool-Core</artifactId>
         </dependency>
         <dependency>
             <groupId>de.openindex.support</groupId>
-            <artifactId>RemoteSupportTool-Server</artifactId>
+            <artifactId>RemoteSupportTool-Customer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.openindex.support</groupId>
+            <artifactId>RemoteSupportTool-Staff</artifactId>
         </dependency>
     </dependencies>
 
