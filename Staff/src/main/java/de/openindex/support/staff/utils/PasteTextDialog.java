@@ -37,6 +37,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Dialog for pasting text to the remote machine.
+ *
+ * @author Andreas Rudolph
+ */
 public abstract class PasteTextDialog extends JDialog {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(PasteTextDialog.class);

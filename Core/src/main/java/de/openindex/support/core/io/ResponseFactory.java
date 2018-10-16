@@ -17,6 +17,11 @@ package de.openindex.support.core.io;
 
 import java.io.Serializable;
 
+/**
+ * Factory for delayed creation of responses.
+ *
+ * @author Andreas Rudolph
+ */
 public interface ResponseFactory {
     Serializable create();
 }

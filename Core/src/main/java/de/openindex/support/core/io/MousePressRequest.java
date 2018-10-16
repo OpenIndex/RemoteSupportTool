@@ -18,6 +18,11 @@ package de.openindex.support.core.io;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
+/**
+ * Request for a mouse button being pressed.
+ *
+ * @author Andreas Rudolph
+ */
 public class MousePressRequest implements Serializable {
     private static final long serialVersionUID = 1;
     public final int buttons;

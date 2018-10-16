@@ -45,6 +45,11 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * General helper methods.
+ *
+ * @author Andreas Rudolph
+ */
 @SuppressWarnings("WeakerAccess")
 public class AppUtils {
     @SuppressWarnings("unused")

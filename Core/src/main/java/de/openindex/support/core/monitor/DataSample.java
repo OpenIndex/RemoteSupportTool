@@ -17,6 +17,11 @@ package de.openindex.support.core.monitor;
 
 import java.util.Date;
 
+/**
+ * Statistical record about data transfer.
+ *
+ * @author Andreas Rudolph
+ */
 @SuppressWarnings("WeakerAccess")
 public class DataSample {
     public final long byteCount;

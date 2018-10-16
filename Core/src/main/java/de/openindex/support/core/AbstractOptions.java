@@ -27,6 +27,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * General application options.
+ *
+ * @author Andreas Rudolph
+ */
 public abstract class AbstractOptions extends Properties {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(AbstractOptions.class);

@@ -37,6 +37,11 @@ import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Helper methods for image processing.
+ *
+ * @author Andreas Rudolph
+ */
 @SuppressWarnings("WeakerAccess")
 public class ImageUtils {
     @SuppressWarnings("unused")

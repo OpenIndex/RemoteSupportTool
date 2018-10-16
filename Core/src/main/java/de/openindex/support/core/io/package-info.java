@@ -13,20 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/**
+ * Classes for communication between the applications.
+ *
+ * @author Andreas Rudolph
+ */
 package de.openindex.support.core.io;
-
-import java.io.Serializable;
-
-public class Tile implements Serializable {
-    private static final long serialVersionUID = 1;
-    public final byte[] data;
-
-    public Tile() {
-        this(null);
-    }
-
-    public Tile(byte[] data) {
-        super();
-        this.data = data;
-    }
-}

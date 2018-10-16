@@ -1,11 +1,11 @@
 /*
- * Copyright 2015-2018 OpenIndex.de.
+ * Copyright 2011 The Buzz Media, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,17 +15,12 @@
  */
 
 /**
- * Staff application.
+ * Classes for image scaling.
+ * <p>
+ * This package bundles the development version of the imgscalr library,
+ * that was not officially released yet.
  *
- * @author Andreas Rudolph
+ * @author Riyad Kalla (software@thebuzzmedia.com)
+ * @see <a href="https://github.com/rkalla/imgscalr">repository of the imgscalr library</a>
  */
-module de.openindex.support.staff {
-    requires de.openindex.support.core;
-    requires jsch;
-    requires logback.classic;
-    requires miglayout.swing;
-    requires org.apache.commons.io;
-    requires org.apache.commons.lang3;
-    requires org.apache.commons.text;
-    requires slf4j.api;
-}
+package org.imgscalr;

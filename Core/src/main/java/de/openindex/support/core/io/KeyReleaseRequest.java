@@ -18,6 +18,11 @@ package de.openindex.support.core.io;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
+/**
+ * Request for a key being released.
+ *
+ * @author Andreas Rudolph
+ */
 public class KeyReleaseRequest implements Serializable {
     private static final long serialVersionUID = 1;
     public final int keyCode;

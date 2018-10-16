@@ -2,10 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Customer" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Staff" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/release" charset="UTF-8" />
   </component>

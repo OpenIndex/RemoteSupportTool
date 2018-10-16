@@ -46,6 +46,11 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Main frame of the customer application.
+ *
+ * @author Andreas Rudolph
+ */
 @SuppressWarnings("WeakerAccess")
 public abstract class CustomerFrame extends JFrame {
     @SuppressWarnings("unused")

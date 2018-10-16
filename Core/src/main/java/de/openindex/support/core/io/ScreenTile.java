@@ -18,22 +18,20 @@ package de.openindex.support.core.io;
 import java.io.Serializable;
 
 /**
- * Request for a mouse being moved.
+ * Tile of a screenshot.
  *
  * @author Andreas Rudolph
  */
-public class MouseMoveRequest implements Serializable {
+public class ScreenTile implements Serializable {
     private static final long serialVersionUID = 1;
-    public final int x;
-    public final int y;
+    public final byte[] data;
 
-    public MouseMoveRequest() {
-        this(-1, -1);
+    public ScreenTile() {
+        this(null);
     }
 
-    public MouseMoveRequest(int x, int y) {
+    public ScreenTile(byte[] data) {
         super();
-        this.x = x;
-        this.y = y;
+        this.data = data;
     }
 }

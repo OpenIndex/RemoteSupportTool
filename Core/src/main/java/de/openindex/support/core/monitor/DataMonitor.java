@@ -20,6 +20,11 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Monitor, that holds multiple statistical records about data transfer.
+ *
+ * @author Andreas Rudolph
+ */
 @SuppressWarnings("WeakerAccess")
 public class DataMonitor {
     @SuppressWarnings("unused")

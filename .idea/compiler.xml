@@ -6,24 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="RemoteSupportTool-Client" />
         <module name="RemoteSupportTool-Core" />
         <module name="RemoteSupportTool-Customer" />
-        <module name="RemoteSupportTool-Server" />
         <module name="RemoteSupportTool-Staff" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="10">
-      <module name="RemoteSupportTool-Client" target="10" />
-      <module name="RemoteSupportTool-Server" target="10" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="RemoteSupportTool-Client" options="-Xlint:unchecked" />
       <module name="RemoteSupportTool-Core" options="-Xlint:unchecked" />
       <module name="RemoteSupportTool-Customer" options="-Xlint:unchecked" />
-      <module name="RemoteSupportTool-Server" options="-Xlint:unchecked" />
       <module name="RemoteSupportTool-Staff" options="-Xlint:unchecked" />
       <module name="release" options="" />
     </option>

@@ -23,6 +23,11 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Options of the staff application.
+ *
+ * @author Andreas Rudolph
+ */
 @SuppressWarnings("WeakerAccess")
 public class StaffOptions extends AbstractOptions {
     @SuppressWarnings("unused")

@@ -17,9 +17,14 @@ package de.openindex.support.core.io;
 
 import java.io.Serializable;
 
+/**
+ * Response with a screenshot.
+ *
+ * @author Andreas Rudolph
+ */
 public class ScreenResponse implements Serializable {
     private static final long serialVersionUID = 1;
-    public final Tile[] tiles;
+    public final ScreenTile[] tiles;
     public final int screenWidth;
     public final int screenHeight;
     public final int imageWidth;
@@ -31,7 +36,7 @@ public class ScreenResponse implements Serializable {
         this(null, 0, 0, 0, 0, 0, 0);
     }
 
-    public ScreenResponse(Tile[] tiles, int screenWidth, int screenHeight, int imageWidth, int imageHeight, int tileWidth, int tileHeight) {
+    public ScreenResponse(ScreenTile[] tiles, int screenWidth, int screenHeight, int imageWidth, int imageHeight, int tileWidth, int tileHeight) {
         super();
         this.tiles = tiles;
         this.screenWidth = screenWidth;

@@ -17,6 +17,11 @@ package de.openindex.support.core.io;
 
 import java.io.Serializable;
 
+/**
+ * Request for a text being pasted.
+ *
+ * @author Andreas Rudolph
+ */
 public class PasteTextRequest implements Serializable {
     private static final long serialVersionUID = 1;
     public final String text;

@@ -60,6 +60,11 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Main frame of the staff application.
+ *
+ * @author Andreas Rudolph
+ */
 @SuppressWarnings("WeakerAccess")
 public abstract class StaffFrame extends JFrame {
     @SuppressWarnings("unused")

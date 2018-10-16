@@ -26,6 +26,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * General handler on a socket.
+ *
+ * @author Andreas Rudolph
+ */
 public abstract class SocketHandler {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(SocketHandler.class);

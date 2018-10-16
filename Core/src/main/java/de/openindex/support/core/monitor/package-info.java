@@ -13,27 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openindex.support.core.io;
-
-import java.io.Serializable;
 
 /**
- * Request for a mouse being moved.
+ * Classes for monitoring data transfer.
  *
  * @author Andreas Rudolph
  */
-public class MouseMoveRequest implements Serializable {
-    private static final long serialVersionUID = 1;
-    public final int x;
-    public final int y;
-
-    public MouseMoveRequest() {
-        this(-1, -1);
-    }
-
-    public MouseMoveRequest(int x, int y) {
-        super();
-        this.x = x;
-        this.y = y;
-    }
-}
+package de.openindex.support.core.monitor;

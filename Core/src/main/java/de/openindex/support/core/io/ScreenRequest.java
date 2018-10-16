@@ -17,6 +17,11 @@ package de.openindex.support.core.io;
 
 import java.io.Serializable;
 
+/**
+ * Request for a screenshot.
+ *
+ * @author Andreas Rudolph
+ */
 public class ScreenRequest implements Serializable {
     private static final long serialVersionUID = 1;
     public final int maxWidth;

@@ -17,6 +17,11 @@ package de.openindex.support.core.io;
 
 import java.io.Serializable;
 
+/**
+ * Request for the mouse wheel being rotated.
+ *
+ * @author Andreas Rudolph
+ */
 public class MouseWheelRequest implements Serializable {
     private static final long serialVersionUID = 1;
     public final int wheelAmt;

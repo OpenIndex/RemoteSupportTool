@@ -23,6 +23,11 @@ import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Panel, that renders a sidebar with multiple background images.
+ *
+ * @author Andreas Rudolph
+ */
 public class SidebarPanel extends JPanel {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(SidebarPanel.class);

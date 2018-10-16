@@ -40,6 +40,11 @@ import org.apache.commons.text.StringSubstitutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * General dialog with application information.
+ *
+ * @author Andreas Rudolph
+ */
 public abstract class AboutDialog extends JDialog {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(AboutDialog.class);

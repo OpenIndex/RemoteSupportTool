@@ -28,8 +28,8 @@ import de.openindex.support.core.io.PasteTextRequest;
 import de.openindex.support.core.io.ResponseFactory;
 import de.openindex.support.core.io.ScreenRequest;
 import de.openindex.support.core.io.ScreenResponse;
+import de.openindex.support.core.io.ScreenTile;
 import de.openindex.support.core.io.SocketHandler;
-import de.openindex.support.core.io.Tile;
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.GraphicsConfiguration;
@@ -69,6 +69,11 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Customer application.
+ *
+ * @author Andreas Rudolph
+ */
 public class CustomerApplication {
     @SuppressWarnings("unused")
     private static Logger LOGGER;
@@ -648,7 +653,7 @@ public class CustomerApplication {
             }
 
             // create tiles to send in response
-            List<Tile> tiles = new ArrayList<>();
+            List<ScreenTile> tiles = new ArrayList<>();
             for (BufferedImage slice : slicesToSend) {
                 if (slice == null) {
                     tiles.add(null);
@@ -656,7 +661,7 @@ public class CustomerApplication {
                 }
                 try (ByteArrayOutputStream imageOutput = new ByteArrayOutputStream()) {
                     ImageUtils.write(slice, imageOutput, JPEG_COMPRESSION);
-                    tiles.add(new Tile(imageOutput.toByteArray()));
+                    tiles.add(new ScreenTile(imageOutput.toByteArray()));
                 } catch (IOException ex) {
                     LOGGER.error("Can't create screenshot slice!", ex);
                     return null;
@@ -666,7 +671,7 @@ public class CustomerApplication {
             // send response with modified tiles
             //LOGGER.debug("sending screenshot response");
             return new ScreenResponse(
-                    tiles.toArray(new Tile[0]),
+                    tiles.toArray(new ScreenTile[0]),
                     screen.getDisplayMode().getWidth(),
                     screen.getDisplayMode().getHeight(),
                     imageToSend.getWidth(),

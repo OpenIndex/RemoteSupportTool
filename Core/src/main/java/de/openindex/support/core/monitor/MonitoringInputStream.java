@@ -23,6 +23,11 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * InputStream, that collects statistical records about data transfer.
+ *
+ * @author Andreas Rudolph
+ */
 public class MonitoringInputStream extends FilterInputStream {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(MonitoringInputStream.class);

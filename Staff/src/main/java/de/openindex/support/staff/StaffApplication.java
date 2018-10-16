@@ -31,8 +31,8 @@ import de.openindex.support.core.io.MouseWheelRequest;
 import de.openindex.support.core.io.PasteTextRequest;
 import de.openindex.support.core.io.ScreenRequest;
 import de.openindex.support.core.io.ScreenResponse;
+import de.openindex.support.core.io.ScreenTile;
 import de.openindex.support.core.io.SocketHandler;
-import de.openindex.support.core.io.Tile;
 import de.openindex.support.core.monitor.DataMonitor;
 import de.openindex.support.core.monitor.MonitoringInputStream;
 import de.openindex.support.core.monitor.MonitoringOutputStream;
@@ -76,6 +76,11 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Staff application.
+ *
+ * @author Andreas Rudolph
+ */
 public class StaffApplication {
     @SuppressWarnings("unused")
     private static Logger LOGGER;
@@ -649,7 +654,7 @@ public class StaffApplication {
                 //int byteCount = 0;
                 //int sliceCount = 0;
                 List<BufferedImage> slices = new ArrayList<>();
-                for (Tile tile : response.tiles) {
+                for (ScreenTile tile : response.tiles) {
                     if (tile == null) {
                         slices.add(null);
                         continue;
