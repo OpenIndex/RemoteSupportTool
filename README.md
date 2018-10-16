@@ -109,6 +109,7 @@ forwarding).
     -   integrated SSL encryption
     -   integrated SSH tunneling (remote port forwarding) in order to avoid any 
         changes to the router settings
+    -   ssh authentication via password or public key
 -   simple to use
     -   no external dependencies required
     -   integrated OpenJDK runtime environment 
