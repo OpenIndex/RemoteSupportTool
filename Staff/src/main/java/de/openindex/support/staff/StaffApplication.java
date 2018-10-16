@@ -324,14 +324,20 @@ public class StaffApplication {
                     jsch.setKnownHosts(new File(WORK_DIR, "known_hosts.txt").getAbsolutePath());
                     if (sshKeyAuth && sshKey.isFile()) jsch.addIdentity(sshKey.getAbsolutePath());
 
-                    //noinspection ConstantConditions
                     tunnel = jsch.getSession(sshUser, sshHost, sshPort);
 
+                    // setup host key checking
                     if (Boolean.parseBoolean(setting("sshHostKeyCheck", "true")))
                         tunnel.setConfig("StrictHostKeyChecking", "ask");
                     else
                         tunnel.setConfig("StrictHostKeyChecking", "no");
 
+                    // setup packet compression
+                    tunnel.setConfig("compression.s2c", "zlib,none");
+                    tunnel.setConfig("compression.c2s", "zlib,none");
+                    tunnel.setConfig("compression_level", "9");
+
+                    // setup connection info
                     tunnel.setUserInfo(new UserInfo() {
                         private String passphrasePrompt = null;
                         private String passwordPrompt = null;
