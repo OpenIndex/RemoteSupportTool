@@ -11,6 +11,7 @@
         <module name="RemoteSupportTool-Staff" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="10" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
