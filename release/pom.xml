@@ -142,8 +142,8 @@
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
                                     <priority>normal</priority>
-                                    <downloadUrl>https://adoptopenjdk.net/</downloadUrl>
-                                    <supportUrl></supportUrl>
+                                    <downloadUrl>${launch4j.downloadUrl}</downloadUrl>
+                                    <supportUrl>${launch4j.supportUrl}</supportUrl>
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
@@ -196,8 +196,8 @@
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
                                     <priority>normal</priority>
-                                    <downloadUrl>https://adoptopenjdk.net/</downloadUrl>
-                                    <supportUrl></supportUrl>
+                                    <downloadUrl>${launch4j.downloadUrl}</downloadUrl>
+                                    <supportUrl>${launch4j.supportUrl}</supportUrl>
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
@@ -250,8 +250,8 @@
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
                                     <priority>normal</priority>
-                                    <downloadUrl>https://adoptopenjdk.net/</downloadUrl>
-                                    <supportUrl></supportUrl>
+                                    <downloadUrl>${launch4j.downloadUrl}</downloadUrl>
+                                    <supportUrl>${launch4j.supportUrl}</supportUrl>
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
@@ -304,8 +304,8 @@
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
                                     <priority>normal</priority>
-                                    <downloadUrl>https://adoptopenjdk.net/</downloadUrl>
-                                    <supportUrl></supportUrl>
+                                    <downloadUrl>${launch4j.downloadUrl}</downloadUrl>
+                                    <supportUrl>${launch4j.supportUrl}</supportUrl>
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
