@@ -56,6 +56,10 @@
         <version.logback>1.2.3</version.logback>
         <version.miglayout>5.2</version.miglayout>
         <version.slf4j>1.7.25</version.slf4j>
+        <createChecksum>true</createChecksum>
+
+        <!-- Set this value to true, in order to skip GPG signing during the release phase. -->
+        <gpg.skip>false</gpg.skip>
     </properties>
 
     <dependencyManagement>
@@ -155,6 +159,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>2.5.2</version>
                 </plugin>
@@ -217,6 +226,23 @@
                                     <encoding>${project.build.sourceEncoding}</encoding>
                                     <docencoding>${project.build.sourceEncoding}</docencoding>
                                     <additionalOptions>-html4</additionalOptions>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <keyname>${gpg.keyname}</keyname>
+                                    <passphraseServerId>${gpg.passphrase}</passphraseServerId>
                                 </configuration>
                             </execution>
                         </executions>
