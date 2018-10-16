@@ -72,9 +72,9 @@ possible to provide a single executable file for the end users, that contains
 all required configurations by default.
 
 
-### Remote Support Server (for the customer)
+### Customer Support Tool
 
-![dialog for customers](share/screenshots/server-window.png)
+![dialog for customers](share/screenshots/customer-window.png)
 
 From the customer perspective the software is as simple as possible. Only a
 hostname / IP address and port number has to be provided in order to share the
@@ -88,9 +88,9 @@ application. According to our goal this is the **easiest solution possible**
 from the customer perspective.
 
 
-### Remote Support Client (for the support staff)
+### Staff Support Tool
 
-![dialog for support staff](share/screenshots/client-window.png)
+![dialog for support staff](share/screenshots/staff-window.png)
 
 At minimum the support staff only has to provide a port number, on which the 
 customer will connect. If the customer is connecting through the internet, SSL
