@@ -6,7 +6,7 @@
     <string>6.0</string>
 
     <key>CFBundleIdentifier</key>
-    <string>de.openindex.support.customer</string>
+    <string>de.openindex.support.customer.default</string>
 
     <key>CFBundleName</key>
     <string>CustomerSupport</string>
