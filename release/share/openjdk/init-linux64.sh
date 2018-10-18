@@ -26,9 +26,6 @@
 
 TARGET="linux64"
 TARGET_JDK="https://github.com/AdoptOpenJDK/openjdk10-releases/releases/download/jdk-10.0.2%2B13/OpenJDK10_x64_Linux_jdk-10.0.2.13.tar.gz"
-SYSTEM_JDK="https://github.com/AdoptOpenJDK/openjdk10-releases/releases/download/jdk-10.0.2%2B13/OpenJDK10_x64_Linux_jdk-10.0.2.13.tar.gz"
-#TARGET_JDK="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11%2B28/OpenJDK11-jdk_x64_linux_hotspot_11_28.tar.gz"
-#SYSTEM_JDK="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11%2B28/OpenJDK11-jdk_x64_linux_hotspot_11_28.tar.gz"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOWNLOADS_DIR="$DIR/downloads"
@@ -41,6 +38,7 @@ TEMP_DIR="$DIR/temp"
 #
 
 set -e
+source "$DIR/init.sh"
 rm -Rf "$DIR/jmods/$TARGET"
 mkdir -p "$DIR/jmods"
 mkdir -p "$LOCAL_DIR"
@@ -53,11 +51,21 @@ mkdir -p "$LOCAL_DIR"
 mkdir -p "$DOWNLOADS_DIR"
 cd "$DOWNLOADS_DIR"
 
-echo "Downloading OpenJDK for $TARGET..."
-wget -nc "$TARGET_JDK"
+if [ ! -f "$DOWNLOADS_DIR/$(basename ${TARGET_JDK})" ]; then
+    echo "Downloading OpenJDK for $TARGET..."
+    #wget -nc "$TARGET_JDK"
+    curl -L \
+      -o "$(basename ${TARGET_JDK})" \
+      "$TARGET_JDK"
+fi
 
-echo "Downloading OpenJDK for jlink..."
-wget -nc "$SYSTEM_JDK"
+if [ ! -f "$DOWNLOADS_DIR/$(basename ${SYSTEM_JDK})" ]; then
+    echo "Downloading OpenJDK for jlink..."
+    #wget -nc "$SYSTEM_JDK"
+    curl -L \
+      -o "$(basename ${SYSTEM_JDK})" \
+      "$SYSTEM_JDK"
+fi
 
 
 #
