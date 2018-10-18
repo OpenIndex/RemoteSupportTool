@@ -1,0 +1,4 @@
+;!@Install@!UTF-8!
+Title="StaffSupportTool"
+RunProgram="bin\Start.exe"
+;!@InstallEnd@!

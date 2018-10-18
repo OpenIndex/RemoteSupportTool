@@ -1,0 +1,5 @@
+share/openjdk/*
+!share/openjdk/*.sh
+!share/openjdk/*.md
+signed/
+target/

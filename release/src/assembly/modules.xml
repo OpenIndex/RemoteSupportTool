@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+
+    <id>modules</id>
+    <baseDirectory>${project.parent.artifactId}-${project.version}</baseDirectory>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <formats>
+        <format>dir</format>
+    </formats>
+
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <binaries>
+                <outputDirectory></outputDirectory>
+                <outputFileNameMapping>
+                    ${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}
+                </outputFileNameMapping>
+                <unpack>false</unpack>
+                <includes>
+                    <include>${project.groupId}:*</include>
+                </includes>
+            </binaries>
+        </moduleSet>
+        <!--
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <binaries>
+                <outputDirectory>lib</outputDirectory>
+                <outputFileNameMapping>
+                    ${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}
+                </outputFileNameMapping>
+                <attachmentClassifier>javadoc</attachmentClassifier>
+                <unpack>false</unpack>
+                <includes>
+                    <include>${project.groupId}:*</include>
+                </includes>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <binaries>
+                <outputDirectory>lib</outputDirectory>
+                <outputFileNameMapping>
+                    ${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}
+                </outputFileNameMapping>
+                <attachmentClassifier>sources</attachmentClassifier>
+                <unpack>false</unpack>
+                <includes>
+                    <include>${project.groupId}:*</include>
+                </includes>
+            </binaries>
+        </moduleSet>
+        -->
+    </moduleSets>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory></outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>
