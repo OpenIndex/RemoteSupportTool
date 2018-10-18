@@ -1,3 +1,5 @@
+target
+
 # Don't put generated keystore / truststore files in repository.
 share/ssl/*
 !share/ssl/init.sh
