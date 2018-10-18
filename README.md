@@ -13,14 +13,14 @@ and the requirement of any third party VNC software was dropped.
 *Remote Support Tool* provides a graphical interface for both sides of a remote
 support session:
 
--   *Remote Support Server* is started by the customer, who likes to provide 
+-   *Customer Support Tool* is started by the customer, who likes to provide 
     access on his desktop for a support staff.
 
--   *Remote Support Client* is started by the support staff in order to access
+-   *Staff Support Tool* is started by the support staff in order to access
     the customers desktop remotely. 
 
 Because both sides of a support session are covered by *Remote Support Tool*,
-the software uses its own protocol for communication between client and server.
+the software uses its own protocol for communication between customer and staff.
 The application is currently **not compatible with other VNC based software**. 
 
 
@@ -137,6 +137,8 @@ forwarding).
 -   shared clipboard 
     (see [issue #13](https://github.com/OpenIndex/RemoteSupportTool/issues/13))
 
+see full [list of proposed enhancements](https://github.com/OpenIndex/RemoteSupportTool/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
 
 Supported operating systems
 ---------------------------
@@ -152,7 +154,7 @@ Translations
 
 *Remote Support Tool* is developed in **English** and is translated into
 **German** language. The
-[translation documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Translation)
+[configuration documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Configuration)
 contains information about how to translate the application for yourself. Feel
 free to send your translation files to us.
 
