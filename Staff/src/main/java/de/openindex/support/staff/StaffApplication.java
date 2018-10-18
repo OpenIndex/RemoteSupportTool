@@ -81,18 +81,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Andreas Rudolph
  */
+@SuppressWarnings("WeakerAccess")
 public class StaffApplication {
     @SuppressWarnings("unused")
     private static Logger LOGGER;
-    @SuppressWarnings("WeakerAccess")
     public final static ResourceBundle SETTINGS;
-    @SuppressWarnings("WeakerAccess")
     public final static String NAME;
-    @SuppressWarnings("WeakerAccess")
     public final static String TITLE;
-    @SuppressWarnings("WeakerAccess")
     public final static String VERSION;
-    @SuppressWarnings("WeakerAccess")
     public final static File WORK_DIR;
     private static StaffOptions options = null;
     private static StaffFrame frame = null;
@@ -242,14 +238,19 @@ public class StaffApplication {
         }));
     }
 
-    @SuppressWarnings("WeakerAccess")
     public static URL resource(String file) {
         return StaffApplication.class.getResource("resources/" + file);
     }
 
-    @SuppressWarnings("WeakerAccess")
+    @SuppressWarnings("Duplicates")
     public static URL resourceBranding() {
-        return resource("branding.png");
+        final Locale l = Locale.getDefault();
+
+        URL branding = resource("branding_" + l.getLanguage() + "-" + l.getCountry() + ".png");
+        if (branding == null) branding = resource("branding_" + l.getLanguage() + ".png");
+        if (branding == null) branding = resource("branding.png");
+
+        return branding;
     }
 
     public static String setting(String key) {

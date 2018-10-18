@@ -74,18 +74,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Andreas Rudolph
  */
+@SuppressWarnings("WeakerAccess")
 public class CustomerApplication {
     @SuppressWarnings("unused")
     private static Logger LOGGER;
-    @SuppressWarnings("WeakerAccess")
     public final static ResourceBundle SETTINGS;
-    @SuppressWarnings("WeakerAccess")
     public final static String NAME;
-    @SuppressWarnings("WeakerAccess")
     public final static String TITLE;
-    @SuppressWarnings("WeakerAccess")
     public final static String VERSION;
-    @SuppressWarnings("WeakerAccess")
     public final static File WORK_DIR;
     private final static float JPEG_COMPRESSION = 0.6f;
     private final static int SLICE_WIDTH = 100;
@@ -240,14 +236,19 @@ public class CustomerApplication {
         }));
     }
 
-    @SuppressWarnings("WeakerAccess")
     public static URL resource(String file) {
         return CustomerApplication.class.getResource("resources/" + file);
     }
 
-    @SuppressWarnings("WeakerAccess")
+    @SuppressWarnings("Duplicates")
     public static URL resourceBranding() {
-        return resource("branding.png");
+        final Locale l = Locale.getDefault();
+
+        URL branding = resource("branding_" + l.getLanguage() + "-" + l.getCountry() + ".png");
+        if (branding == null) branding = resource("branding_" + l.getLanguage() + ".png");
+        if (branding == null) branding = resource("branding.png");
+
+        return branding;
     }
 
     public static String setting(String key) {
