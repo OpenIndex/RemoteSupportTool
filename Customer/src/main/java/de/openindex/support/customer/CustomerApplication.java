@@ -331,7 +331,7 @@ public class CustomerApplication {
 
     private static class AboutDialog extends de.openindex.support.core.gui.AboutDialog {
         private AboutDialog() {
-            super(frame, SETTINGS, resourceBranding());
+            super(frame, SETTINGS, resource("sidebar_about.png"), resourceBranding());
         }
 
         @Override

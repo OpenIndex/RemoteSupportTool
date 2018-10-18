@@ -106,7 +106,7 @@ public abstract class CustomerFrame extends JFrame {
 
         // sidebar
         SidebarPanel sidebarPanel = new SidebarPanel(
-                ImageUtils.loadImage(CustomerApplication.resource("sidebar_server.png")),
+                ImageUtils.loadImage(CustomerApplication.resource("sidebar_staff.png")),
                 ImageUtils.loadImage(CustomerApplication.resourceBranding())
         );
 

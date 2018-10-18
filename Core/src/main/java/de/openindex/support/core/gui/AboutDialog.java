@@ -49,11 +49,13 @@ public abstract class AboutDialog extends JDialog {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(AboutDialog.class);
     private final ResourceBundle settings;
+    private final URL sidebarImageUrl;
     private final URL brandingImageUrl;
 
-    protected AboutDialog(Frame owner, ResourceBundle settings, URL brandingImageUrl) {
+    protected AboutDialog(Frame owner, ResourceBundle settings, URL sidebarImageUrl, URL brandingImageUrl) {
         super(owner, true);
         this.settings = settings;
+        this.sidebarImageUrl = sidebarImageUrl;
         this.brandingImageUrl = brandingImageUrl;
     }
 
@@ -73,7 +75,7 @@ public abstract class AboutDialog extends JDialog {
 
         // sidebar
         SidebarPanel sidebarPanel = new SidebarPanel(
-                ImageUtils.loadImage(AppUtils.resource("sidebar_about.png")),
+                ImageUtils.loadImage(this.sidebarImageUrl),
                 ImageUtils.loadImage(brandingImageUrl)
         );
 
