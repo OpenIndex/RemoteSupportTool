@@ -30,14 +30,11 @@ import de.openindex.support.core.io.ScreenRequest;
 import de.openindex.support.core.io.ScreenResponse;
 import de.openindex.support.core.io.ScreenTile;
 import de.openindex.support.core.io.SocketHandler;
+import de.openindex.support.customer.utils.Robot;
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -63,6 +60,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.ILoggerFactory;
@@ -410,28 +408,17 @@ public class CustomerApplication {
 
                     if (request.keyCode != KeyEvent.VK_UNDEFINED)
                         robot.keyPress(request.keyCode);
-                    /*else if (request.keyChar != KeyEvent.CHAR_UNDEFINED) {
+                    else if (request.keyChar != KeyEvent.CHAR_UNDEFINED) {
                         int code = KeyEvent.getExtendedKeyCodeForChar(request.keyChar);
-
-                        //LOGGER.debug("special key pressed  : " +
-                                request.keyChar + " / " +
-                                code + " / " +
-                                KeyEvent.getKeyText(code) + " / " +
-                                Character.isLetterOrDigit(request.keyChar)
-                        );
-
-                        try {
-                            if (code != KeyEvent.VK_UNDEFINED) {
-                                //LOGGER.debug("> press");
+                        //LOGGER.debug("key pressed: " + request.keyChar + " / " + code + " / " + CharUtils.isAsciiPrintable(request.keyChar));
+                        if (CharUtils.isAsciiAlphanumeric(request.keyChar) && code != KeyEvent.VK_UNDEFINED) {
+                            try {
                                 robot.keyPress(code);
+                            } catch (IllegalArgumentException ex) {
+                                LOGGER.warn("Can't press key '" + request.keyChar + "' (" + code + "): " + ex.getLocalizedMessage());
                             }
-                        } catch (IllegalArgumentException ex) {
-                            //LOGGER.debug("Can't press key " +
-                                    "(" + request.keyChar + "): " +
-                                    ex.getLocalizedMessage() + "!");
                         }
-
-                    }*/
+                    }
 
                 } else if (object instanceof KeyReleaseRequest) {
 
@@ -441,29 +428,17 @@ public class CustomerApplication {
                     if (request.keyCode != KeyEvent.VK_UNDEFINED)
                         robot.keyRelease(request.keyCode);
                     else if (request.keyChar != KeyEvent.CHAR_UNDEFINED) {
-                        /*int code = KeyEvent.getExtendedKeyCodeForChar(request.keyChar);
-                        boolean doPaste = code == KeyEvent.VK_UNDEFINED
-                                || !CharUtils.isAscii(request.keyChar);
-
-                        //LOGGER.debug("special key released : " +
-                                request.keyChar + " / " +
-                                code + " / " +
-                                KeyEvent.getKeyText(code) + " / " +
-                                doPaste);
-
-                        try {
-                            if (code != KeyEvent.VK_UNDEFINED) {
-                                //LOGGER.debug("> release");
+                        int code = KeyEvent.getExtendedKeyCodeForChar(request.keyChar);
+                        //LOGGER.debug("key released: " + request.keyChar + " / " + code + " / " + CharUtils.isAsciiPrintable(request.keyChar));
+                        if (robot.isPressed(code)) {
+                            try {
                                 robot.keyRelease(code);
+                            } catch (IllegalArgumentException ex) {
+                                LOGGER.warn("Can't release key '" + request.keyChar + "' (" + code + "): " + ex.getLocalizedMessage());
                             }
-                        } catch (IllegalArgumentException ex) {
-                            //LOGGER.debug("Can't release key " +
-                                    "(" + request.keyChar + "): " +
-                                    ex.getLocalizedMessage() + "!");
-                            doPaste = true;
+                        } else {
+                            robot.printCharacter(request.keyChar);
                         }
-                        if (doPaste) robot.printSpecialChar(request.keyChar);*/
-                        robot.printSpecialChar(request.keyChar);
                     }
 
                 } else if (object instanceof MouseMoveRequest) {
@@ -512,76 +487,6 @@ public class CustomerApplication {
         public void stop() {
             super.stop();
             CustomerApplication.stop(false);
-        }
-    }
-
-    private static class Robot extends java.awt.Robot {
-        private Robot(GraphicsDevice screen) throws AWTException {
-            super(screen);
-            //setAutoDelay(50);
-            setAutoWaitForIdle(true);
-        }
-
-        private void pasteText(String text) {
-            //waitForIdle();
-
-            final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-            String oldClipboardValue;
-            try {
-                oldClipboardValue = (String) clipboard.getData(DataFlavor.stringFlavor);
-            } catch (Exception ex) {
-                //LOGGER.warn("Can't read clipboard value!", ex);
-                oldClipboardValue = StringUtils.EMPTY;
-            }
-            try {
-                clipboard.setContents(new StringSelection(text), null);
-
-                if (SystemUtils.IS_OS_MAC_OSX)
-                    keyPress(KeyEvent.VK_META);
-                else
-                    keyPress(KeyEvent.VK_CONTROL);
-
-                keyPress(KeyEvent.VK_V);
-                keyRelease(KeyEvent.VK_V);
-
-                if (SystemUtils.IS_OS_MAC_OSX)
-                    keyRelease(KeyEvent.VK_META);
-                else
-                    keyRelease(KeyEvent.VK_CONTROL);
-            } finally {
-                if (oldClipboardValue != null)
-                    clipboard.setContents(new StringSelection(oldClipboardValue), null);
-            }
-        }
-
-        private void printSpecialChar(char code) {
-            //waitForIdle();
-            //LOGGER.debug("printSpecialChar: " + code);
-
-            // release modifier keys, that may have been set previously
-            keyRelease(KeyEvent.VK_SHIFT);
-            keyRelease(KeyEvent.VK_CONTROL);
-            keyRelease(KeyEvent.VK_ALT);
-            keyRelease(KeyEvent.VK_ALT_GRAPH);
-            if (SystemUtils.IS_OS_MAC_OSX)
-                keyRelease(KeyEvent.VK_META);
-
-            // paste the special character through the system clipboard
-            pasteText(String.valueOf(code));
-
-            // emulate input of special characters
-            //keyPress(KeyEvent.VK_ALT);
-            //keyPress(KeyEvent.VK_NUMPAD0);
-            //keyRelease(KeyEvent.VK_NUMPAD0);
-            //String altCode = Integer.toString(code);
-            //for (int i = 0; i < altCode.length(); i++) {
-            //    code = (char) (altCode.charAt(i) + '0');
-            //    //delay(20);//may be needed for certain applications
-            //    keyPress(code);
-            //    //delay(20);//uncomment if necessary
-            //    keyRelease(code);
-            //}
-            //keyRelease(KeyEvent.VK_ALT);
         }
     }
 

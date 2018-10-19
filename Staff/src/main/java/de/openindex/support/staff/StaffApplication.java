@@ -513,17 +513,18 @@ public class StaffApplication {
             if (handler == null) return;
             //LOGGER.debug("key pressed: " + e.paramString());
 
-            if (e.getKeyChar() == KeyEvent.CHAR_UNDEFINED)
-                handler.sendKeyPress(e.getKeyCode());
-            else if (e.getKeyCode() != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(e.getKeyChar()))
-                handler.sendKeyPress(e.getKeyCode());
-            else
-                handler.sendKeyPress(e.getKeyChar());
+            final int code = e.getKeyCode();
+            final char character = e.getKeyChar();
 
-            //if (e.getKeyCode() == KeyEvent.VK_UNDEFINED)
-            //    handler.sendKeyPress(e.getKeyChar());
-            //else
-            //    handler.sendKeyPress(e.getKeyCode());
+            if (character == KeyEvent.CHAR_UNDEFINED && code == KeyEvent.VK_UNDEFINED)
+                return;
+
+            if (character == KeyEvent.CHAR_UNDEFINED)
+                handler.sendKeyPress(code);
+            else if (code != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(character))
+                handler.sendKeyPress(code);
+            else
+                handler.sendKeyPress(character);
         }
 
         @Override
@@ -531,17 +532,18 @@ public class StaffApplication {
             if (handler == null) return;
             //LOGGER.debug("key released: " + e.paramString());
 
-            if (e.getKeyChar() == KeyEvent.CHAR_UNDEFINED)
-                handler.sendKeyRelease(e.getKeyCode());
-            else if (e.getKeyCode() != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(e.getKeyChar()))
-                handler.sendKeyRelease(e.getKeyCode());
-            else
-                handler.sendKeyRelease(e.getKeyChar());
+            final int code = e.getKeyCode();
+            final char character = e.getKeyChar();
 
-            //if (e.getKeyCode() == KeyEvent.VK_UNDEFINED)
-            //    handler.sendKeyRelease(e.getKeyChar());
-            //else
-            //    handler.sendKeyRelease(e.getKeyCode());
+            if (character == KeyEvent.CHAR_UNDEFINED && code == KeyEvent.VK_UNDEFINED)
+                return;
+
+            if (character == KeyEvent.CHAR_UNDEFINED)
+                handler.sendKeyRelease(code);
+            else if (code != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(character))
+                handler.sendKeyRelease(code);
+            else
+                handler.sendKeyRelease(character);
         }
 
         @Override
