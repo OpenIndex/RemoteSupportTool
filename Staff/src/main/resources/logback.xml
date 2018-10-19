@@ -11,7 +11,7 @@
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${app.dir}/staff.log</file>
         <append>false</append>
-        <immediateFlush>false</immediateFlush>
+        <immediateFlush>true</immediateFlush>
         <encoder>
             <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
         </encoder>
