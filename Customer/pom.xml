@@ -7,7 +7,7 @@
     <parent>
         <artifactId>RemoteSupportTool</artifactId>
         <groupId>de.openindex.support</groupId>
-        <version>1.0.0</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>RemoteSupportTool-Customer</artifactId>
