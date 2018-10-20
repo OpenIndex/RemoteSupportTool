@@ -1,12 +1,18 @@
 Changelog for Remote Support Tool
 =================================
 
-0.5.1 (08 Oct 2018)
+1.0.0 (20 Oct 2018)
 -------------------
 
--   update to OpenSSH 7.8p1-1 for Windows Vista and newer
--   update to TightVNC 2.8.11
--   update to OSXvnc 5.2.1
+-   migrated from Tcl/Tk to Java
+-   implement the whole support session in Java, no need for external 
+    applications (x11vnc, OSXvnc, TightVNC, OpenSSH)
+-   provide a graphical interface for both sides of a support session 
+    (customer & support staff)
+-   provided binaries are bundles with a stripped down version of the
+    OpenJDK runtime environment (version 10)
+-   provide a signed application bundle for macOS
+-   switched from MIT to Apache License 2.0
 
 
 0.5 (16 Jan 2017)

@@ -1,14 +1,34 @@
-Remote Support Tool 0.5.1
+Remote Support Tool 1.0.0
 =========================
 
-*Remote Support Tool* is an easy single click solution for remote maintenance
-via [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing) inspired by
-[UltraVNC Single Click](http://www.uvnc.com/products/uvnc-sc.html) and
-[Gitso](https://code.google.com/p/gitso/).
+*Remote Support Tool* is an easy single click solution for remote maintenance.
+
+This project started initially as a 
+[VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing) launcher 
+inspired by [UltraVNC Single Click](http://www.uvnc.com/products/uvnc-sc.html) 
+and [Gitso](https://code.google.com/p/gitso/). For a more consistent platform 
+support and better compatibility the software was completely rewritten in Java 
+and the requirement of any third party VNC software was dropped.
+
+*Remote Support Tool* provides a graphical interface for both sides of a remote
+support session:
+
+-   *Customer Support Tool* is started by the customer, who likes to provide 
+    access on his desktop for a support staff.
+
+-   *Staff Support Tool* is started by the support staff in order to access
+    the customers desktop remotely. 
+
+Because both sides of a support session are covered by *Remote Support Tool*,
+the software uses its own protocol for communication between customer and staff.
+The application is currently **not compatible with other VNC based software**. 
 
 
 About this program
 ------------------
+
+
+### Motivation
 
 [Remote administration](https://en.wikipedia.org/wiki/Remote_administration) is
 common practice in software support for end users. There are a lot of different
@@ -41,41 +61,102 @@ at least in one of these requirements:
 -   Support for different languages - because not all end users speak English.
 
 Because we did not find a solution that fits all of these requirements, we've
-decided to build our own little application based on
-[VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing). In general this
-application behaves similar to the
+decided to build our own solution to fit this gap. From a customer perspective 
+this application behaves similar to the
 [UltraVNC Single Click](http://www.uvnc.com/products/uvnc-sc.html) solution -
-but it also provides encryption and supports Linux and Mac OS X.
+but it also provides encryption and supports Linux and macOS.
 
-In addition we wanted to make this program customizable for other companies.
-
--   A company may provide custom configuration files together with the
-    executable binary.
-
--   A company may compile its configurations directly into the executable
-    binary. This makes it possible to provide a single executable file for the
-    end users, that contains all required configurations by default.
-
-In both cases the end user just has to click the *Connect* button and does not
-have to change any settings.
+In addition we wanted to make this program customizable for other companies. A 
+company may compile a custom configuration into the application. This makes it 
+possible to provide a single executable file for the end users, that contains 
+all required configurations by default.
 
 
-### Application dialog
+### Customer Support Tool
 
-![application dialog](misc/screenshots/application-dialog.png)
+![dialog for customers](share/screenshots/customer-window.png)
 
-In the best case the end user will just have to click the *Connect* button. But
-maybe the support staff will have to tell his IP address to the end user.
-Therefore the user will find the most basic settings directly in the application
-window.
+From the customer perspective the software is as simple as possible. Only a
+hostname / IP address and port number has to be provided in order to share the
+screen with the support staff. If the customer uses multiple monitors, he also
+might select which screen he likes to share.
+
+A company, that offers remote support, can create its custom preconfigured build 
+of this software, that provides all necessary settings by default. In this case 
+the customer will just have to click the *Connect* button after starting the 
+application. According to our goal this is the **easiest solution possible** 
+from the customer perspective.
 
 
-### Extended settings dialog
+### Staff Support Tool
 
-![extended settings dialog](misc/screenshots/settings-dialog.png)
+![dialog for support staff](share/screenshots/staff-window.png)
 
-All relevant settings for a VNC reverse connection (tunneled through SSH) can be
-modified in the extended settings dialog if necessary.
+At minimum the support staff only has to provide a port number, on which the 
+customer will connect. If the customer is connecting through the internet, SSL
+encryption is recommended. In order to avoid problems with port forwarding in the
+local router, the support staff might also enable SSH tunneling (SSH remote port 
+forwarding).
+
+
+### Features
+
+-   support staff can remotely access the customers screen
+    -   send keyboard and mouse inputs to the customer for remote control
+    -   screen is transferred with JPG compression
+    -   only changed regions of the screen are transferred
+-   private and secure
+    -   integrated SSL encryption
+    -   integrated SSH tunneling (remote port forwarding) in order to avoid any 
+        changes to the router settings
+    -   ssh authentication via password or public key
+-   simple to use
+    -   no external dependencies required
+    -   integrated OpenJDK runtime environment 
+    -   single file launchers; just download and start the application
+    -   signed application bundle for macOS
+-   cross platform 
+    -   support for Windows (32-bit / 64-bit)
+    -   support for macOS
+    -   support for Linux (i686 / x86_64)
+-   multilingual
+    -   available in English & German
+    -   translatable in other languages if necessary
+-   customizable
+    -   provide the necessary default settings to make the application as easy
+        as possible to use for the customer
+    -   add your company logo as a branding
+-   business friendly Open Source license 
+    ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html))
+    
+    
+### Planned features
+
+-   file transfers 
+    (see [issue #12](https://github.com/OpenIndex/RemoteSupportTool/issues/12))
+-   shared clipboard 
+    (see [issue #13](https://github.com/OpenIndex/RemoteSupportTool/issues/13))
+
+see full [list of proposed enhancements](https://github.com/OpenIndex/RemoteSupportTool/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+
+Supported operating systems
+---------------------------
+
+-   Windows (7 or newer, 32bit & 64bit) 
+    *(Vista was not tested yet but may also work)*
+-   Mac OS X (10.7.3 or newer)
+-   Linux (i686 / amd64)
+
+
+Translations
+------------
+
+*Remote Support Tool* is developed in **English** and is translated into
+**German** language. The
+[configuration documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Configuration)
+contains information about how to translate the application for yourself. Feel
+free to send your translation files to us.
 
 
 Documentation
@@ -85,97 +166,50 @@ You can find documentations about *Remote Support Tool* in the
 [project wiki](https://github.com/OpenIndex/RemoteSupportTool/wiki).
 
 
-Bundled applications
---------------------
-
-The following applications are bundled into *Remote Support Tool* (depending on
-the operating system):
-
--   for Linux (i386 / amd64)
-
-    -   [x11vnc 0.9.13](http://www.karlrunge.com/x11vnc/) (GPLv2) created with
-        the [`build-x11vnc.tcl`](utils/build-x11vnc.tcl) script
-
--   for Mac OS X (10.11+)
-
-    -   [OSXvnc 5.2.1](https://github.com/stweil/OSXvnc) (GPLv3) using binaries
-        from [github.com](https://github.com/stweil/OSXvnc/releases)
-
--   for Windows (Vista and newer)
-
-    -   [TightVNC 2.8.11](http://www.tightvnc.com/) (GPLv2) using binaries from
-        [tightvnc.com](http://www.tightvnc.com/download.php)
-
-    -   [OpenSSH 7.8p1-1](https://www.openssh.com/) (BSD) using binaries from
-        [mls-software.com](https://www.mls-software.com/opensshd.html)
-
--   for Windows (XP / 2003)
-
-    -   [TightVNC 2.8.11](http://www.tightvnc.com/) (GPLv2) using binaries from
-        [tightvnc.com](http://www.tightvnc.com/download.php)
-
-    -   [OpenSSH 7.3p1-2](https://www.openssh.com/) (BSD) using binaries from
-        [mls-software.com](https://www.mls-software.com/opensshd-old-cygwin.html)
-
-
-Bundled components
-------------------
-
-The following third party components are bundled into the application:
-
--   [Tcl/Tk](http://www.tcl.tk/) (BSD)
--   [inifile](https://github.com/tcltk/tcllib/tree/master/modules/inifile) (BSD)
--   [scrolledframe](http://wiki.tcl.tk/9223) (Public Domain)
--   [Crystal Clear Icons](http://www.everaldo.com/) (LGPL)
-
-
-Created with
-------------
-
--   A custom [Tclkit](http://wiki.tcl.tk/52) is used in order to create
-    application binaries. For each supported target system the Tclkit can be
-    found in the [`utils`](utils) folder.
-
--   The Tclkits for Linux and Mac OS X were created with
-    [KitCreator](https://kitcreator.rkeene.org/) through the
-    [`build-x11vnc.tcl`](utils/build-tclkit.tcl) script.
-
--   The Tclkit for Windows was created with KitCreator's
-    [Interactive Build System](http://kitcreator.rkeene.org/kitcreator).
-
--   Windows binaries are post processed with
-    [Resource Hacker](http://www.angusj.com/resourcehacker/) in order to modify
-    resources (icon & version information).
-
-
-Supported operating systems
----------------------------
-
--   Windows (XP or newer)
--   Mac OS X (10.7 or newer)
--   Linux (i386 / amd64)
-
-
-Translations
-------------
-
-*Remote Support Tool* is developed in **English** and is translated into
-**German** language. The
-[translation documentation](https://github.com/OpenIndex/RemoteSupportTool/wiki/Translation)
-contains informations about how to translate the application for yourself. Feel
-free to send your translation files to us.
-
-
 License
 -------
 
 This application is licensed under the terms of the
-[MIT License](http://opensource.org/licenses/MIT). Take a look at
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). Take a look at
 [`LICENSE.txt`](LICENSE.txt) for the license text.
 
 
-Further informations
---------------------
+Third party components
+----------------------
+
+The following third party components are bundled into the application 
+(in alphabetical order):
+
+-   [Commons IO](https://commons.apache.org/io/) 2.6
+    [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-io/master/LICENSE.txt)
+-   [Commons Lang](https://commons.apache.org/lang/) 3.8.1
+    [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-lang/master/LICENSE.txt)
+-   [Commons Text](https://commons.apache.org/text/) 1.5
+    [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-text/master/LICENSE.txt)
+-   [Crystal Project Icons](https://github.com/pinhead84/crystal-project)
+    [(LGPL 2.1)](https://web.archive.org/web/20101122171611/http://everaldo.com/crystal/?action=license)
+-   [imgscalr](https://github.com/rkalla/imgscalr) rev-8ed3644
+    [(Apache License 2.0)](https://raw.githubusercontent.com/rkalla/imgscalr/master/LICENSE)
+-   [JSch](http://www.jcraft.com/jsch/) 0.1.54
+    [(BSD)](http://www.jcraft.com/jsch/LICENSE.txt)
+-   [JZlib](http://www.jcraft.com/jzlib/) 1.1.3
+    [(BSD)](http://www.jcraft.com/jzlib/LICENSE.txt)
+-   [Logback](https://logback.qos.ch/) 1.2.3
+    [(LGPL 2.1)](https://logback.qos.ch/license.html)
+-   [MigLayout](http://miglayout.com/) 5.2
+    [(BSD)](https://raw.githubusercontent.com/mikaelgrev/miglayout/master/src/site/resources/docs/license.txt)
+-   [OpenJDK Runtime Environment](https://openjdk.java.net/) 10
+    [(GPL 2 with Classpath Exception)](https://openjdk.java.net/legal/gplv2+ce.html)
+-   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.25
+    [(MIT)](https://www.slf4j.org/license.html)
+
+We especially like to thank the [AdoptOpenJDK project](https://adoptopenjdk.net/) 
+and [Azul Systems](https://www.azul.com/) for providing the high quality OpenJDK 
+builds, that are bundled with this application.
+
+
+Further information
+-------------------
 
 -   [*Remote Support Tool* at GitHub](https://github.com/OpenIndex/RemoteSupportTool)
 -   [Releases of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/releases)
