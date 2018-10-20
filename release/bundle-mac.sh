@@ -17,7 +17,7 @@
 
 STAFF_TOOL="StaffSupportTool"
 CUSTOMER_TOOL="CustomerSupportTool"
-VERSION="1.0-SNAPSHOT"
+VERSION="1.0.0"
 
 DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
 TARGET_DIR="$DIR/target"

@@ -1,5 +1,5 @@
-Remote Support Tool 1.0-SNAPSHOT
-================================
+Remote Support Tool 1.0.0
+=========================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance.
 
