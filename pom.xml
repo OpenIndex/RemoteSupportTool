@@ -6,7 +6,7 @@
 
     <groupId>de.openindex.support</groupId>
     <artifactId>RemoteSupportTool</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>RemoteSupportTool</name>
@@ -67,17 +67,17 @@
             <dependency>
                 <groupId>de.openindex.support</groupId>
                 <artifactId>RemoteSupportTool-Core</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>de.openindex.support</groupId>
                 <artifactId>RemoteSupportTool-Customer</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>de.openindex.support</groupId>
                 <artifactId>RemoteSupportTool-Staff</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>

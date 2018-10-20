@@ -1,16 +1,17 @@
 Changelog for Remote Support Tool
 =================================
 
-1.0 (not released yet)
-----------------------
+1.0.0 (20 Oct 2018)
+-------------------
 
 -   migrated from Tcl/Tk to Java
--   implement the whole support session in Java, no need for any external 
+-   implement the whole support session in Java, no need for external 
     applications (x11vnc, OSXvnc, TightVNC, OpenSSH)
 -   provide a graphical interface for both sides of a support session 
-    (customer & supporter)
+    (customer & support staff)
 -   provided binaries are bundles with a stripped down version of the
     OpenJDK runtime environment (version 10)
+-   provide a signed application bundle for macOS
 -   switched from MIT to Apache License 2.0
 
 
