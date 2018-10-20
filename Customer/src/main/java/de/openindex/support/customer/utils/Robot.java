@@ -36,11 +36,12 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("WeakerAccess")
 public class Robot extends java.awt.Robot {
     private final static Logger LOGGER = LoggerFactory.getLogger(Robot.class);
+    private final int DEFAULT_DELAY = 15;
     private final List<Integer> pressedKeys = new ArrayList<>();
 
     public Robot(GraphicsDevice screen) throws AWTException {
         super(screen);
-        //setAutoDelay(10);
+        setAutoDelay(DEFAULT_DELAY);
         //setAutoWaitForIdle(true);
     }
 
@@ -61,6 +62,18 @@ public class Robot extends java.awt.Robot {
         pressedKeys.remove((Integer) code);
     }
 
+    @Override
+    public synchronized void mousePress(int buttons) {
+        super.mousePress(buttons);
+        //waitForIdle();
+    }
+
+    @Override
+    public synchronized void mouseRelease(int buttons) {
+        super.mouseRelease(buttons);
+        //waitForIdle();
+    }
+
     public synchronized void pasteText(String text) {
         final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
@@ -75,7 +88,7 @@ public class Robot extends java.awt.Robot {
         try {
             clipboard.setContents(new StringSelection(text), null);
             waitForIdle();
-            setAutoDelay(25);
+            setAutoDelay(50);
 
             if (SystemUtils.IS_OS_MAC_OSX)
                 keyPress(KeyEvent.VK_META);
@@ -97,7 +110,7 @@ public class Robot extends java.awt.Robot {
             } catch (Exception ex) {
                 LOGGER.warn("Can't clear clipboard!", ex);
             }
-            setAutoDelay(0);
+            setAutoDelay(DEFAULT_DELAY);
         }
     }
 
@@ -117,9 +130,7 @@ public class Robot extends java.awt.Robot {
             String altCode = Integer.toString(character);
             for (int i = 0; i < altCode.length(); i++) {
                 char code = (char) (altCode.charAt(i) + '0');
-                //delay(20);//may be needed for certain applications
                 keyPress(code);
-                //delay(20);//uncomment if necessary
                 keyRelease(code);
             }
             keyRelease(KeyEvent.VK_ALT);
