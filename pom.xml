@@ -197,6 +197,16 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
+            <distributionManagement>
+                <repository>
+                    <id>openindex</id>
+                    <url>https://maven.openindex.de/repository/openindex-releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>openindex</id>
+                    <url>https://maven.openindex.de/repository/openindex-snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
             <build>
                 <plugins>
                     <plugin>
