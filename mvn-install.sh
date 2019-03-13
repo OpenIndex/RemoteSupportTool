@@ -20,5 +20,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 set -e
 export LANG=en
-cd ${DIR}
-${MVN} clean install
+cd "$DIR"
+"$MVN" clean install
