@@ -18,41 +18,41 @@ JAVA_OPTS="-Dfile.encoding=UTF-8"
 APP="de.openindex.support.staff/de.openindex.support.staff.StaffApplication"
 
 # Detect directories.
-SCRIPT_DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
-BASE_DIR=$( cd $( dirname ${SCRIPT_DIR} ) && pwd )
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BASE_DIR="$( cd "$( dirname "$SCRIPT_DIR" )" && pwd )"
 
 # OS specific initialization.
 SYSTEM="$( uname -s )"
 case "$SYSTEM" in
 
-  Darwin)
-    echo "Initializing macOS environment..."
-    JAVA_OPTS="$JAVA_OPTS -Dapple.laf.useScreenMenuBar=true"
-    JAVA_OPTS="$JAVA_OPTS -Xdock:name=StaffSupportTool"
-    JAVA_OPTS="$JAVA_OPTS -Xdock:icon=./share/icon.icns"
-    ;;
+    Darwin)
+        echo "Initializing macOS environment..."
+        JAVA_OPTS="$JAVA_OPTS -Dapple.laf.useScreenMenuBar=true"
+        JAVA_OPTS="$JAVA_OPTS -Xdock:name=StaffSupportTool"
+        JAVA_OPTS="$JAVA_OPTS -Xdock:icon=./share/icon.icns"
+        ;;
 
-  Linux)
-    echo "Initializing Linux environment..."
-    ;;
+    Linux)
+        echo "Initializing Linux environment..."
+        ;;
 
-  *)
-    echo "Initializing unknown environment ($SYSTEM)..."
-    ;;
+    *)
+        echo "Initializing unknown environment ($SYSTEM)..."
+        ;;
 
 esac
 
 # Use bundled Java runtime environment, if no JAVA variable was specified.
-if [ -z ${JAVA} ] ; then
-  JAVA=${BASE_DIR}/bin/java
+if [[ -z "$JAVA" ]] ; then
+    JAVA="$BASE_DIR/bin/java"
 fi
 
 # Launch the application.
-cd ${BASE_DIR}
-exec ${JAVA} \
-  -Xms${JAVA_HEAP_MINIMUM} \
-  -Xmx${JAVA_HEAP_MAXIMUM} \
-  ${JAVA_OPTS} \
-  -p "modules" \
-  -m ${APP} \
-  "$@"
+cd "$BASE_DIR"
+exec "$JAVA" \
+    -Xms${JAVA_HEAP_MINIMUM} \
+    -Xmx${JAVA_HEAP_MAXIMUM} \
+    "$JAVA_OPTS" \
+    -p "modules" \
+    -m "$APP" \
+    "$@"
