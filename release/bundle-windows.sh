@@ -17,7 +17,7 @@
 
 STAFF_TOOL="StaffSupportTool"
 CUSTOMER_TOOL="CustomerSupportTool"
-VERSION="1.0.0"
+VERSION="1.0.1"
 
 SEVENZIP="7z"
 SEVENZIP_OPTIONS="-mx=9"
