@@ -10,6 +10,12 @@ Changelog for Remote Support Tool
 -   update [Simple Logging Facade for Java](https://www.slf4j.org/) library to version 1.7.26
 
 
+1.0.1 (13 Mar 2019)
+-------------------
+
+-   fixed [issue #18](https://github.com/OpenIndex/RemoteSupportTool/issues/18): Mouse is shifted on Windows clients with high resolution screen
+
+
 1.0.0 (20 Oct 2018)
 -------------------
 
