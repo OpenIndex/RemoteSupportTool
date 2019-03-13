@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ----------------------------------------------------------------------------
 # RemoteSupportTool for staff members
-# Copyright (C) 2015-2018 OpenIndex.de
+# Copyright 2015-2019 OpenIndex.de
 # ----------------------------------------------------------------------------
 
 # Use a specific command to launch the Java Runtime Environment.
