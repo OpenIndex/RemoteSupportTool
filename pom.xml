@@ -44,7 +44,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <launch4j.buildVersion>1.0.0.0</launch4j.buildVersion>
+        <launch4j.buildVersion>1.1.0.0</launch4j.buildVersion>
         <launch4j.downloadUrl>https://github.com/OpenIndex/RemoteSupportTool/releases/latest</launch4j.downloadUrl>
         <launch4j.supportUrl>https://github.com/OpenIndex/RemoteSupportTool/issues</launch4j.supportUrl>
         <version.commons-io>2.6</version.commons-io>
