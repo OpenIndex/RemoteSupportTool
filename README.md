@@ -136,7 +136,7 @@ The following third party components are bundled into the application (in alphab
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-io/master/LICENSE.txt)
 -   [Commons Lang](https://commons.apache.org/lang/) 3.8.1
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-lang/master/LICENSE.txt)
--   [Commons Text](https://commons.apache.org/text/) 1.5
+-   [Commons Text](https://commons.apache.org/text/) 1.6
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-text/master/LICENSE.txt)
 -   [Crystal Project Icons](https://github.com/pinhead84/crystal-project)
     [(LGPL 2.1)](https://web.archive.org/web/20101122171611/http://everaldo.com/crystal/?action=license)
