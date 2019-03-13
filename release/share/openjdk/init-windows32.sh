@@ -26,6 +26,7 @@
 
 TARGET="windows32"
 TARGET_JDK="https://cdn.azul.com/zulu/bin/zulu10.3+5-jdk10.0.2-win_i686.zip"
+#TARGET_JDK="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.2%2B9/OpenJDK11U-jdk_x86-32_windows_hotspot_11.0.2_9.zip"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOWNLOADS_DIR="$DIR/downloads"
