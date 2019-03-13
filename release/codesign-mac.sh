@@ -34,11 +34,11 @@ export LANG="en_US.UTF-8"
 
 for f in ${TARGET_DIR}/*.app.tar.gz; do
 
-    if [ "$FOUND" == "0" ]; then
+    if [[ "$FOUND" == "0" ]]; then
         echo ""
-        echo "----------------------------------------------------------------"
-        echo "Unlocking keychain..."
-        echo "----------------------------------------------------------------"
+        echo -e "\e[1m\e[92m=======================================================================\e[0m"
+        echo -e "\e[1m\e[92m Unlocking keychain...\e[0m"
+        echo -e "\e[1m\e[92m=======================================================================\e[0m"
         echo ""
         security unlock-keychain
     fi
@@ -47,9 +47,9 @@ for f in ${TARGET_DIR}/*.app.tar.gz; do
     #pkg=$(basename ${f:0:-7})
     pkg=$(basename ${f%.tar.gz})
     echo ""
-    echo "----------------------------------------------------------------"
-    echo "Signing $pkg..."
-    echo "----------------------------------------------------------------"
+    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    echo -e "\e[1m\e[92m Signing $pkg...\e[0m"
+    echo -e "\e[1m\e[92m=======================================================================\e[0m"
     echo ""
     rm -Rf "$TARGET_DIR/$pkg"
     tar xfz "$f" -C "$TARGET_DIR"
@@ -67,6 +67,6 @@ for f in ${TARGET_DIR}/*.app.tar.gz; do
     tar cfz "$SIGNED_DIR/$pkg.tar.gz" "$pkg"
 done
 
-if [ "$FOUND" == "0" ]; then
+if [[ "$FOUND" == "0" ]]; then
     echo "ERROR: No macOS packages were found at $DIR"
 fi

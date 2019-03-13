@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #
+# Create application bundles for macOS systems.
 # Copyright 2015-2019 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,46 +25,50 @@ TARGET_DIR="$DIR/target"
 FOUND="0"
 set -e
 
-if [ -d "$TARGET_DIR/Staff/mac64" ]; then
+if [[ -d "$TARGET_DIR/Staff/macos-x86-64" ]]; then
     FOUND="1"
     echo ""
-    echo "----------------------------------------------------------------"
-    echo "Creating $STAFF_TOOL-$VERSION.app..."
-    echo "----------------------------------------------------------------"
+    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    echo -e "\e[1m\e[92m Creating $STAFF_TOOL-$VERSION.app...\e[0m"
+    echo -e "\e[1m\e[92m=======================================================================\e[0m"
     echo ""
     rm -Rf "$TARGET_DIR/$STAFF_TOOL-$VERSION.app"
     rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION.app.tar.gz"
     cp -R "$DIR/src/macos/Staff.app" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app"
     mkdir -p "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns"
-    cp -R "$TARGET_DIR/Staff/mac64" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns/runtime"
+    cp -R "$TARGET_DIR/Staff/macos-x86-64" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns/runtime"
     mv "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns/runtime/legal" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/Resources"
     mv "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/PlugIns/runtime/LICENSE.txt" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/Resources"
     sed -i -e "s/{VERSION}/$VERSION/g" "$TARGET_DIR/$STAFF_TOOL-$VERSION.app/Contents/Info.plist"
     cd "$TARGET_DIR"
     tar cfz "$STAFF_TOOL-$VERSION.app.tar.gz" "$STAFF_TOOL-$VERSION.app"
     rm -Rf "$TARGET_DIR/$STAFF_TOOL-$VERSION.app"
+    echo "Unsigned archive was created at:"
+    echo "target/$STAFF_TOOL-$VERSION.app.tar.gz"
 fi
 
-if [ -d "$TARGET_DIR/Customer/mac64" ]; then
+if [[ -d "$TARGET_DIR/Customer/macos-x86-64" ]]; then
     FOUND="1"
     echo ""
-    echo "----------------------------------------------------------------"
-    echo "Creating $CUSTOMER_TOOL-$VERSION.app..."
-    echo "----------------------------------------------------------------"
+    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    echo -e "\e[1m\e[92m Creating $CUSTOMER_TOOL-$VERSION.app...\e[0m"
+    echo -e "\e[1m\e[92m=======================================================================\e[0m"
     echo ""
     rm -Rf "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app"
     rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app.tar.gz"
     cp -R "$DIR/src/macos/Customer.app" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app"
     mkdir -p "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns"
-    cp -R "$TARGET_DIR/Customer/mac64" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns/runtime"
+    cp -R "$TARGET_DIR/Customer/macos-x86-64" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns/runtime"
     mv "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns/runtime/legal" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/Resources"
     mv "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/PlugIns/runtime/LICENSE.txt" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/Resources"
     sed -i -e "s/{VERSION}/$VERSION/g" "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app/Contents/Info.plist"
     cd "$TARGET_DIR"
     tar cfz "$CUSTOMER_TOOL-$VERSION.app.tar.gz" "$CUSTOMER_TOOL-$VERSION.app"
     rm -Rf "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.app"
+    echo "Unsigned archive was created at:"
+    echo "target/$CUSTOMER_TOOL-$VERSION.app.tar.gz"
 fi
 
-if [ "$FOUND" == "0" ]; then
+if [[ "$FOUND" == "0" ]]; then
     echo "ERROR: No macOS packages were found at $TARGET_DIR"
 fi

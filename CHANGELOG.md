@@ -4,7 +4,7 @@ Changelog for Remote Support Tool
 1.1.0 (not released yet)
 ------------------------
 
-...
+-   upgrade to Java 11
 
 
 1.0.0 (20 Oct 2018)

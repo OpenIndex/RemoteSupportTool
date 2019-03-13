@@ -3,8 +3,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
 
-    <id>Client-mac64</id>
-    <baseDirectory>mac64</baseDirectory>
+    <id>Client-windows-x86</id>
+    <baseDirectory>windows-x86</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <formats>
@@ -14,29 +14,29 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>src/openjdk/runtime/mac64</directory>
+            <directory>src/openjdk/runtime/windows-x86</directory>
+            <fileMode>0644</fileMode>
         </fileSet>
     </fileSets>
 
     <files>
         <file>
-            <source>src/scripts/Staff.sh</source>
-            <destName>Start.sh</destName>
+            <source>src/scripts/Staff.bat</source>
+            <destName>Start.bat</destName>
             <outputDirectory>bin</outputDirectory>
-            <lineEnding>unix</lineEnding>
-            <fileMode>0755</fileMode>
+            <lineEnding>windows</lineEnding>
         </file>
         <file>
             <source>${project.parent.basedir}/LICENSE.txt</source>
             <destName>LICENSE.txt</destName>
             <outputDirectory></outputDirectory>
-            <lineEnding>unix</lineEnding>
+            <lineEnding>windows</lineEnding>
             <fileMode>0644</fileMode>
         </file>
         <file>
-            <source>${project.parent.basedir}/share/icons/help.icns</source>
-            <destName>icon.icns</destName>
-            <outputDirectory>share</outputDirectory>
+            <source>target/launch4j/Staff-x86.exe</source>
+            <destName>Start.exe</destName>
+            <outputDirectory>bin</outputDirectory>
             <fileMode>0644</fileMode>
         </file>
     </files>

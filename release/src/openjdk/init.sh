@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #
+# Detect operating system and select the appropriate OpenJDK bundle.
 # Copyright 2015-2019 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,13 +18,19 @@
 
 # -----------------------------------------------------------------------
 #
-# Detect operating system and architecture and select the appropriate
-# OpenJDK bundle.
-#
-# OpenJDK is taken from
-# https://adoptopenjdk.net/ or https://www.azul.com/downloads/zulu/
+# OpenJDK binaries are provided by:
+# https://www.bell-sw.com/java.html
+# https://github.com/OpenIndex/openjdk-linux-x86
 #
 # -----------------------------------------------------------------------
+
+LINUX_X86_JDK="https://github.com/OpenIndex/openjdk-linux-x86/releases/download/jdk-11.0.2%2B9/jdk-11.0.2+9-linux-x86.tar.gz"
+LINUX_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-linux-amd64.tar.gz"
+MACOS_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-macos-amd64.zip"
+WINDOWS_X86_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-windows-i586.zip"
+WINDOWS_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-windows-amd64.zip"
+
+MODULES="java.desktop,java.naming,jdk.crypto.ec"
 
 SYSTEM="$( uname -s )"
 SYSTEM_ARCH="$( arch )"
@@ -31,21 +38,18 @@ case "$SYSTEM" in
 
   Darwin)
     echo "Initializing macOS environment..."
-    SYSTEM_JDK="https://github.com/AdoptOpenJDK/openjdk10-releases/releases/download/jdk-10.0.2%2B13/OpenJDK10_x64_Mac_jdk-10.0.2%2B13.tar.gz"
-    #SYSTEM_JDK="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.2%2B9/OpenJDK11U-jdk_x64_mac_hotspot_11.0.2_9.tar.gz"
+    SYSTEM_JDK="$MACOS_X86_64_JDK"
     ;;
 
   Linux)
     case "$SYSTEM_ARCH" in
-        x86_64)
-          echo "Initializing Linux 64bit environment..."
-          SYSTEM_JDK="https://github.com/AdoptOpenJDK/openjdk10-releases/releases/download/jdk-10.0.2%2B13/OpenJDK10_x64_Linux_jdk-10.0.2%2B13.tar.gz"
-          #SYSTEM_JDK="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.2%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz"
+        i386 | i586 | i686)
+          echo "Initializing Linux x86 environment..."
+          SYSTEM_JDK="$LINUX_X86_JDK"
           ;;
-        i686)
-          echo "Initializing Linux 32bit environment..."
-          SYSTEM_JDK="https://cdn.azul.com/zulu/bin/zulu10.3+5-jdk10.0.2-linux_i686.tar.gz"
-          #SYSTEM_JDK="https://github.com/OpenIndex/openjdk-linux-x86/releases/download/jdk-11.0.2%2B9/jdk-11.0.2+9-jre-linux-x86.tar.gz"
+        x86_64)
+          echo "Initializing Linux x86_64 environment..."
+          SYSTEM_JDK="$LINUX_X86_64_JDK"
           ;;
         *)
           echo "Unsupported Linux environment ($SYSTEM_ARCH)..."
@@ -60,3 +64,49 @@ case "$SYSTEM" in
     ;;
 
 esac
+
+
+#
+# Configure generated runtime environment.
+#
+
+function configure_runtime {
+    echo "Configuring runtime environment..."
+
+    runtimeDir="$1"
+    if [[ ! -d "${runtimeDir}" ]]; then
+        echo "WARNING: Can't find runtime environment at: ${runtimeDir}"
+        exit 1
+    fi
+
+    securityConf="${runtimeDir}/conf/security/java.security"
+    if [[ ! -f "${securityConf}" ]]; then
+        echo "WARNING: Can't find security configuration at: ${securityConf}"
+        exit 1
+    fi
+
+    # Due to a bug in OpenJDK 11.0.2 we need to disable TLSv1.3.
+    # The bug was fixed in OpenJDK 12. And should be backported into OpenJDK 11.0.3.
+    #
+    # see https://sourceforge.net/p/hsqldb/bugs/1539/
+    # see https://bugs.openjdk.java.net/browse/JDK-8212885
+    # see https://bugs.openjdk.java.net/browse/JDK-8218093
+    echo "Disabling TLSv1.3..."
+    sed -i -e "s|^jdk.tls.disabledAlgorithms=|jdk.tls.disabledAlgorithms=TLSv1.3, |g" "${securityConf}"
+}
+
+
+#
+# Extract a downloaded archive.
+#
+
+function extract_archive {
+    archive="$1"
+    if [[ "$archive" == *.zip ]]; then
+        #echo "unzip $archive"
+        unzip -q "$archive"
+    else
+        #echo "untar $archive"
+        tar xfz "$archive"
+    fi
+}

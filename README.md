@@ -198,13 +198,13 @@ The following third party components are bundled into the application
     [(LGPL 2.1)](https://logback.qos.ch/license.html)
 -   [MigLayout](http://miglayout.com/) 5.2
     [(BSD)](https://raw.githubusercontent.com/mikaelgrev/miglayout/master/src/site/resources/docs/license.txt)
--   [OpenJDK Runtime Environment](https://openjdk.java.net/) 10
+-   [OpenJDK Runtime Environment](https://openjdk.java.net/) 11
     [(GPL 2 with Classpath Exception)](https://openjdk.java.net/legal/gplv2+ce.html)
 -   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.25
     [(MIT)](https://www.slf4j.org/license.html)
 
-We especially like to thank the [AdoptOpenJDK project](https://adoptopenjdk.net/) 
-and [Azul Systems](https://www.azul.com/) for providing the high quality OpenJDK 
+We especially like to thank [BellSoft](https://www.bell-sw.com/) the 
+[AdoptOpenJDK project](https://adoptopenjdk.net/) for providing the high quality OpenJDK 
 builds, that are bundled with this application.
 
 
