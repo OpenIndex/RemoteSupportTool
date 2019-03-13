@@ -27,4 +27,6 @@ module de.openindex.support.customer {
     requires org.apache.commons.lang3;
     requires org.apache.commons.text;
     requires slf4j.api;
+    requires com.sun.jna.platform;
+    requires com.sun.jna;
 }
