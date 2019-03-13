@@ -14,7 +14,7 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/windows32</directory>
+            <directory>src/openjdk/runtime/windows32</directory>
             <fileMode>0644</fileMode>
         </fileSet>
     </fileSets>

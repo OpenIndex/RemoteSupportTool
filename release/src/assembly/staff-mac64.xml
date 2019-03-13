@@ -14,7 +14,7 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/mac64</directory>
+            <directory>src/openjdk/runtime/mac64</directory>
         </fileSet>
     </fileSets>
 

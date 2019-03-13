@@ -14,7 +14,7 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/linux32</directory>
+            <directory>src/openjdk/runtime/linux32</directory>
         </fileSet>
     </fileSets>
 
