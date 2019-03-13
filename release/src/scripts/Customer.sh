@@ -52,7 +52,7 @@ cd "$BASE_DIR"
 exec "$JAVA" \
     -Xms${JAVA_HEAP_MINIMUM} \
     -Xmx${JAVA_HEAP_MAXIMUM} \
-    "$JAVA_OPTS" \
+    ${JAVA_OPTS} \
     -p "modules" \
     -m "$APP" \
     "$@"
