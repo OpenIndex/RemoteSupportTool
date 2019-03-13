@@ -16,7 +16,7 @@ Changelog for Remote Support Tool
 -   migrated from Tcl/Tk to Java
 -   implement the whole support session in Java, no need for external applications (x11vnc, OSXvnc, TightVNC, OpenSSH)
 -   provide a graphical interface for both sides of a support session (customer & support staff)
--   provided binaries are bundles with a stripped down version of the OpenJDK runtime environment (version 10)
+-   provided binaries are bundled with a stripped down version of the OpenJDK runtime environment (version 10)
 -   provide a signed application bundle for macOS
 -   switched from MIT to Apache License 2.0
 
@@ -35,13 +35,11 @@ Changelog for Remote Support Tool
 0.4.1 (10 Nov 2015)
 -------------------
 
--   translated into Italian
-    (thanks to [Sjd-Risca](https://github.com/Sjd-Risca))
--   compatibility fixes for PyInstaller 3
-    (thanks to [Sjd-Risca](https://github.com/Sjd-Risca))
+-   translated into Italian (thanks to [Sjd-Risca](https://github.com/Sjd-Risca))
+-   compatibility fixes for PyInstaller 3 (thanks to [Sjd-Risca](https://github.com/Sjd-Risca))
 -   rebuilt with PyInstaller 3 on all supported platforms
 
 0.4 (17 Jun 2015)
 -----------------
 
--   first public relase
+-   first public release
