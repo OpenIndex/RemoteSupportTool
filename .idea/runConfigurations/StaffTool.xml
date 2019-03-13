@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="StaffTool" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="de.openindex.support.staff.StaffApplication" />
+    <module name="RemoteSupportTool-Staff" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="de.openindex.support.staff.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

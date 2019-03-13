@@ -59,7 +59,7 @@
         <createChecksum>true</createChecksum>
 
         <!-- Set this value to true, in order to skip GPG signing during the release phase. -->
-        <gpg.skip>false</gpg.skip>
+        <gpg.skip>true</gpg.skip>
     </properties>
 
     <dependencyManagement>
@@ -128,7 +128,7 @@
                 <plugin>
                     <groupId>com.akathist.maven.plugins.launch4j</groupId>
                     <artifactId>launch4j-maven-plugin</artifactId>
-                    <version>1.7.23</version>
+                    <version>1.7.25</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -138,15 +138,14 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.0</version>
                     <configuration>
-                        <source>11</source>
-                        <target>11</target>
+                        <release>11</release>
                         <showDeprecation>true</showDeprecation>
                         <debug>false</debug>
                         <compilerArgument>-Xlint:unchecked</compilerArgument>
@@ -170,12 +169,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -235,7 +234,6 @@
                                     <failOnError>false</failOnError>
                                     <encoding>${project.build.sourceEncoding}</encoding>
                                     <docencoding>${project.build.sourceEncoding}</docencoding>
-                                    <additionalOptions>-html4</additionalOptions>
                                 </configuration>
                             </execution>
                         </executions>

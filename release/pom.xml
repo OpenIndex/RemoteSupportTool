@@ -76,6 +76,7 @@
                         <configuration>
                             <appendAssemblyId>false</appendAssemblyId>
                             <finalName>modules</finalName>
+                            <attach>false</attach>
                             <descriptors>
                                 <descriptor>src/assembly/modules.xml</descriptor>
                             </descriptors>
@@ -358,6 +359,7 @@
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
                                     <finalName>Staff</finalName>
+                                    <attach>false</attach>
                                     <descriptors>
                                         <descriptor>src/assembly/staff-linux-x86.xml</descriptor>
                                         <descriptor>src/assembly/staff-linux-x86-64.xml</descriptor>
@@ -376,6 +378,7 @@
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
                                     <finalName>Customer</finalName>
+                                    <attach>false</attach>
                                     <descriptors>
                                         <descriptor>src/assembly/customer-linux-x86.xml</descriptor>
                                         <descriptor>src/assembly/customer-linux-x86-64.xml</descriptor>
