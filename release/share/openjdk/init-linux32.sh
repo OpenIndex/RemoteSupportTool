@@ -26,6 +26,7 @@
 
 TARGET="linux32"
 TARGET_JDK="https://cdn.azul.com/zulu/bin/zulu10.3+5-jdk10.0.2-linux_i686.tar.gz"
+#TARGET_JDK="https://github.com/OpenIndex/openjdk-linux-x86/releases/download/jdk-11.0.2%2B9/jdk-11.0.2+9-jre-linux-x86.tar.gz"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOWNLOADS_DIR="$DIR/downloads"
