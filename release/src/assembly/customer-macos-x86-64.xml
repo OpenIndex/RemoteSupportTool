@@ -3,8 +3,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
 
-    <id>Server-windows64</id>
-    <baseDirectory>windows64</baseDirectory>
+    <id>Server-macos-x86-64</id>
+    <baseDirectory>macos-x86-64</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <formats>
@@ -14,29 +14,29 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/windows64</directory>
-            <fileMode>0644</fileMode>
+            <directory>src/openjdk/runtime/macos-x86-64</directory>
         </fileSet>
     </fileSets>
 
     <files>
         <file>
-            <source>src/scripts/Customer.bat</source>
-            <destName>Start.bat</destName>
+            <source>src/scripts/Customer.sh</source>
+            <destName>Start.sh</destName>
             <outputDirectory>bin</outputDirectory>
-            <lineEnding>windows</lineEnding>
+            <lineEnding>unix</lineEnding>
+            <fileMode>0755</fileMode>
         </file>
         <file>
             <source>${project.parent.basedir}/LICENSE.txt</source>
             <destName>LICENSE.txt</destName>
             <outputDirectory></outputDirectory>
-            <lineEnding>windows</lineEnding>
+            <lineEnding>unix</lineEnding>
             <fileMode>0644</fileMode>
         </file>
         <file>
-            <source>target/launch4j/Customer64.exe</source>
-            <destName>Start.exe</destName>
-            <outputDirectory>bin</outputDirectory>
+            <source>${project.parent.basedir}/share/icons/desktopshare.icns</source>
+            <destName>icon.icns</destName>
+            <outputDirectory>share</outputDirectory>
             <fileMode>0644</fileMode>
         </file>
     </files>

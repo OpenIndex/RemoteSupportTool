@@ -60,6 +60,7 @@
     <dependencySets>
         <dependencySet>
             <outputDirectory></outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
         </dependencySet>
     </dependencySets>
 

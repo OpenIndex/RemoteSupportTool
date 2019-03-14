@@ -3,8 +3,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
 
-    <id>Server-linux64</id>
-    <baseDirectory>linux64</baseDirectory>
+    <id>Client-macos-x86-64</id>
+    <baseDirectory>macos-x86-64</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <formats>
@@ -14,13 +14,13 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/linux64</directory>
+            <directory>src/openjdk/runtime/macos-x86-64</directory>
         </fileSet>
     </fileSets>
 
     <files>
         <file>
-            <source>src/scripts/Customer.sh</source>
+            <source>src/scripts/Staff.sh</source>
             <destName>Start.sh</destName>
             <outputDirectory>bin</outputDirectory>
             <lineEnding>unix</lineEnding>
@@ -33,6 +33,12 @@
             <lineEnding>unix</lineEnding>
             <fileMode>0644</fileMode>
         </file>
+        <file>
+            <source>${project.parent.basedir}/share/icons/help.icns</source>
+            <destName>icon.icns</destName>
+            <outputDirectory>share</outputDirectory>
+            <fileMode>0644</fileMode>
+        </file>
     </files>
 
     <dependencySets>
@@ -41,8 +47,7 @@
             <useProjectArtifact>false</useProjectArtifact>
             <!--<useTransitiveFiltering>true</useTransitiveFiltering>-->
             <excludes>
-                <exclude>${project.groupId}:RemoteSupportTool-Staff:*:*</exclude>
-                <exclude>com.jcraft:*:*:*</exclude>
+                <exclude>${project.groupId}:RemoteSupportTool-Customer:*:*</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>

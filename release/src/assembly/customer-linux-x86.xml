@@ -3,8 +3,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
 
-    <id>Client-linux64</id>
-    <baseDirectory>linux64</baseDirectory>
+    <id>Server-linux-x86</id>
+    <baseDirectory>linux-x86</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <formats>
@@ -14,13 +14,13 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/linux64</directory>
+            <directory>src/openjdk/runtime/linux-x86</directory>
         </fileSet>
     </fileSets>
 
     <files>
         <file>
-            <source>src/scripts/Staff.sh</source>
+            <source>src/scripts/Customer.sh</source>
             <destName>Start.sh</destName>
             <outputDirectory>bin</outputDirectory>
             <lineEnding>unix</lineEnding>
@@ -41,7 +41,8 @@
             <useProjectArtifact>false</useProjectArtifact>
             <!--<useTransitiveFiltering>true</useTransitiveFiltering>-->
             <excludes>
-                <exclude>${project.groupId}:RemoteSupportTool-Customer:*:*</exclude>
+                <exclude>${project.groupId}:RemoteSupportTool-Staff:*:*</exclude>
+                <exclude>com.jcraft:*:*:*</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>

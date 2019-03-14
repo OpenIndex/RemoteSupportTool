@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright 2015-2018 OpenIndex.de
+# Copyright 2015-2019 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,5 +20,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 set -e
 export LANG=en
-cd ${DIR}
-${MVN} clean install
+cd "$DIR"
+"$MVN" clean install

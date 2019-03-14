@@ -3,8 +3,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
 
-    <id>Client-windows64</id>
-    <baseDirectory>windows64</baseDirectory>
+    <id>Client-windows-x86-64</id>
+    <baseDirectory>windows-x86-64</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <formats>
@@ -14,7 +14,7 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/windows64</directory>
+            <directory>src/openjdk/runtime/windows-x86-64</directory>
             <fileMode>0644</fileMode>
         </fileSet>
     </fileSets>
@@ -34,7 +34,7 @@
             <fileMode>0644</fileMode>
         </file>
         <file>
-            <source>target/launch4j/Staff64.exe</source>
+            <source>target/launch4j/Staff-x86-64.exe</source>
             <destName>Start.exe</destName>
             <outputDirectory>bin</outputDirectory>
             <fileMode>0644</fileMode>

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ----------------------------------------------------------------------------
 # RemoteSupportTool for staff members
-# Copyright (C) 2015-2018 OpenIndex.de
+# Copyright 2015-2019 OpenIndex.de
 # ----------------------------------------------------------------------------
 
 SCRIPT_DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )

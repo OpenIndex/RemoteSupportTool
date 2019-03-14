@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# Copyright 2015-2018 OpenIndex.de
+# Build a runtime environment for Windows 32-bit x86
+# Copyright 2015-2019 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,18 +16,6 @@
 # limitations under the License.
 #
 
-# -----------------------------------------------------------------------
-#
-# Build a runtime environment for Windows 64-bit x86
-#
-# OpenJDK for this target platform is taken from
-# https://adoptopenjdk.net/
-#
-# -----------------------------------------------------------------------
-
-TARGET="windows64"
-TARGET_JDK="https://github.com/AdoptOpenJDK/openjdk10-releases/releases/download/jdk-10.0.2%2B13/OpenJDK10_x64_Windows_jdk-10.0.2.13.zip"
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOWNLOADS_DIR="$DIR/downloads"
 LOCAL_DIR="$DIR/local"
@@ -39,9 +28,12 @@ TEMP_DIR="$DIR/temp"
 
 set -e
 source "$DIR/init.sh"
-rm -Rf "$DIR/jmods/$TARGET"
-mkdir -p "$DIR/jmods"
 mkdir -p "$LOCAL_DIR"
+rm -Rf "$TEMP_DIR"
+mkdir -p "$TEMP_DIR"
+
+TARGET="windows-x86"
+TARGET_JDK="$WINDOWS_X86_JDK"
 
 
 #
@@ -51,7 +43,7 @@ mkdir -p "$LOCAL_DIR"
 mkdir -p "$DOWNLOADS_DIR"
 cd "$DOWNLOADS_DIR"
 
-if [ ! -f "$DOWNLOADS_DIR/$(basename ${TARGET_JDK})" ]; then
+if [[ ! -f "$DOWNLOADS_DIR/$(basename ${TARGET_JDK})" ]]; then
     echo "Downloading OpenJDK for $TARGET..."
     #wget -nc "$TARGET_JDK"
     curl -L \
@@ -59,7 +51,7 @@ if [ ! -f "$DOWNLOADS_DIR/$(basename ${TARGET_JDK})" ]; then
       "$TARGET_JDK"
 fi
 
-if [ ! -f "$DOWNLOADS_DIR/$(basename ${SYSTEM_JDK})" ]; then
+if [[ ! -f "$DOWNLOADS_DIR/$(basename ${SYSTEM_JDK})" ]]; then
     echo "Downloading OpenJDK for jlink..."
     #wget -nc "$SYSTEM_JDK"
     curl -L \
@@ -73,12 +65,11 @@ fi
 #
 
 echo "Extracting OpenJDK modules for $TARGET..."
-rm -Rf "$TEMP_DIR"
-mkdir -p "$TEMP_DIR"
-cd "$TEMP_DIR"
-unzip -q "$DOWNLOADS_DIR/$(basename "$TARGET_JDK")"
+mkdir -p "$TEMP_DIR/jdk"
+cd "$TEMP_DIR/jdk"
+extract_archive "$DOWNLOADS_DIR/$(basename "$TARGET_JDK")"
 find . -type f -exec chmod ugo-x {} \;
-mv "$(ls -1)/jmods" "$DIR/jmods/$TARGET"
+mv "$(ls -1)/jmods" "$TEMP_DIR"
 
 
 #
@@ -87,37 +78,51 @@ mv "$(ls -1)/jmods" "$DIR/jmods/$TARGET"
 
 echo "Extracting OpenJDK for jlink..."
 SYSTEM_JDK_DIR="$LOCAL_DIR/$(basename "$SYSTEM_JDK")"
-if [ ! -d "$SYSTEM_JDK_DIR" ]; then
+if [[ ! -d "$SYSTEM_JDK_DIR" ]]; then
     mkdir -p "$SYSTEM_JDK_DIR"
     cd "$SYSTEM_JDK_DIR"
-    tar xfz "$DOWNLOADS_DIR/$(basename "$SYSTEM_JDK")"
+    extract_archive "$DOWNLOADS_DIR/$(basename "$SYSTEM_JDK")"
     find "$(ls -1)" -type f -name "._*" -exec rm {} \;
 fi
 cd "$SYSTEM_JDK_DIR"
-JLINK="$SYSTEM_JDK_DIR/$(ls -1)/bin/jlink"
+if [[ -d "$SYSTEM_JDK_DIR/$(ls -1)/Contents/Home" ]]; then
+    JLINK="$SYSTEM_JDK_DIR/$(ls -1)/Contents/Home/bin/jlink"
+else
+    JLINK="$SYSTEM_JDK_DIR/$(ls -1)/bin/jlink"
+fi
 
 
 #
 # build OpenJDK runtime
 #
 
+cd "$DIR"
 rm -Rf "$DIR/runtime/$TARGET"
 mkdir -p "$DIR/runtime"
 
 echo "Building runtime environment for $TARGET..."
+
+# ZIP compression seems to produce errors in Windows x86
+#
+# see https://github.com/AdoptOpenJDK/openjdk-build/issues/763
+# see https://bugs.openjdk.java.net/browse/JDK-8215123
+#
+# Therefore we're using --compress=1 instead of --compress=2
+
 "$JLINK" \
-    -p "$DIR/jmods/$TARGET" \
-    --add-modules "java.desktop,java.naming" \
+    --add-modules "$MODULES" \
+    --module-path "$TEMP_DIR/jmods" \
     --output "$DIR/runtime/$TARGET" \
-    --compress=2 \
+    --compress=1 \
     --strip-debug \
     --no-header-files \
     --no-man-pages
+
+configure_runtime "$DIR/runtime/$TARGET"
 
 
 #
 # cleanup
 #
 
-cd "$DIR"
 rm -Rf "$TEMP_DIR"

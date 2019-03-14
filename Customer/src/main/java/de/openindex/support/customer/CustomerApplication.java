@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2018 OpenIndex.de.
+ * Copyright 2015-2019 OpenIndex.de.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ import java.awt.GraphicsDevice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -444,7 +445,27 @@ public class CustomerApplication {
                 } else if (object instanceof MouseMoveRequest) {
 
                     final MouseMoveRequest request = (MouseMoveRequest) object;
-                    robot.mouseMove(request.x, request.y);
+                    final int x;
+                    final int y;
+
+                    // On Windows systems we need to convert the coordinates
+                    // according to the current screen scaling factor.
+                    if (SystemUtils.IS_OS_WINDOWS) {
+                        final GraphicsConfiguration screenConfiguration = screen.getDefaultConfiguration();
+                        final AffineTransform transform = screenConfiguration.getDefaultTransform();
+                        final double scaleX = (transform != null && transform.getScaleX() > 0) ?
+                                transform.getScaleX() : 1;
+                        final double scaleY = (transform != null && transform.getScaleY() > 0) ?
+                                transform.getScaleY() : 1;
+
+                        x = (int) ((double) request.x / scaleX);
+                        y = (int) ((double) request.y / scaleY);
+                    } else {
+                        x = request.x;
+                        y = request.y;
+                    }
+
+                    robot.mouseMove(x, y);
 
                 } else if (object instanceof MousePressRequest) {
 

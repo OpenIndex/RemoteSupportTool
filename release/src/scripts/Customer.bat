@@ -1,6 +1,6 @@
 @REM ----------------------------------------------------------------------------
 @REM RemoteSupportTool for customers
-@REM Copyright (C) 2015-2018 OpenIndex.de
+@REM Copyright 2015-2019 OpenIndex.de
 @REM ----------------------------------------------------------------------------
 @echo off
 

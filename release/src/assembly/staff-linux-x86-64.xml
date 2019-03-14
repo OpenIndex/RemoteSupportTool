@@ -3,8 +3,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
 
-    <id>Client-mac64</id>
-    <baseDirectory>mac64</baseDirectory>
+    <id>Client-linux-x86-64</id>
+    <baseDirectory>linux-x86-64</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <formats>
@@ -14,7 +14,7 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>share/openjdk/runtime/mac64</directory>
+            <directory>src/openjdk/runtime/linux-x86-64</directory>
         </fileSet>
     </fileSets>
 
@@ -31,12 +31,6 @@
             <destName>LICENSE.txt</destName>
             <outputDirectory></outputDirectory>
             <lineEnding>unix</lineEnding>
-            <fileMode>0644</fileMode>
-        </file>
-        <file>
-            <source>${project.parent.basedir}/share/icons/help.icns</source>
-            <destName>icon.icns</destName>
-            <outputDirectory>share</outputDirectory>
             <fileMode>0644</fileMode>
         </file>
     </files>
