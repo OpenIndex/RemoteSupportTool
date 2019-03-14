@@ -20,6 +20,7 @@ STAFF_TOOL="StaffSupportTool"
 CUSTOMER_TOOL="CustomerSupportTool"
 VERSION="1.1-SNAPSHOT"
 
+MAKESELF="makeself"
 DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
 TARGET_DIR="$DIR/target"
 FOUND="0"
@@ -67,6 +68,38 @@ if [[ -d "$TARGET_DIR/Customer/macos-x86-64" ]]; then
     rm -Rf "$TARGET_DIR/$CUSTOMER_TOOL.app"
     echo "Unsigned archive was created at:"
     echo "target/$CUSTOMER_TOOL-$VERSION.macos-x86-64.tar.gz"
+fi
+
+if [[ -d "$TARGET_DIR/Staff/macos-x86-64" ]]; then
+    FOUND="1"
+    echo ""
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Creating $STAFF_TOOL-$VERSION.macos-x86-64.sh...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    echo ""
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION.macos-x86-64.sh"
+    cd "$TARGET_DIR/Staff/macos-x86-64"
+    "$MAKESELF" --tar-quietly \
+        . \
+        "$TARGET_DIR/$STAFF_TOOL-$VERSION.macos-x86-64.sh" \
+        "$STAFF_TOOL $VERSION" \
+        bin/Start.sh
+fi
+
+if [[ -d "$TARGET_DIR/Customer/macos-x86-64" ]]; then
+    FOUND="1"
+    echo ""
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Creating $CUSTOMER_TOOL-$VERSION.macos-x86-64.sh...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    echo ""
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.macos-x86-64.sh"
+    cd "$TARGET_DIR/Customer/macos-x86-64"
+    "$MAKESELF" --tar-quietly \
+        . \
+        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.macos-x86-64.sh" \
+        "$CUSTOMER_TOOL $VERSION" \
+        bin/Start.sh
 fi
 
 if [[ "$FOUND" == "0" ]]; then
