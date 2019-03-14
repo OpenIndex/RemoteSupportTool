@@ -29,15 +29,15 @@ set -e
 if [[ -d "$TARGET_DIR/Staff/linux-x86" ]]; then
     FOUND="1"
     echo ""
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
-    echo -e "\e[1m\e[92m Creating $STAFF_TOOL-$VERSION-linux-x86.sh...\e[0m"
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Creating $STAFF_TOOL-$VERSION.linux-x86.sh...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
     echo ""
-    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux-x86.sh"
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION.linux-x86.sh"
     cd "$TARGET_DIR/Staff/linux-x86"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux-x86.sh" \
+        "$TARGET_DIR/$STAFF_TOOL-$VERSION.linux-x86.sh" \
         "$STAFF_TOOL $VERSION" \
         bin/Start.sh
 fi
@@ -45,15 +45,15 @@ fi
 if [[ -d "$TARGET_DIR/Staff/linux-x86-64" ]]; then
     FOUND="1"
     echo ""
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
-    echo -e "\e[1m\e[92m Creating $STAFF_TOOL-$VERSION-linux-x86-64.sh...\e[0m"
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Creating $STAFF_TOOL-$VERSION.linux-x86-64.sh...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
     echo ""
-    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux-x86-64.sh"
+    rm -f "$TARGET_DIR/$STAFF_TOOL-$VERSION.linux-x86-64.sh"
     cd "$TARGET_DIR/Staff/linux-x86-64"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$STAFF_TOOL-$VERSION-linux-x86-64.sh" \
+        "$TARGET_DIR/$STAFF_TOOL-$VERSION.linux-x86-64.sh" \
         "$STAFF_TOOL $VERSION" \
         bin/Start.sh
 fi
@@ -61,15 +61,15 @@ fi
 if [[ -d "$TARGET_DIR/Customer/linux-x86" ]]; then
     FOUND="1"
     echo ""
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
-    echo -e "\e[1m\e[92m Creating $CUSTOMER_TOOL-$VERSION-linux-x86.sh...\e[0m"
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Creating $CUSTOMER_TOOL-$VERSION.linux-x86.sh...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
     echo ""
-    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux-x86.sh"
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.linux-x86.sh"
     cd "$TARGET_DIR/Customer/linux-x86"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux-x86.sh" \
+        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.linux-x86.sh" \
         "$CUSTOMER_TOOL $VERSION" \
         bin/Start.sh
 fi
@@ -77,19 +77,20 @@ fi
 if [[ -d "$TARGET_DIR/Customer/linux-x86-64" ]]; then
     FOUND="1"
     echo ""
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
-    echo -e "\e[1m\e[92m Creating $CUSTOMER_TOOL-$VERSION-linux-x86-64.sh...\e[0m"
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Creating $CUSTOMER_TOOL-$VERSION.linux-x86-64.sh...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
     echo ""
-    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux-x86-64.sh"
+    rm -f "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.linux-x86-64.sh"
     cd "$TARGET_DIR/Customer/linux-x86-64"
     "$MAKESELF" --tar-quietly \
         . \
-        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION-linux-x86-64.sh" \
+        "$TARGET_DIR/$CUSTOMER_TOOL-$VERSION.linux-x86-64.sh" \
         "$CUSTOMER_TOOL $VERSION" \
         bin/Start.sh
 fi
 
 if [[ "$FOUND" == "0" ]]; then
-    echo "ERROR: No Linux packages were found at $TARGET_DIR"
+    echo "ERROR: No Linux packages were found at:"
+    echo "$TARGET_DIR"
 fi

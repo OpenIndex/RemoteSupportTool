@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #
+# Create signed application bundles for macOS systems.
 # Copyright 2015-2019 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,47 +27,51 @@ KEY="Developer ID Application: Andreas Rudolph (H48THMS543)"
 DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
 TARGET_DIR="$DIR/target"
 SIGNED_DIR="$DIR/signed"
+TEMP_DIR="$TARGET_DIR/codesign"
 FOUND="0"
 set -e
 
 mkdir -p "$SIGNED_DIR"
 export LANG="en_US.UTF-8"
 
-for f in ${TARGET_DIR}/*.app.tar.gz; do
+for f in ${TARGET_DIR}/*.macos-*.tar.gz; do
 
     if [[ "$FOUND" == "0" ]]; then
         echo ""
-        echo -e "\e[1m\e[92m=======================================================================\e[0m"
-        echo -e "\e[1m\e[92m Unlocking keychain...\e[0m"
-        echo -e "\e[1m\e[92m=======================================================================\e[0m"
+        printf "\e[1m\e[92m=======================================================================\e[0m\n"
+        printf "\e[1m\e[92m Unlocking keychain...\e[0m\n"
+        printf "\e[1m\e[92m=======================================================================\e[0m\n"
         echo ""
         security unlock-keychain
     fi
 
     FOUND="1"
-    #pkg=$(basename ${f:0:-7})
-    pkg=$(basename ${f%.tar.gz})
     echo ""
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
-    echo -e "\e[1m\e[92m Signing $pkg...\e[0m"
-    echo -e "\e[1m\e[92m=======================================================================\e[0m"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Processing $(basename "$f")...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
     echo ""
-    rm -Rf "$TARGET_DIR/$pkg"
-    tar xfz "$f" -C "$TARGET_DIR"
-    codesign --deep -s "$KEY" "$TARGET_DIR/$pkg"
+    rm -Rf "$TEMP_DIR"
+    mkdir -p "$TEMP_DIR"
+    tar xfz "$f" -C "$TEMP_DIR"
+    pkg="$(ls -1 "$TEMP_DIR")"
+    codesign --deep -s "$KEY" "$TEMP_DIR/$pkg"
     echo "Verifying signature:"
-    codesign -d --verbose=4 "$TARGET_DIR/$pkg"
+    codesign -d --verbose=4 "$TEMP_DIR/$pkg"
     echo ""
     echo "Verifying access for Gatekeeper:"
-    spctl --assess --verbose=4 --type execute "$TARGET_DIR/$pkg"
+    spctl --assess --verbose=4 --type execute "$TEMP_DIR/$pkg"
     echo ""
     echo "Storing signed application bundle at:"
-    echo "$SIGNED_DIR/$pkg.tar.gz"
-    rm -f "$SIGNED_DIR/$pkg.tar.gz"
-    cd "$TARGET_DIR"
-    tar cfz "$SIGNED_DIR/$pkg.tar.gz" "$pkg"
+    echo "$SIGNED_DIR/$(basename "$f")"
+    rm -f "$SIGNED_DIR/$(basename "$f")"
+    cd "$TEMP_DIR"
+    tar cfz "$SIGNED_DIR/$(basename "$f")" "$pkg"
 done
 
 if [[ "$FOUND" == "0" ]]; then
-    echo "ERROR: No macOS packages were found at $DIR"
+    echo "ERROR: No macOS packages were found at:"
+    echo "$TARGET_DIR"
 fi
+
+rm -Rf "$TEMP_DIR"
