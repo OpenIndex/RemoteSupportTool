@@ -32,7 +32,7 @@ set -e
 mkdir -p "$SIGNED_DIR"
 export LANG="en_US.UTF-8"
 
-for f in ${TARGET_DIR}/*.app.tar.gz; do
+for f in ${TARGET_DIR}/*-mac.tar.gz; do
 
     if [ "$FOUND" == "0" ]; then
         echo ""
@@ -44,27 +44,26 @@ for f in ${TARGET_DIR}/*.app.tar.gz; do
     fi
 
     FOUND="1"
-    #pkg=$(basename ${f:0:-7})
-    pkg=$(basename ${f%.tar.gz})
+    pkg="$(basename "$f" | rev | cut -d'-' -f3- | rev)"
     echo ""
     echo "----------------------------------------------------------------"
-    echo "Signing $pkg..."
+    echo "Signing $pkg.app..."
     echo "----------------------------------------------------------------"
     echo ""
-    rm -Rf "$TARGET_DIR/$pkg"
+    rm -Rf "$TARGET_DIR/$pkg.app"
     tar xfz "$f" -C "$TARGET_DIR"
-    codesign --deep -s "$KEY" "$TARGET_DIR/$pkg"
+    codesign --deep -s "$KEY" "$TARGET_DIR/$pkg.app"
     echo "Verifying signature:"
-    codesign -d --verbose=4 "$TARGET_DIR/$pkg"
+    codesign -d --verbose=4 "$TARGET_DIR/$pkg.app"
     echo ""
     echo "Verifying access for Gatekeeper:"
-    spctl --assess --verbose=4 --type execute "$TARGET_DIR/$pkg"
+    spctl --assess --verbose=4 --type execute "$TARGET_DIR/$pkg.app"
     echo ""
     echo "Storing signed application bundle at:"
-    echo "$SIGNED_DIR/$pkg.tar.gz"
-    rm -f "$SIGNED_DIR/$pkg.tar.gz"
+    echo "$SIGNED_DIR/$(basename "$f")"
+    rm -f "$SIGNED_DIR/$(basename "$f")"
     cd "$TARGET_DIR"
-    tar cfz "$SIGNED_DIR/$pkg.tar.gz" "$pkg"
+    tar cfz "$SIGNED_DIR/$(basename "$f")" "$pkg.app"
 done
 
 if [ "$FOUND" == "0" ]; then
