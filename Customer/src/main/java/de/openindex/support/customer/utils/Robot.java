@@ -115,34 +115,38 @@ public class Robot extends java.awt.Robot {
     }
 
     public synchronized void printCharacter(char character) {
-        //LOGGER.debug("printCharacter: " + character);
+        LOGGER.debug("printCharacter: " + character);
         waitForIdle();
 
         // release keys, that may have been set previously
-        List<Integer> oldPressedKeys = new ArrayList<>(pressedKeys);
+        final List<Integer> oldPressedKeys = new ArrayList<>(pressedKeys);
         releasePressedKeys();
 
-        if (SystemUtils.IS_OS_WINDOWS) {
-            // print character on Windows systems by typing ALT + unicode number
-            keyPress(KeyEvent.VK_ALT);
-            keyPress(KeyEvent.VK_NUMPAD0);
-            keyRelease(KeyEvent.VK_NUMPAD0);
-            String altCode = Integer.toString(character);
-            for (int i = 0; i < altCode.length(); i++) {
-                char code = (char) (altCode.charAt(i) + '0');
-                keyPress(code);
-                keyRelease(code);
+        try {
+            // Try to print the character through the native API of the operating system.
+            boolean textWasSent = false;
+            if (SystemUtils.IS_OS_WINDOWS)
+                textWasSent = WindowsUtils.sendText(String.valueOf(character), this);
+            else if (SystemUtils.IS_OS_MAC)
+                textWasSent = MacUtils.sendText(String.valueOf(character));
+            else if (SystemUtils.IS_OS_LINUX)
+                textWasSent = LinuxUtils.sendText(String.valueOf(character));
+
+            // Otherwise try to print the character through the Robot class.
+            if (!textWasSent) {
+                int code = KeyEvent.getExtendedKeyCodeForChar(character);
+                if (KeyEvent.VK_UNDEFINED != code)
+                    keyPress(code);
+                else
+                    LOGGER.warn("Can't detect key code for character '{}'.", character);
             }
-            keyRelease(KeyEvent.VK_ALT);
-        } else {
-            // paste the character through the system clipboard
-            pasteText(String.valueOf(character));
-        }
 
-        // reset pressed keys
-        releasePressedKeys();
-        for (Integer code : oldPressedKeys) {
-            keyPress(code);
+        } finally {
+            // reset pressed keys
+            releasePressedKeys();
+            for (Integer code : oldPressedKeys) {
+                keyPress(code);
+            }
         }
     }
 
