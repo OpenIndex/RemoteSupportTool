@@ -41,6 +41,7 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -76,6 +77,8 @@ public abstract class StaffFrame extends JFrame {
     private JButton stopButton = null;
     private JButton actionsButton = null;
     private JPopupMenu actionsMenu = null;
+    private JCheckBoxMenuItem sendKeyboardInput = null;
+    private JCheckBoxMenuItem sendMouseInput = null;
     private JToggleButton optionsButton = null;
     private JPanel optionsPanel = null;
     private JLabel infoLabel = null;
@@ -128,40 +131,54 @@ public abstract class StaffFrame extends JFrame {
         screenView.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                doHandleKeyPress(e);
+                if (sendKeyboardInput.isSelected()) {
+                    doHandleKeyPress(e);
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                doHandleKeyRelease(e);
+                if (sendKeyboardInput.isSelected()) {
+                    doHandleKeyRelease(e);
+                }
             }
         });
         screenView.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!started) return;
-                screenView.requestFocus();
+                if (sendMouseInput.isSelected()) {
+                    if (!started) return;
+                    screenView.requestFocus();
+                }
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                doHandleMousePress(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMousePress(e);
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                doHandleMouseRelease(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMouseRelease(e);
+                }
             }
         });
         screenView.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                doHandleMouseMotion(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMouseMotion(e);
+                }
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                doHandleMouseMotion(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMouseMotion(e);
+                }
             }
         });
         screenView.addMouseWheelListener(this::doHandleMouseWheel);
@@ -369,6 +386,21 @@ public abstract class StaffFrame extends JFrame {
         actionsButton.setText(StaffApplication.setting("i18n.actions"));
         actionsButton.addActionListener(e -> actionsMenu.show(actionsButton, 0, actionsButton.getHeight()));
         actionsMenu = new JPopupMenu();
+
+        // send keyboard input
+        sendKeyboardInput = new JCheckBoxMenuItem();
+        sendKeyboardInput.setText(StaffApplication.setting("i18n.sendKeyboardInput"));
+        sendKeyboardInput.setSelected(true);
+        actionsMenu.add(sendKeyboardInput);
+
+        // send mouse input
+        sendMouseInput = new JCheckBoxMenuItem();
+        sendMouseInput.setText(StaffApplication.setting("i18n.sendMouseInput"));
+        sendMouseInput.setSelected(true);
+        actionsMenu.add(sendMouseInput);
+
+        // paste text
+        actionsMenu.addSeparator();
         actionsMenu.add(new AbstractAction(StaffApplication.setting("i18n.pasteText")) {
             @Override
             public void actionPerformed(ActionEvent e) {
