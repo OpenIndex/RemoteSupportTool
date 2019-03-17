@@ -13,21 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package de.openindex.support.core.io;
+
+import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 /**
- * Customer application.
+ * Request for a key being typed.
  *
  * @author Andreas Rudolph
  */
-module de.openindex.support.customer {
-    requires de.openindex.support.core;
-    requires logback.classic;
-    requires miglayout.swing;
-    requires org.apache.commons.io;
-    requires org.apache.commons.lang3;
-    requires org.apache.commons.text;
-    requires slf4j.api;
-    requires com.sun.jna.platform;
-    requires com.sun.jna;
-    exports de.openindex.support.customer.utils.mac to com.sun.jna;
+public class KeyTypeRequest implements Serializable {
+    private static final long serialVersionUID = 1;
+    public final char keyChar;
+
+    public KeyTypeRequest() {
+        this(KeyEvent.CHAR_UNDEFINED);
+    }
+
+    public KeyTypeRequest(char keyChar) {
+        super();
+        this.keyChar = keyChar;
+    }
 }

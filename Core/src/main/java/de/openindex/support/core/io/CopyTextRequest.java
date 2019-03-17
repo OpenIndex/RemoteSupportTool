@@ -18,19 +18,19 @@ package de.openindex.support.core.io;
 import java.io.Serializable;
 
 /**
- * Request for a text being pasted.
+ * Request for a text being copied into the clipboard of the customer.
  *
  * @author Andreas Rudolph
  */
-public class PasteTextRequest implements Serializable {
+public class CopyTextRequest implements Serializable {
     private static final long serialVersionUID = 1;
     public final String text;
 
-    public PasteTextRequest() {
+    public CopyTextRequest() {
         this(null);
     }
 
-    public PasteTextRequest(String text) {
+    public CopyTextRequest(String text) {
         super();
         this.text = text;
     }

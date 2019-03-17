@@ -22,13 +22,14 @@ import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UserInfo;
 import de.openindex.support.core.AppUtils;
 import de.openindex.support.core.ImageUtils;
+import de.openindex.support.core.io.CopyTextRequest;
 import de.openindex.support.core.io.KeyPressRequest;
 import de.openindex.support.core.io.KeyReleaseRequest;
+import de.openindex.support.core.io.KeyTypeRequest;
 import de.openindex.support.core.io.MouseMoveRequest;
 import de.openindex.support.core.io.MousePressRequest;
 import de.openindex.support.core.io.MouseReleaseRequest;
 import de.openindex.support.core.io.MouseWheelRequest;
-import de.openindex.support.core.io.PasteTextRequest;
 import de.openindex.support.core.io.ScreenRequest;
 import de.openindex.support.core.io.ScreenResponse;
 import de.openindex.support.core.io.ScreenTile;
@@ -68,7 +69,6 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.text.StringEscapeUtils;
@@ -126,6 +126,7 @@ public class StaffApplication {
         ImageIO.setUseCache(false);
     }
 
+    @SuppressWarnings("Duplicates")
     public static void main(String[] args) {
         LOGGER.info(StringUtils.repeat("-", 60));
         LOGGER.info("Starting " + TITLE + "...");
@@ -344,6 +345,7 @@ public class StaffApplication {
                         private String passwordPrompt = null;
 
                         @Override
+                        @SuppressWarnings("Duplicates")
                         public String getPassphrase() {
                             String message = StringEscapeUtils.escapeXml11(setting("i18n.sshAuthPassphrase"));
                             if (StringUtils.isNotBlank(passphrasePrompt))
@@ -359,6 +361,7 @@ public class StaffApplication {
                         }
 
                         @Override
+                        @SuppressWarnings("Duplicates")
                         public String getPassword() {
                             String message = StringEscapeUtils.escapeXml11(setting("i18n.sshAuthPassword"));
                             if (StringUtils.isNotBlank(passwordPrompt))
@@ -498,6 +501,8 @@ public class StaffApplication {
         private Timer mouseMotionTimer = null;
         private MouseEvent mouseMotionEvent = null;
         private Timer resizeTimer = null;
+        private boolean windowsKeyDown = false;
+        private List<Integer> pressedKeys = new ArrayList<>();
 
         private Frame(StaffOptions options) {
             super(options);
@@ -509,41 +514,179 @@ public class StaffApplication {
         }
 
         @Override
-        protected void doHandleKeyPress(KeyEvent e) {
+        protected void doCopyText(String text) {
             if (handler == null) return;
-            //LOGGER.debug("key pressed: " + e.paramString());
-
-            final int code = e.getKeyCode();
-            final char character = e.getKeyChar();
-
-            if (character == KeyEvent.CHAR_UNDEFINED && code == KeyEvent.VK_UNDEFINED)
-                return;
-
-            if (character == KeyEvent.CHAR_UNDEFINED)
-                handler.sendKeyPress(code);
-            else if (code != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(character))
-                handler.sendKeyPress(code);
-            else
-                handler.sendKeyPress(character);
+            handler.sendCopyText(text);
         }
 
         @Override
-        protected void doHandleKeyRelease(KeyEvent e) {
+        @SuppressWarnings("Duplicates")
+        protected synchronized void doHandleKeyPress(KeyEvent e) {
+            if (handler == null) return;
+            //LOGGER.debug("key pressed: " + e.paramString());
+
+            // Get code of the pressed key.
+            // Keypad arrows are translated to regular arrow keys.
+            final int keyCode;
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_KP_DOWN:
+                    keyCode = KeyEvent.VK_DOWN;
+                    break;
+                case KeyEvent.VK_KP_LEFT:
+                    keyCode = KeyEvent.VK_LEFT;
+                    break;
+                case KeyEvent.VK_KP_RIGHT:
+                    keyCode = KeyEvent.VK_RIGHT;
+                    break;
+                case KeyEvent.VK_KP_UP:
+                    keyCode = KeyEvent.VK_UP;
+                    break;
+                default:
+                    keyCode = e.getKeyCode();
+                    break;
+            }
+
+            // Never press undefined key codes.
+            if (keyCode == KeyEvent.VK_UNDEFINED) {
+                return;
+            }
+
+            // Never send caps lock, num lock and scroll lock key.
+            if (keyCode == KeyEvent.VK_CAPS_LOCK || keyCode == KeyEvent.VK_NUM_LOCK || keyCode == KeyEvent.VK_SCROLL_LOCK) {
+                return;
+            }
+
+            // Detect, if a control key was pressed.
+            final boolean isControlKey = e.isActionKey() ||
+                    keyCode == KeyEvent.VK_BACK_SPACE ||
+                    keyCode == KeyEvent.VK_DELETE ||
+                    keyCode == KeyEvent.VK_ENTER ||
+                    keyCode == KeyEvent.VK_SPACE ||
+                    keyCode == KeyEvent.VK_TAB ||
+                    keyCode == KeyEvent.VK_ESCAPE ||
+                    keyCode == KeyEvent.VK_ALT ||
+                    keyCode == KeyEvent.VK_ALT_GRAPH ||
+                    keyCode == KeyEvent.VK_CONTROL ||
+                    keyCode == KeyEvent.VK_SHIFT ||
+                    keyCode == KeyEvent.VK_META;
+
+            // Press control keys.
+            if (isControlKey) {
+                //LOGGER.debug("press key \"{}\" ({})", keyCode, KeyEvent.getKeyText(keyCode));
+                handler.sendKeyPress(keyCode);
+                e.consume();
+            }
+
+            // Press other keys, if they are pressed together with a modifier key.
+            else if (e.isControlDown() || e.isAltDown() || e.isMetaDown() || windowsKeyDown) {
+                //LOGGER.debug("press key \"{}\" ({})", keyCode, KeyEvent.getKeyText(keyCode));
+                handler.sendKeyPress(keyCode);
+                if (!pressedKeys.contains(keyCode))
+                    pressedKeys.add(keyCode);
+                e.consume();
+            }
+
+            // Remember, that the Windows key was pressed.
+            if (keyCode == KeyEvent.VK_WINDOWS) {
+                synchronized (Frame.this) {
+                    windowsKeyDown = true;
+                }
+            }
+        }
+
+        @Override
+        @SuppressWarnings("Duplicates")
+        protected synchronized void doHandleKeyRelease(KeyEvent e) {
             if (handler == null) return;
             //LOGGER.debug("key released: " + e.paramString());
 
-            final int code = e.getKeyCode();
-            final char character = e.getKeyChar();
+            // Get code of the released key.
+            // Keypad arrows are translated to regular arrow keys.
+            final int keyCode;
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_KP_DOWN:
+                    keyCode = KeyEvent.VK_DOWN;
+                    break;
+                case KeyEvent.VK_KP_LEFT:
+                    keyCode = KeyEvent.VK_LEFT;
+                    break;
+                case KeyEvent.VK_KP_RIGHT:
+                    keyCode = KeyEvent.VK_RIGHT;
+                    break;
+                case KeyEvent.VK_KP_UP:
+                    keyCode = KeyEvent.VK_UP;
+                    break;
+                default:
+                    keyCode = e.getKeyCode();
+                    break;
+            }
 
-            if (character == KeyEvent.CHAR_UNDEFINED && code == KeyEvent.VK_UNDEFINED)
+            // Never press undefined key codes.
+            if (keyCode == KeyEvent.VK_UNDEFINED) {
+                return;
+            }
+
+            // Never send caps lock, num lock and scroll lock key.
+            if (keyCode == KeyEvent.VK_CAPS_LOCK || keyCode == KeyEvent.VK_NUM_LOCK || keyCode == KeyEvent.VK_SCROLL_LOCK) {
+                return;
+            }
+
+            // Detect, if a control key was pressed.
+            final boolean isControlKey = e.isActionKey() ||
+                    keyCode == KeyEvent.VK_BACK_SPACE ||
+                    keyCode == KeyEvent.VK_DELETE ||
+                    keyCode == KeyEvent.VK_ENTER ||
+                    keyCode == KeyEvent.VK_SPACE ||
+                    keyCode == KeyEvent.VK_TAB ||
+                    keyCode == KeyEvent.VK_ESCAPE ||
+                    keyCode == KeyEvent.VK_ALT ||
+                    keyCode == KeyEvent.VK_ALT_GRAPH ||
+                    keyCode == KeyEvent.VK_CONTROL ||
+                    keyCode == KeyEvent.VK_SHIFT ||
+                    keyCode == KeyEvent.VK_META;
+
+            // Release control keys.
+            if (isControlKey) {
+                //LOGGER.debug("release key \"{}\" ({})", keyCode, KeyEvent.getKeyText(keyCode));
+                handler.sendKeyRelease(keyCode);
+                e.consume();
+            }
+
+            // Release other keys, if they are pressed together with a modifier key.
+            else if (e.isControlDown() || e.isAltDown() || e.isMetaDown() || windowsKeyDown || pressedKeys.contains(keyCode)) {
+                //LOGGER.debug("release key \"{}\" ({})", keyCode, KeyEvent.getKeyText(keyCode));
+                handler.sendKeyRelease(keyCode);
+                pressedKeys.remove((Integer) keyCode);
+                e.consume();
+            }
+
+            // Forget, that the Windows key is pressed.
+            if (keyCode == KeyEvent.VK_WINDOWS) {
+                synchronized (Frame.this) {
+                    windowsKeyDown = false;
+                }
+            }
+        }
+
+        @Override
+        protected synchronized void doHandleKeyTyped(KeyEvent e) {
+            if (handler == null) return;
+            //LOGGER.debug("key typed: " + e.paramString());
+            final char keyChar = e.getKeyChar();
+            final int keyValue = (int) keyChar;
+
+            // Don't type non printable characters.
+            //if (keyValue < 33 || keyValue == 127 || keyChar == KeyEvent.CHAR_UNDEFINED)
+            if (keyChar == KeyEvent.CHAR_UNDEFINED || Character.isWhitespace(keyChar) || Character.isISOControl(keyChar) || Character.isIdentifierIgnorable(keyChar))
                 return;
 
-            if (character == KeyEvent.CHAR_UNDEFINED)
-                handler.sendKeyRelease(code);
-            else if (code != KeyEvent.VK_UNDEFINED && !CharUtils.isAsciiPrintable(character))
-                handler.sendKeyRelease(code);
-            else
-                handler.sendKeyRelease(character);
+            // Don't type a character, if a modifier key is pressed at the same time.
+            if (e.isControlDown() || e.isAltDown() || e.isMetaDown() || windowsKeyDown)
+                return;
+
+            //LOGGER.debug("type character \"{}\" ({})", keyChar, keyValue);
+            handler.sendKeyType(keyChar);
+            e.consume();
         }
 
         @Override
@@ -590,12 +733,6 @@ public class StaffApplication {
         }
 
         @Override
-        protected void doPasteText(String text) {
-            if (handler == null) return;
-            handler.sendPasteText(text);
-        }
-
-        @Override
         protected void doQuit() {
             stop(true);
             System.exit(0);
@@ -617,6 +754,8 @@ public class StaffApplication {
 
         @Override
         protected void doStart() {
+            pressedKeys.clear();
+            windowsKeyDown = false;
             start();
         }
 
@@ -704,14 +843,13 @@ public class StaffApplication {
             }
         }
 
+        private void sendCopyText(String text) {
+            send(new CopyTextRequest(text));
+        }
+
         private void sendKeyPress(int keyCode) {
             //LOGGER.debug("sendKeyPress | code: " + keyCode);
             send(new KeyPressRequest(keyCode));
-        }
-
-        private void sendKeyPress(char keyChar) {
-            //LOGGER.debug("sendKeyPress | char: " + keyChar);
-            send(new KeyPressRequest(keyChar));
         }
 
         private void sendKeyRelease(int keyCode) {
@@ -719,9 +857,9 @@ public class StaffApplication {
             send(new KeyReleaseRequest(keyCode));
         }
 
-        private void sendKeyRelease(char keyChar) {
-            //LOGGER.debug("sendKeyRelease | char: " + keyChar);
-            send(new KeyReleaseRequest(keyChar));
+        private void sendKeyType(char keyChar) {
+            //LOGGER.debug("sendKeyType | char: " + keyChar);
+            send(new KeyTypeRequest(keyChar));
         }
 
         private void sendMouseMove(int x, int y) {
@@ -769,10 +907,6 @@ public class StaffApplication {
 
         private void sendMouseWheel(int wheelAmt) {
             send(new MouseWheelRequest(wheelAmt));
-        }
-
-        private void sendPasteText(String text) {
-            send(new PasteTextRequest(text));
         }
 
         private void sendScreenRequest() {

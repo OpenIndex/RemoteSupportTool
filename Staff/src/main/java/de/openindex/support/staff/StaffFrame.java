@@ -99,7 +99,7 @@ public abstract class StaffFrame extends JFrame {
     private JTextField sshKeyField = null;
     private JButton sshKeyButton = null;
     private JCheckBox sshKeyAuthField = null;
-    private PasteTextDialog pasteTextDialog = null;
+    private CopyTextDialog copyTextDialog = null;
 
     public StaffFrame(StaffOptions options) {
         super();
@@ -140,6 +140,13 @@ public abstract class StaffFrame extends JFrame {
             public void keyReleased(KeyEvent e) {
                 if (sendKeyboardInput.isSelected()) {
                     doHandleKeyRelease(e);
+                }
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (sendKeyboardInput.isSelected()) {
+                    doHandleKeyTyped(e);
                 }
             }
         });
@@ -401,18 +408,18 @@ public abstract class StaffFrame extends JFrame {
 
         // paste text
         actionsMenu.addSeparator();
-        actionsMenu.add(new AbstractAction(StaffApplication.setting("i18n.pasteText")) {
+        actionsMenu.add(new AbstractAction(StaffApplication.setting("i18n.copyText")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (pasteTextDialog == null) {
-                    pasteTextDialog = new PasteTextDialog();
-                    pasteTextDialog.createAndShow();
+                if (copyTextDialog == null) {
+                    copyTextDialog = new CopyTextDialog();
+                    copyTextDialog.createAndShow();
                 } else {
-                    if (!pasteTextDialog.isVisible()) {
-                        pasteTextDialog.setLocationRelativeTo(StaffFrame.this);
-                        pasteTextDialog.setVisible(true);
+                    if (!copyTextDialog.isVisible()) {
+                        copyTextDialog.setLocationRelativeTo(StaffFrame.this);
+                        copyTextDialog.setVisible(true);
                     }
-                    pasteTextDialog.toFront();
+                    copyTextDialog.toFront();
                 }
             }
         });
@@ -468,9 +475,13 @@ public abstract class StaffFrame extends JFrame {
 
     protected abstract void doAbout();
 
+    protected abstract void doCopyText(String text);
+
     protected abstract void doHandleKeyPress(KeyEvent e);
 
     protected abstract void doHandleKeyRelease(KeyEvent e);
+
+    protected abstract void doHandleKeyTyped(KeyEvent e);
 
     protected abstract void doHandleMouseMotion(MouseEvent e);
 
@@ -479,8 +490,6 @@ public abstract class StaffFrame extends JFrame {
     protected abstract void doHandleMouseRelease(MouseEvent e);
 
     protected abstract void doHandleMouseWheel(MouseWheelEvent e);
-
-    protected abstract void doPasteText(String text);
 
     protected abstract void doQuit();
 
@@ -608,14 +617,25 @@ public abstract class StaffFrame extends JFrame {
         uploadLabel.setText(StringUtils.EMPTY);
         uploadLabel.setVisible(false);
 
-        if (pasteTextDialog != null) {
-            pasteTextDialog.setVisible(false);
+        if (copyTextDialog != null) {
+            copyTextDialog.setVisible(false);
         }
     }
 
     public void updateScreen(List<BufferedImage> slices, int imageWidth, int imageHeight, int sliceWidth, int sliceHeight) {
         screenView.setSlices(slices, imageWidth, imageHeight, sliceWidth, sliceHeight);
         screenView.repaint();
+    }
+
+    private class CopyTextDialog extends de.openindex.support.staff.utils.CopyTextDialog {
+        private CopyTextDialog() {
+            super(StaffFrame.this);
+        }
+
+        @Override
+        protected void doSubmit(String text) {
+            doCopyText(text);
+        }
     }
 
     private static class ScreenPanel extends JPanel {
@@ -699,17 +719,6 @@ public abstract class StaffFrame extends JFrame {
             } finally {
                 g2d.dispose();
             }
-        }
-    }
-
-    private class PasteTextDialog extends de.openindex.support.staff.utils.PasteTextDialog {
-        private PasteTextDialog() {
-            super(StaffFrame.this);
-        }
-
-        @Override
-        protected void doSubmit(String text) {
-            doPasteText(text);
         }
     }
 }
