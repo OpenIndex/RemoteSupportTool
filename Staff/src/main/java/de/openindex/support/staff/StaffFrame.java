@@ -124,6 +124,7 @@ public abstract class StaffFrame extends JFrame {
         screenView = new ScreenPanel(ObjectUtils.defaultIfNull(
                 ImageUtils.loadImage(StaffApplication.resource("startup.png")),
                 applicationImage));
+        screenView.setFocusTraversalKeysEnabled(false);
         screenView.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
