@@ -65,7 +65,7 @@ public class WindowsUtils {
      */
     private static User32 loadUser32() {
         try {
-            LOGGER.debug("Load user32 library.");
+            //LOGGER.debug("Load user32 library.");
             return Native.load(User32.class);
             //return Native.load(User32.class, W32APIOptions.DEFAULT_OPTIONS);
             //return Native.load(User32.class, W32APIOptions.UNICODE_OPTIONS);
@@ -93,7 +93,7 @@ public class WindowsUtils {
         }
 
         try {
-            LOGGER.debug("Falling back to numpad.");
+            //LOGGER.debug("Falling back to numpad.");
             sendTextViaNumpad(text, robot);
             return true;
         } catch (Exception ex) {

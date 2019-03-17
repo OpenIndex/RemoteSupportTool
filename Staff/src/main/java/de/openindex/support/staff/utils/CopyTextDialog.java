@@ -38,23 +38,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Dialog for pasting text to the remote machine.
+ * Dialog for copying a text to a remote machine.
  *
  * @author Andreas Rudolph
  */
-public abstract class PasteTextDialog extends JDialog {
+public abstract class CopyTextDialog extends JDialog {
     @SuppressWarnings("unused")
-    private final static Logger LOGGER = LoggerFactory.getLogger(PasteTextDialog.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(CopyTextDialog.class);
     private JTextArea textField;
 
-    public PasteTextDialog(StaffFrame frame) {
+    public CopyTextDialog(StaffFrame frame) {
         super(frame);
         setModal(false);
         //setAlwaysOnTop(false);
     }
 
     public void createAndShow() {
-        setTitle(StaffApplication.setting("i18n.pasteTextTitle"));
+        setTitle(StaffApplication.setting("i18n.copyTextTitle"));
         setPreferredSize(new Dimension(350, 200));
         setMinimumSize(new Dimension(300, 150));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -84,7 +84,7 @@ public abstract class PasteTextDialog extends JDialog {
 
         // submit button
         JButton submitButton = new JButton();
-        submitButton.setText(StaffApplication.setting("i18n.pasteText"));
+        submitButton.setText(StaffApplication.setting("i18n.copyText"));
         submitButton.addActionListener(e -> {
             String text = StringUtils.trimToNull(textField.getText());
             if (text != null) doSubmit(text);
@@ -118,7 +118,7 @@ public abstract class PasteTextDialog extends JDialog {
         setVisible(true);
 
         // update form
-        textField.setText(StaffApplication.setting("i18n.pasteTextDefault"));
+        textField.setText(StaffApplication.setting("i18n.copyTextDefault"));
         textField.requestFocus();
         textField.selectAll();
     }

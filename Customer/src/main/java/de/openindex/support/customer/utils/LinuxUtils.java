@@ -42,7 +42,7 @@ public class LinuxUtils {
      */
     private static X11 loadX11() {
         try {
-            LOGGER.debug("Load X11 library.");
+            //LOGGER.debug("Load X11 library.");
             return Native.load(X11.class);
         } catch (UnsatisfiedLinkError ex) {
             LOGGER.warn("Can't load X11 library.", ex);
@@ -57,7 +57,7 @@ public class LinuxUtils {
      */
     private static X11.XTest loadXTest() {
         try {
-            LOGGER.debug("Load XTest library.");
+            //LOGGER.debug("Load XTest library.");
             return Native.load(X11.XTest.class);
         } catch (UnsatisfiedLinkError ex) {
             LOGGER.warn("Can't load XTest library.", ex);

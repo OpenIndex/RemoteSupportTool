@@ -18,12 +18,10 @@ package de.openindex.support.customer.utils;
 import java.awt.AWTException;
 import java.awt.GraphicsDevice;
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +34,7 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("WeakerAccess")
 public class Robot extends java.awt.Robot {
     private final static Logger LOGGER = LoggerFactory.getLogger(Robot.class);
+    @SuppressWarnings("FieldCanBeLocal")
     private final int DEFAULT_DELAY = 15;
     private final List<Integer> pressedKeys = new ArrayList<>();
 
@@ -45,6 +44,16 @@ public class Robot extends java.awt.Robot {
         //setAutoWaitForIdle(true);
     }
 
+    public synchronized void copyText(String text) {
+        try {
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
+                    new StringSelection(text), null);
+        } catch (Exception ex) {
+            LOGGER.warn("Can't copy text to clipboard!", ex);
+        }
+    }
+
+    @SuppressWarnings("unused")
     public synchronized boolean isPressed(int code) {
         return pressedKeys.contains(code);
     }
@@ -74,79 +83,50 @@ public class Robot extends java.awt.Robot {
         //waitForIdle();
     }
 
-    public synchronized void pasteText(String text) {
-        final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-
-        String oldClipboardValue = StringUtils.EMPTY;
-        //String oldClipboardValue;
-        //try {
-        //    oldClipboardValue = (String) clipboard.getData(DataFlavor.stringFlavor);
-        //} catch (Exception ex) {
-        //    oldClipboardValue = StringUtils.EMPTY;
-        //}
-
-        try {
-            clipboard.setContents(new StringSelection(text), null);
-            waitForIdle();
-            setAutoDelay(50);
-
-            if (SystemUtils.IS_OS_MAC_OSX)
-                keyPress(KeyEvent.VK_META);
-            else
-                keyPress(KeyEvent.VK_CONTROL);
-
-            keyPress(KeyEvent.VK_V);
-            keyRelease(KeyEvent.VK_V);
-
-            if (SystemUtils.IS_OS_MAC_OSX)
-                keyRelease(KeyEvent.VK_META);
-            else
-                keyRelease(KeyEvent.VK_CONTROL);
-        } catch (Exception ex) {
-            LOGGER.warn("Can't paste text!", ex);
-        } finally {
-            try {
-                clipboard.setContents(new StringSelection(oldClipboardValue), null);
-            } catch (Exception ex) {
-                LOGGER.warn("Can't clear clipboard!", ex);
-            }
-            setAutoDelay(DEFAULT_DELAY);
-        }
+    public synchronized void printCharacter(char character) {
+        printText(String.valueOf(character));
     }
 
-    public synchronized void printCharacter(char character) {
-        LOGGER.debug("printCharacter: " + character);
+    public synchronized void printText(String text) {
+        //LOGGER.debug("printText \"{}\"", text);
         waitForIdle();
 
         // release keys, that may have been set previously
-        final List<Integer> oldPressedKeys = new ArrayList<>(pressedKeys);
+        //final List<Integer> oldPressedKeys = new ArrayList<>(pressedKeys);
         releasePressedKeys();
 
+        //noinspection EmptyFinallyBlock
         try {
-            // Try to print the character through the native API of the operating system.
+            // Try to print the text through the native API of the operating system.
             boolean textWasSent = false;
             if (SystemUtils.IS_OS_WINDOWS)
-                textWasSent = WindowsUtils.sendText(String.valueOf(character), this);
+                textWasSent = WindowsUtils.sendText(text, this);
             else if (SystemUtils.IS_OS_MAC)
-                textWasSent = MacUtils.sendText(String.valueOf(character));
+                textWasSent = MacUtils.sendText(text);
             else if (SystemUtils.IS_OS_LINUX)
-                textWasSent = LinuxUtils.sendText(String.valueOf(character));
+                textWasSent = LinuxUtils.sendText(text);
 
-            // Otherwise try to print the character through the Robot class.
+            // Otherwise try to print the text through the Robot class.
             if (!textWasSent) {
-                int code = KeyEvent.getExtendedKeyCodeForChar(character);
-                if (KeyEvent.VK_UNDEFINED != code)
-                    keyPress(code);
-                else
-                    LOGGER.warn("Can't detect key code for character '{}'.", character);
+                for (int i = 0; i < text.length(); i++) {
+                    final char character = text.charAt(i);
+                    final int code = KeyEvent.getExtendedKeyCodeForChar(character);
+
+                    if (KeyEvent.VK_UNDEFINED != code) {
+                        keyPress(code);
+                        keyRelease(code);
+                    } else {
+                        LOGGER.warn("Can't detect key code for character \"{}\".", character);
+                    }
+                }
             }
 
         } finally {
-            // reset pressed keys
-            releasePressedKeys();
-            for (Integer code : oldPressedKeys) {
-                keyPress(code);
-            }
+            // reset previously pressed keys
+            //releasePressedKeys();
+            //for (Integer code : oldPressedKeys) {
+            //    keyPress(code);
+            //}
         }
     }
 

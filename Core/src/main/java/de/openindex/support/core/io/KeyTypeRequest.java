@@ -19,20 +19,20 @@ import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
 /**
- * Request for a key being pressed.
+ * Request for a key being typed.
  *
  * @author Andreas Rudolph
  */
-public class KeyPressRequest implements Serializable {
-    private static final long serialVersionUID = 2;
-    public final int keyCode;
+public class KeyTypeRequest implements Serializable {
+    private static final long serialVersionUID = 1;
+    public final char keyChar;
 
-    public KeyPressRequest() {
-        this(KeyEvent.VK_UNDEFINED);
+    public KeyTypeRequest() {
+        this(KeyEvent.CHAR_UNDEFINED);
     }
 
-    public KeyPressRequest(int keyCode) {
+    public KeyTypeRequest(char keyChar) {
         super();
-        this.keyCode = keyCode;
+        this.keyChar = keyChar;
     }
 }

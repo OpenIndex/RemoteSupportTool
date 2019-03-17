@@ -18,13 +18,14 @@ package de.openindex.support.customer;
 import ch.qos.logback.classic.LoggerContext;
 import de.openindex.support.core.AppUtils;
 import de.openindex.support.core.ImageUtils;
+import de.openindex.support.core.io.CopyTextRequest;
 import de.openindex.support.core.io.KeyPressRequest;
 import de.openindex.support.core.io.KeyReleaseRequest;
+import de.openindex.support.core.io.KeyTypeRequest;
 import de.openindex.support.core.io.MouseMoveRequest;
 import de.openindex.support.core.io.MousePressRequest;
 import de.openindex.support.core.io.MouseReleaseRequest;
 import de.openindex.support.core.io.MouseWheelRequest;
-import de.openindex.support.core.io.PasteTextRequest;
 import de.openindex.support.core.io.ResponseFactory;
 import de.openindex.support.core.io.ScreenRequest;
 import de.openindex.support.core.io.ScreenResponse;
@@ -61,7 +62,6 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.ILoggerFactory;
@@ -123,6 +123,7 @@ public class CustomerApplication {
         ImageIO.setUseCache(false);
     }
 
+    @SuppressWarnings("Duplicates")
     public static void main(String[] args) {
         LOGGER.info(StringUtils.repeat("-", 60));
         LOGGER.info("Starting " + TITLE + "...");
@@ -397,7 +398,7 @@ public class CustomerApplication {
                         screenshotTimer = null;
                     }
 
-                    //LOGGER.debug("creating screen shooter for " + request.maxWidth + " / " + request.maxHeight);
+                    //LOGGER.debug("create screenshot for {} x {}", request.maxWidth, request.maxHeight);
                     screenshotTimer = new Timer(SCREENSHOT_DELAY, new ScreenShooter(request));
                     screenshotTimer.setRepeats(true);
                     screenshotTimer.start();
@@ -405,42 +406,26 @@ public class CustomerApplication {
                 } else if (object instanceof KeyPressRequest) {
 
                     final KeyPressRequest request = (KeyPressRequest) object;
-                    //LOGGER.debug("key pressed: " + request.keyCode + " / " + request.keyChar);
+                    //LOGGER.debug("press key {} ({})", request.keyCode, KeyEvent.getKeyText(request.keyCode));
 
                     if (request.keyCode != KeyEvent.VK_UNDEFINED)
                         robot.keyPress(request.keyCode);
-                    else if (request.keyChar != KeyEvent.CHAR_UNDEFINED) {
-                        int code = KeyEvent.getExtendedKeyCodeForChar(request.keyChar);
-                        //LOGGER.debug("key pressed: " + request.keyChar + " / " + code + " / " + CharUtils.isAsciiPrintable(request.keyChar));
-                        if (CharUtils.isAsciiAlphanumeric(request.keyChar) && code != KeyEvent.VK_UNDEFINED) {
-                            try {
-                                robot.keyPress(code);
-                            } catch (IllegalArgumentException ex) {
-                                LOGGER.warn("Can't press key '" + request.keyChar + "' (" + code + "): " + ex.getLocalizedMessage());
-                            }
-                        }
-                    }
 
                 } else if (object instanceof KeyReleaseRequest) {
 
                     final KeyReleaseRequest request = (KeyReleaseRequest) object;
-                    //LOGGER.debug("key released: " + request.keyCode + " / " + request.keyChar);
+                    //LOGGER.debug("release key {} ({})", request.keyCode, KeyEvent.getKeyText(request.keyCode));
 
                     if (request.keyCode != KeyEvent.VK_UNDEFINED)
                         robot.keyRelease(request.keyCode);
-                    else if (request.keyChar != KeyEvent.CHAR_UNDEFINED) {
-                        int code = KeyEvent.getExtendedKeyCodeForChar(request.keyChar);
-                        //LOGGER.debug("key released: " + request.keyChar + " / " + code + " / " + CharUtils.isAsciiPrintable(request.keyChar));
-                        if (robot.isPressed(code)) {
-                            try {
-                                robot.keyRelease(code);
-                            } catch (IllegalArgumentException ex) {
-                                LOGGER.warn("Can't release key '" + request.keyChar + "' (" + code + "): " + ex.getLocalizedMessage());
-                            }
-                        } else {
-                            robot.printCharacter(request.keyChar);
-                        }
-                    }
+
+                } else if (object instanceof KeyTypeRequest) {
+
+                    final KeyTypeRequest request = (KeyTypeRequest) object;
+                    //LOGGER.debug("type key \"{}\"", request.keyChar);
+
+                    if (request.keyChar != KeyEvent.CHAR_UNDEFINED)
+                        robot.printCharacter(request.keyChar);
 
                 } else if (object instanceof MouseMoveRequest) {
 
@@ -482,10 +467,10 @@ public class CustomerApplication {
                     final MouseWheelRequest request = (MouseWheelRequest) object;
                     robot.mouseWheel(request.wheelAmt);
 
-                } else if (object instanceof PasteTextRequest) {
+                } else if (object instanceof CopyTextRequest) {
 
-                    final PasteTextRequest request = (PasteTextRequest) object;
-                    robot.pasteText(request.text);
+                    final CopyTextRequest request = (CopyTextRequest) object;
+                    robot.copyText(request.text);
 
                 } else {
 

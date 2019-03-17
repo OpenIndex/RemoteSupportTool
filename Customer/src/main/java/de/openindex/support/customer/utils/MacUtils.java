@@ -40,7 +40,7 @@ public class MacUtils {
      */
     private static CoreFoundation loadCoreFoundation() {
         try {
-            LOGGER.debug("Load Core Foundation framework.");
+            //LOGGER.debug("Load Core Foundation framework.");
             return Native.load(CoreFoundation.JNA_LIBRARY_NAME, CoreFoundation.class);
         } catch (UnsatisfiedLinkError ex) {
             LOGGER.warn("Can't load Core Foundation framework.", ex);
@@ -55,7 +55,7 @@ public class MacUtils {
      */
     private static CoreGraphics loadCoreGraphics() {
         try {
-            LOGGER.debug("Load Core Graphics framework.");
+            //LOGGER.debug("Load Core Graphics framework.");
             return Native.load(CoreGraphics.JNA_LIBRARY_NAME, CoreGraphics.class);
         } catch (UnsatisfiedLinkError ex) {
             LOGGER.warn("Can't load Core Graphics framework.", ex);
