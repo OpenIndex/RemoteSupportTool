@@ -8,6 +8,10 @@ Changelog for Remote Support Tool
 -   update [Commons Text](https://commons.apache.org/text/) library to version 1.6
 -   update [JSch](http://www.jcraft.com/jsch/) library to version 0.1.55
 -   update [Simple Logging Facade for Java](https://www.slf4j.org/) library to version 1.7.26
+-   provide sh application launcher for macOS [issue #20](https://github.com/OpenIndex/RemoteSupportTool/issues/20)
+-   tab key is not sent to the customer application [issue #21](https://github.com/OpenIndex/RemoteSupportTool/issues/21)
+-   enable / disable transfer of keyboard & mouse inputs [issue #22](https://github.com/OpenIndex/RemoteSupportTool/issues/22)
+-   rework transfer of keyboard inputs [issue #23](https://github.com/OpenIndex/RemoteSupportTool/issues/23)
 
 
 1.0.1 (13 Mar 2019)
