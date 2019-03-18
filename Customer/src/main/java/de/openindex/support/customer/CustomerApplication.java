@@ -18,6 +18,7 @@ package de.openindex.support.customer;
 import ch.qos.logback.classic.LoggerContext;
 import de.openindex.support.core.AppUtils;
 import de.openindex.support.core.ImageUtils;
+import de.openindex.support.core.SwingUtils;
 import de.openindex.support.core.io.CopyTextRequest;
 import de.openindex.support.core.io.KeyPressRequest;
 import de.openindex.support.core.io.KeyReleaseRequest;
@@ -59,7 +60,6 @@ import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import javax.swing.UIManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -195,11 +195,11 @@ public class CustomerApplication {
         }
 
         // setup look and feel
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
-            LOGGER.warn("Can't set look & feel!", ex);
-        }
+        SwingUtils.installLookAndFeel();
+
+        // set application name for Gnome / Ubuntu
+        if (SystemUtils.IS_OS_LINUX)
+            SwingUtils.setAwtAppClassName(TITLE);
 
         // setup desktop environment
         //noinspection Duplicates

@@ -34,6 +34,7 @@ case "$SYSTEM" in
 
     Linux)
         echo "Initializing Linux environment..."
+        JAVA_OPTS="$JAVA_OPTS --add-opens java.desktop/sun.awt.X11=de.openindex.support.core"
         ;;
 
     *)
