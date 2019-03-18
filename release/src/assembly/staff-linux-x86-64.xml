@@ -42,6 +42,7 @@
             <!--<useTransitiveFiltering>true</useTransitiveFiltering>-->
             <excludes>
                 <exclude>${project.groupId}:RemoteSupportTool-Customer:*:*</exclude>
+                <exclude>net.java.dev.jna:*:*:*</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>
