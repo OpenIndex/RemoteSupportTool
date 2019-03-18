@@ -72,6 +72,7 @@ public abstract class CustomerFrame extends JFrame {
         this.options = options;
     }
 
+    @SuppressWarnings("Duplicates")
     public void createAndShow() {
         // init frame
         setTitle(CustomerApplication.setting("i18n.appTitle"));
@@ -137,6 +138,7 @@ public abstract class CustomerFrame extends JFrame {
         portField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getPort(), 1, 65535, 1));
         portField.setBackground(Color.WHITE);
+        portField.setEditor(new JSpinner.NumberEditor(portField, "#"));
         portField.addChangeListener(e -> options.setPort((Integer) portField.getValue()));
 
         // screen selection field

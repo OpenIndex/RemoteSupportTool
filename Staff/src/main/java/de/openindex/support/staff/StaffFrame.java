@@ -106,6 +106,7 @@ public abstract class StaffFrame extends JFrame {
         this.options = options;
     }
 
+    @SuppressWarnings("Duplicates")
     public void createAndShow() {
         final BufferedImage applicationImage = ImageUtils.loadImage(
                 StaffApplication.resource("application.png"));
@@ -218,6 +219,7 @@ public abstract class StaffFrame extends JFrame {
         localPortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getLocalPort(), 1, 65535, 1));
         localPortField.setBackground(Color.WHITE);
+        localPortField.setEditor(new JSpinner.NumberEditor(localPortField, "#"));
         localPortField.addChangeListener(e -> options.setLocalPort((Integer) localPortField.getValue()));
 
         // ssl encryption field
@@ -266,6 +268,7 @@ public abstract class StaffFrame extends JFrame {
         sshPortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getSshPort(), 1, 65535, 1));
         sshPortField.setBackground(Color.WHITE);
+        sshPortField.setEditor(new JSpinner.NumberEditor(sshPortField, "#"));
         sshPortField.addChangeListener(e -> options.setSshPort((Integer) sshPortField.getValue()));
 
         // ssh remote port
@@ -274,6 +277,7 @@ public abstract class StaffFrame extends JFrame {
         sshRemotePortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getSshRemotePort(), 1, 65535, 1));
         sshRemotePortField.setBackground(Color.WHITE);
+        sshRemotePortField.setEditor(new JSpinner.NumberEditor(sshRemotePortField, "#"));
         sshRemotePortField.addChangeListener(e -> options.setSshRemotePort((Integer) sshRemotePortField.getValue()));
 
         // ssh user
