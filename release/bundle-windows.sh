@@ -18,7 +18,7 @@
 
 STAFF_TOOL="StaffSupportTool"
 CUSTOMER_TOOL="CustomerSupportTool"
-VERSION="1.1.0"
+VERSION="1.2.0-SNAPSHOT"
 
 WINE="$(which "wine")"
 WINEPATH="$(which "winepath")"

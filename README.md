@@ -1,5 +1,5 @@
-Remote Support Tool 1.1.0
-=========================
+Remote Support Tool 1.2.0-SNAPSHOT
+==================================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance.
 
@@ -183,5 +183,5 @@ Further information
 
 -   [*Remote Support Tool* at GitHub](https://github.com/OpenIndex/RemoteSupportTool)
 -   [Releases of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/releases)
--   [Changelog of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/blob/master/CHANGELOG.md)
+-   [Changelog of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/blob/develop/CHANGELOG.md)
 -   [Documentation of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/wiki)
