@@ -109,6 +109,21 @@ Supported operating systems
 -   Linux (i386 / amd64)
 
 
+### Notes about Windows
+
+Due to a restriction in the Windows operating system the customer's desktop does not allow any interaction, if an application with administrative privileges is currently running. In this case the customer either has to close the administrative application or needs to start *Customer Support Tool* with administrator privileges.
+
+
+### Notes about macOS
+
+Starting with macOS Mojave (10.14) the customer explicitly needs to allow access to the application after the support session was started. The same applies to other remote support software like TeamViewer. They've described the necessary steps on their [Knowledge Base page](https://community.teamviewer.com/t5/Knowledge-Base/How-to-control-a-Mac-running-macOS-10-14-Mojave/ta-p/44699).
+
+
+### Notes about Linux
+
+Currently the support session is not working for customers using [Wayland](https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)). Currently it is not widely used yet. Fortunately most Linux distributions still use X.org - but for example Fedora is already shipping Wayland in its default installation. We're hoping to find a solution for this problem as soon as possible (see [issue #24](https://github.com/OpenIndex/RemoteSupportTool/issues/24)). 
+
+
 Translations
 ------------
 
@@ -119,6 +134,12 @@ Documentation
 -------------
 
 You can find documentations about *Remote Support Tool* in the [project wiki](https://github.com/OpenIndex/RemoteSupportTool/wiki).
+
+
+Support
+-------
+
+We are providing [professional support](https://github.com/OpenIndex/RemoteSupportTool/wiki/Service) for *Remote Support Tool* in case you can't or don't want to customize the application for yourself. 
 
 
 License
