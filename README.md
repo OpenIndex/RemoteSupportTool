@@ -76,9 +76,9 @@ At minimum the support staff only has to provide a port number, on which the cus
     -   single file launchers; just download and start the application
     -   signed application bundle for macOS
 -   cross platform 
-    -   support for Windows (32-bit / 64-bit)
+    -   support for Windows
     -   support for macOS
-    -   support for Linux (i686 / x86_64)
+    -   support for Linux
 -   multilingual
     -   available in English & German
     -   translatable in other languages if necessary
@@ -104,7 +104,6 @@ Supported operating systems
 ---------------------------
 
 -   Windows (7 or newer, 32bit & 64bit) 
-    *(Vista was not tested yet but may also work)*
 -   Mac OS X (10.9 or newer)
 -   Linux (i386 / amd64)
 
