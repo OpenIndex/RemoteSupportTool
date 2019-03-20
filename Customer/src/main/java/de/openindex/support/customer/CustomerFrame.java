@@ -23,8 +23,10 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
@@ -153,8 +155,12 @@ public abstract class CustomerFrame extends JFrame {
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 final JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 final GraphicsDevice screen = (GraphicsDevice) value;
+                final GraphicsConfiguration cfg = screen.getDefaultConfiguration();
+                final Rectangle bounds = cfg.getBounds();
 
-                label.setText(screen.getIDstring() + " (" + screen.getDisplayMode().toString() + ")");
+                label.setText(screen.getIDstring() + " ("
+                        + bounds.width + "x" + bounds.height + "@" + cfg.getColorModel().getPixelSize() + "bpp; "
+                        + "x=" + bounds.x + "; y=" + bounds.y + ")");
                 return label;
             }
         });
