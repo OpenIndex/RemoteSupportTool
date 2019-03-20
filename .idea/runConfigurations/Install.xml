@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Release &amp; Deploy" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Install" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings" />
@@ -10,16 +10,13 @@
           </option>
           <option name="goals">
             <list>
-              <option value="-Dgpg.skip=false" />
               <option value="clean" />
-              <option value="deploy" />
+              <option value="install" />
             </list>
           </option>
           <option name="pomFileName" />
           <option name="profilesMap">
-            <map>
-              <entry key="openindex-release" value="true" />
-            </map>
+            <map />
           </option>
           <option name="resolveToWorkspace" value="false" />
           <option name="workingDirPath" value="$PROJECT_DIR$" />

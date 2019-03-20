@@ -58,9 +58,6 @@
         <version.miglayout>5.2</version.miglayout>
         <version.slf4j>1.7.26</version.slf4j>
         <createChecksum>true</createChecksum>
-
-        <!-- Set this value to true, in order to skip GPG signing during the release phase. -->
-        <gpg.skip>true</gpg.skip>
     </properties>
 
     <dependencyManagement>
@@ -202,21 +199,12 @@
     </build>
 
     <profiles>
+        <!-- release profile -->
         <profile>
-            <id>openindex-release</id>
+            <id>release</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-            <distributionManagement>
-                <repository>
-                    <id>openindex</id>
-                    <url>https://maven.openindex.de/repository/openindex-releases/</url>
-                </repository>
-                <snapshotRepository>
-                    <id>openindex</id>
-                    <url>https://maven.openindex.de/repository/openindex-snapshots/</url>
-                </snapshotRepository>
-            </distributionManagement>
             <build>
                 <plugins>
                     <plugin>
@@ -249,6 +237,32 @@
                             </execution>
                         </executions>
                     </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- deployment profile -->
+        <profile>
+            <id>deploy</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <gpg.keyname>0xA4B36C73</gpg.keyname>
+                <gpg.passphrase></gpg.passphrase>
+            </properties>
+            <distributionManagement>
+                <repository>
+                    <id>openindex</id>
+                    <url>https://maven.openindex.de/repository/openindex-releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>openindex</id>
+                    <url>https://maven.openindex.de/repository/openindex-snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -261,7 +275,7 @@
                                 </goals>
                                 <configuration>
                                     <keyname>${gpg.keyname}</keyname>
-                                    <passphraseServerId>${gpg.passphrase}</passphraseServerId>
+                                    <passphrase>${gpg.passphrase}</passphrase>
                                 </configuration>
                             </execution>
                         </executions>

@@ -21,4 +21,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 set -e
 export LANG=en
 cd "$DIR"
-"$MVN" -Popenindex-release -Dgpg.skip=false clean deploy
+"$MVN" -Prelease -Pdeploy clean deploy

@@ -17,7 +17,7 @@
           <option name="pomFileName" />
           <option name="profilesMap">
             <map>
-              <entry key="openindex-release" value="true" />
+              <entry key="release" value="true" />
             </map>
           </option>
           <option name="resolveToWorkspace" value="false" />
