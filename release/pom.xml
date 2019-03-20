@@ -148,7 +148,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/desktopshare.ico</icon>
+                                    <icon>${project.basedir}/src/icons/desktopshare.ico</icon>
                                     <singleInstance>
                                         <mutexName>StaffRemoteSupport</mutexName>
                                         <windowTitle>StaffRemoteSupport</windowTitle>
@@ -202,7 +202,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/desktopshare.ico</icon>
+                                    <icon>${project.basedir}/src/icons/desktopshare.ico</icon>
                                     <singleInstance>
                                         <mutexName>StaffRemoteSupport</mutexName>
                                         <windowTitle>StaffRemoteSupport</windowTitle>
@@ -256,7 +256,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/help.ico</icon>
+                                    <icon>${project.basedir}/src/icons/help.ico</icon>
                                     <singleInstance>
                                         <mutexName>CustomerRemoteSupport</mutexName>
                                         <windowTitle>CustomerRemoteSupport</windowTitle>
@@ -310,7 +310,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/help.ico</icon>
+                                    <icon>${project.basedir}/src/icons/help.ico</icon>
                                     <singleInstance>
                                         <mutexName>CustomerRemoteSupport</mutexName>
                                         <windowTitle>CustomerRemoteSupport</windowTitle>

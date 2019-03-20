@@ -53,7 +53,7 @@ if [[ -x "$WINE" ]]; then
     if [[ -f "$DIR/src/windows/Customer.ico" ]]; then
         cp "$DIR/src/windows/Customer.ico" "$SEVENZIP_DIR"
     else
-        cp "$DIR/../share/icons/desktopshare.ico" "$SEVENZIP_DIR/Customer.ico"
+        cp "$DIR/src/icons/desktopshare.ico" "$SEVENZIP_DIR/Customer.ico"
     fi
     "$WINE" "ResourceHacker.exe" -open "Customer.rc" -save "$SEVENZIP_DIR_WIN\Customer.res" -action compile
     "$WINE" "ResourceHacker.exe" -script "$SEVENZIP_DIR_WIN\Customer.script"
@@ -69,7 +69,7 @@ if [[ -x "$WINE" ]]; then
     if [[ -f "$DIR/src/windows/Staff.ico" ]]; then
         cp "$DIR/src/windows/Staff.ico" "$SEVENZIP_DIR"
     else
-        cp "$DIR/../share/icons/help.ico" "$SEVENZIP_DIR/Staff.ico"
+        cp "$DIR/src/icons/help.ico" "$SEVENZIP_DIR/Staff.ico"
     fi
     "$WINE" "ResourceHacker.exe" -open "Staff.rc" -save "$SEVENZIP_DIR_WIN\Staff.res" -action compile
     "$WINE" "ResourceHacker.exe" -script "$SEVENZIP_DIR_WIN\Staff.script"

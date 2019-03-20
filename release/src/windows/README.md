@@ -4,7 +4,7 @@ EXE launchers are basically self extracting [7-Zip](https://www.7-zip.org/) arch
 
 If [Wine](https://www.winehq.org/) is installed on the build environment, the [`bundle-windows.sh`](../../bundle-windows.sh) script automatically does some modifications to the created EXE files by using the Freeware [Resource Hacker](http://angusj.com/resourcehacker/) application:
 
--   The application icon is replaced - either with a file called `Customer.ico` / `Staff.ico` located in this folder or with the [default icons](../../../share/icons).
+-   The application icon is replaced - either with a file called `Customer.ico` / `Staff.ico` located in this folder or with the [default icons](../icons).
 
 -   Version information is replaced with the contents of the [`Customer.rc`](Customer.rc) / [`Staff.rc`](Staff.rc) file. You might customize these values but be aware to keep the general file structure intact.
 

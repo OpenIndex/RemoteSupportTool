@@ -34,7 +34,7 @@
             <fileMode>0644</fileMode>
         </file>
         <file>
-            <source>${project.parent.basedir}/share/icons/desktopshare.icns</source>
+            <source>${project.basedir}/src/icons/desktopshare.icns</source>
             <destName>icon.icns</destName>
             <outputDirectory>share</outputDirectory>
             <fileMode>0644</fileMode>
