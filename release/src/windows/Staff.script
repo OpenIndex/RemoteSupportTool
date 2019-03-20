@@ -1,0 +1,9 @@
+[FILENAMES]
+Exe=    7zSD.sfx
+SaveAs= Staff.sfx
+Log=    CONSOLE
+
+[COMMANDS]
+-addoverwrite Staff.ico, ICONGROUP,1,1033
+-modify Staff.res, VERSIONINFO,1,1033
+-add manifest.res, MANIFEST,,0

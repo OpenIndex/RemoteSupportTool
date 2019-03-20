@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2018 OpenIndex.de.
+ * Copyright 2015-2019 OpenIndex.de.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,9 +24,8 @@ import java.io.Serializable;
  * @author Andreas Rudolph
  */
 public class KeyReleaseRequest implements Serializable {
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 2;
     public final int keyCode;
-    public final char keyChar;
 
     public KeyReleaseRequest() {
         this(KeyEvent.VK_UNDEFINED);
@@ -35,12 +34,5 @@ public class KeyReleaseRequest implements Serializable {
     public KeyReleaseRequest(int keyCode) {
         super();
         this.keyCode = keyCode;
-        this.keyChar = KeyEvent.CHAR_UNDEFINED;
-    }
-
-    public KeyReleaseRequest(char keyChar) {
-        super();
-        this.keyChar = keyChar;
-        this.keyCode = KeyEvent.VK_UNDEFINED;
     }
 }

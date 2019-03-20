@@ -7,7 +7,7 @@
     <parent>
         <artifactId>RemoteSupportTool</artifactId>
         <groupId>de.openindex.support</groupId>
-        <version>1.0.1</version>
+        <version>1.1.0</version>
     </parent>
 
     <artifactId>release</artifactId>
@@ -76,6 +76,7 @@
                         <configuration>
                             <appendAssemblyId>false</appendAssemblyId>
                             <finalName>modules</finalName>
+                            <attach>false</attach>
                             <descriptors>
                                 <descriptor>src/assembly/modules.xml</descriptor>
                             </descriptors>
@@ -102,7 +103,7 @@
 
     <profiles>
         <profile>
-            <id>openindex-release</id>
+            <id>release</id>
             <build>
                 <plugins>
                     <plugin>
@@ -128,7 +129,7 @@
                         <artifactId>launch4j-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>launch4j-Staff32</id>
+                                <id>launch4j-Staff-x86</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -137,7 +138,7 @@
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
                                     <jar>../modules/RemoteSupportTool-Staff-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Staff32.exe</outfile>
+                                    <outfile>${project.basedir}/target/launch4j/Staff-x86.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -147,7 +148,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/desktopshare.ico</icon>
+                                    <icon>${project.basedir}/src/icons/help.ico</icon>
                                     <singleInstance>
                                         <mutexName>StaffRemoteSupport</mutexName>
                                         <windowTitle>StaffRemoteSupport</windowTitle>
@@ -156,7 +157,7 @@
                                         <path>..</path>
                                         <bundledJre64Bit>false</bundledJre64Bit>
                                         <bundledJreAsFallback>false</bundledJreAsFallback>
-                                        <minVersion>10</minVersion>
+                                        <minVersion>11</minVersion>
                                         <maxVersion></maxVersion>
                                         <jdkPreference>jreOnly</jdkPreference>
                                         <runtimeBits>32</runtimeBits>
@@ -182,7 +183,7 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>launch4j-Staff64</id>
+                                <id>launch4j-Staff-x86-64</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -191,7 +192,7 @@
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
                                     <jar>../modules/RemoteSupportTool-Staff-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Staff64.exe</outfile>
+                                    <outfile>${project.basedir}/target/launch4j/Staff-x86-64.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -201,7 +202,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/desktopshare.ico</icon>
+                                    <icon>${project.basedir}/src/icons/help.ico</icon>
                                     <singleInstance>
                                         <mutexName>StaffRemoteSupport</mutexName>
                                         <windowTitle>StaffRemoteSupport</windowTitle>
@@ -210,7 +211,7 @@
                                         <path>..</path>
                                         <bundledJre64Bit>true</bundledJre64Bit>
                                         <bundledJreAsFallback>false</bundledJreAsFallback>
-                                        <minVersion>10</minVersion>
+                                        <minVersion>11</minVersion>
                                         <maxVersion></maxVersion>
                                         <jdkPreference>jreOnly</jdkPreference>
                                         <runtimeBits>64</runtimeBits>
@@ -236,7 +237,7 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>launch4j-Customer32</id>
+                                <id>launch4j-Customer-x86</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -245,7 +246,7 @@
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
                                     <jar>../modules/RemoteSupportTool-Customer-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Customer32.exe</outfile>
+                                    <outfile>${project.basedir}/target/launch4j/Customer-x86.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -255,7 +256,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/help.ico</icon>
+                                    <icon>${project.basedir}/src/icons/desktopshare.ico</icon>
                                     <singleInstance>
                                         <mutexName>CustomerRemoteSupport</mutexName>
                                         <windowTitle>CustomerRemoteSupport</windowTitle>
@@ -264,7 +265,7 @@
                                         <path>..</path>
                                         <bundledJre64Bit>false</bundledJre64Bit>
                                         <bundledJreAsFallback>false</bundledJreAsFallback>
-                                        <minVersion>10</minVersion>
+                                        <minVersion>11</minVersion>
                                         <maxVersion></maxVersion>
                                         <jdkPreference>jreOnly</jdkPreference>
                                         <runtimeBits>32</runtimeBits>
@@ -290,7 +291,7 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>launch4j-Customer64</id>
+                                <id>launch4j-Customer-x86-64</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
@@ -299,7 +300,7 @@
                                     <dontWrapJar>true</dontWrapJar>
                                     <headerType>gui</headerType>
                                     <jar>../modules/RemoteSupportTool-Customer-${project.version}.jar</jar>
-                                    <outfile>${project.basedir}/target/launch4j/Customer64.exe</outfile>
+                                    <outfile>${project.basedir}/target/launch4j/Customer-x86-64.exe</outfile>
                                     <errTitle></errTitle>
                                     <cmdLine></cmdLine>
                                     <chdir>..</chdir>
@@ -309,7 +310,7 @@
                                     <stayAlive>true</stayAlive>
                                     <restartOnCrash>false</restartOnCrash>
                                     <manifest></manifest>
-                                    <icon>${project.parent.basedir}/share/icons/help.ico</icon>
+                                    <icon>${project.basedir}/src/icons/desktopshare.ico</icon>
                                     <singleInstance>
                                         <mutexName>CustomerRemoteSupport</mutexName>
                                         <windowTitle>CustomerRemoteSupport</windowTitle>
@@ -318,7 +319,7 @@
                                         <path>..</path>
                                         <bundledJre64Bit>true</bundledJre64Bit>
                                         <bundledJreAsFallback>false</bundledJreAsFallback>
-                                        <minVersion>10</minVersion>
+                                        <minVersion>11</minVersion>
                                         <maxVersion></maxVersion>
                                         <jdkPreference>jreOnly</jdkPreference>
                                         <runtimeBits>64</runtimeBits>
@@ -358,12 +359,13 @@
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
                                     <finalName>Staff</finalName>
+                                    <attach>false</attach>
                                     <descriptors>
-                                        <descriptor>src/assembly/staff-linux32.xml</descriptor>
-                                        <descriptor>src/assembly/staff-linux64.xml</descriptor>
-                                        <descriptor>src/assembly/staff-mac64.xml</descriptor>
-                                        <descriptor>src/assembly/staff-windows32.xml</descriptor>
-                                        <descriptor>src/assembly/staff-windows64.xml</descriptor>
+                                        <descriptor>src/assembly/staff-linux-x86.xml</descriptor>
+                                        <descriptor>src/assembly/staff-linux-x86-64.xml</descriptor>
+                                        <descriptor>src/assembly/staff-macos-x86-64.xml</descriptor>
+                                        <descriptor>src/assembly/staff-windows-x86.xml</descriptor>
+                                        <descriptor>src/assembly/staff-windows-x86-64.xml</descriptor>
                                     </descriptors>
                                 </configuration>
                             </execution>
@@ -376,12 +378,13 @@
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
                                     <finalName>Customer</finalName>
+                                    <attach>false</attach>
                                     <descriptors>
-                                        <descriptor>src/assembly/customer-linux32.xml</descriptor>
-                                        <descriptor>src/assembly/customer-linux64.xml</descriptor>
-                                        <descriptor>src/assembly/customer-mac64.xml</descriptor>
-                                        <descriptor>src/assembly/customer-windows32.xml</descriptor>
-                                        <descriptor>src/assembly/customer-windows64.xml</descriptor>
+                                        <descriptor>src/assembly/customer-linux-x86.xml</descriptor>
+                                        <descriptor>src/assembly/customer-linux-x86-64.xml</descriptor>
+                                        <descriptor>src/assembly/customer-macos-x86-64.xml</descriptor>
+                                        <descriptor>src/assembly/customer-windows-x86.xml</descriptor>
+                                        <descriptor>src/assembly/customer-windows-x86-64.xml</descriptor>
                                     </descriptors>
                                 </configuration>
                             </execution>

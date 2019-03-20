@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2018 OpenIndex.de.
+ * Copyright 2015-2019 OpenIndex.de.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -76,6 +77,8 @@ public abstract class StaffFrame extends JFrame {
     private JButton stopButton = null;
     private JButton actionsButton = null;
     private JPopupMenu actionsMenu = null;
+    private JCheckBoxMenuItem sendKeyboardInput = null;
+    private JCheckBoxMenuItem sendMouseInput = null;
     private JToggleButton optionsButton = null;
     private JPanel optionsPanel = null;
     private JLabel infoLabel = null;
@@ -96,13 +99,14 @@ public abstract class StaffFrame extends JFrame {
     private JTextField sshKeyField = null;
     private JButton sshKeyButton = null;
     private JCheckBox sshKeyAuthField = null;
-    private PasteTextDialog pasteTextDialog = null;
+    private CopyTextDialog copyTextDialog = null;
 
     public StaffFrame(StaffOptions options) {
         super();
         this.options = options;
     }
 
+    @SuppressWarnings("Duplicates")
     public void createAndShow() {
         final BufferedImage applicationImage = ImageUtils.loadImage(
                 StaffApplication.resource("application.png"));
@@ -124,43 +128,65 @@ public abstract class StaffFrame extends JFrame {
         screenView = new ScreenPanel(ObjectUtils.defaultIfNull(
                 ImageUtils.loadImage(StaffApplication.resource("startup.png")),
                 applicationImage));
+        screenView.setFocusTraversalKeysEnabled(false);
         screenView.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                doHandleKeyPress(e);
+                if (sendKeyboardInput.isSelected()) {
+                    doHandleKeyPress(e);
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                doHandleKeyRelease(e);
+                if (sendKeyboardInput.isSelected()) {
+                    doHandleKeyRelease(e);
+                }
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (sendKeyboardInput.isSelected()) {
+                    doHandleKeyTyped(e);
+                }
             }
         });
         screenView.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!started) return;
-                screenView.requestFocus();
+                if (sendMouseInput.isSelected()) {
+                    if (!started) return;
+                    screenView.requestFocus();
+                }
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                doHandleMousePress(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMousePress(e);
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                doHandleMouseRelease(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMouseRelease(e);
+                }
             }
         });
         screenView.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                doHandleMouseMotion(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMouseMotion(e);
+                }
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                doHandleMouseMotion(e);
+                if (sendMouseInput.isSelected()) {
+                    doHandleMouseMotion(e);
+                }
             }
         });
         screenView.addMouseWheelListener(this::doHandleMouseWheel);
@@ -193,6 +219,7 @@ public abstract class StaffFrame extends JFrame {
         localPortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getLocalPort(), 1, 65535, 1));
         localPortField.setBackground(Color.WHITE);
+        localPortField.setEditor(new JSpinner.NumberEditor(localPortField, "#"));
         localPortField.addChangeListener(e -> options.setLocalPort((Integer) localPortField.getValue()));
 
         // ssl encryption field
@@ -241,6 +268,7 @@ public abstract class StaffFrame extends JFrame {
         sshPortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getSshPort(), 1, 65535, 1));
         sshPortField.setBackground(Color.WHITE);
+        sshPortField.setEditor(new JSpinner.NumberEditor(sshPortField, "#"));
         sshPortField.addChangeListener(e -> options.setSshPort((Integer) sshPortField.getValue()));
 
         // ssh remote port
@@ -249,6 +277,7 @@ public abstract class StaffFrame extends JFrame {
         sshRemotePortField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getSshRemotePort(), 1, 65535, 1));
         sshRemotePortField.setBackground(Color.WHITE);
+        sshRemotePortField.setEditor(new JSpinner.NumberEditor(sshRemotePortField, "#"));
         sshRemotePortField.addChangeListener(e -> options.setSshRemotePort((Integer) sshRemotePortField.getValue()));
 
         // ssh user
@@ -368,18 +397,33 @@ public abstract class StaffFrame extends JFrame {
         actionsButton.setText(StaffApplication.setting("i18n.actions"));
         actionsButton.addActionListener(e -> actionsMenu.show(actionsButton, 0, actionsButton.getHeight()));
         actionsMenu = new JPopupMenu();
-        actionsMenu.add(new AbstractAction(StaffApplication.setting("i18n.pasteText")) {
+
+        // send keyboard input
+        sendKeyboardInput = new JCheckBoxMenuItem();
+        sendKeyboardInput.setText(StaffApplication.setting("i18n.sendKeyboardInput"));
+        sendKeyboardInput.setSelected(true);
+        actionsMenu.add(sendKeyboardInput);
+
+        // send mouse input
+        sendMouseInput = new JCheckBoxMenuItem();
+        sendMouseInput.setText(StaffApplication.setting("i18n.sendMouseInput"));
+        sendMouseInput.setSelected(true);
+        actionsMenu.add(sendMouseInput);
+
+        // paste text
+        actionsMenu.addSeparator();
+        actionsMenu.add(new AbstractAction(StaffApplication.setting("i18n.copyText")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (pasteTextDialog == null) {
-                    pasteTextDialog = new PasteTextDialog();
-                    pasteTextDialog.createAndShow();
+                if (copyTextDialog == null) {
+                    copyTextDialog = new CopyTextDialog();
+                    copyTextDialog.createAndShow();
                 } else {
-                    if (!pasteTextDialog.isVisible()) {
-                        pasteTextDialog.setLocationRelativeTo(StaffFrame.this);
-                        pasteTextDialog.setVisible(true);
+                    if (!copyTextDialog.isVisible()) {
+                        copyTextDialog.setLocationRelativeTo(StaffFrame.this);
+                        copyTextDialog.setVisible(true);
                     }
-                    pasteTextDialog.toFront();
+                    copyTextDialog.toFront();
                 }
             }
         });
@@ -435,9 +479,13 @@ public abstract class StaffFrame extends JFrame {
 
     protected abstract void doAbout();
 
+    protected abstract void doCopyText(String text);
+
     protected abstract void doHandleKeyPress(KeyEvent e);
 
     protected abstract void doHandleKeyRelease(KeyEvent e);
+
+    protected abstract void doHandleKeyTyped(KeyEvent e);
 
     protected abstract void doHandleMouseMotion(MouseEvent e);
 
@@ -446,8 +494,6 @@ public abstract class StaffFrame extends JFrame {
     protected abstract void doHandleMouseRelease(MouseEvent e);
 
     protected abstract void doHandleMouseWheel(MouseWheelEvent e);
-
-    protected abstract void doPasteText(String text);
 
     protected abstract void doQuit();
 
@@ -575,14 +621,25 @@ public abstract class StaffFrame extends JFrame {
         uploadLabel.setText(StringUtils.EMPTY);
         uploadLabel.setVisible(false);
 
-        if (pasteTextDialog != null) {
-            pasteTextDialog.setVisible(false);
+        if (copyTextDialog != null) {
+            copyTextDialog.setVisible(false);
         }
     }
 
     public void updateScreen(List<BufferedImage> slices, int imageWidth, int imageHeight, int sliceWidth, int sliceHeight) {
         screenView.setSlices(slices, imageWidth, imageHeight, sliceWidth, sliceHeight);
         screenView.repaint();
+    }
+
+    private class CopyTextDialog extends de.openindex.support.staff.utils.CopyTextDialog {
+        private CopyTextDialog() {
+            super(StaffFrame.this);
+        }
+
+        @Override
+        protected void doSubmit(String text) {
+            doCopyText(text);
+        }
     }
 
     private static class ScreenPanel extends JPanel {
@@ -666,17 +723,6 @@ public abstract class StaffFrame extends JFrame {
             } finally {
                 g2d.dispose();
             }
-        }
-    }
-
-    private class PasteTextDialog extends de.openindex.support.staff.utils.PasteTextDialog {
-        private PasteTextDialog() {
-            super(StaffFrame.this);
-        }
-
-        @Override
-        protected void doSubmit(String text) {
-            doPasteText(text);
         }
     }
 }

@@ -1,1 +1,3 @@
+*.rc text eol=crlf
+*.script text eol=crlf
 *.txt text eol=lf

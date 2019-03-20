@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2018 OpenIndex.de.
+ * Copyright 2015-2019 OpenIndex.de.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -261,7 +261,13 @@ public class AppUtils {
                 System.getProperty(TRUSTSTORE_PASSWORD), defaultPassword));
     }
 
-    @SuppressWarnings("WeakerAccess")
+    public static boolean isAsciiCharacter(char character) {
+        return character == ' ' || // is space
+                (character >= 48 && character <= 57) || // is number
+                (character >= 65 && character <= 90) || // is upper case letter
+                (character >= 97 && character <= 122); // is lower case letter
+    }
+
     public static URL resource(String file) {
         return AppUtils.class.getResource("resources/" + file);
     }
