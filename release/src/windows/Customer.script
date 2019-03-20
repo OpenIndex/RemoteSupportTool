@@ -1,0 +1,9 @@
+[FILENAMES]
+Exe=    7zSD.sfx
+SaveAs= Customer.sfx
+Log=    CONSOLE
+
+[COMMANDS]
+-addoverwrite Customer.ico, ICONGROUP,1,1033
+-modify Customer.res, VERSIONINFO,1,1033
+-add manifest.res, MANIFEST,,0
