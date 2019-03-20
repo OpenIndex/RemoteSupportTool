@@ -121,7 +121,7 @@ Starting with macOS Mojave (10.14) the customer explicitly needs to allow access
 
 ### Notes about Linux
 
-Currently the support session is not working for customers using [Wayland](https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)). Currently it is not widely used yet. Fortunately most Linux distributions still use X.org - but for example Fedora is already shipping Wayland in its default installation. We're hoping to find a solution for this problem as soon as possible (see [issue #24](https://github.com/OpenIndex/RemoteSupportTool/issues/24)). 
+Currently the support session is not working for customers using [Wayland](https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)). Currently it is not widely used yet. Fortunately most Linux distributions still use X.org - but for example Fedora is already shipping Wayland in its default installation. We're trying to find a solution for this problem as soon as possible (see [issue #24](https://github.com/OpenIndex/RemoteSupportTool/issues/24)). 
 
 
 Translations
