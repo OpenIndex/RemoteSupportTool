@@ -1,8 +1,8 @@
 Changelog for Remote Support Tool
 =================================
 
-1.1.0 (not released yet)
-------------------------
+1.1.0 (20 Mar 2019)
+-------------------
 
 -   upgrade to Java 11
 -   update [Commons Text](https://commons.apache.org/text/) library to version 1.6
