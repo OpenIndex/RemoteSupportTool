@@ -37,6 +37,7 @@ import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -430,13 +431,14 @@ public class CustomerApplication {
                 } else if (object instanceof MouseMoveRequest) {
 
                     final MouseMoveRequest request = (MouseMoveRequest) object;
-                    final int x;
-                    final int y;
+                    final GraphicsConfiguration screenConfiguration = screen.getDefaultConfiguration();
+
+                    int x;
+                    int y;
 
                     // On Windows systems we need to convert the coordinates
                     // according to the current screen scaling factor.
                     if (SystemUtils.IS_OS_WINDOWS) {
-                        final GraphicsConfiguration screenConfiguration = screen.getDefaultConfiguration();
                         final AffineTransform transform = screenConfiguration.getDefaultTransform();
                         final double scaleX = (transform != null && transform.getScaleX() > 0) ?
                                 transform.getScaleX() : 1;
@@ -449,6 +451,16 @@ public class CustomerApplication {
                         x = request.x;
                         y = request.y;
                     }
+
+                    // Calculate absolute coordinates for the selected screen.
+                    // Required for multi monitor setups.
+                    Rectangle bounds = screenConfiguration.getBounds();
+                    //LOGGER.debug("screen bounds {} x {}", bounds.x, bounds.y);
+                    //LOGGER.debug("screen size   {} x {}", bounds.width, bounds.height);
+                    //LOGGER.debug("mouse coords  {} x {}", x, y);
+                    x += bounds.x;
+                    y += bounds.y;
+                    //LOGGER.debug("move mouse to {} x {}", x, y);
 
                     robot.mouseMove(x, y);
 
