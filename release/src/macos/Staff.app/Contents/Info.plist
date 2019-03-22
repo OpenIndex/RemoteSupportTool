@@ -21,10 +21,10 @@
     <string>APPL</string>
 
     <key>CFBundleExecutable</key>
-    <string>StaffSupportTool.sh</string>
+    <string>Start.sh</string>
 
     <key>CFBundleIconFile</key>
-    <string>StaffSupportTool.icns</string>
+    <string>share/icon.icns</string>
 
     <key>CFBundleDevelopmentRegion</key>
     <string>en-US</string>
@@ -33,7 +33,7 @@
     <string>public.app-category.utilities</string>
 
     <key>LSMinimumSystemVersion</key>
-    <string>10.7.3</string>
+    <string>10.9</string>
 
     <key>NSHumanReadableCopyright</key>
     <string>©2015-2019 OpenIndex.de</string>
