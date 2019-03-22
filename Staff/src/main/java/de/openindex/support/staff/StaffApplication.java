@@ -578,7 +578,7 @@ public class StaffApplication {
             }
 
             // Press other keys, if they are pressed together with a modifier key.
-            else if (e.isControlDown() || e.isAltDown() || e.isMetaDown() || windowsKeyDown) {
+            else if (e.isControlDown() || e.isMetaDown() || windowsKeyDown || (!SystemUtils.IS_OS_MAC && e.isAltDown())) {
                 //LOGGER.debug("press key \"{}\" ({})", keyCode, KeyEvent.getKeyText(keyCode));
                 handler.sendKeyPress(keyCode);
                 if (!pressedKeys.contains(keyCode))
@@ -653,7 +653,7 @@ public class StaffApplication {
             }
 
             // Release other keys, if they are pressed together with a modifier key.
-            else if (e.isControlDown() || e.isAltDown() || e.isMetaDown() || windowsKeyDown || pressedKeys.contains(keyCode)) {
+            else if (e.isControlDown() || e.isMetaDown() || windowsKeyDown || (!SystemUtils.IS_OS_MAC && e.isAltDown()) || pressedKeys.contains(keyCode)) {
                 //LOGGER.debug("release key \"{}\" ({})", keyCode, KeyEvent.getKeyText(keyCode));
                 handler.sendKeyRelease(keyCode);
                 pressedKeys.remove((Integer) keyCode);
@@ -673,18 +673,20 @@ public class StaffApplication {
             if (handler == null) return;
             //LOGGER.debug("key typed: " + e.paramString());
             final char keyChar = e.getKeyChar();
-            final int keyValue = (int) keyChar;
 
             // Don't type non printable characters.
-            //if (keyValue < 33 || keyValue == 127 || keyChar == KeyEvent.CHAR_UNDEFINED)
-            if (keyChar == KeyEvent.CHAR_UNDEFINED || Character.isWhitespace(keyChar) || Character.isISOControl(keyChar) || Character.isIdentifierIgnorable(keyChar))
+            if (keyChar == KeyEvent.CHAR_UNDEFINED || Character.isWhitespace(keyChar) || Character.isISOControl(keyChar) || Character.isIdentifierIgnorable(keyChar)) {
+                //LOGGER.debug("non printable {} / {}", Character.isWhitespace(keyChar), Character.isISOControl(keyChar));
                 return;
+            }
 
             // Don't type a character, if a modifier key is pressed at the same time.
-            if (e.isControlDown() || e.isAltDown() || e.isMetaDown() || windowsKeyDown)
+            if (e.isControlDown() || e.isMetaDown() || windowsKeyDown || (!SystemUtils.IS_OS_MAC && e.isAltDown())) {
+                //LOGGER.debug("modifier {} / {} / {} / {}", e.isControlDown(), e.isAltDown(), e.isMetaDown(), windowsKeyDown);
                 return;
+            }
 
-            //LOGGER.debug("type character \"{}\" ({})", keyChar, keyValue);
+            //LOGGER.debug("type character \"{}\" ({})", keyChar, e.getKeyCode());
             handler.sendKeyType(keyChar);
             e.consume();
         }

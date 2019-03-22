@@ -1,6 +1,15 @@
 Changelog for Remote Support Tool
 =================================
 
+1.1.1 (22 Mar 2019)
+-------------------
+
+-   fixed [issue #28](https://github.com/OpenIndex/RemoteSupportTool/issues/28): Uppercase characters are printed in lowercase for Linux customers
+-   fixed [issue #29](https://github.com/OpenIndex/RemoteSupportTool/issues/29): Wrong mouse position on multi monitor setups
+-   fixed [issue #30](https://github.com/OpenIndex/RemoteSupportTool/issues/30): Wrong screen information shown in customer tool
+-   fixed [issue #31](https://github.com/OpenIndex/RemoteSupportTool/issues/31): Staff tool on macOS doesn't send characters typed with option key
+
+
 1.1.0 (20 Mar 2019)
 -------------------
 

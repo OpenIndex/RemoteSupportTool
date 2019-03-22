@@ -19,7 +19,6 @@ import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.platform.unix.X11;
 import com.sun.jna.ptr.IntByReference;
-import de.openindex.support.core.AppUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -138,72 +137,59 @@ public class LinuxUtils {
         X11.XFlush(display);
 
         for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            //LOGGER.debug("printing " + c);
+            final char character = text.charAt(i);
+            //LOGGER.debug("printing {}", character);
 
+            // get unicode formatted string
+            final String unicode = String.format("U%04x", (int) character);
+            //LOGGER.debug("> code {}", unicode);
 
-            //int value = StandardCharsets.UTF_8.encode(String.valueOf(c)).getInt();
-            //LOGGER.debug("> value " + value);
-            String unicode = String.format("U%04x", (int) c);
-            //LOGGER.debug("> code " + unicode);
+            // get keysym for the unicode string
+            final X11.KeySym sym = X11.XStringToKeysym(unicode);
 
-            //X11.KeySym sym = X11.XStringToKeysym(String.valueOf(c));
-            X11.KeySym sym = X11.XStringToKeysym(unicode);
-
-            //int code = (sym != null) ? X11.XKeysymToKeycode(display, sym) : 0x00D1;
-            int code = X11.XKeysymToKeycode(display, sym);
-
-            X11.KeySym[] resetKeySym = null;
-            if (!AppUtils.isAsciiCharacter(c)) {
-                //LOGGER.debug("> use scratch");
-                //LOGGER.debug("> " + X11.XKeysymToString(sym));
-
-                resetKeySym = new X11.KeySym[keysymsPerKeycode.getValue()];
-                for (int j = 0; j < resetKeySym.length; j++) {
-                    resetKeySym[j] = X11.XKeycodeToKeysym(display, (byte) scratch_keycode, j);
-                }
-
-                X11.XChangeKeyboardMapping(
-                        display,
-                        scratch_keycode,
-                        2,
-                        new X11.KeySym[]{sym, sym},
-                        1);
-                code = scratch_keycode;
+            // remember the old value before the keysym is overwritten
+            final X11.KeySym[] resetKeySym = new X11.KeySym[keysymsPerKeycode.getValue()];
+            for (int j = 0; j < resetKeySym.length; j++) {
+                resetKeySym[j] = X11.XKeycodeToKeysym(display, (byte) scratch_keycode, j);
             }
 
-            //LOGGER.debug("> " + code);
+            // register keysym for the unicode string
+            X11.XChangeKeyboardMapping(
+                    display,
+                    scratch_keycode,
+                    2,
+                    new X11.KeySym[]{sym, sym},
+                    1);
 
-            if (code > 0) {
-                //XTEST.XTestFakeKeyEvent(display, code, false, new NativeLong(0));
-                //X11.XFlush(display);
+            //XTEST.XTestFakeKeyEvent(display, code, false, new NativeLong(0));
+            //X11.XFlush(display);
 
-                XTEST.XTestFakeKeyEvent(display, code, true, new NativeLong(0));
-                //X11.XFlush(display);
-                X11.XSync(display, false);
+            // post event for key press
+            XTEST.XTestFakeKeyEvent(display, scratch_keycode, true, new NativeLong(0));
+            //X11.XFlush(display);
+            X11.XSync(display, false);
 
-                XTEST.XTestFakeKeyEvent(display, code, false, new NativeLong(0));
-                //X11.XFlush(display);
-                X11.XSync(display, false);
+            // post event for key release
+            XTEST.XTestFakeKeyEvent(display, scratch_keycode, false, new NativeLong(0));
+            //X11.XFlush(display);
+            X11.XSync(display, false);
 
-                //noinspection CatchMayIgnoreException
-                try {
-                    Thread.sleep(100);
-                } catch (Exception ex) {
-                }
-            }
+            //noinspection CatchMayIgnoreException
+            //try {
+            //    Thread.sleep(50);
+            //} catch (Exception ex) {
+            //}
 
-            if (resetKeySym != null) {
-                X11.XChangeKeyboardMapping(
-                        display,
-                        scratch_keycode,
-                        resetKeySym.length,
-                        resetKeySym,
-                        1);
-            }
+            // reset the keysym to the old value before it was overwritten
+            X11.XChangeKeyboardMapping(
+                    display,
+                    scratch_keycode,
+                    resetKeySym.length,
+                    resetKeySym,
+                    1);
         }
 
-        //X11.XFlush(display);
+        X11.XFlush(display);
         //X11.XSync(display, false);
         X11.XCloseDisplay(display);
     }
