@@ -162,6 +162,8 @@ The following third party components are bundled into the application (in alphab
     [(LGPL 2.1)](https://web.archive.org/web/20101122171611/http://everaldo.com/crystal/?action=license)
 -   [imgscalr](https://github.com/rkalla/imgscalr) rev-8ed3644
     [(Apache License 2.0)](https://raw.githubusercontent.com/rkalla/imgscalr/master/LICENSE)
+-   [Java Native Access](https://github.com/java-native-access/jna) 5.2.0
+    [(Apache License 2.0)](https://raw.githubusercontent.com/java-native-access/jna/master/LICENSE)
 -   [JSch](http://www.jcraft.com/jsch/) 0.1.55
     [(BSD)](http://www.jcraft.com/jsch/LICENSE.txt)
 -   [JZlib](http://www.jcraft.com/jzlib/) 1.1.3
