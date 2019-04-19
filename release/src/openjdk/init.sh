@@ -20,15 +20,15 @@
 #
 # OpenJDK binaries are provided by:
 # https://www.bell-sw.com/java.html
-# https://github.com/OpenIndex/openjdk-linux-x86
 #
 # -----------------------------------------------------------------------
 
-LINUX_X86_JDK="https://github.com/OpenIndex/openjdk-linux-x86/releases/download/jdk-11.0.2%2B9/jdk-11.0.2+9-linux-x86.tar.gz"
-LINUX_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-linux-amd64.tar.gz"
-MACOS_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-macos-amd64.zip"
-WINDOWS_X86_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-windows-i586.zip"
-WINDOWS_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-windows-amd64.zip"
+LINUX_X86_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-linux-i586.tar.gz"
+LINUX_X86_64_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-linux-amd64.tar.gz"
+LINUX_ARM32_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-linux-arm32-vfp-hflt.tar.gz"
+MACOS_X86_64_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-macos-amd64.zip"
+WINDOWS_X86_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-windows-i586.zip"
+WINDOWS_X86_64_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-windows-amd64.zip"
 
 MODULES="java.desktop,java.naming,jdk.crypto.ec"
 
