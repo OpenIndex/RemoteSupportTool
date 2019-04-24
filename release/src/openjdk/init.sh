@@ -20,15 +20,14 @@
 #
 # OpenJDK binaries are provided by:
 # https://www.bell-sw.com/java.html
-# https://github.com/OpenIndex/openjdk-linux-x86
 #
 # -----------------------------------------------------------------------
 
-LINUX_X86_JDK="https://github.com/OpenIndex/openjdk-linux-x86/releases/download/jdk-11.0.2%2B9/jdk-11.0.2+9-linux-x86.tar.gz"
-LINUX_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-linux-amd64.tar.gz"
-MACOS_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-macos-amd64.zip"
-WINDOWS_X86_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-windows-i586.zip"
-WINDOWS_X86_64_JDK="https://github.com/bell-sw/Liberica/releases/download/11.0.2/bellsoft-jdk11.0.2-windows-amd64.zip"
+LINUX_X86_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-linux-i586.tar.gz"
+LINUX_X86_64_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-linux-amd64.tar.gz"
+MACOS_X86_64_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-macos-amd64.zip"
+WINDOWS_X86_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-windows-i586.zip"
+WINDOWS_X86_64_JDK="https://download.bell-sw.com/java/11.0.3/bellsoft-jdk11.0.3-windows-amd64.zip"
 
 MODULES="java.desktop,java.naming,jdk.crypto.ec"
 
@@ -85,14 +84,7 @@ function configure_runtime {
         exit 1
     fi
 
-    # Due to a bug in OpenJDK 11.0.2 we need to disable TLSv1.3.
-    # The bug was fixed in OpenJDK 12. And should be backported into OpenJDK 11.0.3.
-    #
-    # see https://sourceforge.net/p/hsqldb/bugs/1539/
-    # see https://bugs.openjdk.java.net/browse/JDK-8212885
-    # see https://bugs.openjdk.java.net/browse/JDK-8218093
-    echo "Disabling TLSv1.3..."
-    sed -i -e "s|^jdk.tls.disabledAlgorithms=|jdk.tls.disabledAlgorithms=TLSv1.3, |g" "${securityConf}"
+    echo "There is nothing to configure."
 }
 
 
