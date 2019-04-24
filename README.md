@@ -172,7 +172,7 @@ The following third party components are bundled into the application (in alphab
     [(LGPL 2.1)](https://logback.qos.ch/license.html)
 -   [MigLayout](http://miglayout.com/) 5.2
     [(BSD)](https://raw.githubusercontent.com/mikaelgrev/miglayout/master/src/site/resources/docs/license.txt)
--   [OpenJDK Runtime Environment](https://openjdk.java.net/) 11
+-   [OpenJDK Runtime Environment](https://openjdk.java.net/) 11.0.3
     [(GPL 2 with Classpath Exception)](https://openjdk.java.net/legal/gplv2+ce.html)
 -   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.26
     [(MIT)](https://www.slf4j.org/license.html)
