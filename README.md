@@ -154,7 +154,7 @@ The following third party components are bundled into the application (in alphab
 
 -   [Commons IO](https://commons.apache.org/io/) 2.6
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-io/master/LICENSE.txt)
--   [Commons Lang](https://commons.apache.org/lang/) 3.8.1
+-   [Commons Lang](https://commons.apache.org/lang/) 3.9
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-lang/master/LICENSE.txt)
 -   [Commons Text](https://commons.apache.org/text/) 1.6
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-text/master/LICENSE.txt)
