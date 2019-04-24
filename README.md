@@ -177,7 +177,7 @@ The following third party components are bundled into the application (in alphab
 -   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.26
     [(MIT)](https://www.slf4j.org/license.html)
 
-We especially like to thank [BellSoft](https://www.bell-sw.com/) and [AdoptOpenJDK](https://adoptopenjdk.net/) for providing the high quality OpenJDK builds, that are bundled with this application.
+We especially like to thank [BellSoft](https://www.bell-sw.com/) for providing the high quality OpenJDK builds, that are bundled with this application.
 
 
 Further information
