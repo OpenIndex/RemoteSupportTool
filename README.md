@@ -22,7 +22,7 @@ About this program
 
 [Remote administration](https://en.wikipedia.org/wiki/Remote_administration) is common practice in software support for end users. There are a lot of different solutions on the market, that can solve this task. But most of them are lacking at least in one of these requirements:
 
--   The end user should be able to start the remote administration session with as less clicks as possible.
+-   The end user should be able to start the remote administration session with as few clicks as possible.
 
     -   No complex installation procedure should be required. The end user just has to download a single file and start it.
 
@@ -40,7 +40,7 @@ About this program
 
 Because we did not find a solution that fits all of these requirements, we've decided to build our own solution to fit this gap. From a customer perspective this application behaves similar to the [UltraVNC Single Click](http://www.uvnc.com/products/uvnc-sc.html) solution - but it also provides encryption and supports Linux and macOS.
 
-In addition we wanted to make this program customizable for other companies. A company may compile a custom configuration into the application. This makes it possible to provide a single executable file for the end users, that contains all required configurations by default.
+In addition, we wanted to make this program customizable for other companies. A company may compile a custom configuration into the application. This makes it possible to provide a single executable file for the end users, that contains all required configurations by default.
 
 
 ### Customer Support Tool
