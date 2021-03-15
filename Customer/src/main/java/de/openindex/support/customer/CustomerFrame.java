@@ -45,6 +45,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import net.miginfocom.swing.MigLayout;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -117,7 +118,7 @@ public abstract class CustomerFrame extends JFrame {
 
         // sidebar
         SidebarPanel sidebarPanel = new SidebarPanel(
-                ImageUtils.loadImage(CustomerApplication.resource("sidebar_staff.png")),
+                ImageUtils.loadImage(ObjectUtils.defaultIfNull(CustomerApplication.resource("sidebar.png"), CustomerApplication.resource("sidebar_staff.png"))),
                 ImageUtils.loadImage(CustomerApplication.resourceBranding())
         );
 
