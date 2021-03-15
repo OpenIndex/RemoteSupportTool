@@ -40,6 +40,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -57,6 +58,11 @@ import org.slf4j.LoggerFactory;
 public abstract class CustomerFrame extends JFrame {
     @SuppressWarnings("unused")
     private final static Logger LOGGER = LoggerFactory.getLogger(CustomerFrame.class);
+    private final static boolean CONNECTION_SETTINGS_VISIBLE = "true".equalsIgnoreCase(
+            CustomerApplication.setting("connectionSettingsVisible", "true"));
+    private final static boolean CONNECTION_SETTINGS_EDITABLE = "true".equalsIgnoreCase(
+            CustomerApplication.setting("connectionSettingsEditable", "true"));
+
     private final CustomerOptions options;
     private JLabel hostLabel = null;
     private JTextField hostField = null;
@@ -64,10 +70,12 @@ public abstract class CustomerFrame extends JFrame {
     private JSpinner portField = null;
     private JLabel screenLabel = null;
     private JComboBox<GraphicsDevice> screenField = null;
+    private JLabel sslLabel = null;
     private JCheckBox sslField = null;
     private JLabel statusLabel = null;
     private JButton startButton = null;
     private JButton stopButton = null;
+    private JToggleButton settingsButton = null;
 
     public CustomerFrame(CustomerOptions options) {
         super();
@@ -116,9 +124,13 @@ public abstract class CustomerFrame extends JFrame {
         // hostname field
         hostLabel = new JLabel();
         hostLabel.setText(CustomerApplication.setting("i18n.host") + ":");
+        hostLabel.setEnabled(CONNECTION_SETTINGS_EDITABLE);
+        hostLabel.setVisible(CONNECTION_SETTINGS_VISIBLE);
         hostField = new JTextField();
         hostField.setText(options.getHost());
         hostField.setBackground(Color.WHITE);
+        hostField.setEditable(CONNECTION_SETTINGS_EDITABLE);
+        hostField.setVisible(CONNECTION_SETTINGS_VISIBLE);
         hostField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -137,9 +149,13 @@ public abstract class CustomerFrame extends JFrame {
         // port number field
         portLabel = new JLabel();
         portLabel.setText(CustomerApplication.setting("i18n.port") + ":");
+        portLabel.setEnabled(CONNECTION_SETTINGS_EDITABLE);
+        portLabel.setVisible(CONNECTION_SETTINGS_VISIBLE);
         portField = new JSpinner(new SpinnerNumberModel(
                 (int) options.getPort(), 1, 65535, 1));
         portField.setBackground(Color.WHITE);
+        portField.setEnabled(CONNECTION_SETTINGS_EDITABLE);
+        portField.setVisible(CONNECTION_SETTINGS_VISIBLE);
         portField.setEditor(new JSpinner.NumberEditor(portField, "#"));
         portField.addChangeListener(e -> options.setPort((Integer) portField.getValue()));
 
@@ -178,29 +194,34 @@ public abstract class CustomerFrame extends JFrame {
         });
 
         // ssl encryption field
+        sslLabel = new JLabel();
+        sslLabel.setEnabled(CONNECTION_SETTINGS_EDITABLE);
+        sslLabel.setVisible(CONNECTION_SETTINGS_VISIBLE);
         sslField = new JCheckBox();
         sslField.setText(CustomerApplication.setting("i18n.ssl"));
         sslField.setSelected(options.isSsl());
         sslField.setOpaque(true);
         sslField.setBackground(Color.WHITE);
+        sslField.setEnabled(CONNECTION_SETTINGS_EDITABLE);
+        sslField.setVisible(CONNECTION_SETTINGS_VISIBLE);
         sslField.addActionListener(e -> options.setSsl(sslField.isSelected()));
 
         // build form
         JPanel formPanel = new JPanel(new MigLayout(
-                "insets 10 10 10 10",
+                "insets 10 10 10 10, hidemode 3",
                 "[][grow][][]",
                 ""
         ));
         formPanel.setOpaque(false);
         formPanel.add(titleLabel, "span 4, width 100::, grow, wrap");
         formPanel.add(infoLabel, "span 4, width 100::, grow, wrap");
+        formPanel.add(screenLabel, "align right");
+        formPanel.add(screenField, "span 3, width 100::, grow, wrap");
         formPanel.add(hostLabel, "align right");
         formPanel.add(hostField, "width 100::, grow");
         formPanel.add(portLabel, "align right");
         formPanel.add(portField, "wrap");
-        formPanel.add(screenLabel, "align right");
-        formPanel.add(screenField, "span 3, width 100::, grow, wrap");
-        formPanel.add(new JLabel(), "align right");
+        formPanel.add(sslLabel, "align right");
         formPanel.add(sslField, "span 3");
 
         // start button
@@ -213,6 +234,13 @@ public abstract class CustomerFrame extends JFrame {
         stopButton.setText(CustomerApplication.setting("i18n.disconnect"));
         stopButton.setEnabled(false);
         stopButton.addActionListener(e -> doStop());
+
+        // settings button
+        settingsButton = new JToggleButton();
+        settingsButton.setText(CustomerApplication.setting("i18n.settings"));
+        settingsButton.setEnabled(CONNECTION_SETTINGS_EDITABLE);
+        settingsButton.setVisible(CONNECTION_SETTINGS_EDITABLE);
+        settingsButton.addActionListener(e -> doToggleConnectionSettings());
 
         // about button
         JButton aboutButton = new JButton();
@@ -227,6 +255,8 @@ public abstract class CustomerFrame extends JFrame {
         // build bottom bar
         JPanel buttonBar = new JPanel(new FlowLayout());
         buttonBar.setOpaque(false);
+        if (CONNECTION_SETTINGS_EDITABLE && !CONNECTION_SETTINGS_VISIBLE)
+            buttonBar.add(settingsButton);
         buttonBar.add(aboutButton);
         buttonBar.add(quitButton);
 
@@ -265,6 +295,17 @@ public abstract class CustomerFrame extends JFrame {
 
     protected abstract void doStop();
 
+    private void doToggleConnectionSettings() {
+        final boolean isConnectionSettingsVisible = CONNECTION_SETTINGS_EDITABLE && settingsButton.isSelected();
+
+        hostLabel.setVisible(isConnectionSettingsVisible);
+        hostField.setVisible(isConnectionSettingsVisible);
+        portLabel.setVisible(isConnectionSettingsVisible);
+        portField.setVisible(isConnectionSettingsVisible);
+        sslLabel.setVisible(isConnectionSettingsVisible);
+        sslField.setVisible(isConnectionSettingsVisible);
+    }
+
     public String getHost() {
         return hostField.getText().trim();
     }
@@ -282,13 +323,16 @@ public abstract class CustomerFrame extends JFrame {
     }
 
     public void setStarted(boolean started) {
-        hostLabel.setEnabled(!started);
-        hostField.setEnabled(!started);
-        portLabel.setEnabled(!started);
-        portField.setEnabled(!started);
+        final boolean isConnectionSettingsEnabled = CONNECTION_SETTINGS_EDITABLE && !started;
+
+        hostLabel.setEnabled(isConnectionSettingsEnabled);
+        hostField.setEnabled(isConnectionSettingsEnabled);
+        portLabel.setEnabled(isConnectionSettingsEnabled);
+        portField.setEnabled(isConnectionSettingsEnabled);
+        sslLabel.setEnabled(isConnectionSettingsEnabled);
+        sslField.setEnabled(isConnectionSettingsEnabled);
         screenLabel.setEnabled(!started);
         screenField.setEnabled(!started);
-        sslField.setEnabled(!started);
         startButton.setEnabled(!started);
         stopButton.setEnabled(started);
 
