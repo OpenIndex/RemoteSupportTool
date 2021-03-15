@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Detect operating system and select the appropriate OpenJDK bundle.
-# Copyright 2015-2019 OpenIndex.de
+# Copyright 2015-2021 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

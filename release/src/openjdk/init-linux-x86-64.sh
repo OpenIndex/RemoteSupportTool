@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Build a runtime environment for Linux 64-bit x86 (amd64).
-# Copyright 2015-2019 OpenIndex.de
+# Copyright 2015-2021 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
