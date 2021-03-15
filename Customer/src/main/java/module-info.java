@@ -26,7 +26,7 @@ module de.openindex.support.customer {
     requires org.apache.commons.io;
     requires org.apache.commons.lang3;
     requires org.apache.commons.text;
-    requires slf4j.api;
+    requires org.slf4j;
     requires com.sun.jna.platform;
     requires com.sun.jna;
     exports de.openindex.support.customer.utils.mac to com.sun.jna;
