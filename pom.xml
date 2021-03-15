@@ -47,7 +47,7 @@
         <launch4j.buildVersion>1.1.0.0</launch4j.buildVersion>
         <launch4j.downloadUrl>https://github.com/OpenIndex/RemoteSupportTool/releases/latest</launch4j.downloadUrl>
         <launch4j.supportUrl>https://github.com/OpenIndex/RemoteSupportTool/issues</launch4j.supportUrl>
-        <version.commons-io>2.6</version.commons-io>
+        <version.commons-io>2.8.0</version.commons-io>
         <version.commons-lang>3.9</version.commons-lang>
         <version.commons-text>1.6</version.commons-text>
         <version.imgscalr>rev-8ed3644</version.imgscalr>
