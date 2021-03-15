@@ -1,5 +1,5 @@
-Remote Support Tool 1.2.0-SNAPSHOT
-==================================
+Remote Support Tool 1.1.2
+=========================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance.
 
@@ -152,17 +152,17 @@ Third party components
 
 The following third party components are bundled into the application (in alphabetical order):
 
--   [Commons IO](https://commons.apache.org/io/) 2.6
+-   [Commons IO](https://commons.apache.org/io/) 2.8.0
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-io/master/LICENSE.txt)
--   [Commons Lang](https://commons.apache.org/lang/) 3.9
+-   [Commons Lang](https://commons.apache.org/lang/) 3.12.0
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-lang/master/LICENSE.txt)
--   [Commons Text](https://commons.apache.org/text/) 1.6
+-   [Commons Text](https://commons.apache.org/text/) 1.9
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-text/master/LICENSE.txt)
 -   [Crystal Project Icons](https://github.com/pinhead84/crystal-project)
     [(LGPL 2.1)](https://web.archive.org/web/20101122171611/http://everaldo.com/crystal/?action=license)
 -   [imgscalr](https://github.com/rkalla/imgscalr) rev-8ed3644
     [(Apache License 2.0)](https://raw.githubusercontent.com/rkalla/imgscalr/master/LICENSE)
--   [Java Native Access](https://github.com/java-native-access/jna) 5.3.0
+-   [Java Native Access](https://github.com/java-native-access/jna) 5.7.0
     [(Apache License 2.0)](https://raw.githubusercontent.com/java-native-access/jna/master/LICENSE)
 -   [JSch](http://www.jcraft.com/jsch/) 0.1.55
     [(BSD)](http://www.jcraft.com/jsch/LICENSE.txt)
@@ -172,9 +172,9 @@ The following third party components are bundled into the application (in alphab
     [(LGPL 2.1)](https://logback.qos.ch/license.html)
 -   [MigLayout](http://miglayout.com/) 5.2
     [(BSD)](https://raw.githubusercontent.com/mikaelgrev/miglayout/master/src/site/resources/docs/license.txt)
--   [OpenJDK Runtime Environment](https://openjdk.java.net/) 11.0.3
+-   [OpenJDK Runtime Environment](https://openjdk.java.net/) 11.0.10+9
     [(GPL 2 with Classpath Exception)](https://openjdk.java.net/legal/gplv2+ce.html)
--   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.26
+-   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.30
     [(MIT)](https://www.slf4j.org/license.html)
 
 We especially like to thank [BellSoft](https://www.bell-sw.com/) for providing the high quality OpenJDK builds, that are bundled with this application.
