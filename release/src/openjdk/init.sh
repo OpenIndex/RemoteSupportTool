@@ -31,74 +31,72 @@ WINDOWS_X86_64_JDK="https://download.bell-sw.com/java/11.0.10+9/bellsoft-jdk11.0
 
 MODULES="java.desktop,java.naming,jdk.crypto.ec"
 
-SYSTEM="$( uname -s )"
-SYSTEM_ARCH="$( arch )"
-case "$SYSTEM" in
+SYSTEM="$(uname -s)"
+SYSTEM_ARCH="$(arch)"
+case "${SYSTEM}" in
 
-  Darwin)
-    echo "Initializing macOS environment..."
-    SYSTEM_JDK="$MACOS_X86_64_JDK"
+Darwin)
+  echo "Initializing macOS environment..."
+  SYSTEM_JDK="${MACOS_X86_64_JDK}"
+  ;;
+
+Linux)
+  case "${SYSTEM_ARCH}" in
+  i386 | i586 | i686)
+    echo "Initializing Linux x86 environment..."
+    SYSTEM_JDK="${LINUX_X86_JDK}"
     ;;
-
-  Linux)
-    case "$SYSTEM_ARCH" in
-        i386 | i586 | i686)
-          echo "Initializing Linux x86 environment..."
-          SYSTEM_JDK="$LINUX_X86_JDK"
-          ;;
-        x86_64)
-          echo "Initializing Linux x86_64 environment..."
-          SYSTEM_JDK="$LINUX_X86_64_JDK"
-          ;;
-        *)
-          echo "Unsupported Linux environment ($SYSTEM_ARCH)..."
-          exit 1
-          ;;
-    esac
+  x86_64)
+    echo "Initializing Linux x86_64 environment..."
+    SYSTEM_JDK="${LINUX_X86_64_JDK}"
     ;;
-
   *)
-    echo "Unsupported environment ($SYSTEM)..."
+    echo "Unsupported Linux environment (${SYSTEM_ARCH})..."
     exit 1
     ;;
+  esac
+  ;;
+
+*)
+  echo "Unsupported environment (${SYSTEM})..."
+  exit 1
+  ;;
 
 esac
-
 
 #
 # Configure generated runtime environment.
 #
 
-function configure_runtime {
-    echo "Configuring runtime environment..."
+function configure_runtime() {
+  echo "Configuring runtime environment..."
 
-    runtimeDir="$1"
-    if [[ ! -d "${runtimeDir}" ]]; then
-        echo "WARNING: Can't find runtime environment at: ${runtimeDir}"
-        exit 1
-    fi
+  runtimeDir="$1"
+  if [[ ! -d "${runtimeDir}" ]]; then
+    echo "WARNING: Can't find runtime environment at: ${runtimeDir}"
+    exit 1
+  fi
 
-    securityConf="${runtimeDir}/conf/security/java.security"
-    if [[ ! -f "${securityConf}" ]]; then
-        echo "WARNING: Can't find security configuration at: ${securityConf}"
-        exit 1
-    fi
+  securityConf="${runtimeDir}/conf/security/java.security"
+  if [[ ! -f "${securityConf}" ]]; then
+    echo "WARNING: Can't find security configuration at: ${securityConf}"
+    exit 1
+  fi
 
-    echo "There is nothing to configure."
+  echo "There is nothing to configure."
 }
-
 
 #
 # Extract a downloaded archive.
 #
 
-function extract_archive {
-    archive="$1"
-    if [[ "$archive" == *.zip ]]; then
-        #echo "unzip $archive"
-        unzip -q "$archive"
-    else
-        #echo "untar $archive"
-        tar xfz "$archive"
-    fi
+function extract_archive() {
+  archive="${1}"
+  if [[ "$archive" == *.zip ]]; then
+    #echo "unzip $archive"
+    unzip -q "${archive}"
+  else
+    #echo "untar $archive"
+    tar xfz "${archive}"
+  fi
 }
