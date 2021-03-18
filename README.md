@@ -176,6 +176,8 @@ The following third party components are bundled into the application (in alphab
     [(GPL 2 with Classpath Exception)](https://openjdk.java.net/legal/gplv2+ce.html)
 -   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.30
     [(MIT)](https://www.slf4j.org/license.html)
+-   [JavaMacLauncher](https://github.com/OpenIndex/JavaMacLauncher) 1.0.0
+    [(Apache License 2.0)](https://raw.githubusercontent.com/OpenIndex/JavaMacLauncher/master/LICENSE.txt)
 
 We especially like to thank [BellSoft](https://www.bell-sw.com/) for providing the high quality OpenJDK builds, that are bundled with this application.
 
