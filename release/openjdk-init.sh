@@ -16,22 +16,22 @@
 # limitations under the License.
 #
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 set -e
 
-init () {
-    echo ""
-    printf "\e[1m\e[92m=================================================\e[0m\n"
-    printf "\e[1m\e[92m launching $1\e[0m\n"
-    printf "\e[1m\e[92m=================================================\e[0m\n"
-    echo ""
-    exec "$1"
+init() {
+  echo ""
+  printf "\e[1m\e[92m=================================================\e[0m\n"
+  printf "\e[1m\e[92m launching %s\e[0m\n" "$1"
+  printf "\e[1m\e[92m=================================================\e[0m\n"
+  echo ""
+  exec "$1"
 }
 export -f init
 
-cd "$DIR"
+cd "${DIR}"
 find "src/openjdk/" \
-    -maxdepth 1 \
-    -type f \
-    -name "init-*.sh" \
-    -exec bash -c 'init {}' \;
+  -maxdepth 1 \
+  -type f \
+  -name "init-*.sh" \
+  -exec bash -c 'init {}' \;

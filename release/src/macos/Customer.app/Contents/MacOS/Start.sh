@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ----------------------------------------------------------------------------
 # Start CustomerSupportTool
-# Copyright 2015-2021 OpenIndex.de
+# Copyright 2015-2019 OpenIndex.de
 # ----------------------------------------------------------------------------
 
 SCRIPT_DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )

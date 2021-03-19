@@ -6,7 +6,7 @@
 
     <groupId>de.openindex.support</groupId>
     <artifactId>RemoteSupportTool</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.1.2</version>
     <packaging>pom</packaging>
 
     <name>RemoteSupportTool</name>
@@ -44,7 +44,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <launch4j.buildVersion>1.1.0.0</launch4j.buildVersion>
+        <launch4j.buildVersion>1.1.2.0</launch4j.buildVersion>
         <launch4j.downloadUrl>https://github.com/OpenIndex/RemoteSupportTool/releases/latest</launch4j.downloadUrl>
         <launch4j.supportUrl>https://github.com/OpenIndex/RemoteSupportTool/issues</launch4j.supportUrl>
         <version.commons-io>2.8.0</version.commons-io>
@@ -57,6 +57,7 @@
         <version.logback>1.2.3</version.logback>
         <version.miglayout>5.2</version.miglayout>
         <version.slf4j>1.7.30</version.slf4j>
+        <version.java-mac-launcher>1.0.0</version.java-mac-launcher>
         <createChecksum>true</createChecksum>
     </properties>
 
@@ -65,17 +66,17 @@
             <dependency>
                 <groupId>de.openindex.support</groupId>
                 <artifactId>RemoteSupportTool-Core</artifactId>
-                <version>1.2.0-SNAPSHOT</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>de.openindex.support</groupId>
                 <artifactId>RemoteSupportTool-Customer</artifactId>
-                <version>1.2.0-SNAPSHOT</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>de.openindex.support</groupId>
                 <artifactId>RemoteSupportTool-Staff</artifactId>
-                <version>1.2.0-SNAPSHOT</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
