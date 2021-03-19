@@ -21,7 +21,12 @@
 # required certificate available. In order to sign the application for
 # yourself, you need to obtain a Developer ID from Apple and set some
 # environment variables in the ".env" file. If it is not available, create a
-# copy from ".env.example".
+# copy of ".env.example".
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# You can find further information at:
+# https://github.com/OpenIndex/RemoteSupportTool/wiki/Development#sign-application-bundle-for-macos
 # ----------------------------------------------------------------------------
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)

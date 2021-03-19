@@ -21,13 +21,12 @@
 # required certificate available. In order to sign the application for
 # yourself, you need to obtain a Developer ID from Apple and set some
 # environment variables in the ".env" file. If it is not available, create a
-# copy from ".env.example".
+# copy of ".env.example".
 # ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
-# Further information about notarization:
-# https://successfulsoftware.net/2018/11/16/how-to-notarize-your-software-on-macos/
-# https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
+# You can find further information at:
+# https://github.com/OpenIndex/RemoteSupportTool/wiki/Development#notarizing-application-bundle-for-macos
 # ----------------------------------------------------------------------------
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)

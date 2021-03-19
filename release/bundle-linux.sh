@@ -16,15 +16,28 @@
 # limitations under the License.
 #
 
-STAFF_TOOL="StaffSupportTool"
-CUSTOMER_TOOL="CustomerSupportTool"
-VERSION="1.1.2"
+# ----------------------------------------------------------------------------
+# NOTICE: This script requires an ".env" file in the same folder. If it is not
+# available, create a copy of ".env.example" and place your settings inside.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# You can find further information at:
+# https://github.com/OpenIndex/RemoteSupportTool/wiki/Development#create-application-bundles
+# ----------------------------------------------------------------------------
 
 MAKESELF="makeself"
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 TARGET_DIR="${DIR}/target"
 FOUND="0"
 set -e
+
+STAFF_TOOL=""
+CUSTOMER_TOOL=""
+VERSION=""
+if [[ -f "${DIR}/.env" ]]; then
+  source "${DIR}/.env"
+fi
 
 if [[ -d "${TARGET_DIR}/Staff/linux-x86" ]]; then
   FOUND="1"
