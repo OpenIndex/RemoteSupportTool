@@ -1,12 +1,13 @@
 Changelog for Remote Support Tool
 =================================
 
-1.1.2 (15 Mar 2021)
+1.1.2 (19 Mar 2021)
 -------------------
 
--   [enhancement #33](https://github.com/OpenIndex/RemoteSupportTool/issues/33): Enable encryption via TLS 1.3
--   [enhancement #46](https://github.com/OpenIndex/RemoteSupportTool/issues/46): Hide connection settings in Customer Tool via configuration
--   [enhancement #49](https://github.com/OpenIndex/RemoteSupportTool/issues/46): Improved application bundles for macOS
+-   added [enhancement #33](https://github.com/OpenIndex/RemoteSupportTool/issues/33): Enable encryption via TLS 1.3
+-   added [enhancement #46](https://github.com/OpenIndex/RemoteSupportTool/issues/46): Hide connection settings in Customer Tool via configuration
+-   added [enhancement #49](https://github.com/OpenIndex/RemoteSupportTool/issues/49): Improved application bundles for macOS
+-   added [enhancement #50](https://github.com/OpenIndex/RemoteSupportTool/issues/50): Provide notarized application bundles for macOS
 -   update bundled [Java Runtime Environment](https://openjdk.java.net/) to version 11.0.10+9
 -   update [Commons Lang](https://commons.apache.org/lang/) library to version 3.12.0
 -   update [Commons IO](https://commons.apache.org/io) library to version 2.8.0
