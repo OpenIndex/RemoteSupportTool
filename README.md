@@ -1,4 +1,4 @@
-Remote Support Tool 1.1.1
+Remote Support Tool 1.1.2
 =========================
 
 *Remote Support Tool* is an easy single click solution for remote maintenance.
@@ -22,7 +22,7 @@ About this program
 
 [Remote administration](https://en.wikipedia.org/wiki/Remote_administration) is common practice in software support for end users. There are a lot of different solutions on the market, that can solve this task. But most of them are lacking at least in one of these requirements:
 
--   The end user should be able to start the remote administration session with as less clicks as possible.
+-   The end user should be able to start the remote administration session with as few clicks as possible.
 
     -   No complex installation procedure should be required. The end user just has to download a single file and start it.
 
@@ -40,7 +40,7 @@ About this program
 
 Because we did not find a solution that fits all of these requirements, we've decided to build our own solution to fit this gap. From a customer perspective this application behaves similar to the [UltraVNC Single Click](http://www.uvnc.com/products/uvnc-sc.html) solution - but it also provides encryption and supports Linux and macOS.
 
-In addition we wanted to make this program customizable for other companies. A company may compile a custom configuration into the application. This makes it possible to provide a single executable file for the end users, that contains all required configurations by default.
+In addition, we wanted to make this program customizable for other companies. A company may compile a custom configuration into the application. This makes it possible to provide a single executable file for the end users, that contains all required configurations by default.
 
 
 ### Customer Support Tool
@@ -152,17 +152,17 @@ Third party components
 
 The following third party components are bundled into the application (in alphabetical order):
 
--   [Commons IO](https://commons.apache.org/io/) 2.6
+-   [Commons IO](https://commons.apache.org/io/) 2.8.0
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-io/master/LICENSE.txt)
--   [Commons Lang](https://commons.apache.org/lang/) 3.8.1
+-   [Commons Lang](https://commons.apache.org/lang/) 3.12.0
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-lang/master/LICENSE.txt)
--   [Commons Text](https://commons.apache.org/text/) 1.6
+-   [Commons Text](https://commons.apache.org/text/) 1.9
     [(Apache License 2.0)](https://raw.githubusercontent.com/apache/commons-text/master/LICENSE.txt)
 -   [Crystal Project Icons](https://github.com/pinhead84/crystal-project)
     [(LGPL 2.1)](https://web.archive.org/web/20101122171611/http://everaldo.com/crystal/?action=license)
 -   [imgscalr](https://github.com/rkalla/imgscalr) rev-8ed3644
     [(Apache License 2.0)](https://raw.githubusercontent.com/rkalla/imgscalr/master/LICENSE)
--   [Java Native Access](https://github.com/java-native-access/jna) 5.2.0
+-   [Java Native Access](https://github.com/java-native-access/jna) 5.7.0
     [(Apache License 2.0)](https://raw.githubusercontent.com/java-native-access/jna/master/LICENSE)
 -   [JSch](http://www.jcraft.com/jsch/) 0.1.55
     [(BSD)](http://www.jcraft.com/jsch/LICENSE.txt)
@@ -172,12 +172,14 @@ The following third party components are bundled into the application (in alphab
     [(LGPL 2.1)](https://logback.qos.ch/license.html)
 -   [MigLayout](http://miglayout.com/) 5.2
     [(BSD)](https://raw.githubusercontent.com/mikaelgrev/miglayout/master/src/site/resources/docs/license.txt)
--   [OpenJDK Runtime Environment](https://openjdk.java.net/) 11
+-   [OpenJDK Runtime Environment](https://openjdk.java.net/) 11.0.10+9
     [(GPL 2 with Classpath Exception)](https://openjdk.java.net/legal/gplv2+ce.html)
--   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.26
+-   [Simple Logging Facade for Java](https://www.slf4j.org/) 1.7.30
     [(MIT)](https://www.slf4j.org/license.html)
+-   [JavaMacLauncher](https://github.com/OpenIndex/JavaMacLauncher) 1.0.0
+    [(Apache License 2.0)](https://raw.githubusercontent.com/OpenIndex/JavaMacLauncher/master/LICENSE.txt)
 
-We especially like to thank [BellSoft](https://www.bell-sw.com/) and [AdoptOpenJDK](https://adoptopenjdk.net/) for providing the high quality OpenJDK builds, that are bundled with this application.
+We especially like to thank [BellSoft](https://www.bell-sw.com/) for providing the high quality OpenJDK builds, that are bundled with this application.
 
 
 Further information
@@ -185,5 +187,5 @@ Further information
 
 -   [*Remote Support Tool* at GitHub](https://github.com/OpenIndex/RemoteSupportTool)
 -   [Releases of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/releases)
--   [Changelog of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/blob/master/CHANGELOG.md)
+-   [Changelog of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/blob/develop/CHANGELOG.md)
 -   [Documentation of *Remote Support Tool*](https://github.com/OpenIndex/RemoteSupportTool/wiki)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 OpenIndex.de.
+ * Copyright 2015-2021 OpenIndex.de.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +51,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -77,7 +78,7 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("WeakerAccess")
 public class CustomerApplication {
     @SuppressWarnings("unused")
-    private static Logger LOGGER;
+    private final static Logger LOGGER;
     public final static ResourceBundle SETTINGS;
     public final static String NAME;
     public final static String TITLE;
@@ -151,7 +152,7 @@ public class CustomerApplication {
 
             // read password of the internal truststore
             try (InputStream input = resource("truststore.jks.txt").openStream()) {
-                truststorePassword = StringUtils.trimToEmpty(IOUtils.toString(input, "UTF-8"));
+                truststorePassword = StringUtils.trimToEmpty(IOUtils.toString(input, StandardCharsets.UTF_8));
             } catch (IOException ex) {
                 LOGGER.warn("Can't read internal truststore password!", ex);
             }
@@ -180,7 +181,7 @@ public class CustomerApplication {
 
             // read password of the external truststore
             try (InputStream input = new FileInputStream(new File(WORK_DIR, "truststore.jks.txt"))) {
-                truststorePassword = StringUtils.trimToEmpty(IOUtils.toString(input, "UTF-8"));
+                truststorePassword = StringUtils.trimToEmpty(IOUtils.toString(input, StandardCharsets.UTF_8));
             } catch (IOException ex) {
                 LOGGER.warn("Can't read external truststore password!", ex);
             }
@@ -346,7 +347,7 @@ public class CustomerApplication {
             if (about == null) about = resource("about.html");
 
             try (InputStream input = about.openStream()) {
-                return IOUtils.toString(input, "UTF-8");
+                return IOUtils.toString(input, StandardCharsets.UTF_8);
             } catch (IOException ex) {
                 LOGGER.error("Can't read application information!", ex);
                 return StringUtils.EMPTY;

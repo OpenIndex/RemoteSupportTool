@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 OpenIndex.de.
+ * Copyright 2015-2021 OpenIndex.de.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,5 +27,5 @@ module de.openindex.support.staff {
     requires org.apache.commons.io;
     requires org.apache.commons.lang3;
     requires org.apache.commons.text;
-    requires slf4j.api;
+    requires org.slf4j;
 }

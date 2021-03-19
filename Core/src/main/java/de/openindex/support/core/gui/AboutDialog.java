@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 OpenIndex.de.
+ * Copyright 2015-2021 OpenIndex.de.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -147,14 +147,20 @@ public abstract class AboutDialog extends JDialog {
     protected abstract String getAboutText();
 
     private String replaceVariables(String text) {
-        Properties replacements = new Properties();
+        final Properties replacements = new Properties();
 
-        replacements.setProperty("app.title", settings.getString("title"));
+        String appTitle = StringUtils.trimToNull(settings.getString("i18n.appTitle"));
+        if (appTitle == null) {
+            appTitle = StringUtils.trimToEmpty(settings.getString("title"))
+                    + " " + StringUtils.trimToEmpty(settings.getString("version"));
+        }
+        replacements.setProperty("app.title", appTitle);
         replacements.setProperty("app.version", settings.getString("version"));
         replacements.setProperty("openjdk.name", StringUtils.defaultIfBlank(
                 SystemUtils.JAVA_RUNTIME_NAME, SystemUtils.JAVA_VM_NAME));
         replacements.setProperty("openjdk.version", StringUtils.defaultIfBlank(
                 SystemUtils.JAVA_RUNTIME_VERSION, SystemUtils.JAVA_VERSION));
+
         return StringSubstitutor.replace(text, replacements);
     }
 }

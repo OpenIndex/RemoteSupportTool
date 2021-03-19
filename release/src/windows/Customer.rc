@@ -1,7 +1,7 @@
 
 1 VERSIONINFO
-FILEVERSION 1,1,0,0
-PRODUCTVERSION 1,1,0,0
+FILEVERSION 1,1,2,0
+PRODUCTVERSION 1,1,2,0
 FILEOS 0x40004
 FILETYPE 0x1
 {
@@ -11,12 +11,12 @@ BLOCK "StringFileInfo"
 	{
 		VALUE "CompanyName", "OpenIndex.de"
 		VALUE "FileDescription", "Remote Support Tool for customers"
-		VALUE "FileVersion", "1.1.0"
+		VALUE "FileVersion", "1.1.2"
 		VALUE "InternalName", "CustomerSupportTool.exe"
-		VALUE "LegalCopyright", "Copyright (c) 2015-2019 OpenIndex.de"
+		VALUE "LegalCopyright", "Copyright (c) 2015-2021 OpenIndex.de"
 		VALUE "OriginalFilename", "CustomerSupportTool.exe"
 		VALUE "ProductName", "Customer Support Tool"
-		VALUE "ProductVersion", "1.1.0"
+		VALUE "ProductVersion", "1.1.2"
 	}
 }
 

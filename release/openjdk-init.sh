@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Build all supported OpenJDK runtime environments.
-# Copyright 2015-2019 OpenIndex.de
+# Copyright 2015-2021 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,22 +16,22 @@
 # limitations under the License.
 #
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 set -e
 
-init () {
-    echo ""
-    echo -e "\e[1m\e[92m=================================================\e[0m"
-    echo -e "\e[1m\e[92m launching $1\e[0m"
-    echo -e "\e[1m\e[92m=================================================\e[0m"
-    echo ""
-    exec "$1"
+init() {
+  echo ""
+  printf "\e[1m\e[92m=================================================\e[0m\n"
+  printf "\e[1m\e[92m launching %s\e[0m\n" "$1"
+  printf "\e[1m\e[92m=================================================\e[0m\n"
+  echo ""
+  exec "$1"
 }
 export -f init
 
-cd "$DIR"
+cd "${DIR}"
 find "src/openjdk/" \
-    -maxdepth 1 \
-    -type f \
-    -name "init-*.sh" \
-    -exec bash -c 'init {}' \;
+  -maxdepth 1 \
+  -type f \
+  -name "init-*.sh" \
+  -exec bash -c 'init {}' \;

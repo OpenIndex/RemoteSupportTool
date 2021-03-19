@@ -1,44 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-  <dict>
-    <key>CFBundleInfoDictionaryVersion</key>
-    <string>6.0</string>
+    <dict>
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>6.0</string>
 
-    <key>CFBundleIdentifier</key>
-    <string>de.openindex.support.customer.default</string>
+        <key>CFBundleIdentifier</key>
+        <string>de.openindex.support.customer.default</string>
 
-    <key>CFBundleName</key>
-    <string>CustomerSupport</string>
+        <key>CFBundleName</key>
+        <string>CustomerSupport</string>
 
-    <key>CFBundleDisplayName</key>
-    <string>CustomerSupportTool</string>
+        <key>CFBundleDisplayName</key>
+        <string>CustomerSupportTool</string>
 
-    <key>CFBundleVersion</key>
-    <string>{VERSION}</string>
+        <key>CFBundleVersion</key>
+        <string>{VERSION}</string>
 
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
 
-    <key>CFBundleExecutable</key>
-    <string>Start.sh</string>
+        <key>CFBundleExecutable</key>
+        <string>JavaMacLauncher</string>
 
-    <key>CFBundleIconFile</key>
-    <string>share/icon.icns</string>
+        <key>CFBundleIconFile</key>
+        <string>share/icon.icns</string>
 
-    <key>CFBundleDevelopmentRegion</key>
-    <string>en-US</string>
+        <key>CFBundleDevelopmentRegion</key>
+        <string>en-US</string>
 
-    <key>LSApplicationCategoryType</key>
-    <string>public.app-category.utilities</string>
+        <key>LSApplicationCategoryType</key>
+        <string>public.app-category.utilities</string>
 
-    <key>LSMinimumSystemVersion</key>
-    <string>10.9</string>
+        <key>LSMinimumSystemVersion</key>
+        <string>10.9</string>
 
-    <key>NSHumanReadableCopyright</key>
-    <string>©2015-2019 OpenIndex.de</string>
+        <key>NSHumanReadableCopyright</key>
+        <string>©2015-2021 OpenIndex.de</string>
 
-    <key>NSHighResolutionCapable</key>
-    <true/>
-  </dict>
+        <key>NSHighResolutionCapable</key>
+        <true/>
+
+        <key>JavaMacLauncher</key>
+        <dict>
+            <key>JavaHome</key>
+            <string>Contents/Resources</string>
+            <key>JavaCommand</key>
+            <string>Contents/Resources/bin/java</string>
+            <key>JavaOptions</key>
+            <array>
+                <string>-Dfile.encoding=UTF-8</string>
+            </array>
+            <key>JavaModulePath</key>
+            <array>
+                <string>Contents/Resources/modules</string>
+            </array>
+            <key>ApplicationCommand</key>
+            <string>-m de.openindex.support.customer/de.openindex.support.customer.CustomerApplication</string>
+            <key>HeapMinimum</key>
+            <string>32m</string>
+            <key>HeapMaximum</key>
+            <string>512m</string>
+            <key>DockName</key>
+            <dict>
+                <key>default</key>
+                <string>Customer Support</string>
+                <key>de</key>
+                <string>Kunden Support</string>
+            </dict>
+            <key>DockIcon</key>
+            <string>Contents/Resources/share/icon.icns</string>
+            <key>UseScreenMenuBar</key>
+            <true/>
+            <key>LaunchInForeground</key>
+            <true/>
+        </dict>
+    </dict>
 </plist>

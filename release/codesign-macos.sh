@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Create signed application bundles for macOS systems.
-# Copyright 2015-2019 OpenIndex.de
+# Copyright 2015-2021 OpenIndex.de
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,59 +19,104 @@
 # ----------------------------------------------------------------------------
 # NOTICE: This script has to be executed on a macOS system with the
 # required certificate available. In order to sign the application for
-# yourself, you need to obtain a Developer ID from Apple and set the
-# KEY variable accordingly.
+# yourself, you need to obtain a Developer ID from Apple and set some
+# environment variables in the ".env" file. If it is not available, create a
+# copy of ".env.example".
 # ----------------------------------------------------------------------------
 
-KEY="Developer ID Application: Andreas Rudolph (H48THMS543)"
-DIR=$( cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
-TARGET_DIR="$DIR/target"
-SIGNED_DIR="$DIR/signed"
-TEMP_DIR="$TARGET_DIR/codesign"
+# ----------------------------------------------------------------------------
+# You can find further information at:
+# https://github.com/OpenIndex/RemoteSupportTool/wiki/Development#sign-application-bundle-for-macos
+# ----------------------------------------------------------------------------
+
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+TARGET_DIR="${DIR}/target"
+SIGNED_DIR="${DIR}/signed"
 FOUND="0"
 set -e
 
-mkdir -p "$SIGNED_DIR"
-export LANG="en_US.UTF-8"
-
-for f in ${TARGET_DIR}/*.macos-*.tar.gz; do
-
-    if [[ "$FOUND" == "0" ]]; then
-        echo ""
-        printf "\e[1m\e[92m=======================================================================\e[0m\n"
-        printf "\e[1m\e[92m Unlocking keychain...\e[0m\n"
-        printf "\e[1m\e[92m=======================================================================\e[0m\n"
-        echo ""
-        security unlock-keychain
-    fi
-
-    FOUND="1"
-    echo ""
-    printf "\e[1m\e[92m=======================================================================\e[0m\n"
-    printf "\e[1m\e[92m Processing $(basename "$f")...\e[0m\n"
-    printf "\e[1m\e[92m=======================================================================\e[0m\n"
-    echo ""
-    rm -Rf "$TEMP_DIR"
-    mkdir -p "$TEMP_DIR"
-    tar xfz "$f" -C "$TEMP_DIR"
-    pkg="$(ls -1 "$TEMP_DIR")"
-    codesign --deep -s "$KEY" "$TEMP_DIR/$pkg"
-    echo "Verifying signature:"
-    codesign -d --verbose=4 "$TEMP_DIR/$pkg"
-    echo ""
-    echo "Verifying access for Gatekeeper:"
-    spctl --assess --verbose=4 --type execute "$TEMP_DIR/$pkg"
-    echo ""
-    echo "Storing signed application bundle at:"
-    echo "$SIGNED_DIR/$(basename "$f")"
-    rm -f "$SIGNED_DIR/$(basename "$f")"
-    cd "$TEMP_DIR"
-    tar cfz "$SIGNED_DIR/$(basename "$f")" "$pkg"
-done
-
-if [[ "$FOUND" == "0" ]]; then
-    echo "ERROR: No macOS packages were found at:"
-    echo "$TARGET_DIR"
+APPLE_CODESIGN_KEY=""
+if [[ -f "${DIR}/.env" ]]; then
+  source "${DIR}/.env"
 fi
 
-rm -Rf "$TEMP_DIR"
+if [[ -z "${APPLE_CODESIGN_KEY}" ]]; then
+  echo "ERROR: No signature key was specified!"
+  exit 1
+fi
+
+mkdir -p "${SIGNED_DIR}"
+export LANG="en_US.UTF-8"
+
+for f in "${TARGET_DIR}"/*.macos-*.tar.gz; do
+
+  if [[ "${FOUND}" == "0" ]]; then
+    echo ""
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    printf "\e[1m\e[92m Unlocking keychain...\e[0m\n"
+    printf "\e[1m\e[92m=======================================================================\e[0m\n"
+    echo ""
+    security unlock-keychain
+  fi
+
+  FOUND="1"
+  archive="$(basename "${f}")"
+  archive_name="$(basename "${archive}" ".tar.gz")"
+  signed_dir="${SIGNED_DIR}/${archive_name}"
+  rm -Rf "${signed_dir}"
+  mkdir -p "${signed_dir}"
+
+  echo ""
+  printf "\e[1m\e[92m=======================================================================\e[0m\n"
+  printf "\e[1m\e[92m Processing %s...\e[0m\n" "${archive}"
+  printf "\e[1m\e[92m=======================================================================\e[0m\n"
+
+  echo ""
+  echo "Extracting application bundle."
+  tar xfz "${f}" -C "${signed_dir}"
+  pkg="$(ls -1 "${signed_dir}")"
+  signed_bundle="${signed_dir}/${pkg}"
+
+  echo ""
+  echo "Signing application bundle at:"
+  echo ""
+  echo "${signed_bundle}"
+  codesign --deep --force --verify --sign "${APPLE_CODESIGN_KEY}" --options runtime "${signed_bundle}"
+
+  echo ""
+  echo "Verifying signature:"
+  codesign --verify --verbose=4 "${signed_bundle}"
+  #codesign --display --verbose=4 "${signed_bundle}"
+
+  echo ""
+  echo "Verifying access for Gatekeeper:"
+  spctl --assess --verbose=4 --type execute "${signed_dir}/${pkg}"
+
+  echo ""
+  echo "Compressing application bundle to:"
+  signed_tar="${signed_dir}/${archive_name}.tar.gz"
+  echo "${signed_tar}"
+  cd "${signed_dir}"
+  rm -f "${signed_tar}"
+  tar cfz "${signed_tar}" "$(basename "${signed_bundle}")"
+
+  echo ""
+  echo "Compressing application bundle to:"
+  signed_zip="${signed_dir}/${archive_name}.zip"
+  echo "${signed_zip}"
+  cd "${signed_dir}"
+  rm -f "${signed_zip}"
+  # According to Apples documentation "Customizing the Notarization Workflow" at
+  # https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
+  # we can't use the ZIP command, as it leads to problems in the notarization process.
+  # Therefore we're using ditto instead.
+  #zip -r -q "${signed_zip}" "$(basename "${signed_bundle}")"
+  ditto -c -k --keepParent "$(basename "${signed_bundle}")" "${signed_zip}"
+
+done
+
+if [[ "${FOUND}" == "0" ]]; then
+  echo "ERROR: No macOS packages were found at:"
+  echo "${TARGET_DIR}"
+  exit 1
+fi

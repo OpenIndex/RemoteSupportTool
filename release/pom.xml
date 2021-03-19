@@ -7,7 +7,7 @@
     <parent>
         <artifactId>RemoteSupportTool</artifactId>
         <groupId>de.openindex.support</groupId>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
     </parent>
 
     <artifactId>release</artifactId>
@@ -83,6 +83,27 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.basedir}/signed</directory>
+                            <excludes>
+                                <exclude>**/.gitignore</exclude>
+                            </excludes>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/notarized</directory>
+                            <excludes>
+                                <exclude>**/.gitignore</exclude>
+                            </excludes>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

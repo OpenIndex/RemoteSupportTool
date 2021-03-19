@@ -1,2 +1,5 @@
-signed
-target
+/.env
+/signed
+/notarized
+/target
+/website
