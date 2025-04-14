@@ -54,7 +54,7 @@
         <version.jna>5.7.0</version.jna>
         <version.jsch>0.1.55</version.jsch>
         <version.jzlib>1.1.3</version.jzlib>
-        <version.logback>1.2.3</version.logback>
+        <version.logback>1.2.13</version.logback>
         <version.miglayout>5.2</version.miglayout>
         <version.slf4j>1.7.30</version.slf4j>
         <version.java-mac-launcher>1.0.0</version.java-mac-launcher>
